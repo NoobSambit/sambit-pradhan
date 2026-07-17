@@ -3,18 +3,104 @@
 import { useState } from "react";
 import { projects, type Project } from "@/data/projects";
 
+function RepositoryLink({ project, children }: { project: Project; children: React.ReactNode }) {
+  return <a href={project.repository} target="_blank" rel="noreferrer">{children}</a>;
+}
+
 function ProjectList({ active, onSelect }: { active: string; onSelect: (project: Project) => void }) {
-  return <section className="project-list panel"><div className="terminal-prompt"><span>developer@sambit:~/projects</span>$ ls --featured</div>{projects.map((project) => <button className={`project-card ${active === project.id ? "selected" : ""}`} onClick={() => onSelect(project)} key={project.id}><i>▱</i><b>{project.name}</b><em className={project.tone}>● {project.state}</em><div><span>{project.runtime}</span><span>⌁　{project.updated}</span><span>⌁　{project.size}</span></div><small>{project.tag}</small></button>)}<footer>5 repositories <span>Sort: updated ↕</span></footer></section>;
+  return <section className="project-list panel">
+    <div className="terminal-prompt"><span>developer@sambit:~/projects</span>$ ls --featured</div>
+    <div className="project-list-items">
+      {projects.map((project) => <button className={`project-card ${active === project.id ? "selected" : ""}`} onClick={() => onSelect(project)} key={project.id}>
+        <i>▱</i><b>{project.name}</b><em className={project.tone}>● {project.state}</em>
+        <div><span>{project.runtime}</span><span>⌘ {project.branch}</span><span>⌁ {project.commitCount} commits</span></div>
+        <small>{project.tag}</small>
+      </button>)}
+    </div>
+    <footer>{projects.length} repositories <span>Sort: featured ↕</span></footer>
+  </section>;
 }
 
 function ProjectPreview({ project }: { project: Project }) {
-  const attributes = [["Architecture", "Microservices"], ["Primary Language", project.runtime], ["Backend Runtime", "Node.js 20"], ["API Style", "REST + GraphQL"], ["Database", "PostgreSQL"], ["Authentication", "JWT + OAuth"], ["Cloud Platform", "AWS"], ["Message Queue", "Kafka"], ["Cache Layer", "Redis"], ["Containerization", "Docker"], ["Repository", project.repository], ["Environment", "Production"], ["Region", "ap-south-1"]];
-  return <section className="project-preview panel"><div className="terminal-prompt"><span>$ open</span> {project.name}.workspace</div><article><h1>{project.name} <b>LIVE</b></h1><p>{project.description}</p><div className="project-tags"><i>Phase Production Ready</i><i>{project.version}</i><i>{project.updated}</i><i>▣ Private</i></div><div className="project-attributes">{attributes.map(([label, value]) => <div key={label}><span>⌁　{label}</span><b className={value === "Production" ? "blue" : ""}>{value}</b></div>)}</div><p className="project-description">{project.name} helps teams ship reliable systems with clear ownership, real-time visibility, and scalable services. The final implementation notes and case study will be added here soon.</p></article><div className="project-architecture"><div className="section-command">$ architecture --preview</div><div className="project-flow">{[["◉","Web Client","Next.js"],["◇","API Gateway","Nginx"],["JS","Backend","Node.js"],["▱","Redis","Cache"],["♧","PostgreSQL","Primary DB"],["⚙","Workers","Background Jobs"],["⌘","Kafka","Event Stream"]].map(([icon,name,sub],index)=><div className={`flow-node n${index}`} key={name}><i>{icon}</i><b>{name}</b><small>{sub}</small></div>)}</div><a>View Complete Architecture →</a></div><div className="project-metrics"><div className="section-command">$ metrics --summary</div>{[["API Endpoints","128"],["Database Tables","36"],["Repositories","4"],["Deployments","48"],["Containers","28"],["Microservices","7"],["CI Pipelines","12"],["Test Coverage","82%"]].map(([label,value])=><div key={label}><span>{label}</span><b>{value}</b></div>)}</div><div className="project-gallery"><div className="section-command">$ gallery --preview</div>{["Dashboard Overview","Mobile Experience","Admin Console"].map((label,index)=><figure key={label}><div className={`gallery-screen g${index}`}><i /><b /><em /></div><figcaption>{label}</figcaption></figure>)}<a>View Full Gallery →</a></div></section>;
+  return <section className="project-preview panel">
+    <div className="terminal-prompt"><span>$ git show</span> {project.latestCommit.sha} --stat</div>
+    <div className="project-preview-scroll">
+      <article className="project-intro">
+        <h1>{project.name} <b className={project.tone}>● {project.state}</b></h1>
+        {project.productName && <p className="project-product-name">{project.productName}</p>}
+        <p>{project.description}</p>
+        <div className="project-tags">
+          <i>⌘ {project.branch}</i><i>{project.commitCount} commits</i><i>{project.latestCommit.sha}</i><RepositoryLink project={project}>↗ Repository</RepositoryLink>
+        </div>
+      </article>
+
+      <section className="project-facts">
+        <div className="section-command">$ project_facts --verified</div>
+        {project.facts.map((fact) => <div key={fact.label}><span>{fact.label}</span><b>{fact.value}</b></div>)}
+      </section>
+
+      <section className="project-architecture">
+        <div className="section-command">$ system_map --actual</div>
+        <ol className="architecture-rail">{project.architecture.map((node) => <li key={node.name}><i>{node.icon}</i><span><b>{node.name}</b><small>{node.detail}</small></span></li>)}</ol>
+      </section>
+
+      <section className="project-capabilities">
+        <div className="section-command">$ capabilities --documented</div>
+        <ul>{project.capabilities.map((capability) => <li key={capability}><i>▹</i><span>{capability}</span></li>)}</ul>
+      </section>
+    </div>
+  </section>;
 }
 
 function Inspector({ project }: { project: Project }) {
-  const statuses = [["Current Sprint","Sprint 24"],["Latest Feature","AI Task Generator"],["Last Deployment","2 hours ago"],["Production Health","● Healthy"],["Open Issues","3"],["Latest Commit","feat: analytics engine"],["Build Status","Passed ●"],["Version",project.version],["Environment","Production"],["Repository","Private"]];
-  return <section className="project-inspector panel"><div className="panel-title">$ project_status</div><div className="status-list">{statuses.map(([label,value])=><div key={label}><span>{label}</span><b className={value.includes("●") || value === "Production" || value.startsWith("Sprint") ? "green" : ""}>:　{value}</b></div>)}</div><div className="inspector-log"><div className="section-command">$ git log --oneline</div>{["feat: add analytics engine","fix: resolve cache race condition","chore: update dependencies","feat: real-time sync updates","refactor: optimize api gateway","docs: update deployment guide"].map((text,index)=><div key={text}><i>●</i><span>{text}</span><time>{index ? `${index} days ago` : "2 hours ago"}</time></div>)}<a>View More Commits →</a></div><div className="inspector-stack"><div className="section-command">$ stack --project</div>{project.stack.map((tech,index)=><span key={tech}><i className={`skill-dot d${index%6}`} />{tech}</span>)}<a>Explore Full Tech Stack →</a></div><div className="engineering-notes"><div className="section-command">$ engineering_notes</div>{[["Production Ready","High availability and auto-scaling enabled"],["Event Driven","Kafka powers asynchronous architecture"],["Horizontal Scaling","Stateless services + container orchestration"],["Modular Architecture","Clean boundaries and isolated services"]].map(([label,desc])=><div key={label}><i>▣</i><b>{label}</b><span>{desc}</span></div>)}<a>See Detailed Notes →</a></div></section>;
+  const statuses = [
+    ["Repository", project.repository.replace("https://github.com/", "")],
+    ["Branch", project.branch],
+    ["Commit count", String(project.commitCount)],
+    ["HEAD", project.latestCommit.sha],
+    ["Last commit", project.latestCommit.date],
+    ["Status", project.state],
+  ];
+
+  return <section className="project-inspector panel">
+    <div className="panel-title">$ project_inspector</div>
+    <div className="project-inspector-scroll">
+      <section className="status-list">
+        <div className="section-command">$ git status --short</div>
+        {statuses.map(([label, value]) => <div key={label}><span>{label}</span><b className={label === "Status" ? project.tone : ""}>{value}</b></div>)}
+        <RepositoryLink project={project}>Open repository ↗</RepositoryLink>
+      </section>
+
+      <section className="inspector-log">
+        <div className="section-command">$ git log --oneline</div>
+        {project.commits.map((commit) => <div key={commit.sha}><i>●</i><span title={commit.subject}>{commit.subject}</span><time>{commit.date}</time></div>)}
+        <RepositoryLink project={project}>View commit history ↗</RepositoryLink>
+      </section>
+
+      <section className="inspector-stack">
+        <div className="section-command">$ stack --project</div>
+        {project.stack.map((tech, index) => <span key={tech}><i className={`skill-dot d${index % 6}`} />{tech}</span>)}
+      </section>
+
+      <section className="engineering-notes">
+        <div className="section-command">$ engineering_notes</div>
+        {project.engineeringNotes.map((note) => <div key={note.label}><i>▣</i><b>{note.label}</b><span>{note.value}</span></div>)}
+      </section>
+    </div>
+  </section>;
 }
 
-export function ProjectsWorkspace() { const [selected, setSelected] = useState(projects[0]); return <section className="projects-workspace"><div className="projects-grid"><ProjectList active={selected.id} onSelect={setSelected} /><ProjectPreview project={selected} /><Inspector project={selected} /></div><div className="projects-command panel"><span><b>developer@sambit:~/projects</b>$ <i>▌</i></span>{[["◎ open projects.workspace","Enter projects workspace"],["⌘ view architecture","Inspect system design"],["⌁ view deployments","Deployment history"],["⌕ browse repositories","Browse all repos"],["›_ open github","View repositories"],["▣ view case study","See case study"],["⊕ help","Show commands"]].map(([command,description])=><button key={command}><b>{command}</b><small>{description}</small></button>)}</div></section>; }
+export function ProjectsWorkspace() {
+  const [selected, setSelected] = useState<Project>(projects[0]);
+  const commands = [
+    [`⌘ git log ${selected.branch}`, "Inspect project history"],
+    ["⌁ view system map", "Inspect actual architecture"],
+    ["⌕ browse capabilities", "Read documented features"],
+    ["›_ open github", "Open source repository"],
+  ];
+
+  return <section className="projects-workspace">
+    <div className="projects-grid"><ProjectList active={selected.id} onSelect={setSelected} /><ProjectPreview project={selected} /><Inspector project={selected} /></div>
+    <div className="projects-command panel"><span><b>developer@sambit:~/projects</b>$ <i>▌</i></span>{commands.map(([command, description]) => <button key={command}><b>{command}</b><small>{description}</small></button>)}</div>
+  </section>;
+}

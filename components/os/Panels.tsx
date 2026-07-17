@@ -4,7 +4,7 @@ import { LiveActivityStreaks, LiveGitLog, LiveRelease } from "@/components/os/Li
 function PanelTitle({ children }: { children: React.ReactNode }) { return <div className="panel-title">$ {children}</div>; }
 
 export function ActiveProject() {
-  const details = [["♙", "Role", "Backend Engineer"], ["▣", "Status", "Building"], ["◉", "Availability", "Open to Opportunities"], ["⌖", "Location", "Bengaluru, India"], ["◷", "Timezone", "IST (UTC +5:30)"], ["♧", "Preferred Role", "Backend / Infra"], ["⌘", "Experience", "3+ Years"], ["◉", "Response Time", "< 24h"]];
+  const details = [["♙", "Role", "Backend Engineer"], ["▣", "Status", "Building"], ["◉", "Availability", "Open to Opportunities"], ["⌖", "Location", "Kolkata, India"], ["◷", "Timezone", "IST (UTC +5:30)"], ["♧", "Preferred Role", "Backend / Infra"], ["⌘", "Experience", "3+ Years"], ["◉", "Response Time", "< 24h"]];
   const asciiPortrait = `   .--------.
   /  .----.  \\\\
  |  / .--. \\\\  |

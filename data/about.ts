@@ -1,5 +1,5 @@
 export const profileDetails = [
-  ["♙", "Role", "Backend Engineer"], ["▣", "Status", "Building"], ["◉", "Availability", "Open to Opportunities"], ["⌖", "Location", "Bengaluru, India"], ["◷", "Timezone", "IST (UTC +5:30)"], ["♧", "Experience", "3+ Years"], ["⌘", "Focus", "AI Systems · Backend Infra"], ["◉", "Open To Work", "Yes"], ["◈", "Domains", "Backend · Cloud · AI"], ["⊞", "Languages", "English · Hindi · Bengali"],
+  ["♙", "Role", "Backend Engineer"], ["▣", "Status", "Building"], ["◉", "Availability", "Open to Opportunities"], ["⌖", "Location", "Kolkata, India"], ["◷", "Timezone", "IST (UTC +5:30)"], ["♧", "Experience", "3+ Years"], ["⌘", "Focus", "AI Systems · Backend Infra"], ["◉", "Open To Work", "Yes"], ["◈", "Domains", "Backend · Cloud · AI"], ["⊞", "Languages", "English · Hindi · Bengali"],
 ] as const;
 
 export const stackGroups = [

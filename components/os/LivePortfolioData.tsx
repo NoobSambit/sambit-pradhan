@@ -11,6 +11,7 @@ type PortfolioData = {
 };
 
 let dataPromise: Promise<PortfolioData> | null = null;
+const overviewCommitLimit = 4;
 
 function loadPortfolioData() {
   dataPromise ??= fetch("/api/portfolio-data").then(async (response) => {
@@ -57,7 +58,7 @@ export function LiveActivityStreaks() {
 export function LiveGitLog() {
   const data = usePortfolioData();
   const commits = data?.github.commits ?? [];
-  return <>{commits.length ? commits.map((commit) => <div key={commit.sha}><i>●</i><span>{commit.message}</span><small>{relativeTime(commit.date)}</small></div>) : <div><i>●</i><span>Loading repository commits...</span><small>—</small></div>}</>;
+  return <>{commits.length ? commits.slice(0, overviewCommitLimit).map((commit) => <div key={commit.sha}><i>●</i><span title={commit.message}>{commit.message}</span><small>{relativeTime(commit.date)}</small></div>) : <div><i>●</i><span>Loading repository commits...</span><small>—</small></div>}</>;
 }
 
 export function LiveQuickStats() {
