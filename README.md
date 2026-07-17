@@ -26,6 +26,8 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+To enable live GitHub and LeetCode activity, copy `.env.example` to `.env.local` and provide a read-only GitHub token. `.env.local` is intentionally ignored by Git.
+
 ## Scripts
 
 ```bash
