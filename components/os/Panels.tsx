@@ -5,16 +5,7 @@ function PanelTitle({ children }: { children: React.ReactNode }) { return <div c
 
 export function ActiveProject() {
   const details = [["♙", "Role", "Backend Engineer"], ["▣", "Status", "Building"], ["◉", "Availability", "Open to Opportunities"], ["⌖", "Location", "Kolkata, India"], ["◷", "Timezone", "IST (UTC +5:30)"], ["♧", "Preferred Role", "Backend / Infra"], ["⌘", "Experience", "3+ Years"], ["◉", "Response Time", "< 24h"]];
-  const asciiPortrait = `   .--------.
-  /  .----.  \\\\
- |  / .--. \\\\  |
- | | 0  0 | | |
- | |  __  | | |
-  \\\\ \\\\____/ / /
-   '------'  \\\\
-    /|    |\\\\
-   /_|____|_\\\\`;
-  return <section className="active-project profile-overview panel"><PanelTitle>whoami --profile <span className="live">● ONLINE</span></PanelTitle><div className="profile-overview-body"><div className="mini-avatar ascii-avatar" aria-label="Temporary ASCII profile illustration"><pre aria-hidden="true">{asciiPortrait}</pre></div><div className="profile-overview-details"><h2>Sambit Pradhan</h2>{details.map(([icon, label, value]) => <div key={label}><i>{icon}</i><span>{label}</span><b className={label === "Status" ? "green" : ""}>{value}</b></div>)}</div></div><footer>profile loaded　 <span className="green">✓</span>　 available for impactful work</footer></section>;
+  return <section className="active-project profile-overview panel"><PanelTitle>whoami --profile <span className="live">● ONLINE</span></PanelTitle><div className="profile-overview-body profile-with-image"><div className="mini-avatar heisenberg-avatar"><img src="/heisenberg_ascii_pfp.png" width="1688" height="2394" alt="Heisenberg ASCII artwork" /></div><div className="profile-overview-details"><h2>Sambit Pradhan</h2>{details.map(([icon, label, value]) => <div key={label}><i>{icon}</i><span>{label}</span><b className={label === "Status" ? "green" : ""}>{value}</b></div>)}</div></div><footer>profile loaded　 <span className="green">✓</span>　 available for impactful work</footer></section>;
 }
 
 export function Architecture() {
@@ -23,11 +14,6 @@ export function Architecture() {
 
 export function GitLog() {
   return <section className="git-log panel"><PanelTitle>git log --graph <span className="blue">⌘ main</span></PanelTitle><div className="git-rows"><LiveGitLog /></div><div className="commit-graph" /></section>;
-}
-
-export function Metrics() {
-  const metrics = [["APIs Built", "24"], ["Services Deployed", "60+"], ["DBs Designed", "12"], ["Code Reviews", "156"], ["PRs Merged", "98%"], ["Uptime (30d)", "99.98%"], ["Avg Response Time", "41ms"], ["Bug Resolution", "0.2%"]];
-  return <section className="metrics panel"><PanelTitle>metrics --summary</PanelTitle>{metrics.map(([label, value]) => <div className="metric" key={label}><span>{label}</span><b>{value}</b><i>〽〽〽</i></div>)}</section>;
 }
 
 export function Skills() { return <section className="skills panel"><PanelTitle>npm ls --depth=0</PanelTitle><div className="skill-grid">{skills.map((skill, index) => <span key={skill}><i className={`skill-dot d${index % 6}`} />{skill}</span>)}</div><footer>32 packages installed</footer></section>; }
