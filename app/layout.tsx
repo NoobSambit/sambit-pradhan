@@ -6,7 +6,9 @@ export const metadata: Metadata = {
   description: "Sambit Pradhan's developer workspace.",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body>{children}</body>
