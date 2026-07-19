@@ -9,6 +9,7 @@ import {
   GenericFeaturesView,
   type InspectableFeature,
 } from "@/components/os/projects/ArmyverseProjectViews";
+import { ProjectActionIcon } from "@/components/os/projects/ProjectActionIcon";
 import { docBuilderArchitectureMaps } from "@/data/docbuilder/architecture";
 import { docBuilderFeatures } from "@/data/docbuilder/features";
 import {
@@ -34,18 +35,20 @@ function DocBuilderHero() {
       </div>
       <div className="project-hero-actions">
         <a
+          className="github-action"
           href={docBuilderProject.repositoryUrl}
           rel="noreferrer"
           target="_blank"
         >
-          ◉ GitHub
+          <ProjectActionIcon type="github" /> GitHub
         </a>
         <a
+          className="docs-action"
           href={`${docBuilderProject.repositoryUrl}/tree/main/docs`}
           rel="noreferrer"
           target="_blank"
         >
-          ▧ Documentation
+          <ProjectActionIcon type="docs" /> Documentation
         </a>
       </div>
     </section>

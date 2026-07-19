@@ -17,7 +17,18 @@ export type ArmyverseArchitectureEdge = {
 
 export type ArmyverseArchitectureMap = {
   id: string;
-  group: "Platform" | "Music" | "Data" | "Game" | "Community";
+  group:
+    | "Platform"
+    | "Music"
+    | "Data"
+    | "Game"
+    | "Community"
+    | "Administration"
+    | "Identity"
+    | "Assessment"
+    | "Feedback"
+    | "Intelligence"
+    | "Reporting";
   title: string;
   summary: string;
   source: string;

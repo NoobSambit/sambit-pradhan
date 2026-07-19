@@ -5,7 +5,12 @@ import { projects, type Project } from "@/data/projects";
 
 type RepositoryLandingProps = {
   onOpenProject: (
-    project: "armyverse" | "agent-playground" | "docbuilder" | "kirana-corner",
+    project:
+      | "armyverse"
+      | "agent-playground"
+      | "docbuilder"
+      | "kirana-corner"
+      | "insightquill",
   ) => void;
 };
 
@@ -45,6 +50,7 @@ const projectPriority = [
   "agent-playground",
   "docbuilder",
   "kirana-corner",
+  "insightquill",
 ];
 
 function comparePinnedProjects(left: Project, right: Project) {
@@ -138,6 +144,7 @@ function Explorer({
               "agent-playground",
               "docbuilder",
               "kirana-corner",
+              "insightquill",
             ].includes(selected.id)
               ? "Available"
               : "Planned"}
@@ -225,7 +232,12 @@ function Inspector({
   project,
 }: {
   onOpenProject: (
-    project: "armyverse" | "agent-playground" | "docbuilder" | "kirana-corner",
+    project:
+      | "armyverse"
+      | "agent-playground"
+      | "docbuilder"
+      | "kirana-corner"
+      | "insightquill",
   ) => void;
   project: Project;
 }) {
@@ -233,13 +245,15 @@ function Inspector({
     project.id === "armyverse" ||
     project.id === "agent-playground" ||
     project.id === "docbuilder" ||
-    project.id === "kirana-corner";
+    project.id === "kirana-corner" ||
+    project.id === "insightquill";
   const openDocumentation = () => {
     if (
       project.id === "armyverse" ||
       project.id === "agent-playground" ||
       project.id === "docbuilder" ||
-      project.id === "kirana-corner"
+      project.id === "kirana-corner" ||
+      project.id === "insightquill"
     )
       onOpenProject(project.id);
   };
@@ -386,7 +400,8 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
       project.id === "armyverse" ||
       project.id === "agent-playground" ||
       project.id === "docbuilder" ||
-      project.id === "kirana-corner"
+      project.id === "kirana-corner" ||
+      project.id === "insightquill"
     )
       onOpenProject(project.id);
   };
@@ -414,13 +429,15 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
             selected.id !== "armyverse" &&
             selected.id !== "agent-playground" &&
             selected.id !== "docbuilder" &&
-            selected.id !== "kirana-corner"
+            selected.id !== "kirana-corner" &&
+            selected.id !== "insightquill"
           }
           onClick={() =>
             (selected.id === "armyverse" ||
               selected.id === "agent-playground" ||
               selected.id === "docbuilder" ||
-              selected.id === "kirana-corner") &&
+              selected.id === "kirana-corner" ||
+              selected.id === "insightquill") &&
             onOpenProject(selected.id)
           }
           type="button"

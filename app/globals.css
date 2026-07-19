@@ -3392,6 +3392,23 @@ button {
   color: #a8e39d;
   background: #0d2114;
 }
+.insightquill-workspace .project-activity a {
+  display: grid;
+  width: 43px;
+  height: 31px;
+  place-items: center;
+  border-left: 2px solid transparent;
+  color: #84939b;
+  font-size: 16px;
+  text-decoration: none;
+}
+.insightquill-workspace .project-activity button.active,
+.insightquill-workspace .project-activity button:hover,
+.insightquill-workspace .project-activity a:hover {
+  border-left-color: #bd86ef;
+  color: #e1c5fc;
+  background: #1b1027;
+}
 .project-source-label {
   color: #6fd5e7;
   font-size: 9px;
@@ -3501,6 +3518,33 @@ button {
   border-color: #6bc76b;
   color: #a5e897;
 }
+.insightquill-hero .project-mark {
+  border-color: #ae78df;
+  color: #e2c5ff;
+  background: #1a1028;
+  box-shadow: 0 0 17px rgba(174, 120, 223, 0.2);
+  font-size: 19px;
+  letter-spacing: -0.08em;
+}
+.insightquill-hero .project-hero-copy span:first-of-type {
+  border-color: #674786;
+  color: #dbb7ff;
+  background: #1a1028;
+}
+.insightquill-hero .project-hero-copy span:nth-of-type(2) {
+  border-color: #3d687d;
+  color: #9adcf6;
+  background: #0a1b24;
+}
+.insightquill-hero .project-hero-copy span:nth-of-type(3) {
+  border-color: #787038;
+  color: #e7da83;
+  background: #201e0d;
+}
+.insightquill-hero .project-hero-actions a:hover {
+  border-color: #b981eb;
+  color: #e6cbff;
+}
 .project-hero-actions a {
   display: inline-flex;
   align-items: center;
@@ -3581,7 +3625,8 @@ button {
 .agent-cockpit-preview {
   display: grid;
   min-width: 0;
-  min-height: 360px;
+  aspect-ratio: 16 / 9;
+  min-height: 0;
   grid-template-columns: 145px minmax(0, 1fr);
   grid-template-rows: 37px minmax(0, 1fr);
   margin: 0;
@@ -3715,10 +3760,61 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.insightquill-preview {
+  border-color: #62417a;
+  background:
+    radial-gradient(
+      ellipse at 73% 8%,
+      rgba(111, 58, 150, 0.25),
+      transparent 42%
+    ),
+    linear-gradient(130deg, #120d1b, #0b1620 68%, #071015);
+}
+.insightquill-preview > header,
+.insightquill-preview > aside {
+  border-color: #49345b;
+}
+.insightquill-preview > header b,
+.insightquill-preview small,
+.insightquill-preview > main > section > span {
+  color: #d2adfb;
+}
+.insightquill-preview > header span,
+.insightquill-preview > main > section {
+  border-color: #514065;
+}
+.insightquill-preview > aside b {
+  background: #29183a;
+  color: #e0c0ff;
+}
+.insightquill-preview > main > section {
+  background: linear-gradient(
+    105deg,
+    rgba(42, 23, 63, 0.92),
+    rgba(10, 28, 37, 0.72)
+  );
+}
+.insightquill-preview article {
+  border-color: #4a3d59;
+  background: #121421;
+}
+.insightquill-preview article:nth-child(2) {
+  border-top-color: #4aa9c9;
+}
+.insightquill-preview article:nth-child(3) {
+  border-top-color: #cfad4f;
+}
+.insightquill-problem-solution article:first-child b {
+  color: #e3b3ff;
+}
+.insightquill-problem-solution article:last-child b {
+  color: #9be0f7;
+}
 .docbuilder-preview {
   display: grid;
   min-width: 0;
-  min-height: 360px;
+  aspect-ratio: 16 / 9;
+  min-height: 0;
   grid-template-columns: 145px minmax(0, 1fr);
   grid-template-rows: 37px minmax(0, 1fr);
   margin: 0;
@@ -4741,6 +4837,13 @@ button {
   padding-right: 3px;
   scrollbar-width: thin;
   scrollbar-color: #4a7747 transparent;
+}
+.insightquill-inspector .architecture-library > div {
+  max-height: 330px;
+  overflow: auto;
+  padding-right: 3px;
+  scrollbar-width: thin;
+  scrollbar-color: #76549a transparent;
 }
 .architecture-library button {
   display: grid;
@@ -6466,13 +6569,15 @@ button {
   .armyverse-workspace .project-docs-content,
   .agent-playground-workspace .project-docs-content,
   .docbuilder-workspace .project-docs-content,
-  .kirana-workspace .project-docs-content {
+  .kirana-workspace .project-docs-content,
+  .insightquill-workspace .project-docs-content {
     min-width: 820px;
   }
   .armyverse-workspace .project-docs-inspector,
   .agent-playground-workspace .project-docs-inspector,
   .docbuilder-workspace .project-docs-inspector,
-  .kirana-workspace .project-docs-inspector {
+  .kirana-workspace .project-docs-inspector,
+  .insightquill-workspace .project-docs-inspector {
     min-width: 310px;
   }
 }
@@ -6480,7 +6585,8 @@ button {
   .armyverse-workspace,
   .agent-playground-workspace,
   .docbuilder-workspace,
-  .kirana-workspace {
+  .kirana-workspace,
+  .insightquill-workspace {
     display: block;
     height: auto;
     overflow: visible;
@@ -6488,26 +6594,30 @@ button {
   .armyverse-workspace .project-activity,
   .agent-playground-workspace .project-activity,
   .docbuilder-workspace .project-activity,
-  .kirana-workspace .project-activity {
+  .kirana-workspace .project-activity,
+  .insightquill-workspace .project-activity {
     display: none;
   }
   .armyverse-workspace .project-docs-nav,
   .agent-playground-workspace .project-docs-nav,
   .docbuilder-workspace .project-docs-nav,
-  .kirana-workspace .project-docs-nav {
+  .kirana-workspace .project-docs-nav,
+  .insightquill-workspace .project-docs-nav {
     grid-template-rows: 38px auto;
     border-bottom: 1px solid #23333d;
   }
   .armyverse-workspace .project-docs-nav footer,
   .agent-playground-workspace .project-docs-nav footer,
   .docbuilder-workspace .project-docs-nav footer,
-  .kirana-workspace .project-docs-nav footer {
+  .kirana-workspace .project-docs-nav footer,
+  .insightquill-workspace .project-docs-nav footer {
     display: none;
   }
   .armyverse-workspace .project-docs-tree,
   .agent-playground-workspace .project-docs-tree,
   .docbuilder-workspace .project-docs-tree,
-  .kirana-workspace .project-docs-tree {
+  .kirana-workspace .project-docs-tree,
+  .insightquill-workspace .project-docs-tree {
     display: flex;
     overflow: auto;
     padding: 0;
@@ -6515,13 +6625,15 @@ button {
   .armyverse-workspace .project-docs-tree > b,
   .agent-playground-workspace .project-docs-tree > b,
   .docbuilder-workspace .project-docs-tree > b,
-  .kirana-workspace .project-docs-tree > b {
+  .kirana-workspace .project-docs-tree > b,
+  .insightquill-workspace .project-docs-tree > b {
     display: none;
   }
   .armyverse-workspace .project-docs-tree button,
   .agent-playground-workspace .project-docs-tree button,
   .docbuilder-workspace .project-docs-tree button,
-  .kirana-workspace .project-docs-tree button {
+  .kirana-workspace .project-docs-tree button,
+  .insightquill-workspace .project-docs-tree button {
     width: auto;
     flex: 0 0 auto;
     padding: 0 12px;
@@ -6529,14 +6641,16 @@ button {
   .armyverse-workspace .project-docs-content,
   .agent-playground-workspace .project-docs-content,
   .docbuilder-workspace .project-docs-content,
-  .kirana-workspace .project-docs-content {
+  .kirana-workspace .project-docs-content,
+  .insightquill-workspace .project-docs-content {
     display: block;
     min-width: 0;
   }
   .armyverse-workspace .project-docs-scroll,
   .agent-playground-workspace .project-docs-scroll,
   .docbuilder-workspace .project-docs-scroll,
-  .kirana-workspace .project-docs-scroll {
+  .kirana-workspace .project-docs-scroll,
+  .insightquill-workspace .project-docs-scroll {
     max-height: none;
     min-height: 0;
     padding: 0 10px;
@@ -6544,13 +6658,15 @@ button {
   .armyverse-workspace .project-terminal,
   .agent-playground-workspace .project-terminal,
   .docbuilder-workspace .project-terminal,
-  .kirana-workspace .project-terminal {
+  .kirana-workspace .project-terminal,
+  .insightquill-workspace .project-terminal {
     display: none;
   }
   .armyverse-workspace .project-docs-inspector,
   .agent-playground-workspace .project-docs-inspector,
   .docbuilder-workspace .project-docs-inspector,
-  .kirana-workspace .project-docs-inspector {
+  .kirana-workspace .project-docs-inspector,
+  .insightquill-workspace .project-docs-inspector {
     display: none;
   }
   .project-docs-hero {
@@ -6612,7 +6728,7 @@ button {
   }
   .agent-cockpit-preview {
     grid-template-columns: 100px minmax(0, 1fr);
-    min-height: 300px;
+    min-height: 0;
   }
   .agent-cockpit-preview > header span {
     display: none;
@@ -6623,7 +6739,7 @@ button {
   }
   .docbuilder-preview {
     grid-template-columns: 100px minmax(0, 1fr);
-    min-height: 300px;
+    min-height: 0;
   }
   .docbuilder-preview > header span {
     display: none;

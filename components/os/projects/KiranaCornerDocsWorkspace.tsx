@@ -9,6 +9,7 @@ import {
   GenericFeaturesView,
   type InspectableFeature,
 } from "@/components/os/projects/ArmyverseProjectViews";
+import { ProjectActionIcon } from "@/components/os/projects/ProjectActionIcon";
 import { kiranaArchitectureMaps } from "@/data/kirana-corner/architecture";
 import { kiranaFeatures } from "@/data/kirana-corner/features";
 import { kiranaNavigation, kiranaProject } from "@/data/kirana-corner/project";
@@ -27,15 +28,21 @@ function KiranaHero() {
         <small>{kiranaProject.updated}</small>
       </div>
       <div className="project-hero-actions">
-        <a href={kiranaProject.repositoryUrl} rel="noreferrer" target="_blank">
-          ◉ GitHub
+        <a
+          className="github-action"
+          href={kiranaProject.repositoryUrl}
+          rel="noreferrer"
+          target="_blank"
+        >
+          <ProjectActionIcon type="github" /> GitHub
         </a>
         <a
+          className="live-action"
           href="https://kirana-corner.vercel.app/"
           rel="noreferrer"
           target="_blank"
         >
-          ↗ Live site
+          <ProjectActionIcon type="live" /> Live site
         </a>
       </div>
     </section>

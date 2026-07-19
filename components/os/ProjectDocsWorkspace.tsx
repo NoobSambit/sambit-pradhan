@@ -18,9 +18,14 @@ import { RepositoryLanding } from "@/components/os/projects/RepositoryLanding";
 import { AgentPlaygroundDocsWorkspace } from "@/components/os/projects/AgentPlaygroundDocsWorkspace";
 import { DocBuilderDocsWorkspace } from "@/components/os/projects/DocBuilderDocsWorkspace";
 import { KiranaCornerDocsWorkspace } from "@/components/os/projects/KiranaCornerDocsWorkspace";
+import { InsightQuillDocsWorkspace } from "@/components/os/projects/InsightQuillDocsWorkspace";
 
 type DocumentedProject =
-  "armyverse" | "agent-playground" | "docbuilder" | "kirana-corner";
+  | "armyverse"
+  | "agent-playground"
+  | "docbuilder"
+  | "kirana-corner"
+  | "insightquill";
 
 type ProjectView = (typeof armyverseNavigation)[number]["id"];
 
@@ -157,7 +162,8 @@ export function ProjectDocsWorkspace() {
         project === "armyverse" ||
         project === "agent-playground" ||
         project === "docbuilder" ||
-        project === "kirana-corner"
+        project === "kirana-corner" ||
+        project === "insightquill"
       ) {
         setActiveProject(project);
         setSurface("documentation");
@@ -201,6 +207,10 @@ export function ProjectDocsWorkspace() {
 
   if (activeProject === "kirana-corner") {
     return <KiranaCornerDocsWorkspace onBack={openRepositories} />;
+  }
+
+  if (activeProject === "insightquill") {
+    return <InsightQuillDocsWorkspace onBack={openRepositories} />;
   }
 
   return (

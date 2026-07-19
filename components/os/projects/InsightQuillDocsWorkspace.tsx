@@ -10,33 +10,33 @@ import {
   type InspectableFeature,
 } from "@/components/os/projects/ArmyverseProjectViews";
 import { ProjectActionIcon } from "@/components/os/projects/ProjectActionIcon";
-import { agentArchitectureMaps } from "@/data/agent-playground/architecture";
-import { agentPlaygroundFeatures } from "@/data/agent-playground/features";
+import { insightQuillArchitectureMaps } from "@/data/insightquill/architecture";
+import { insightQuillFeatures } from "@/data/insightquill/features";
 import {
-  agentPlaygroundNavigation,
-  agentPlaygroundProject,
-} from "@/data/agent-playground/project";
+  insightQuillNavigation,
+  insightQuillProject,
+} from "@/data/insightquill/project";
 import type {
-  AgentPlaygroundFeature,
-  AgentPlaygroundView,
-} from "@/data/agent-playground/types";
+  InsightQuillFeature,
+  InsightQuillView,
+} from "@/data/insightquill/types";
 
-function AgentHero() {
+function InsightQuillHero() {
   return (
-    <section className="project-docs-hero agent-playground-hero">
-      <div className="project-mark">AP</div>
+    <section className="project-docs-hero insightquill-hero">
+      <div className="project-mark">{insightQuillProject.mark}</div>
       <div className="project-hero-copy">
-        <h1>{agentPlaygroundProject.name}</h1>
-        <p>{agentPlaygroundProject.tagline}</p>
+        <h1>{insightQuillProject.name}</h1>
+        <p>{insightQuillProject.tagline}</p>
         <span>PUBLIC REPOSITORY</span>
-        <span>FULL STACK</span>
-        <span>POSTGRESQL CANONICAL</span>
-        <small>{agentPlaygroundProject.updated}</small>
+        <span>FLUTTER + SUPABASE</span>
+        <span>ROLE-SCOPED</span>
+        <small>{insightQuillProject.updated}</small>
       </div>
       <div className="project-hero-actions">
         <a
           className="github-action"
-          href={agentPlaygroundProject.repositoryUrl}
+          href={insightQuillProject.repositoryUrl}
           rel="noreferrer"
           target="_blank"
         >
@@ -44,7 +44,7 @@ function AgentHero() {
         </a>
         <a
           className="docs-action"
-          href={`${agentPlaygroundProject.repositoryUrl}/tree/main/docs`}
+          href={`${insightQuillProject.repositoryUrl}/tree/V2/presentation`}
           rel="noreferrer"
           target="_blank"
         >
@@ -55,80 +55,91 @@ function AgentHero() {
   );
 }
 
-function AgentOverview({ onOpenFeatures }: { onOpenFeatures: () => void }) {
+function InsightQuillOverview({
+  onOpenFeatures,
+}: {
+  onOpenFeatures: () => void;
+}) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
+
   return (
     <>
-      <AgentHero />
-      <section className="agent-overview-hero">
-        <figure className="agent-cockpit-preview">
+      <InsightQuillHero />
+      <section className="agent-overview-hero insightquill-overview-hero">
+        <figure className="agent-cockpit-preview insightquill-preview">
           <header>
-            <b>◈ AGENT PLAYGROUND</b>
-            <span>Inspect persistent state, workflow traces, and evidence</span>
+            <b>◈ INSIGHTQUILL</b>
+            <span>
+              Academic operations, assessment integrity, and feedback
+              intelligence
+            </span>
             <i>●</i>
           </header>
           <aside>
-            <b>⌁ Agent cockpit</b>
-            <span>▧ Chat turns</span>
-            <span>◌ Memory graph</span>
-            <span>◈ Knowledge Library</span>
-            <span>◇ Arena runs</span>
+            <b>▣ Academic workspace</b>
+            <span>◉ Student tasks</span>
+            <span>◇ Faculty courses</span>
+            <span>▦ HOD oversight</span>
+            <span>✦ Feedback intelligence</span>
           </aside>
           <main>
             <section>
-              <small>INSPECTABLE AGENT RUNTIME</small>
-              <h3>Every change leaves a trail.</h3>
+              <small>ROLE-BASED ACADEMIC OPERATIONS</small>
+              <h3>Run the class. Keep the evidence.</h3>
               <p>
-                Identity, memory, emotion, learning, and provider-backed work
-                remain visible product state.
+                One academic system for course ownership, live assessments,
+                reflective feedback, and reporting that preserves the context
+                behind every result.
               </p>
-              <span>Open an agent workspace →</span>
+              <span>Open faculty workspace →</span>
             </section>
             <div>
               <article>
-                <small>CANONICAL STORE</small>
-                <b>PostgreSQL + Drizzle</b>
-                <span>44 durable tables</span>
+                <small>ASSESSMENT</small>
+                <b>Timed, integrity-aware quizzes</b>
+                <span>schedule · flags · outcomes</span>
               </article>
               <article>
-                <small>QUALITY WORKFLOWS</small>
-                <b>Draft → evaluate → repair</b>
-                <span>bounded, inspectable state</span>
+                <small>FEEDBACK V2</small>
+                <b>Guided quality validation</b>
+                <span>class + quiz domains</span>
               </article>
               <article>
-                <small>NETWORK INTELLIGENCE</small>
-                <b>Validate → retrieve → use</b>
-                <span>governed shared knowledge</span>
+                <small>OPERATIONS</small>
+                <b>College-scoped control</b>
+                <span>roles · courses · reports</span>
               </article>
             </div>
           </main>
         </figure>
-        <aside className="agent-overview-copy">
+        <aside className="agent-overview-copy insightquill-overview-copy">
           <div>
             <h2>Overview</h2>
-            {agentPlaygroundProject.overview.map((paragraph) => (
+            {insightQuillProject.overview.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-          <div className="agent-overview-problem-solution">
+          <div className="agent-overview-problem-solution insightquill-problem-solution">
             <article>
               <b>Problem</b>
               <p>
-                Most agent demos hide their memory, state changes, quality
-                checks, and provider behavior behind a chat bubble.
+                Attendance, assessments, faculty feedback, and departmental
+                reporting are often separate manual processes with weak
+                traceability.
               </p>
             </article>
             <article>
               <b>Approach</b>
               <p>
-                Agent Playground persists the workflow itself: evidence, stages,
-                quality, status, retrieval, and outcomes remain inspectable.
+                InsightQuill ties role scope, schedule state, feedback quality,
+                integrity signals, and reporting evidence to the same academic
+                record.
               </p>
             </article>
           </div>
         </aside>
       </section>
-      <section className="project-overview-body agent-overview-body">
+      <section className="project-overview-body agent-overview-body insightquill-overview-body">
         <article>
           <div className="overview-feature-heading">
             <h2>Feature catalogue</h2>
@@ -140,7 +151,7 @@ function AgentOverview({ onOpenFeatures }: { onOpenFeatures: () => void }) {
             expandedContent={(feature) => (
               <FeatureInspection feature={feature} />
             )}
-            features={agentPlaygroundFeatures.slice(0, 6)}
+            features={insightQuillFeatures.slice(0, 6)}
             onSelect={setSelectedId}
             selectedId={selectedId}
           />
@@ -150,57 +161,60 @@ function AgentOverview({ onOpenFeatures }: { onOpenFeatures: () => void }) {
   );
 }
 
-function AgentInspector({
+function InsightQuillInspector({
   architectureId,
   feature,
   onArchitectureSelect,
   view,
 }: {
   architectureId: string;
-  feature: AgentPlaygroundFeature;
+  feature: InsightQuillFeature;
   onArchitectureSelect: (id: string) => void;
-  view: AgentPlaygroundView;
+  view: InsightQuillView;
 }) {
-  if (view === "architecture")
+  if (view === "architecture") {
     return (
-      <aside className="project-docs-inspector agent-playground-inspector architecture-inspector">
+      <aside className="project-docs-inspector insightquill-inspector architecture-inspector">
         <ArchitectureInspectorPanels
-          maps={agentArchitectureMaps}
+          maps={insightQuillArchitectureMaps}
           onSelect={onArchitectureSelect}
           selectedId={architectureId}
         />
       </aside>
     );
-  const featureMetadata = [
-    ["Selected area", feature.title],
-    ["Product domain", feature.category],
-    ["Capabilities", String(feature.capabilities.length)],
-    ["Workflow stages", String(feature.workflow.nodes.length)],
-    ["Evidence", "Routes · services · tables"],
-  ];
-  const statusMetadata = [
-    ["Repository", agentPlaygroundProject.repository],
-    ["Application", "Next.js 15 App Router"],
-    ["Persistence", "PostgreSQL + Drizzle"],
-    ["Codebase scale", "55 routes · 42 services"],
-    ["Repository layer", "26 repositories · 44 tables"],
-    ["Last verified", "17 Jul 2026"],
-  ];
+  }
+
+  const metadata =
+    view === "features"
+      ? [
+          ["Selected area", feature.title],
+          ["Product domain", feature.category],
+          ["Capabilities", String(feature.capabilities.length)],
+          ["Workflow stages", String(feature.workflow.nodes.length)],
+          ["Evidence", "Flutter · API · RLS · tests"],
+        ]
+      : [
+          ["Repository", insightQuillProject.repository],
+          ["Application", "Flutter Android + Web"],
+          ["Persistence", "Supabase PostgreSQL + RLS"],
+          ["Codebase scale", "88 API modules · 13 domain models"],
+          ["Verification", "34 Flutter test files"],
+          ["Last verified", "25 May 2026"],
+        ];
+
   return (
-    <aside className="project-docs-inspector agent-playground-inspector">
+    <aside className="project-docs-inspector insightquill-inspector">
       <section>
         <header>
           {view === "features" ? "FEATURE INSPECTOR" : "PROJECT STATUS"}
         </header>
-        <h2>{view === "features" ? feature.title : "AGENT PLAYGROUND"}</h2>
-        {(view === "features" ? featureMetadata : statusMetadata).map(
-          ([key, value]) => (
-            <p className="key-value" key={key}>
-              {key}
-              <b>{value}</b>
-            </p>
-          ),
-        )}
+        <h2>{view === "features" ? feature.title : "INSIGHTQUILL"}</h2>
+        {metadata.map(([key, value]) => (
+          <p className="key-value" key={key}>
+            {key}
+            <b>{value}</b>
+          </p>
+        ))}
       </section>
       <section>
         <header>
@@ -209,7 +223,7 @@ function AgentInspector({
         <div className="project-stack-tags">
           {(view === "features"
             ? feature.capabilities
-            : agentPlaygroundProject.stack
+            : insightQuillProject.stack
           ).map((item) => (
             <span key={item}>{item}</span>
           ))}
@@ -220,7 +234,7 @@ function AgentInspector({
           <section className="armyverse-project-metrics">
             <header>PROJECT METRICS</header>
             <div>
-              {agentPlaygroundProject.evidence.map(([label, value]) => (
+              {insightQuillProject.evidence.map(([label, value]) => (
                 <p key={label}>
                   <small>{label}</small>
                   <b>{value}</b>
@@ -230,7 +244,7 @@ function AgentInspector({
           </section>
           <section className="armyverse-project-evolution">
             <header>PROJECT EVOLUTION</header>
-            {agentPlaygroundProject.timeline.map(([title, date, detail]) => (
+            {insightQuillProject.timeline.map(([title, date, detail]) => (
               <div key={title}>
                 <i />
                 <b>{title}</b>
@@ -245,17 +259,13 @@ function AgentInspector({
   );
 }
 
-export function AgentPlaygroundDocsWorkspace({
-  onBack,
-}: {
-  onBack: () => void;
-}) {
-  const [view, setView] = useState<AgentPlaygroundView>("overview");
+export function InsightQuillDocsWorkspace({ onBack }: { onBack: () => void }) {
+  const [view, setView] = useState<InsightQuillView>("overview");
   const [selectedFeature, setSelectedFeature] = useState(
-    agentPlaygroundFeatures[0],
+    insightQuillFeatures[0],
   );
   const [selectedArchitectureId, setSelectedArchitectureId] = useState(
-    agentArchitectureMaps[0].id,
+    insightQuillArchitectureMaps[0].id,
   );
   const selectedFile =
     view === "features"
@@ -265,7 +275,7 @@ export function AgentPlaygroundDocsWorkspace({
         : "README.md";
 
   return (
-    <section className="project-docs-workspace agent-playground-workspace">
+    <section className="project-docs-workspace insightquill-workspace">
       <nav aria-label="Workspace tools" className="project-activity">
         <button aria-label="Documentation" className="active" type="button">
           ▧
@@ -283,7 +293,7 @@ export function AgentPlaygroundDocsWorkspace({
         <span />
         <a
           aria-label="Open GitHub repository"
-          href={agentPlaygroundProject.repositoryUrl}
+          href={insightQuillProject.repositoryUrl}
           rel="noreferrer"
           target="_blank"
         >
@@ -302,8 +312,8 @@ export function AgentPlaygroundDocsWorkspace({
           </button>
         </header>
         <div className="project-docs-tree">
-          <b>⌄　AGENT-PLAYGROUND /</b>
-          {agentPlaygroundNavigation.map(({ id, icon, label }) => (
+          <b>⌄　INSIGHTQUILL /</b>
+          {insightQuillNavigation.map(({ id, icon, label }) => (
             <button
               className={view === id ? "active" : ""}
               key={id}
@@ -319,12 +329,12 @@ export function AgentPlaygroundDocsWorkspace({
           <h3>PROJECT INFO</h3>
           {[
             ["Repository", "Public"],
-            ["Branch", "main"],
-            ["Runtime", "Next.js 15"],
-            ["Database", "PostgreSQL"],
-            ["Persistence", "Drizzle ORM"],
-            ["Latest commit", "17 Jul 2026"],
-            ["Status", "● Active development"],
+            ["Branch", "V2"],
+            ["Runtime", "Flutter + Dart"],
+            ["Database", "Supabase PostgreSQL"],
+            ["Backend", "Vercel Functions"],
+            ["Latest commit", "25 May 2026"],
+            ["Status", "● V2 active"],
           ].map(([key, value]) => (
             <p key={key}>
               {key}
@@ -335,7 +345,7 @@ export function AgentPlaygroundDocsWorkspace({
       </aside>
       <main className="project-docs-content">
         <div className="project-tabs">
-          <span>▧　AGENT-PLAYGROUND / {selectedFile}</span>
+          <span>▧　INSIGHTQUILL / {selectedFile}</span>
           <button className="project-tabs-back" onClick={onBack} type="button">
             ← Back to project list
           </button>
@@ -345,30 +355,30 @@ export function AgentPlaygroundDocsWorkspace({
         </div>
         <div className="project-docs-scroll">
           {view === "overview" && (
-            <AgentOverview onOpenFeatures={() => setView("features")} />
+            <InsightQuillOverview onOpenFeatures={() => setView("features")} />
           )}
           {view === "features" && (
             <>
-              <AgentHero />
+              <InsightQuillHero />
               <GenericFeaturesView
-                features={agentPlaygroundFeatures as InspectableFeature[]}
+                features={insightQuillFeatures as InspectableFeature[]}
                 onSelectedChange={(feature) =>
-                  setSelectedFeature(feature as AgentPlaygroundFeature)
+                  setSelectedFeature(feature as InsightQuillFeature)
                 }
               />
             </>
           )}
           {view === "architecture" && (
             <>
-              <AgentHero />
+              <InsightQuillHero />
               <ArchitectureView
-                maps={agentArchitectureMaps}
+                maps={insightQuillArchitectureMaps}
                 onSelect={setSelectedArchitectureId}
                 overviewCopy={[
-                  "Agent Playground is a modular Next.js runtime with explicit client-state, route, service, repository, persistence, provider, and legacy-migration boundaries. It is one inspectable application—not a fictional microservice estate.",
-                  "Choose a map to inspect a real workflow, its durable records, its quality or governance boundary, and the exact modules that coordinate it.",
+                  "InsightQuill is a Flutter academic operations product backed by Supabase Auth, PostgreSQL, RLS, and Node.js serverless functions. The system is organized around concrete academic scope, not a fictional microservice layout.",
+                  "Choose a map to inspect one real boundary: role and tenant enforcement, access challenges, secure quiz delivery, feedback runtime, AI drafting, or reporting.",
                 ]}
-                projectLabel="AGENT PLAYGROUND"
+                projectLabel="INSIGHTQUILL"
                 selectedId={selectedArchitectureId}
                 showProjectHero={false}
               />
@@ -384,22 +394,22 @@ export function AgentPlaygroundDocsWorkspace({
             <em>◉ zsh　＋　▣　⌫　⌃</em>
           </header>
           <p>
-            <b>developer@sambit:~/Documents/AGENT-PLAYGROUND</b>${" "}
+            <b>developer@sambit:~/Documents/InsightQuill</b>${" "}
             <i>
               {view === "features"
-                ? "open docs/features"
+                ? "open feature-catalogue"
                 : view === "architecture"
-                  ? "open docs/architecture"
-                  : "cat README.md"}
+                  ? "open presentation/04_design_and_architecture.md"
+                  : "cat presentation/02_synopsis.md"}
             </i>
             <br />
             Loaded repository-grounded project documentation.
             <br />
-            <b>developer@sambit:~/Documents/AGENT-PLAYGROUND</b>$ <i>▌</i>
+            <b>developer@sambit:~/Documents/InsightQuill</b>$ <i>▌</i>
           </p>
         </section>
       </main>
-      <AgentInspector
+      <InsightQuillInspector
         architectureId={selectedArchitectureId}
         feature={selectedFeature}
         onArchitectureSelect={setSelectedArchitectureId}
