@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { projects, type Project } from "@/data/projects";
 
 type RepositoryLandingProps = {
-  onOpenArmyverse: () => void;
+  onOpenProject: (project: "armyverse" | "agent-playground") => void;
 };
 
 const projectIcon: Record<Project["tone"], string> = {
@@ -69,7 +69,7 @@ function Explorer({ onSelect, selected }: { onSelect: (project: Project) => void
         <p><i>⌘</i>Branch <b>{selected.branch}</b></p>
         <p><i>↻</i>Selected <b>{selected.name}</b></p>
         <p><i>✓</i>Last update <b>{selected.latestCommit.date}</b></p>
-        <p><i>●</i>Documentation <b>{selected.id === "armyverse" ? "Available" : "Planned"}</b></p>
+        <p><i>●</i>Documentation <b>{["armyverse", "agent-playground"].includes(selected.id) ? "Available" : "Planned"}</b></p>
       </section>
     </aside>
   );
@@ -113,8 +113,11 @@ function RepositoryTable({
   );
 }
 
-function Inspector({ onOpenArmyverse, project }: { onOpenArmyverse: () => void; project: Project }) {
-  const docsAvailable = project.id === "armyverse";
+function Inspector({ onOpenProject, project }: { onOpenProject: (project: "armyverse" | "agent-playground") => void; project: Project }) {
+  const docsAvailable = project.id === "armyverse" || project.id === "agent-playground";
+  const openDocumentation = () => {
+    if (project.id === "armyverse" || project.id === "agent-playground") onOpenProject(project.id);
+  };
 
   return (
     <aside className="repository-inspector">
@@ -147,14 +150,14 @@ function Inspector({ onOpenArmyverse, project }: { onOpenArmyverse: () => void; 
       <section className="repository-actions">
         <header>QUICK ACTIONS</header>
         <button className="repository-action-source" onClick={() => window.open(project.repository, "_blank", "noopener,noreferrer")} type="button">↗ Open repository</button>
-        <button className="repository-action-docs" disabled={!docsAvailable} onClick={onOpenArmyverse} type="button">▧ {docsAvailable ? "Open documentation" : "Documentation planned"}</button>
-        <button className="repository-action-architecture" disabled={!docsAvailable} onClick={onOpenArmyverse} type="button">◇ {docsAvailable ? "View architecture" : "Not available yet"}</button>
+        <button className="repository-action-docs" disabled={!docsAvailable} onClick={openDocumentation} type="button">▧ {docsAvailable ? "Open documentation" : "Documentation planned"}</button>
+        <button className="repository-action-architecture" disabled={!docsAvailable} onClick={openDocumentation} type="button">◇ {docsAvailable ? "View architecture" : "Not available yet"}</button>
       </section>
     </aside>
   );
 }
 
-export function RepositoryLanding({ onOpenArmyverse }: RepositoryLandingProps) {
+export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
   const [selected, setSelected] = useState(() => projects.find((project) => project.id === "armyverse") ?? projects[0]);
   const [query, setQuery] = useState("");
   const [scope, setScope] = useState<"all" | "active">("all");
@@ -178,7 +181,7 @@ export function RepositoryLanding({ onOpenArmyverse }: RepositoryLandingProps) {
 
   const selectProject = (project: Project) => {
     setSelected(project);
-    if (project.id === "armyverse") onOpenArmyverse();
+    if (project.id === "armyverse" || project.id === "agent-playground") onOpenProject(project.id);
   };
 
   return (
@@ -186,7 +189,7 @@ export function RepositoryLanding({ onOpenArmyverse }: RepositoryLandingProps) {
       <nav aria-label="Workspace tools" className="project-activity">
         <button aria-label="Repository explorer" className="active" type="button">▧</button>
         <button aria-label="Search repositories" onClick={() => document.getElementById("repository-search")?.focus()} type="button">⌕</button>
-        <button aria-label="Armyverse documentation" onClick={onOpenArmyverse} type="button">◇</button>
+        <button aria-label="Selected project documentation" disabled={selected.id !== "armyverse" && selected.id !== "agent-playground"} onClick={() => (selected.id === "armyverse" || selected.id === "agent-playground") && onOpenProject(selected.id)} type="button">◇</button>
         <span />
         <a aria-label="Open selected repository" href={selected.repository} rel="noreferrer" target="_blank">↗</a>
       </nav>
@@ -209,7 +212,7 @@ export function RepositoryLanding({ onOpenArmyverse }: RepositoryLandingProps) {
           <p><b>developer@sambit:~/repositories</b>$ <i>tree --depth=1</i><br />{projects.map((project) => `├── ${project.id}`).join("\n")}<br /><b>developer@sambit:~/repositories</b>$ <i>▌</i></p>
         </section>
       </main>
-      <Inspector onOpenArmyverse={onOpenArmyverse} project={selected} />
+      <Inspector onOpenProject={onOpenProject} project={selected} />
     </section>
   );
 }

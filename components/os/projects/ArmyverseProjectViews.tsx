@@ -6,6 +6,9 @@ import { armyverseArchitectureMaps, type ArmyverseArchitectureMap } from "@/data
 import { armyverseProject } from "@/data/armyverse/project";
 import type { ArmyverseFeature } from "@/data/armyverse/types";
 
+export type InspectableFeature = Omit<ArmyverseFeature, "category"> & { category: string };
+type ArchitectureMapLike = Omit<ArmyverseArchitectureMap, "group"> & { group: string };
+
 export function ProjectHero() {
   return (
     <section className="project-docs-hero armyverse-hero">
@@ -83,16 +86,16 @@ function ProductHeroPreview() {
   );
 }
 
-function FeatureRows({
+export function FeatureRows({
   features,
   selectedId,
   onSelect,
   expandedContent,
 }: {
-  features: ArmyverseFeature[];
+  features: InspectableFeature[];
   selectedId: string | null;
   onSelect: (id: string) => void;
-  expandedContent?: (feature: ArmyverseFeature) => ReactNode;
+  expandedContent?: (feature: InspectableFeature) => ReactNode;
 }) {
   return (
     <div className="project-feature-rows armyverse-feature-rows">
@@ -121,7 +124,7 @@ function FeatureRows({
   );
 }
 
-function WorkflowGraph({ feature, modal = false }: { feature: ArmyverseFeature; modal?: boolean }) {
+function WorkflowGraph({ feature, modal = false }: { feature: InspectableFeature; modal?: boolean }) {
   return (
     <div className={modal ? "workflow-graph workflow-graph-modal" : "workflow-graph"}>
       {feature.workflow.nodes.map((node, index) => (
@@ -135,7 +138,7 @@ function WorkflowGraph({ feature, modal = false }: { feature: ArmyverseFeature; 
   );
 }
 
-function FeatureInspection({ feature }: { feature: ArmyverseFeature }) {
+export function FeatureInspection({ feature }: { feature: InspectableFeature }) {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -290,7 +293,31 @@ export function FeaturesView({ onSelectedChange }: { onSelectedChange: (feature:
   );
 }
 
-function ArchitectureGraph({ expanded = false, map }: { expanded?: boolean; map: ArmyverseArchitectureMap }) {
+export function GenericFeaturesView({ features, onSelectedChange }: { features: InspectableFeature[]; onSelectedChange: (feature: InspectableFeature) => void }) {
+  const [selectedId, setSelectedId] = useState(features[0]?.id ?? "");
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("All");
+  const categories = ["All", ...Array.from(new Set(features.map((feature) => feature.category)))];
+  const filteredFeatures = useMemo(() => features.filter((feature) => {
+    const matchesCategory = category === "All" || feature.category === category;
+    const haystack = `${feature.title} ${feature.summary} ${feature.description}`.toLowerCase();
+    return matchesCategory && haystack.includes(query.trim().toLowerCase());
+  }), [category, features, query]);
+
+  function selectFeature(id: string) {
+    const next = features.find((feature) => feature.id === id);
+    if (!next) return;
+    setSelectedId(id);
+    onSelectedChange(next);
+  }
+
+  return <section className="project-features-detail armyverse-features-detail generic-project-features">
+    <header><div><h2>Feature catalogue <small>{features.length} documented areas</small></h2><p>Open a feature to inspect its route-owned workflow, persisted state, and engineering constraints.</p></div><div className="feature-controls"><input aria-label="Search project features" onChange={(event) => setQuery(event.target.value)} placeholder="⌕ Search features..." value={query} /><div>{categories.map((item) => <button className={category === item ? "selected" : ""} key={item} onClick={() => setCategory(item)} type="button">{item}</button>)}</div></div></header>
+    {filteredFeatures.length ? <FeatureRows expandedContent={(feature) => <FeatureInspection feature={feature} />} features={filteredFeatures} onSelect={selectFeature} selectedId={selectedId} /> : <p className="feature-empty-state">No documented feature matches that filter.</p>}
+  </section>;
+}
+
+function ArchitectureGraph({ expanded = false, map }: { expanded?: boolean; map: ArchitectureMapLike }) {
   const nodes = new Map(map.nodes.map((node) => [node.id, node]));
 
   return (
@@ -333,14 +360,14 @@ function ArchitectureModuleIcon({ title }: { title: string }) {
   </svg>;
 }
 
-export function ArchitectureInspectorPanels({ onSelect, selectedId }: { onSelect: (id: string) => void; selectedId: string }) {
-  const selected = armyverseArchitectureMaps.find((map) => map.id === selectedId) ?? armyverseArchitectureMaps[0];
+export function ArchitectureInspectorPanels({ maps = armyverseArchitectureMaps, onSelect, selectedId }: { maps?: ArchitectureMapLike[]; onSelect: (id: string) => void; selectedId: string }) {
+  const selected = maps.find((map) => map.id === selectedId) ?? maps[0];
 
   return <>
     <section className="architecture-library">
-      <header>ARCHITECTURE & WORKFLOWS</header>
+      <header>ARCHITECTURE & WORKFLOWS <small>{maps.length} documented maps</small></header>
       <p>Choose a map to inspect its real system boundary and workflow.</p>
-      <div>{armyverseArchitectureMaps.map((map) => <button className={map.id === selected.id ? "selected" : ""} key={map.id} onClick={() => onSelect(map.id)} type="button"><span>{map.group}</span><b>{map.title}</b><small>{map.source}</small></button>)}</div>
+      <div>{maps.map((map) => <button className={map.id === selected.id ? "selected" : ""} key={map.id} onClick={() => onSelect(map.id)} type="button"><span>{map.group}</span><b>{map.title}</b><small>{map.source}</small></button>)}</div>
     </section>
     <section className="architecture-selected-notes">
       <header>SELECTED MAP</header>
@@ -351,19 +378,36 @@ export function ArchitectureInspectorPanels({ onSelect, selectedId }: { onSelect
   </>;
 }
 
-export function ArchitectureView({ onSelect, selectedId }: { onSelect: (id: string) => void; selectedId: string }) {
+export function ArchitectureView({
+  maps = armyverseArchitectureMaps,
+  onSelect,
+  selectedId,
+  showProjectHero = true,
+  overviewCopy = [
+    "ARMYVERSE is a modular Next.js application rather than a fictional microservice estate. Its route layer separates interactive product work, scheduled collectors, and external integrations while domain state remains in MongoDB.",
+    "The selected map on the right is one documented boundary within that system. Use the inspector to switch between platform, music, data, and game flows.",
+  ],
+  projectLabel = "ARMYVERSE",
+}: {
+  maps?: ArchitectureMapLike[];
+  onSelect: (id: string) => void;
+  selectedId: string;
+  showProjectHero?: boolean;
+  overviewCopy?: [string, string];
+  projectLabel?: string;
+}) {
   const [modalOpen, setModalOpen] = useState(false);
-  const selected = armyverseArchitectureMaps.find((map) => map.id === selectedId) ?? armyverseArchitectureMaps[0];
+  const selected = maps.find((map) => map.id === selectedId) ?? maps[0];
 
   return (
     <>
-      <ProjectHero />
+      {showProjectHero && <ProjectHero />}
       <section className="armyverse-architecture-explorer">
         <div className="architecture-workspace-grid">
           <article className="architecture-overview-panel">
             <h2>Architecture overview</h2>
-            <p>ARMYVERSE is a modular Next.js application rather than a fictional microservice estate. Its route layer separates interactive product work, scheduled collectors, and external integrations while domain state remains in MongoDB.</p>
-            <p>The selected map on the right is one documented boundary within that system. Use the inspector to switch between platform, music, data, and game flows.</p>
+            <p>{overviewCopy[0]}</p>
+            <p>{overviewCopy[1]}</p>
           </article>
           <section className="architecture-graph-panel">
             <header><div><small>{selected.group.toUpperCase()} MAP</small><h2>{selected.title}</h2><p>{selected.summary}</p></div><button className="architecture-expand-action" onClick={() => setModalOpen(true)} type="button">⛶ Expand map</button></header>
@@ -392,7 +436,7 @@ export function ArchitectureView({ onSelect, selectedId }: { onSelect: (id: stri
           </section>
         </div>
       </section>
-      {modalOpen && <div aria-label={`${selected.title} expanded`} aria-modal="true" className="architecture-modal-backdrop" onMouseDown={() => setModalOpen(false)} role="dialog"><section className="architecture-modal" onMouseDown={(event) => event.stopPropagation()}><header><div><small>ARMYVERSE ARCHITECTURE</small><h2>{selected.title}</h2><p>{selected.summary}</p></div><button aria-label="Close expanded architecture map" onClick={() => setModalOpen(false)} type="button">×</button></header><ArchitectureGraph expanded map={selected} /><footer><span>{selected.source}</span><button onClick={() => setModalOpen(false)} type="button">Close map</button></footer></section></div>}
+      {modalOpen && <div aria-label={`${selected.title} expanded`} aria-modal="true" className="architecture-modal-backdrop" onMouseDown={() => setModalOpen(false)} role="dialog"><section className="architecture-modal" onMouseDown={(event) => event.stopPropagation()}><header><div><small>{projectLabel} ARCHITECTURE</small><h2>{selected.title}</h2><p>{selected.summary}</p></div><button aria-label="Close expanded architecture map" onClick={() => setModalOpen(false)} type="button">×</button></header><ArchitectureGraph expanded map={selected} /><footer><span>{selected.source}</span><button onClick={() => setModalOpen(false)} type="button">Close map</button></footer></section></div>}
     </>
   );
 }

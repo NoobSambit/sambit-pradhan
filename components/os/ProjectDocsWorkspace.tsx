@@ -12,6 +12,9 @@ import { armyverseArchitectureMaps } from "@/data/armyverse/architecture";
 import { armyverseNavigation, armyverseProject } from "@/data/armyverse/project";
 import type { ArmyverseFeature } from "@/data/armyverse/types";
 import { RepositoryLanding } from "@/components/os/projects/RepositoryLanding";
+import { AgentPlaygroundDocsWorkspace } from "@/components/os/projects/AgentPlaygroundDocsWorkspace";
+
+type DocumentedProject = "armyverse" | "agent-playground";
 
 type ProjectView = (typeof armyverseNavigation)[number]["id"];
 
@@ -89,13 +92,20 @@ function ProjectInspector({ architectureId, feature, onArchitectureSelect, view 
 
 export function ProjectDocsWorkspace() {
   const [surface, setSurface] = useState<"repositories" | "documentation">("repositories");
+  const [activeProject, setActiveProject] = useState<DocumentedProject>("armyverse");
   const [view, setView] = useState<ProjectView>("overview");
   const [selectedFeature, setSelectedFeature] = useState(armyverseFeatures[0]);
   const [selectedArchitectureId, setSelectedArchitectureId] = useState(armyverseArchitectureMaps[0].id);
 
   useEffect(() => {
     const syncSurfaceFromLocation = () => {
-      setSurface(new URLSearchParams(window.location.search).get("project") === "armyverse" ? "documentation" : "repositories");
+      const project = new URLSearchParams(window.location.search).get("project");
+      if (project === "armyverse" || project === "agent-playground") {
+        setActiveProject(project);
+        setSurface("documentation");
+        return;
+      }
+      setSurface("repositories");
     };
 
     syncSurfaceFromLocation();
@@ -103,9 +113,10 @@ export function ProjectDocsWorkspace() {
     return () => window.removeEventListener("popstate", syncSurfaceFromLocation);
   }, []);
 
-  const openArmyverse = () => {
+  const openProject = (project: DocumentedProject) => {
+    setActiveProject(project);
     setSurface("documentation");
-    window.history.pushState({ project: "armyverse" }, "", "/projects?project=armyverse");
+    window.history.pushState({ project }, "", `/projects?project=${project}`);
   };
 
   const openRepositories = () => {
@@ -114,7 +125,11 @@ export function ProjectDocsWorkspace() {
   };
 
   if (surface === "repositories") {
-    return <RepositoryLanding onOpenArmyverse={openArmyverse} />;
+    return <RepositoryLanding onOpenProject={openProject} />;
+  }
+
+  if (activeProject === "agent-playground") {
+    return <AgentPlaygroundDocsWorkspace onBack={openRepositories} />;
   }
 
   return (
