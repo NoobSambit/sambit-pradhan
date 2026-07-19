@@ -17,7 +17,7 @@ export type ArmyverseArchitectureEdge = {
 
 export type ArmyverseArchitectureMap = {
   id: string;
-  group: "Platform" | "Music" | "Data" | "Game";
+  group: "Platform" | "Music" | "Data" | "Game" | "Community";
   title: string;
   summary: string;
   source: string;
@@ -629,6 +629,739 @@ export const armyverseArchitectureMaps: ArmyverseArchitectureMap[] = [
       { from: "lastfm", to: "progress" },
       { from: "progress", to: "claim" },
       { from: "claim", to: "rewards" },
+    ],
+  },
+  {
+    id: "spotify-connection-export",
+    group: "Music",
+    title: "Spotify connection & playlist export",
+    summary:
+      "Manual and AI playlists cross a signed OAuth boundary before user-owned or fallback credentials create a private Spotify playlist in API-safe batches.",
+    source:
+      "Spotify auth-url, callback, client-credentials, status, and playlist export routes",
+    engineeringNotes: [
+      "Authorization state is HMAC-signed and expires after five minutes before a callback code exchange is accepted.",
+      "BYO Spotify credentials are encrypted at rest; export prefers a valid user token and uses a configured fallback only when explicitly allowed.",
+    ],
+    support: {
+      requestPath: [
+        [
+          "Choose connection mode",
+          "A signed-in fan connects the platform app or completes a BYO credential flow.",
+        ],
+        [
+          "Create signed state",
+          "The auth route binds user identity, nonce, and timestamp before redirecting to Spotify.",
+        ],
+        [
+          "Exchange callback code",
+          "The callback validates state, exchanges the code, fetches the Spotify profile, and persists the integration.",
+        ],
+        [
+          "Resolve export authority",
+          "Export prefers a valid user token and only uses the configured owner account when fallback is allowed.",
+        ],
+        [
+          "Create and fill playlist",
+          "Spotify creates a private playlist; resolved track URIs are added in batches of at most 100.",
+        ],
+      ],
+      modules: [
+        ["OAuth state", "signed redirect state and expiry", "purple"],
+        ["Spotify callback", "code exchange and profile lookup", "cyan"],
+        ["User integration", "encrypted tokens and connection state", "green"],
+        ["Playlist exporter", "private playlist creation and batches", "amber"],
+      ],
+      decisions: [
+        [
+          "Signed redirect state",
+          "The callback receives a user-bound HMAC-protected value rather than trusting a client-supplied identifier.",
+        ],
+        [
+          "User-first authority",
+          "A fan’s valid Spotify token is used first; platform-owner export is a deliberate fallback.",
+        ],
+        [
+          "Chunked writes",
+          "Track additions are split into 100-item requests to respect Spotify playlist API limits.",
+        ],
+      ],
+      safeguards: [
+        "Protected connection route",
+        "HMAC state validation",
+        "Five-minute state expiry",
+        "Encrypted BYO credentials",
+        "Token validity diagnostics",
+        "100-track write batches",
+      ],
+      operationalPath: [
+        "Connect Spotify",
+        "Signed state",
+        "Callback exchange",
+        "Stored integration",
+        "Playlist export",
+      ],
+    },
+    nodes: [
+      {
+        id: "author",
+        label: "Playlist author",
+        detail: "manual or AI-selected tracks",
+        tone: "purple",
+        x: 105,
+        y: 105,
+      },
+      {
+        id: "auth-url",
+        label: "Auth URL route",
+        detail: "signed state · nonce · TTL",
+        tone: "cyan",
+        x: 315,
+        y: 105,
+      },
+      {
+        id: "spotify-auth",
+        label: "Spotify authorization",
+        detail: "consent · authorization code",
+        tone: "amber",
+        x: 555,
+        y: 105,
+      },
+      {
+        id: "callback",
+        label: "OAuth callback",
+        detail: "validate state · exchange code",
+        tone: "purple",
+        x: 555,
+        y: 270,
+      },
+      {
+        id: "integration",
+        label: "User integration",
+        detail: "encrypted token · BYO or app",
+        tone: "green",
+        x: 330,
+        y: 395,
+      },
+      {
+        id: "export",
+        label: "Playlist export route",
+        detail: "user token · allowed fallback",
+        tone: "cyan",
+        x: 760,
+        y: 330,
+      },
+      {
+        id: "spotify-playlist",
+        label: "Spotify playlist",
+        detail: "private · 100-track batches",
+        tone: "amber",
+        x: 900,
+        y: 450,
+      },
+    ],
+    edges: [
+      { from: "author", to: "auth-url", label: "connect" },
+      { from: "auth-url", to: "spotify-auth" },
+      { from: "spotify-auth", to: "callback", label: "code + state" },
+      { from: "callback", to: "integration" },
+      { from: "author", to: "export", label: "export selection" },
+      { from: "integration", to: "export", label: "authority" },
+      { from: "export", to: "spotify-playlist" },
+    ],
+  },
+  {
+    id: "boraverse-reward-loop",
+    group: "Game",
+    title: "Boraverse quiz, collection & progression loop",
+    summary:
+      "Ranked quiz completion branches into score-gated inventory rewards while the same result advances mastery, quests, streaks, and multi-period leaderboards.",
+    source:
+      "Quiz, inventory, photocard, mastery, quest, leaderboard, craft, and share routes",
+    engineeringNotes: [
+      "Ranked sessions persist for 20 minutes; public practice uses a guest session while demo mode avoids database writes.",
+      "A duplicate photocard becomes Dust, but every grant retains an inventory audit record with its originating reason.",
+    ],
+    support: {
+      requestPath: [
+        [
+          "Start the right mode",
+          "Players start ranked or quest mode; practice and demo are separate public entry paths with different persistence behavior.",
+        ],
+        [
+          "Serve a timed session",
+          "Question selection creates a 20-minute ranked session and never exposes the correct answer index to the client.",
+        ],
+        [
+          "Score and gate reward",
+          "Completion verifies the session, awards XP, and samples a random photocard only when the score threshold is met.",
+        ],
+        [
+          "Record lasting state",
+          "Inventory, grant audit, Dust conversion, mastery progress, and quest counters are written from the completion result.",
+        ],
+        [
+          "Surface progression",
+          "Crafting, claims, sharing, and daily, weekly, or all-time leaderboards read persisted player state.",
+        ],
+      ],
+      modules: [
+        ["Quiz sessions", "ranked, quest, practice, and demo modes", "purple"],
+        [
+          "Reward resolver",
+          "score, XP threshold, and random card sample",
+          "cyan",
+        ],
+        [
+          "Inventory ledger",
+          "card ownership, duplicate Dust, grant audit",
+          "green",
+        ],
+        [
+          "Progression state",
+          "mastery, quests, streaks, and rankings",
+          "amber",
+        ],
+      ],
+      decisions: [
+        [
+          "Mode-specific persistence",
+          "Public practice creates an expiring guest session, while demo mode returns questions without writing a session.",
+        ],
+        [
+          "Audit before celebration",
+          "A photocard award is recorded with its source before the client renders the result state.",
+        ],
+        [
+          "Shared reward signals",
+          "One quiz completion advances several durable systems instead of disconnected UI counters.",
+        ],
+      ],
+      safeguards: [
+        "20-minute session expiry",
+        "Server-side answer validation",
+        "Duplicate submission protection",
+        "XP reward threshold",
+        "Inventory grant audit",
+        "Idempotent mastery claims",
+      ],
+      operationalPath: [
+        "Quiz mode",
+        "Timed session",
+        "Completion score",
+        "Rewards + state",
+        "Collection progress",
+      ],
+    },
+    nodes: [
+      {
+        id: "mode",
+        label: "Quiz mode",
+        detail: "ranked · quest · practice · demo",
+        tone: "purple",
+        x: 115,
+        y: 106,
+      },
+      {
+        id: "session",
+        label: "Question session",
+        detail: "10 questions · 20 minute TTL",
+        tone: "cyan",
+        x: 340,
+        y: 106,
+      },
+      {
+        id: "score",
+        label: "Completion scorer",
+        detail: "answers · XP · threshold",
+        tone: "purple",
+        x: 540,
+        y: 205,
+      },
+      {
+        id: "inventory",
+        label: "Inventory & audit",
+        detail: "card or duplicate Dust",
+        tone: "green",
+        x: 315,
+        y: 355,
+      },
+      {
+        id: "game-state",
+        label: "Player game state",
+        detail: "XP · level · streak",
+        tone: "green",
+        x: 585,
+        y: 355,
+      },
+      {
+        id: "progression",
+        label: "Progression services",
+        detail: "mastery · quests · badges",
+        tone: "amber",
+        x: 815,
+        y: 285,
+      },
+      {
+        id: "leaderboard",
+        label: "Leaderboard entries",
+        detail: "daily · weekly · all-time",
+        tone: "cyan",
+        x: 820,
+        y: 450,
+      },
+    ],
+    edges: [
+      { from: "mode", to: "session" },
+      { from: "session", to: "score" },
+      { from: "score", to: "inventory", label: "card / Dust" },
+      { from: "score", to: "game-state", label: "XP" },
+      { from: "score", to: "progression", label: "quest signal" },
+      { from: "game-state", to: "progression" },
+      { from: "game-state", to: "leaderboard" },
+      { from: "progression", to: "leaderboard", label: "earned XP" },
+    ],
+  },
+  {
+    id: "borarush-handoff",
+    group: "Game",
+    title: "BoraRush secure reward handoff",
+    summary:
+      "A short-lived, audience-bound handoff lets the external solo-run game request one verifiable Armyverse reward without receiving an application session.",
+    source:
+      "BoraRush handoff and completion routes, GAME_HANDOFF_SECRET, BoraRushRun, and BoraRushDailyLimit",
+    engineeringNotes: [
+      "The JWT is issued by ARMYVERSE for the BoraRush audience and expires after two hours.",
+      "Run IDs are idempotent; cap reservations roll back if a downstream reward write fails before it is applied.",
+    ],
+    support: {
+      requestPath: [
+        [
+          "Issue handoff",
+          "An authenticated ARMYVERSE user receives a signed token containing only the identity needed by BoraRush.",
+        ],
+        [
+          "Finish a solo run",
+          "The external game sends run ID, turns, and winner metadata to the completion route.",
+        ],
+        [
+          "Verify and deduplicate",
+          "ARMYVERSE checks the bearer token audience and issuer, then rejects another identity’s run or returns its earlier result.",
+        ],
+        [
+          "Reserve daily capacity",
+          "Separate UTC counters reserve one of two XP awards and one of ten card awards before reward writes proceed.",
+        ],
+        [
+          "Commit run result",
+          "Turn-tier XP, inventory or duplicate Dust, audit record, and BoraRushRun are persisted as a replay-safe result.",
+        ],
+      ],
+      modules: [
+        ["Handoff issuer", "two-hour JWT with audience and issuer", "purple"],
+        ["External BoraRush", "solo Snake and Ladder run result", "amber"],
+        [
+          "Completion guard",
+          "token verification and run-ID idempotency",
+          "cyan",
+        ],
+        [
+          "Reward persistence",
+          "caps, balances, inventory, audit, run history",
+          "green",
+        ],
+      ],
+      decisions: [
+        [
+          "Audience-bound token",
+          "The external game receives a short-lived BoraRush token, not an unrestricted ARMYVERSE credential.",
+        ],
+        [
+          "Independent caps",
+          "XP and photocard limits are tracked separately so an XP cap does not erase the card reward policy.",
+        ],
+        [
+          "Replay-safe result",
+          "A repeated run ID returns its recorded reward instead of creating a second inventory grant or XP balance change.",
+        ],
+      ],
+      safeguards: [
+        "Two-hour token TTL",
+        "Issuer and audience validation",
+        "Allowed-origin CORS policy",
+        "Solo-run-only XP",
+        "Run-ID idempotency",
+        "Rollback for uncommitted cap reservations",
+      ],
+      operationalPath: [
+        "Handoff token",
+        "External solo run",
+        "Completion guard",
+        "Daily cap reserve",
+        "Audited reward",
+      ],
+    },
+    nodes: [
+      {
+        id: "army-user",
+        label: "Armyverse player",
+        detail: "authenticated account",
+        tone: "purple",
+        x: 105,
+        y: 105,
+      },
+      {
+        id: "issuer",
+        label: "Handoff issuer",
+        detail: "2-hour signed JWT",
+        tone: "cyan",
+        x: 300,
+        y: 105,
+      },
+      {
+        id: "borarush",
+        label: "BoraRush game",
+        detail: "external solo run",
+        tone: "amber",
+        x: 515,
+        y: 105,
+      },
+      {
+        id: "verify",
+        label: "Completion guard",
+        detail: "verify token · run ID",
+        tone: "purple",
+        x: 515,
+        y: 270,
+      },
+      {
+        id: "caps",
+        label: "UTC cap ledger",
+        detail: "2 XP · 10 cards",
+        tone: "green",
+        x: 320,
+        y: 405,
+      },
+      {
+        id: "reward",
+        label: "Reward writes",
+        detail: "XP · inventory · Dust",
+        tone: "cyan",
+        x: 705,
+        y: 390,
+      },
+      {
+        id: "run",
+        label: "BoraRushRun audit",
+        detail: "replay-safe result",
+        tone: "green",
+        x: 890,
+        y: 455,
+      },
+    ],
+    edges: [
+      { from: "army-user", to: "issuer" },
+      { from: "issuer", to: "borarush", label: "handoff" },
+      { from: "borarush", to: "verify", label: "run result" },
+      { from: "verify", to: "caps" },
+      { from: "verify", to: "reward", label: "accepted run" },
+      { from: "caps", to: "reward", label: "capacity" },
+      { from: "reward", to: "run" },
+    ],
+  },
+  {
+    id: "community-publishing-flow",
+    group: "Community",
+    title: "Community publishing & discovery",
+    summary:
+      "Structured Tiptap content and Cloudinary media pass through author-owned publishing rules before searchable discovery and reader interactions enrich the post state.",
+    source:
+      "Blog, comments, reactions, saves, collections, SEO-score, upload, and top-writers routes",
+    engineeringNotes: [
+      "Posts retain structured Tiptap JSON, preserving rich rendering and avoiding a lossy plain-text editor state.",
+      "Public reads apply visibility filters; edits, restore, and destructive actions remain tied to author ownership.",
+    ],
+    support: {
+      requestPath: [
+        [
+          "Compose a draft",
+          "The author starts from a template or blank Tiptap document and supplies title, metadata, visibility, and optional collection context.",
+        ],
+        [
+          "Upload media",
+          "Cover and inline media go through the upload route to Cloudinary, returning durable URLs for the editor document.",
+        ],
+        [
+          "Validate and publish",
+          "The blog route applies ownership and content validation, persists structured content, and keeps removed posts soft-deleted for recovery.",
+        ],
+        [
+          "Discover within policy",
+          "Search, filters, featured ranking, and top-writer views read only content visible to the requesting visitor.",
+        ],
+        [
+          "Record reader activity",
+          "Reactions, nested comments, saves, and collection additions update the post ecosystem without weakening author control.",
+        ],
+      ],
+      modules: [
+        [
+          "Tiptap authoring",
+          "structured document, templates, metadata",
+          "purple",
+        ],
+        ["Cloudinary media", "cover and inline asset upload", "amber"],
+        ["Blog domain", "ownership, visibility, posts, and restore", "cyan"],
+        ["Discovery signals", "search, reactions, saves, collections", "green"],
+      ],
+      decisions: [
+        [
+          "Structured content storage",
+          "Tiptap JSON retains rich-text semantics for rendering, editing, and future export.",
+        ],
+        [
+          "Visibility before discovery",
+          "Search and ranking are downstream of public, unlisted, and private visibility checks.",
+        ],
+        [
+          "Recoverable deletion",
+          "Soft deletion keeps an author recovery path while removing the post from normal public results.",
+        ],
+      ],
+      safeguards: [
+        "Author ownership checks",
+        "Visibility-aware reads",
+        "Cloudinary server configuration",
+        "Soft-delete and restore",
+        "Bounded nested comments",
+        "Validated SEO scoring",
+      ],
+      operationalPath: [
+        "Compose",
+        "Upload media",
+        "Publish rules",
+        "Discover",
+        "Interact",
+      ],
+    },
+    nodes: [
+      {
+        id: "author",
+        label: "Author workspace",
+        detail: "Tiptap · templates · metadata",
+        tone: "purple",
+        x: 130,
+        y: 110,
+      },
+      {
+        id: "media",
+        label: "Cloudinary upload",
+        detail: "cover and inline assets",
+        tone: "amber",
+        x: 330,
+        y: 105,
+      },
+      {
+        id: "publish",
+        label: "Blog route",
+        detail: "ownership · visibility · JSON",
+        tone: "cyan",
+        x: 540,
+        y: 190,
+      },
+      {
+        id: "posts",
+        label: "Blog & collection state",
+        detail: "posts · metadata · soft delete",
+        tone: "green",
+        x: 540,
+        y: 370,
+      },
+      {
+        id: "discovery",
+        label: "Discovery routes",
+        detail: "search · filters · top writers",
+        tone: "purple",
+        x: 790,
+        y: 165,
+      },
+      {
+        id: "readers",
+        label: "Reader interactions",
+        detail: "reactions · comments · saves",
+        tone: "amber",
+        x: 805,
+        y: 360,
+      },
+      {
+        id: "signals",
+        label: "Post signals",
+        detail: "views · engagement · collections",
+        tone: "cyan",
+        x: 920,
+        y: 455,
+      },
+    ],
+    edges: [
+      { from: "author", to: "media", label: "assets" },
+      { from: "author", to: "publish", label: "document" },
+      { from: "media", to: "publish", label: "URLs" },
+      { from: "publish", to: "posts" },
+      { from: "posts", to: "discovery" },
+      { from: "discovery", to: "readers" },
+      { from: "readers", to: "signals" },
+      { from: "signals", to: "posts", label: "engagement" },
+    ],
+  },
+  {
+    id: "identity-profile-lifecycle",
+    group: "Platform",
+    title: "Identity, profile & account controls",
+    summary:
+      "Password and Firebase identities converge at one verifier, then unlock profile media, connected service settings, export, and controlled account removal.",
+    source:
+      "Auth, profile, integrations, upload, export-data, and delete-account routes",
+    engineeringNotes: [
+      "The server verifier resolves JWT/password and Firebase credentials to the same application-user shape before protected routes execute.",
+      "Account export explicitly removes passwords, reset tokens, and Spotify access or refresh tokens from the downloaded JSON.",
+    ],
+    support: {
+      requestPath: [
+        [
+          "Create or choose identity",
+          "A user signs up with a username/password account or presents a Firebase social token.",
+        ],
+        [
+          "Resolve at the API boundary",
+          "verifyAuth identifies the credential format and finds or creates the associated MongoDB user without exposing auth branching to domain routes.",
+        ],
+        [
+          "Manage profile and connections",
+          "Protected profile and integration routes validate public identity fields, preferences, and connected-service usernames.",
+        ],
+        [
+          "Attach media safely",
+          "Avatar and banner files are uploaded through the server route, then stored as profile media references.",
+        ],
+        [
+          "Control personal data",
+          "A user can download a sanitized account export or invoke the authenticated deletion route.",
+        ],
+      ],
+      modules: [
+        [
+          "Credential inputs",
+          "password/JWT and Firebase social identity",
+          "purple",
+        ],
+        [
+          "Unified verifier",
+          "credential detection and user resolution",
+          "cyan",
+        ],
+        [
+          "Profile domain",
+          "handle, preferences, privacy, integrations",
+          "green",
+        ],
+        ["Account controls", "media, sanitized export, deletion", "amber"],
+      ],
+      decisions: [
+        [
+          "One protected-route contract",
+          "Feature routes consume one resolved user shape rather than separately implementing JWT and Firebase verification.",
+        ],
+        [
+          "Sanitized portability",
+          "Account export is useful to the fan without leaking passwords, password-reset state, or Spotify secrets.",
+        ],
+        [
+          "Server-owned media path",
+          "Client files pass through the upload route so Cloudinary configuration and output shaping stay outside browser code.",
+        ],
+      ],
+      safeguards: [
+        "Bcrypt password hashing",
+        "JWT and Firebase validation",
+        "Protected profile routes",
+        "Unique public-handle checks",
+        "Sanitized account export",
+        "Authenticated deletion request",
+      ],
+      operationalPath: [
+        "Credential",
+        "verifyAuth",
+        "Resolved user",
+        "Profile controls",
+        "Data control",
+      ],
+    },
+    nodes: [
+      {
+        id: "password",
+        label: "Password account",
+        detail: "username · bcrypt · JWT",
+        tone: "purple",
+        x: 145,
+        y: 105,
+      },
+      {
+        id: "firebase",
+        label: "Firebase social sign-in",
+        detail: "Google or Twitter token",
+        tone: "amber",
+        x: 145,
+        y: 285,
+      },
+      {
+        id: "verify",
+        label: "verifyAuth boundary",
+        detail: "detect · validate · resolve",
+        tone: "cyan",
+        x: 390,
+        y: 195,
+      },
+      {
+        id: "user",
+        label: "Application user",
+        detail: "MongoDB profile identity",
+        tone: "green",
+        x: 600,
+        y: 195,
+      },
+      {
+        id: "profile",
+        label: "Profile & integrations",
+        detail: "settings · services · privacy",
+        tone: "purple",
+        x: 800,
+        y: 105,
+      },
+      {
+        id: "media",
+        label: "Profile media",
+        detail: "Cloudinary avatar and banner",
+        tone: "amber",
+        x: 800,
+        y: 285,
+      },
+      {
+        id: "controls",
+        label: "Data controls",
+        detail: "sanitized export · deletion",
+        tone: "cyan",
+        x: 600,
+        y: 420,
+      },
+    ],
+    edges: [
+      { from: "password", to: "verify" },
+      { from: "firebase", to: "verify" },
+      { from: "verify", to: "user" },
+      { from: "user", to: "profile" },
+      { from: "user", to: "media" },
+      { from: "profile", to: "media", label: "asset reference" },
+      { from: "user", to: "controls" },
     ],
   },
 ];

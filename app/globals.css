@@ -3502,9 +3502,11 @@ button {
   color: #a5e897;
 }
 .project-hero-actions a {
-  display: grid;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   height: 31px;
-  place-items: center;
   padding: 0 12px;
   border: 1px solid #31434c;
   border-radius: 4px;
@@ -3516,6 +3518,47 @@ button {
 .project-hero-actions a:hover {
   border-color: #765fd2;
   color: #c5b9ff;
+}
+.project-action-icon {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+.github-action .project-action-icon {
+  fill: currentColor;
+  stroke: none;
+}
+.project-hero-actions a.github-action {
+  border-color: #49545a;
+  color: #d4dde0;
+  background: #0b151a;
+}
+.project-hero-actions a.github-action:hover {
+  border-color: #87969d;
+  color: #f0f5f6;
+}
+.project-hero-actions a.live-action {
+  border-color: #397a60;
+  color: #91e1b3;
+  background: #0a1b16;
+}
+.project-hero-actions a.live-action:hover {
+  border-color: #67c98d;
+  color: #c0f3d1;
+}
+.project-hero-actions a.docs-action {
+  border-color: #3f6780;
+  color: #91d6f2;
+  background: #0a1821;
+}
+.project-hero-actions a.docs-action:hover {
+  border-color: #6bb4d4;
+  color: #c4ecfb;
 }
 .armyverse-overview-hero {
   display: grid;
@@ -4677,6 +4720,13 @@ button {
   padding-right: 3px;
   scrollbar-width: thin;
   scrollbar-color: #406578 transparent;
+}
+.armyverse-inspector .architecture-library > div {
+  max-height: 330px;
+  overflow: auto;
+  padding-right: 3px;
+  scrollbar-width: thin;
+  scrollbar-color: #5a4b89 transparent;
 }
 .docbuilder-inspector .architecture-library > div {
   max-height: 330px;

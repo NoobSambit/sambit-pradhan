@@ -193,18 +193,18 @@ export const armyverseFeatures: ArmyverseFeature[] = [
   },
   {
     id: "boraverse-quiz-collection",
-    title: "Boraverse quiz & photocard collection",
+    title: "Boraverse quiz, practice & photocard collection",
     category: "Game",
     summary:
       "Timed knowledge sessions that drive an auditable collection loop.",
     description:
       "Boraverse turns BTS knowledge into a persistent collection experience. A timed ten-question quiz samples a large question bank across history, discography, members, lyrics, and variety; score gates a random photocard drop, while the collection view shows catalogue progress, filters, and missing-card placeholders.",
     capabilities: [
-      "Ten-question sessions with difficulty-weighted XP",
-      "20-minute session expiry and two free quiz attempts per UTC day",
+      "Ranked ten-question sessions with difficulty-weighted XP",
+      "20-minute ranked sessions plus public practice and no-persistence demo modes",
       "XP-gated random photocard drops from a Fandom-derived catalogue",
       "Inventory history and source auditing for every awarded item",
-      "Collection progress by category and subcategory",
+      "Collection progress, source links, and sharing by category and subcategory",
     ],
     workflow: {
       title: "Quiz completion and card award",
@@ -253,6 +253,38 @@ export const armyverseFeatures: ArmyverseFeature[] = [
       "Streaming progress is monotonic: a partial Last.fm response cannot regress an already verified daily or weekly total.",
       "Mastery claims use a reward ledger to prevent duplicate reward grants when a user retries a request.",
       "Leaderboard scores accumulate earned XP for a period; they are not a snapshot of a player’s highest level.",
+    ],
+  },
+  {
+    id: "borarush-handoff-rewards",
+    title: "BoraRush cross-game rewards",
+    category: "Game",
+    summary:
+      "A secure Armyverse-to-BoraRush handoff that turns verified solo runs into capped, auditable rewards.",
+    description:
+      "BoraRush is a separate Snake and Ladder trivia experience that returns a completed solo run to ARMYVERSE. The platform issues a time-limited, audience-bound handoff token, verifies the completion at its own route boundary, prevents a run ID from being claimed twice, then awards turn-tiered XP and a random photocard subject to independent UTC caps.",
+    capabilities: [
+      "Two-hour signed handoff token with ARMYVERSE issuer and BoraRush audience validation",
+      "Solo-run-only reward path with turn-based XP tiers",
+      "Idempotent run IDs that return the original result instead of granting a duplicate reward",
+      "Independent UTC caps: two XP awards and ten photocard awards per player",
+      "Random-card grant audit, duplicate-to-Dust conversion, and persistent BoraRush run history",
+    ],
+    workflow: {
+      title: "Secure handoff to a capped reward",
+      nodes: [
+        "Issue signed BoraRush handoff",
+        "Complete an external solo run",
+        "Verify token, origin, and payload",
+        "Reject an already claimed run ID",
+        "Reserve UTC XP and card caps",
+        "Persist XP, card or Dust, audit, and run result",
+      ],
+    },
+    engineeringNotes: [
+      "The external game never receives a general ARMYVERSE session; it receives a short-lived token scoped to the BoraRush audience.",
+      "Cap reservations happen before reward writes and are rolled back if the corresponding award fails, preventing a failed request from consuming a daily allowance.",
+      "The completion route returns the previous result for a repeated run ID, making retries safe without duplicating XP or inventory grants.",
     ],
   },
   {
