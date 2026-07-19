@@ -659,4 +659,96 @@ export const projects: Project[] = [
       { label: "Live URL", value: "kirana-corner.vercel.app" },
     ],
   },
+  {
+    id: "kisan-setu",
+    productName: "AI-powered farming assistant",
+    name: "KisanSetu",
+    state: "Ongoing",
+    tone: "yellow",
+    runtime: "Next.js + TypeScript",
+    tag: "AgriTech · AI · Active build",
+    description:
+      "An active agricultural intelligence platform connecting farm context, explainable schemes, satellite crop health, multilingual advisory, weather risk, and market data.",
+    repository: "https://github.com/NoobSambit/KisanSetu-Hackathon",
+    branch: "main",
+    commitCount: 2,
+    latestCommit: {
+      sha: "eeab591",
+      date: "2026-02-14",
+      subject:
+        "feat: add scheme, satellite, voice, market, and dashboard foundations",
+    },
+    commits: [
+      {
+        sha: "eeab591",
+        date: "2026-02-14",
+        subject:
+          "feat: add scheme, satellite, voice, market, and dashboard foundations",
+      },
+      {
+        sha: "2ba6aec",
+        date: "2026-02-13",
+        subject: "chore: initialize KisanSetu hackathon project",
+      },
+    ],
+    stack: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Firebase",
+      "Firestore",
+      "Ollama",
+      "Groq",
+      "Sentinel-2",
+      "Leaflet",
+      "Tailwind CSS",
+    ],
+    facts: [
+      { label: "Execution state", value: "Day 4–6 active work" },
+      { label: "Scheme corpus", value: "825 agriculture records" },
+      { label: "API routes", value: "24 route handlers" },
+      { label: "App surfaces", value: "17 App Router pages" },
+      { label: "Assistant providers", value: "Ollama · Groq" },
+      { label: "Satellite source", value: "CDSE Sentinel-2" },
+    ],
+    architecture: [
+      { icon: "◉", name: "Next.js app", detail: "farmer workspaces" },
+      { icon: "◇", name: "Route handlers", detail: "24 API contracts" },
+      { icon: "✦", name: "Farm services", detail: "decision logic" },
+      { icon: "▦", name: "Firestore", detail: "profiles + series" },
+      { icon: "◫", name: "CDSE Sentinel-2", detail: "crop health" },
+      { icon: "AI", name: "Ollama / Groq", detail: "farm advisory" },
+    ],
+    capabilities: [
+      "Five-step farm profile with required parcel boundary and reusable farm memory",
+      "Profile-aware assistant with explicit Ollama/Groq routing and same-language policy",
+      "Multilingual voice STT/TTS with local-runtime and browser fallback transparency",
+      "Explainable scheme recommendations plus an 825-record agriculture library",
+      "Satellite health, AOI resolution, confidence, zone overlays, and cache metadata",
+      "Agmarknet 2025 market browsing with resumable ingestion and active forecast work",
+      "Weather-risk notifications, crop-planning/disease support, community foundations, and an active bidding prototype",
+    ],
+    engineeringNotes: [
+      {
+        label: "Project state",
+        value:
+          "Ongoing—Day 4 market, Day 5 weather, and Day 6 dashboard work remain active",
+      },
+      {
+        label: "Trust posture",
+        value:
+          "Fallback source and precision state are designed to remain visible",
+      },
+      {
+        label: "Known gap",
+        value:
+          "Server-side authorization and deeper automated tests require further hardening",
+      },
+      {
+        label: "Current prototype",
+        value:
+          "Bidding Ground is a sample-data interface pending real-time persistence",
+      },
+    ],
+  },
 ];

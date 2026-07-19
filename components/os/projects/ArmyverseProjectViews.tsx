@@ -511,7 +511,18 @@ function ArchitectureGraph({
   expanded?: boolean;
   map: ArchitectureMapLike;
 }) {
-  const nodes = new Map(map.nodes.map((node) => [node.id, node]));
+  const usesPercentageCoordinates =
+    Math.max(...map.nodes.map((node) => node.x)) <= 100;
+  const nodes = new Map(
+    map.nodes.map((node) => [
+      node.id,
+      {
+        ...node,
+        x: usesPercentageCoordinates ? node.x * 10 : node.x,
+        y: usesPercentageCoordinates ? node.y * 5.1 : node.y,
+      },
+    ]),
+  );
 
   return (
     <div className={`armyverse-flowchart ${expanded ? "expanded" : ""}`}>
@@ -554,16 +565,24 @@ function ArchitectureGraph({
             );
           })}
         </svg>
-        {map.nodes.map((node) => (
-          <article
-            className={`armyverse-flow-node ${node.tone}`}
-            key={node.id}
-            style={{ left: `${node.x / 10}%`, top: `${(node.y / 510) * 100}%` }}
-          >
-            <b>{node.label}</b>
-            <span>{node.detail}</span>
-          </article>
-        ))}
+        {map.nodes.map((node) => {
+          const positionedNode = nodes.get(node.id);
+          if (!positionedNode) return null;
+
+          return (
+            <article
+              className={`armyverse-flow-node ${node.tone}`}
+              key={node.id}
+              style={{
+                left: `${positionedNode.x / 10}%`,
+                top: `${(positionedNode.y / 510) * 100}%`,
+              }}
+            >
+              <b>{node.label}</b>
+              <span>{node.detail}</span>
+            </article>
+          );
+        })}
       </div>
     </div>
   );

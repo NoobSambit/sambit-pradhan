@@ -28,7 +28,14 @@ export type ArmyverseArchitectureMap = {
     | "Assessment"
     | "Feedback"
     | "Intelligence"
-    | "Reporting";
+    | "Reporting"
+    | "Farm"
+    | "Assistant"
+    | "Schemes"
+    | "Satellite"
+    | "Market"
+    | "Weather"
+    | "Community";
   title: string;
   summary: string;
   source: string;
