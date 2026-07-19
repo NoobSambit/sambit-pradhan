@@ -5,7 +5,7 @@ import { projects, type Project } from "@/data/projects";
 
 type RepositoryLandingProps = {
   onOpenProject: (
-    project: "armyverse" | "agent-playground" | "docbuilder",
+    project: "armyverse" | "agent-playground" | "docbuilder" | "kirana-corner",
   ) => void;
 };
 
@@ -40,7 +40,12 @@ const listDescriptions: Record<string, string> = {
   docbuilder: "AI document and presentation builder with RAG-assisted outputs.",
 };
 
-const projectPriority = ["armyverse", "agent-playground", "docbuilder"];
+const projectPriority = [
+  "armyverse",
+  "agent-playground",
+  "docbuilder",
+  "kirana-corner",
+];
 
 function comparePinnedProjects(left: Project, right: Project) {
   const leftPriority = projectPriority.indexOf(left.id);
@@ -128,9 +133,12 @@ function Explorer({
         <p>
           <i>●</i>Documentation{" "}
           <b>
-            {["armyverse", "agent-playground", "docbuilder"].includes(
-              selected.id,
-            )
+            {[
+              "armyverse",
+              "agent-playground",
+              "docbuilder",
+              "kirana-corner",
+            ].includes(selected.id)
               ? "Available"
               : "Planned"}
           </b>
@@ -217,19 +225,21 @@ function Inspector({
   project,
 }: {
   onOpenProject: (
-    project: "armyverse" | "agent-playground" | "docbuilder",
+    project: "armyverse" | "agent-playground" | "docbuilder" | "kirana-corner",
   ) => void;
   project: Project;
 }) {
   const docsAvailable =
     project.id === "armyverse" ||
     project.id === "agent-playground" ||
-    project.id === "docbuilder";
+    project.id === "docbuilder" ||
+    project.id === "kirana-corner";
   const openDocumentation = () => {
     if (
       project.id === "armyverse" ||
       project.id === "agent-playground" ||
-      project.id === "docbuilder"
+      project.id === "docbuilder" ||
+      project.id === "kirana-corner"
     )
       onOpenProject(project.id);
   };
@@ -375,7 +385,8 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
     if (
       project.id === "armyverse" ||
       project.id === "agent-playground" ||
-      project.id === "docbuilder"
+      project.id === "docbuilder" ||
+      project.id === "kirana-corner"
     )
       onOpenProject(project.id);
   };
@@ -402,12 +413,14 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
           disabled={
             selected.id !== "armyverse" &&
             selected.id !== "agent-playground" &&
-            selected.id !== "docbuilder"
+            selected.id !== "docbuilder" &&
+            selected.id !== "kirana-corner"
           }
           onClick={() =>
             (selected.id === "armyverse" ||
               selected.id === "agent-playground" ||
-              selected.id === "docbuilder") &&
+              selected.id === "docbuilder" ||
+              selected.id === "kirana-corner") &&
             onOpenProject(selected.id)
           }
           type="button"

@@ -3375,6 +3375,23 @@ button {
   color: #f5c97a;
   background: #21180c;
 }
+.kirana-workspace .project-activity a {
+  display: grid;
+  width: 43px;
+  height: 31px;
+  place-items: center;
+  border-left: 2px solid transparent;
+  color: #84939b;
+  font-size: 16px;
+  text-decoration: none;
+}
+.kirana-workspace .project-activity button.active,
+.kirana-workspace .project-activity button:hover,
+.kirana-workspace .project-activity a:hover {
+  border-left-color: #83d178;
+  color: #a8e39d;
+  background: #0d2114;
+}
 .project-source-label {
   color: #6fd5e7;
   font-size: 9px;
@@ -3456,6 +3473,33 @@ button {
 .docbuilder-hero .project-hero-actions a:hover {
   border-color: #d99e50;
   color: #f5ca80;
+}
+.kirana-hero .project-mark {
+  border-color: #6fc46c;
+  color: #a3e797;
+  background: #0d2113;
+  box-shadow: 0 0 17px rgba(104, 197, 99, 0.2);
+  font-size: 19px;
+  letter-spacing: -0.08em;
+}
+.kirana-hero .project-hero-copy span:first-of-type {
+  border-color: #3c6640;
+  color: #9bdf8e;
+  background: #0d2113;
+}
+.kirana-hero .project-hero-copy span:nth-of-type(2) {
+  border-color: #37677b;
+  color: #98daf1;
+  background: #0b1c24;
+}
+.kirana-hero .project-hero-copy span:nth-of-type(3) {
+  border-color: #87663a;
+  color: #e8be71;
+  background: #20190d;
+}
+.kirana-hero .project-hero-actions a:hover {
+  border-color: #6bc76b;
+  color: #a5e897;
 }
 .project-hero-actions a {
   display: grid;
@@ -4640,6 +4684,13 @@ button {
   padding-right: 3px;
   scrollbar-width: thin;
   scrollbar-color: #725938 transparent;
+}
+.kirana-inspector .architecture-library > div {
+  max-height: 330px;
+  overflow: auto;
+  padding-right: 3px;
+  scrollbar-width: thin;
+  scrollbar-color: #4a7747 transparent;
 }
 .architecture-library button {
   display: grid;
@@ -6364,79 +6415,92 @@ button {
 @media (max-width: 1320px) and (min-width: 761px) {
   .armyverse-workspace .project-docs-content,
   .agent-playground-workspace .project-docs-content,
-  .docbuilder-workspace .project-docs-content {
+  .docbuilder-workspace .project-docs-content,
+  .kirana-workspace .project-docs-content {
     min-width: 820px;
   }
   .armyverse-workspace .project-docs-inspector,
   .agent-playground-workspace .project-docs-inspector,
-  .docbuilder-workspace .project-docs-inspector {
+  .docbuilder-workspace .project-docs-inspector,
+  .kirana-workspace .project-docs-inspector {
     min-width: 310px;
   }
 }
 @media (max-width: 760px) {
   .armyverse-workspace,
   .agent-playground-workspace,
-  .docbuilder-workspace {
+  .docbuilder-workspace,
+  .kirana-workspace {
     display: block;
     height: auto;
     overflow: visible;
   }
   .armyverse-workspace .project-activity,
   .agent-playground-workspace .project-activity,
-  .docbuilder-workspace .project-activity {
+  .docbuilder-workspace .project-activity,
+  .kirana-workspace .project-activity {
     display: none;
   }
   .armyverse-workspace .project-docs-nav,
   .agent-playground-workspace .project-docs-nav,
-  .docbuilder-workspace .project-docs-nav {
+  .docbuilder-workspace .project-docs-nav,
+  .kirana-workspace .project-docs-nav {
     grid-template-rows: 38px auto;
     border-bottom: 1px solid #23333d;
   }
   .armyverse-workspace .project-docs-nav footer,
   .agent-playground-workspace .project-docs-nav footer,
-  .docbuilder-workspace .project-docs-nav footer {
+  .docbuilder-workspace .project-docs-nav footer,
+  .kirana-workspace .project-docs-nav footer {
     display: none;
   }
   .armyverse-workspace .project-docs-tree,
   .agent-playground-workspace .project-docs-tree,
-  .docbuilder-workspace .project-docs-tree {
+  .docbuilder-workspace .project-docs-tree,
+  .kirana-workspace .project-docs-tree {
     display: flex;
     overflow: auto;
     padding: 0;
   }
   .armyverse-workspace .project-docs-tree > b,
   .agent-playground-workspace .project-docs-tree > b,
-  .docbuilder-workspace .project-docs-tree > b {
+  .docbuilder-workspace .project-docs-tree > b,
+  .kirana-workspace .project-docs-tree > b {
     display: none;
   }
   .armyverse-workspace .project-docs-tree button,
   .agent-playground-workspace .project-docs-tree button,
-  .docbuilder-workspace .project-docs-tree button {
+  .docbuilder-workspace .project-docs-tree button,
+  .kirana-workspace .project-docs-tree button {
     width: auto;
     flex: 0 0 auto;
     padding: 0 12px;
   }
   .armyverse-workspace .project-docs-content,
   .agent-playground-workspace .project-docs-content,
-  .docbuilder-workspace .project-docs-content {
+  .docbuilder-workspace .project-docs-content,
+  .kirana-workspace .project-docs-content {
     display: block;
     min-width: 0;
   }
   .armyverse-workspace .project-docs-scroll,
   .agent-playground-workspace .project-docs-scroll,
-  .docbuilder-workspace .project-docs-scroll {
+  .docbuilder-workspace .project-docs-scroll,
+  .kirana-workspace .project-docs-scroll {
     max-height: none;
     min-height: 0;
     padding: 0 10px;
   }
   .armyverse-workspace .project-terminal,
   .agent-playground-workspace .project-terminal,
-  .docbuilder-workspace .project-terminal {
+  .docbuilder-workspace .project-terminal,
+  .kirana-workspace .project-terminal {
     display: none;
   }
   .armyverse-workspace .project-docs-inspector,
   .agent-playground-workspace .project-docs-inspector,
-  .docbuilder-workspace .project-docs-inspector {
+  .docbuilder-workspace .project-docs-inspector,
+  .kirana-workspace .project-docs-inspector {
     display: none;
   }
   .project-docs-hero {

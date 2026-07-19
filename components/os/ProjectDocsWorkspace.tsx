@@ -17,8 +17,10 @@ import type { ArmyverseFeature } from "@/data/armyverse/types";
 import { RepositoryLanding } from "@/components/os/projects/RepositoryLanding";
 import { AgentPlaygroundDocsWorkspace } from "@/components/os/projects/AgentPlaygroundDocsWorkspace";
 import { DocBuilderDocsWorkspace } from "@/components/os/projects/DocBuilderDocsWorkspace";
+import { KiranaCornerDocsWorkspace } from "@/components/os/projects/KiranaCornerDocsWorkspace";
 
-type DocumentedProject = "armyverse" | "agent-playground" | "docbuilder";
+type DocumentedProject =
+  "armyverse" | "agent-playground" | "docbuilder" | "kirana-corner";
 
 type ProjectView = (typeof armyverseNavigation)[number]["id"];
 
@@ -154,7 +156,8 @@ export function ProjectDocsWorkspace() {
       if (
         project === "armyverse" ||
         project === "agent-playground" ||
-        project === "docbuilder"
+        project === "docbuilder" ||
+        project === "kirana-corner"
       ) {
         setActiveProject(project);
         setSurface("documentation");
@@ -194,6 +197,10 @@ export function ProjectDocsWorkspace() {
 
   if (activeProject === "docbuilder") {
     return <DocBuilderDocsWorkspace onBack={openRepositories} />;
+  }
+
+  if (activeProject === "kirana-corner") {
+    return <KiranaCornerDocsWorkspace onBack={openRepositories} />;
   }
 
   return (
