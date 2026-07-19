@@ -30,9 +30,7 @@ export function Header({
     return () => window.clearInterval(interval);
   }, []);
 
-  const returnToProjectsRoot = (
-    event: React.MouseEvent<HTMLAnchorElement>,
-  ) => {
+  const returnToProjectsRoot = (event: React.MouseEvent<HTMLAnchorElement>) => {
     if (window.location.pathname !== "/projects") return;
 
     event.preventDefault();

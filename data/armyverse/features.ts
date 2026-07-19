@@ -5,7 +5,8 @@ export const armyverseFeatures: ArmyverseFeature[] = [
     id: "ai-playlist-architect",
     title: "AI Playlist Architect",
     category: "Music",
-    summary: "Parameterized BTS playlist generation with refinement and comparison.",
+    summary:
+      "Parameterized BTS playlist generation with refinement and comparison.",
     description:
       "A guided playlist builder that turns a fan’s prompt, mood, member and era preferences, seed tracks, audio targets, genre mix, and listening context into a BTS-focused playlist. Users can start from templates or a personality quiz, save configurations, evolve a result, compare variations, and take the final selection to Spotify.",
     capabilities: [
@@ -36,7 +37,8 @@ export const armyverseFeatures: ArmyverseFeature[] = [
     id: "playlist-creation-export",
     title: "Manual playlists & Spotify export",
     category: "Music",
-    summary: "Hands-on track curation with OAuth and user-owned Spotify credentials.",
+    summary:
+      "Hands-on track curation with OAuth and user-owned Spotify credentials.",
     description:
       "Fans can create a playlist directly from the BTS track catalogue, search and reorder tracks, preview audio, and export the finished collection to Spotify. The integration supports both a platform-owner fallback and BYO Spotify application credentials, so a connected user can export into their own Spotify account.",
     capabilities: [
@@ -67,7 +69,8 @@ export const armyverseFeatures: ArmyverseFeature[] = [
     id: "listening-intelligence",
     title: "Listening intelligence dashboard",
     category: "Data",
-    summary: "Public Last.fm and Stats.fm history translated into BTS-specific listening insights.",
+    summary:
+      "Public Last.fm and Stats.fm history translated into BTS-specific listening insights.",
     description:
       "The stats workspace accepts a public username instead of requiring an ARMYVERSE account. It retrieves listening history from Last.fm or Stats.fm, identifies BTS-related artists and tracks, derives member and era distribution, then presents top artists, recent activity, timelines, and a BTS listening profile in a responsive bento dashboard.",
     capabilities: [
@@ -129,7 +132,8 @@ export const armyverseFeatures: ArmyverseFeature[] = [
     id: "youtube-video-analytics",
     title: "YouTube video analytics",
     category: "Data",
-    summary: "Daily-ranked BTS video data with drill-down performance histories.",
+    summary:
+      "Daily-ranked BTS video data with drill-down performance histories.",
     description:
       "The YouTube analytics workspace provides member-filtered video rankings, total views, daily gains, and detailed video inspection. It stores daily Kworb snapshots and caches individual-video detail so fans can inspect milestones, chart performance, and daily, monthly, or yearly view trends without repeatedly scraping the source.",
     capabilities: [
@@ -191,7 +195,8 @@ export const armyverseFeatures: ArmyverseFeature[] = [
     id: "boraverse-quiz-collection",
     title: "Boraverse quiz & photocard collection",
     category: "Game",
-    summary: "Timed knowledge sessions that drive an auditable collection loop.",
+    summary:
+      "Timed knowledge sessions that drive an auditable collection loop.",
     description:
       "Boraverse turns BTS knowledge into a persistent collection experience. A timed ten-question quiz samples a large question bank across history, discography, members, lyrics, and variety; score gates a random photocard drop, while the collection view shows catalogue progress, filters, and missing-card placeholders.",
     capabilities: [
@@ -222,7 +227,8 @@ export const armyverseFeatures: ArmyverseFeature[] = [
     id: "boraverse-progression",
     title: "Boraverse progression economy",
     category: "Game",
-    summary: "Crafting, mastery, quests, streaks, badges, and competitive leaderboards.",
+    summary:
+      "Crafting, mastery, quests, streaks, badges, and competitive leaderboards.",
     description:
       "The progression layer gives the collection system long-term structure. Players earn XP and Stardust through quizzes and verified daily or weekly quests, convert duplicates into currency, craft specific or random cards, claim member and era mastery rewards, build streaks, unlock badges, and compare cumulative XP on daily, weekly, and all-time leaderboards.",
     capabilities: [
@@ -253,7 +259,8 @@ export const armyverseFeatures: ArmyverseFeature[] = [
     id: "community-publishing",
     title: "Community publishing platform",
     category: "Community",
-    summary: "Rich-text BTS writing with discovery, reactions, saves, and collections.",
+    summary:
+      "Rich-text BTS writing with discovery, reactions, saves, and collections.",
     description:
       "ARMYVERSE includes a community publishing surface for reviews, theories, news, and personal writing. Authors compose in a Tiptap editor, upload media to Cloudinary, control visibility, and organize posts into collections. Readers can search, filter, react, comment in threads, save posts, and discover content through featured and trending views.",
     capabilities: [
@@ -284,7 +291,8 @@ export const armyverseFeatures: ArmyverseFeature[] = [
     id: "identity-profiles",
     title: "Identity, profiles & integrations",
     category: "Platform",
-    summary: "Dual authentication, fan identity controls, and personalized settings.",
+    summary:
+      "Dual authentication, fan identity controls, and personalized settings.",
     description:
       "The platform supports both privacy-first username/password registration and Firebase social sign-in. A unified server verifier resolves either credential type into the same application user. The profile experience layers ARMY-specific identity fields, media, theme personalization, privacy preferences, notifications, connected services, and data export on top of that account model.",
     capabilities: [

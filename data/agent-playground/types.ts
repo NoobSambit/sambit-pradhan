@@ -1,4 +1,5 @@
-export type AgentFeatureCategory = "Core" | "Workspace" | "Network" | "Planning" | "Telemetry";
+export type AgentFeatureCategory =
+  "Core" | "Workspace" | "Network" | "Planning" | "Telemetry";
 
 export type AgentPlaygroundFeature = {
   id: string;
@@ -13,4 +14,8 @@ export type AgentPlaygroundFeature = {
 
 export type AgentPlaygroundView = "overview" | "features" | "architecture";
 
-export type AgentPlaygroundNavItem = { id: AgentPlaygroundView; label: string; icon: string };
+export type AgentPlaygroundNavItem = {
+  id: AgentPlaygroundView;
+  label: string;
+  icon: string;
+};

@@ -18,13 +18,46 @@ export const agentPlaygroundProject = {
     ["PostgreSQL tables", "44 Drizzle tables"],
     ["Provider layer", "Gemini · Groq · Ollama · LangChain"],
   ],
-  stack: ["Next.js 15", "React 19", "TypeScript", "PostgreSQL", "Drizzle ORM", "Zustand", "LangChain", "Gemini", "Groq", "Ollama", "Firebase", "Tailwind CSS"],
+  stack: [
+    "Next.js 15",
+    "React 19",
+    "TypeScript",
+    "PostgreSQL",
+    "Drizzle ORM",
+    "Zustand",
+    "LangChain",
+    "Gemini",
+    "Groq",
+    "Ollama",
+    "Firebase",
+    "Tailwind CSS",
+  ],
   timeline: [
-    ["Agent foundation", "Early 2026", "Established persistent agent identity, personality, emotion, memory, and chat state."],
-    ["Inspectable workspaces", "Spring 2026", "Added Creative, Dream, Journal, Profile, and challenge workflows with persisted pipeline traces."],
-    ["PostgreSQL cutover", "2026", "Made PostgreSQL and Drizzle canonical while retaining Firestore export, backfill, and dual-write support."],
-    ["Knowledge Library", "Jul 2026", "Introduced validation-aware Library governance, usage tracking, Collective routing, and Timeline visibility."],
-    ["Current iteration", "17 Jul 2026", "Continued agent workspace, memory-console, timeline, and navigation refinements."],
+    [
+      "Agent foundation",
+      "Early 2026",
+      "Established persistent agent identity, personality, emotion, memory, and chat state.",
+    ],
+    [
+      "Inspectable workspaces",
+      "Spring 2026",
+      "Added Creative, Dream, Journal, Profile, and challenge workflows with persisted pipeline traces.",
+    ],
+    [
+      "PostgreSQL cutover",
+      "2026",
+      "Made PostgreSQL and Drizzle canonical while retaining Firestore export, backfill, and dual-write support.",
+    ],
+    [
+      "Knowledge Library",
+      "Jul 2026",
+      "Introduced validation-aware Library governance, usage tracking, Collective routing, and Timeline visibility.",
+    ],
+    [
+      "Current iteration",
+      "17 Jul 2026",
+      "Continued agent workspace, memory-console, timeline, and navigation refinements.",
+    ],
   ],
 } as const;
 

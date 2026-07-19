@@ -18,7 +18,10 @@ export const armyverseProject = {
     ["Application routes", "88 API routes · 28 pages"],
     ["Domain models", "27 MongoDB models"],
     ["Client components", "141 feature components"],
-    ["External integrations", "Spotify · Last.fm · YouTube · Firebase · Groq · Cloudinary"],
+    [
+      "External integrations",
+      "Spotify · Last.fm · YouTube · Firebase · Groq · Cloudinary",
+    ],
   ],
   stack: [
     "Next.js 14",
