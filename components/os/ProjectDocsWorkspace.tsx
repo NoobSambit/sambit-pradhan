@@ -16,8 +16,9 @@ import {
 import type { ArmyverseFeature } from "@/data/armyverse/types";
 import { RepositoryLanding } from "@/components/os/projects/RepositoryLanding";
 import { AgentPlaygroundDocsWorkspace } from "@/components/os/projects/AgentPlaygroundDocsWorkspace";
+import { DocBuilderDocsWorkspace } from "@/components/os/projects/DocBuilderDocsWorkspace";
 
-type DocumentedProject = "armyverse" | "agent-playground";
+type DocumentedProject = "armyverse" | "agent-playground" | "docbuilder";
 
 type ProjectView = (typeof armyverseNavigation)[number]["id"];
 
@@ -150,7 +151,11 @@ export function ProjectDocsWorkspace() {
       const project = new URLSearchParams(window.location.search).get(
         "project",
       );
-      if (project === "armyverse" || project === "agent-playground") {
+      if (
+        project === "armyverse" ||
+        project === "agent-playground" ||
+        project === "docbuilder"
+      ) {
         setActiveProject(project);
         setSurface("documentation");
         return;
@@ -185,6 +190,10 @@ export function ProjectDocsWorkspace() {
 
   if (activeProject === "agent-playground") {
     return <AgentPlaygroundDocsWorkspace onBack={openRepositories} />;
+  }
+
+  if (activeProject === "docbuilder") {
+    return <DocBuilderDocsWorkspace onBack={openRepositories} />;
   }
 
   return (

@@ -4,7 +4,9 @@ import { useMemo, useState } from "react";
 import { projects, type Project } from "@/data/projects";
 
 type RepositoryLandingProps = {
-  onOpenProject: (project: "armyverse" | "agent-playground") => void;
+  onOpenProject: (
+    project: "armyverse" | "agent-playground" | "docbuilder",
+  ) => void;
 };
 
 const projectIcon: Record<Project["tone"], string> = {
@@ -38,6 +40,26 @@ const listDescriptions: Record<string, string> = {
   docbuilder: "AI document and presentation builder with RAG-assisted outputs.",
 };
 
+const projectPriority = ["armyverse", "agent-playground", "docbuilder"];
+
+function comparePinnedProjects(left: Project, right: Project) {
+  const leftPriority = projectPriority.indexOf(left.id);
+  const rightPriority = projectPriority.indexOf(right.id);
+  if (leftPriority !== -1 || rightPriority !== -1) {
+    return (
+      (leftPriority === -1 ? Number.MAX_SAFE_INTEGER : leftPriority) -
+      (rightPriority === -1 ? Number.MAX_SAFE_INTEGER : rightPriority)
+    );
+  }
+  return 0;
+}
+
+const explorerProjects = [...projects].sort(
+  (left, right) =>
+    comparePinnedProjects(left, right) ||
+    right.latestCommit.date.localeCompare(left.latestCommit.date),
+);
+
 function Explorer({
   onSelect,
   selected,
@@ -60,7 +82,7 @@ function Explorer({
       <div className="repository-tree">
         <b>⌄　PORTFOLIO/</b>
         <b>⌄　repositories/</b>
-        {projects.map((project) => (
+        {explorerProjects.map((project) => (
           <button
             aria-current={selected.id === project.id ? "true" : undefined}
             className={selected.id === project.id ? "active" : ""}
@@ -106,7 +128,9 @@ function Explorer({
         <p>
           <i>●</i>Documentation{" "}
           <b>
-            {["armyverse", "agent-playground"].includes(selected.id)
+            {["armyverse", "agent-playground", "docbuilder"].includes(
+              selected.id,
+            )
               ? "Available"
               : "Planned"}
           </b>
@@ -192,13 +216,21 @@ function Inspector({
   onOpenProject,
   project,
 }: {
-  onOpenProject: (project: "armyverse" | "agent-playground") => void;
+  onOpenProject: (
+    project: "armyverse" | "agent-playground" | "docbuilder",
+  ) => void;
   project: Project;
 }) {
   const docsAvailable =
-    project.id === "armyverse" || project.id === "agent-playground";
+    project.id === "armyverse" ||
+    project.id === "agent-playground" ||
+    project.id === "docbuilder";
   const openDocumentation = () => {
-    if (project.id === "armyverse" || project.id === "agent-playground")
+    if (
+      project.id === "armyverse" ||
+      project.id === "agent-playground" ||
+      project.id === "docbuilder"
+    )
       onOpenProject(project.id);
   };
 
@@ -330,8 +362,8 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
         );
       })
       .sort((left, right) => {
-        if (left.id === "armyverse") return -1;
-        if (right.id === "armyverse") return 1;
+        const priority = comparePinnedProjects(left, right);
+        if (priority !== 0) return priority;
         return sort === "name"
           ? left.name.localeCompare(right.name)
           : right.latestCommit.date.localeCompare(left.latestCommit.date);
@@ -340,7 +372,11 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
 
   const selectProject = (project: Project) => {
     setSelected(project);
-    if (project.id === "armyverse" || project.id === "agent-playground")
+    if (
+      project.id === "armyverse" ||
+      project.id === "agent-playground" ||
+      project.id === "docbuilder"
+    )
       onOpenProject(project.id);
   };
 
@@ -364,11 +400,14 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
         <button
           aria-label="Selected project documentation"
           disabled={
-            selected.id !== "armyverse" && selected.id !== "agent-playground"
+            selected.id !== "armyverse" &&
+            selected.id !== "agent-playground" &&
+            selected.id !== "docbuilder"
           }
           onClick={() =>
             (selected.id === "armyverse" ||
-              selected.id === "agent-playground") &&
+              selected.id === "agent-playground" ||
+              selected.id === "docbuilder") &&
             onOpenProject(selected.id)
           }
           type="button"
