@@ -14,7 +14,7 @@ function formatTime(date: Date) {
 export function Header({
   mode = "home",
 }: {
-  mode?: "home" | "about" | "skills";
+  mode?: "home" | "about" | "skills" | "projects";
 }) {
   const [time, setTime] = useState("--:--:--");
   const [system, setSystem] = useState({
@@ -29,6 +29,15 @@ export function Header({
     const interval = window.setInterval(refreshTime, 1000);
     return () => window.clearInterval(interval);
   }, []);
+
+  const returnToProjectsRoot = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+  ) => {
+    if (window.location.pathname !== "/projects") return;
+
+    event.preventDefault();
+    window.location.assign("/projects?view=repositories");
+  };
 
   useEffect(() => {
     const refreshSystem = () =>
@@ -57,7 +66,13 @@ export function Header({
         <a className={mode === "home" ? "active" : ""} href="/">
           Overview
         </a>
-        <a href="/#projects">Projects</a>
+        <a
+          className={mode === "projects" ? "active" : ""}
+          href="/projects"
+          onClick={returnToProjectsRoot}
+        >
+          Projects
+        </a>
         <a className={mode === "about" ? "active" : ""} href="/about">
           About
         </a>
