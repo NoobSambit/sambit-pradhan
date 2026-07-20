@@ -1,6 +1,13 @@
 "use client";
 
-import { Fragment, type ReactNode, useMemo, useState } from "react";
+import {
+  Fragment,
+  type ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { armyverseFeatures } from "@/data/armyverse/features";
 import {
   armyverseArchitectureMaps,
@@ -59,54 +66,280 @@ export function ProjectHero() {
   );
 }
 
+const armyverseScreens = [
+  {
+    src: "/project_banners/armyverse/ai-playlist.png",
+    label: "Every mood deserves its perfect BTS mix",
+    alt: "Armyverse AI playlist architect poster",
+  },
+  {
+    src: "/project_banners/armyverse/fandom-analytics.png",
+    label: "Watch the fandom move together",
+    alt: "Armyverse fandom analytics poster",
+  },
+  {
+    src: "/project_banners/armyverse/collection-mastery.png",
+    label: "Every memory becomes collectible",
+    alt: "Armyverse collection and mastery poster",
+  },
+  {
+    src: "/project_banners/armyverse/verified-quest-progression.png",
+    label: "Make every listen count",
+    alt: "Armyverse verified quest progression poster",
+  },
+  {
+    src: "/project_banners/armyverse/community-publishing.png",
+    label: "Every fan has a story worth sharing",
+    alt: "Armyverse community publishing poster",
+  },
+  {
+    src: "/project_banners/armyverse/spotify-export.png",
+    label: "From your heart to your playlist",
+    alt: "Armyverse Spotify export poster",
+  },
+] as const;
+
+const ARMYVERSE_SCREEN_INTERVAL_MS = 4000;
+
+function CarouselControlIcon({
+  type,
+}: {
+  type: "previous" | "next" | "pause" | "play" | "expand" | "close";
+}) {
+  return (
+    <svg
+      aria-hidden="true"
+      className="armyverse-carousel-icon"
+      viewBox="0 0 24 24"
+    >
+      {type === "previous" && <path d="m14.5 5-7 7 7 7M19 5l-7 7 7 7" />}
+      {type === "next" && <path d="m9.5 5 7 7-7 7" />}
+      {type === "pause" && <path d="M8 6v12M16 6v12" />}
+      {type === "play" && <path d="m9 6 9 6-9 6Z" />}
+      {type === "expand" && (
+        <path d="M8 4H4v4m0-4 6 6m10-6h-4m4 0-6 6M4 16v4h4m-4 0 6-6m10 6h-4m4 0-6-6" />
+      )}
+      {type === "close" && <path d="m6 6 12 12M18 6 6 18" />}
+    </svg>
+  );
+}
+
 function ProductHeroPreview() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isPointerOver, setIsPointerOver] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const viewerDialogRef = useRef<HTMLDialogElement>(null);
+  const expandButtonRef = useRef<HTMLButtonElement>(null);
+  const activeScreen = armyverseScreens[activeIndex];
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setReducedMotion(mediaQuery.matches);
+    updatePreference();
+    mediaQuery.addEventListener("change", updatePreference);
+    return () => mediaQuery.removeEventListener("change", updatePreference);
+  }, []);
+
+  useEffect(() => {
+    const nextIndex = (activeIndex + 1) % armyverseScreens.length;
+    const preload = new window.Image();
+    preload.src = armyverseScreens[nextIndex].src;
+  }, [activeIndex]);
+
+  useEffect(() => {
+    if (isPaused || isPointerOver || isViewerOpen || reducedMotion) return;
+
+    const interval = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % armyverseScreens.length);
+    }, ARMYVERSE_SCREEN_INTERVAL_MS);
+
+    return () => window.clearInterval(interval);
+  }, [isPaused, isPointerOver, isViewerOpen, reducedMotion]);
+
+  useEffect(() => {
+    const dialog = viewerDialogRef.current;
+    if (!dialog) return;
+
+    if (isViewerOpen && !dialog.open) {
+      dialog.showModal();
+    } else if (!isViewerOpen && dialog.open) {
+      dialog.close();
+    }
+  }, [isViewerOpen]);
+
+  const showPrevious = () => {
+    setActiveIndex(
+      (current) =>
+        (current - 1 + armyverseScreens.length) % armyverseScreens.length,
+    );
+  };
+
+  const showNext = () => {
+    setActiveIndex((current) => (current + 1) % armyverseScreens.length);
+  };
+
+  const closeViewer = () => {
+    setIsViewerOpen(false);
+    window.requestAnimationFrame(() => expandButtonRef.current?.focus());
+  };
+
   return (
     <section
       className="armyverse-overview-hero"
       aria-label="Armyverse product overview"
     >
-      <figure className="armyverse-product-preview">
-        <header>
-          <b>✦ ARMYVERSE</b>
-          <span>⌕ Discover BTS music, charts, and community</span>
-          <i>●</i>
-        </header>
-        <aside>
-          <b>⌁ Discover</b>
-          <span>✦ AI Playlists</span>
-          <span>◈ Global Charts</span>
-          <span>▣ Boraverse</span>
-          <span>▤ Community</span>
-        </aside>
-        <main>
-          <section className="armyverse-preview-hero-card">
-            <small>TAILORED MUSIC DISCOVERY</small>
-            <h3>Build the BTS mix for the moment.</h3>
-            <p>
-              Mood, member, era, energy, and seed-track controls feed a playlist
-              workflow built around the BTS catalogue.
-            </p>
-            <span>Open Playlist Architect　→</span>
-          </section>
-          <div className="armyverse-preview-stats">
-            <article>
-              <small>GLOBAL SNAPSHOTS</small>
-              <b>Spotify + YouTube</b>
-              <span>Daily ranking archive</span>
-            </article>
-            <article>
-              <small>BORAVERSE</small>
-              <b>Quiz → collect → progress</b>
-              <span>Quests, mastery, and crafting</span>
-            </article>
-            <article>
-              <small>COMMUNITY</small>
-              <b>Write and discover</b>
-              <span>Posts, reactions, and collections</span>
-            </article>
-          </div>
-        </main>
+      <figure
+        aria-label={`Armyverse product screen: ${activeScreen.label}`}
+        aria-roledescription="carousel"
+        className="armyverse-product-preview armyverse-screen-carousel"
+        onMouseEnter={() => setIsPointerOver(true)}
+        onMouseLeave={() => setIsPointerOver(false)}
+      >
+        <img
+          alt={activeScreen.alt}
+          className="armyverse-carousel-image"
+          decoding="async"
+          height={941}
+          key={activeScreen.src}
+          loading="eager"
+          src={activeScreen.src}
+          width={1672}
+        />
+        <div aria-hidden="true" className="armyverse-carousel-scrim" />
+        <nav
+          aria-label="Armyverse product screenshots"
+          className="armyverse-carousel-controls"
+        >
+          <button
+            aria-label="Show previous Armyverse screen"
+            onClick={showPrevious}
+            type="button"
+          >
+            <CarouselControlIcon type="previous" />
+          </button>
+          <span className="armyverse-carousel-label">
+            <small>
+              {String(activeIndex + 1).padStart(2, "0")} /{" "}
+              {String(armyverseScreens.length).padStart(2, "0")}
+            </small>
+            <b>{activeScreen.label}</b>
+          </span>
+          <button
+            aria-label="Show next Armyverse screen"
+            onClick={showNext}
+            type="button"
+          >
+            <CarouselControlIcon type="next" />
+          </button>
+          <button
+            aria-label={`Expand ${activeScreen.label} image`}
+            className="armyverse-carousel-expand"
+            onClick={() => setIsViewerOpen(true)}
+            ref={expandButtonRef}
+            type="button"
+          >
+            <CarouselControlIcon type="expand" />
+          </button>
+          <button
+            aria-label={
+              isPaused
+                ? "Resume automatic screenshots"
+                : "Pause automatic screenshots"
+            }
+            aria-pressed={isPaused}
+            className="armyverse-carousel-autoplay"
+            onClick={() => setIsPaused((paused) => !paused)}
+            type="button"
+          >
+            <CarouselControlIcon type={isPaused ? "play" : "pause"} />
+          </button>
+          <span
+            aria-label={`${activeIndex + 1} of ${armyverseScreens.length} screenshots`}
+            className="armyverse-carousel-dots"
+          >
+            {armyverseScreens.map((screen, index) => (
+              <button
+                aria-label={`Show ${screen.label}`}
+                aria-pressed={index === activeIndex}
+                className={index === activeIndex ? "active" : ""}
+                key={screen.src}
+                onClick={() => setActiveIndex(index)}
+                type="button"
+              />
+            ))}
+          </span>
+        </nav>
       </figure>
+      <dialog
+        aria-label={`${activeScreen.label} image viewer`}
+        className="armyverse-image-dialog"
+        onCancel={(event) => {
+          event.preventDefault();
+          closeViewer();
+        }}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) closeViewer();
+        }}
+        onClose={closeViewer}
+        ref={viewerDialogRef}
+      >
+        <section className="armyverse-image-viewer">
+          <header>
+            <span>
+              {String(activeIndex + 1).padStart(2, "0")} /{" "}
+              {String(armyverseScreens.length).padStart(2, "0")}
+            </span>
+            <b>{activeScreen.label}</b>
+            <button
+              aria-label="Close image viewer"
+              autoFocus={isViewerOpen}
+              onClick={closeViewer}
+              type="button"
+            >
+              <CarouselControlIcon type="close" />
+            </button>
+          </header>
+          <div className="armyverse-image-viewer-frame">
+            <img
+              alt={activeScreen.alt}
+              decoding="async"
+              height={941}
+              src={activeScreen.src}
+              width={1672}
+            />
+          </div>
+          <footer aria-label="Image viewer controls">
+            <button
+              aria-label="Show previous Armyverse screen"
+              onClick={showPrevious}
+              type="button"
+            >
+              <CarouselControlIcon type="previous" />
+            </button>
+            <span className="armyverse-carousel-dots">
+              {armyverseScreens.map((screen, index) => (
+                <button
+                  aria-label={`Show ${screen.label}`}
+                  aria-pressed={index === activeIndex}
+                  className={index === activeIndex ? "active" : ""}
+                  key={screen.src}
+                  onClick={() => setActiveIndex(index)}
+                  type="button"
+                />
+              ))}
+            </span>
+            <button
+              aria-label="Show next Armyverse screen"
+              onClick={showNext}
+              type="button"
+            >
+              <CarouselControlIcon type="next" />
+            </button>
+          </footer>
+        </section>
+      </dialog>
       <aside className="armyverse-overview-copy">
         <div className="overview-copy-text">
           <h2>Overview</h2>

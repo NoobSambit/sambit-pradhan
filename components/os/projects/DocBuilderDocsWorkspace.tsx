@@ -10,6 +10,10 @@ import {
   type InspectableFeature,
 } from "@/components/os/projects/ArmyverseProjectViews";
 import { ProjectActionIcon } from "@/components/os/projects/ProjectActionIcon";
+import {
+  ProjectImageCarousel,
+  type ProjectBanner,
+} from "@/components/os/projects/ProjectImageCarousel";
 import { docBuilderArchitectureMaps } from "@/data/docbuilder/architecture";
 import { docBuilderFeatures } from "@/data/docbuilder/features";
 import {
@@ -20,6 +24,29 @@ import type {
   DocBuilderFeature,
   DocBuilderView,
 } from "@/data/docbuilder/types";
+
+const docBuilderBanners = [
+  {
+    src: "/project_banners/docbuilder/outline-generation.png",
+    label: "Start with structure, not a blank page",
+    alt: "DocBuilder outline generation poster",
+  },
+  {
+    src: "/project_banners/docbuilder/rag-research.png",
+    label: "Research enters exactly where it matters",
+    alt: "DocBuilder research-aware generation poster",
+  },
+  {
+    src: "/project_banners/docbuilder/context-refinement.png",
+    label: "Revise without losing the thread",
+    alt: "DocBuilder context-aware refinement poster",
+  },
+  {
+    src: "/project_banners/docbuilder/dual-format-export.png",
+    label: "One project. Two finished formats.",
+    alt: "DocBuilder DOCX and PPTX export poster",
+  },
+] satisfies readonly ProjectBanner[];
 
 function DocBuilderHero() {
   return (
@@ -65,49 +92,10 @@ function DocBuilderOverview({
     <>
       <DocBuilderHero />
       <section className="docbuilder-overview-hero">
-        <figure className="docbuilder-preview">
-          <header>
-            <b>▤ DOCBUILDER</b>
-            <span>Research-grounded document and presentation workspace</span>
-            <i>●</i>
-          </header>
-          <aside>
-            <b>▣ Project outline</b>
-            <span>✦ AI outline</span>
-            <span>⌁ RAG research</span>
-            <span>◫ Refine section</span>
-            <span>↥ Export</span>
-          </aside>
-          <main>
-            <section>
-              <small>DOCUMENT INTELLIGENCE</small>
-              <h3>Draft with structure. Refine with context.</h3>
-              <p>
-                Projects keep their outline, generated sections, research-aware
-                content, editorial history, and final export in one editable
-                workspace.
-              </p>
-              <span>Open authoring workspace →</span>
-            </section>
-            <div>
-              <article>
-                <small>STRUCTURED OUTPUT</small>
-                <b>Pydantic-validated sections</b>
-                <span>titles · bullets · word count</span>
-              </article>
-              <article>
-                <small>RESEARCH PATH</small>
-                <b>Search → rank → cite</b>
-                <span>Google + FAISS retrieval</span>
-              </article>
-              <article>
-                <small>FINAL OUTPUT</small>
-                <b>DOCX + PPTX</b>
-                <span>four presentation themes</span>
-              </article>
-            </div>
-          </main>
-        </figure>
+        <ProjectImageCarousel
+          banners={docBuilderBanners}
+          projectName="DocBuilder"
+        />
         <aside className="docbuilder-overview-copy">
           <div>
             <h2>Overview</h2>

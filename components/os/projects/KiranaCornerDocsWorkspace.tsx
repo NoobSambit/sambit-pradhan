@@ -10,10 +10,37 @@ import {
   type InspectableFeature,
 } from "@/components/os/projects/ArmyverseProjectViews";
 import { ProjectActionIcon } from "@/components/os/projects/ProjectActionIcon";
+import {
+  ProjectImageCarousel,
+  type ProjectBanner,
+} from "@/components/os/projects/ProjectImageCarousel";
 import { kiranaArchitectureMaps } from "@/data/kirana-corner/architecture";
 import { kiranaFeatures } from "@/data/kirana-corner/features";
 import { kiranaNavigation, kiranaProject } from "@/data/kirana-corner/project";
 import type { KiranaFeature, KiranaView } from "@/data/kirana-corner/types";
+
+const kiranaBanners = [
+  {
+    src: "/project_banners/kirana_corner/nearby-shop-discovery.png",
+    label: "Your neighborhood, on the map",
+    alt: "Kirana Corner nearby shop discovery poster",
+  },
+  {
+    src: "/project_banners/kirana_corner/local-order-delivery.png",
+    label: "From a local shelf to your door",
+    alt: "Kirana Corner local order delivery poster",
+  },
+  {
+    src: "/project_banners/kirana_corner/merchant-operations.png",
+    label: "A digital counter for every local shop",
+    alt: "Kirana Corner merchant operations poster",
+  },
+  {
+    src: "/project_banners/kirana_corner/recipe-to-cart.png",
+    label: "Ask for dinner. Review the local cart.",
+    alt: "Kirana Corner recipe-to-cart poster",
+  },
+] satisfies readonly ProjectBanner[];
 
 function KiranaHero() {
   return (
@@ -55,51 +82,10 @@ function KiranaOverview({ onOpenFeatures }: { onOpenFeatures: () => void }) {
     <>
       <KiranaHero />
       <section className="agent-overview-hero kirana-overview-hero">
-        <figure className="agent-cockpit-preview kirana-preview">
-          <header>
-            <b>◈ KIRANA CORNER</b>
-            <span>
-              Nearby shops, live catalogues, and direct local fulfilment
-            </span>
-            <i>●</i>
-          </header>
-          <aside>
-            <b>⌁ Discover nearby</b>
-            <span>◉ Shop map</span>
-            <span>▧ Local catalogues</span>
-            <span>◫ Cart & orders</span>
-            <span>✦ Recipe assistant</span>
-          </aside>
-          <main>
-            <section>
-              <small>LOCAL COMMERCE</small>
-              <h3>Buy from the shops around you.</h3>
-              <p>
-                Map discovery, merchant-controlled stock, customer addresses,
-                direct shop fulfilment, and ingredient-aware suggestions share
-                one hyperlocal flow.
-              </p>
-              <span>Open nearby shops →</span>
-            </section>
-            <div>
-              <article>
-                <small>DISCOVERY</small>
-                <b>Map + radius filtering</b>
-                <span>Haversine local context</span>
-              </article>
-              <article>
-                <small>MERCHANT CONTROL</small>
-                <b>Stock stays shop-owned</b>
-                <span>live Firestore catalogue</span>
-              </article>
-              <article>
-                <small>RECIPE TO CART</small>
-                <b>Match what is nearby</b>
-                <span>Gemini + catalogue evidence</span>
-              </article>
-            </div>
-          </main>
-        </figure>
+        <ProjectImageCarousel
+          banners={kiranaBanners}
+          projectName="Kirana Corner"
+        />
         <aside className="agent-overview-copy kirana-overview-copy">
           <div>
             <h2>Overview</h2>

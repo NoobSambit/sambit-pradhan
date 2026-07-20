@@ -10,6 +10,10 @@ import {
   type InspectableFeature,
 } from "@/components/os/projects/ArmyverseProjectViews";
 import { ProjectActionIcon } from "@/components/os/projects/ProjectActionIcon";
+import {
+  ProjectImageCarousel,
+  type ProjectBanner,
+} from "@/components/os/projects/ProjectImageCarousel";
 import { agentArchitectureMaps } from "@/data/agent-playground/architecture";
 import { agentPlaygroundFeatures } from "@/data/agent-playground/features";
 import {
@@ -20,6 +24,74 @@ import type {
   AgentPlaygroundFeature,
   AgentPlaygroundView,
 } from "@/data/agent-playground/types";
+
+const agentPlaygroundBanners = [
+  {
+    src: "/project_banners/agent-playground/agent-build-grow.png",
+    label: "Build agents that learn and grow",
+    alt: "Agent Playground agent lifecycle poster",
+  },
+  {
+    src: "/project_banners/agent-playground/conversation-trace.png",
+    label: "Every conversation leaves a trace",
+    alt: "Agent Playground conversation trace poster",
+  },
+  {
+    src: "/project_banners/agent-playground/memory-inspection.png",
+    label: "Memory is not a black box",
+    alt: "Agent Playground memory inspection poster",
+  },
+  {
+    src: "/project_banners/agent-playground/knowledge-governance.png",
+    label: "Reusable knowledge needs governance",
+    alt: "Agent Playground knowledge governance poster",
+  },
+  {
+    src: "/project_banners/agent-playground/network-knowledge-query.png",
+    label: "Ask the network who knows",
+    alt: "Agent Playground network knowledge poster",
+  },
+  {
+    src: "/project_banners/agent-playground/consensus-reasoning.png",
+    label: "Let the best reasoning win",
+    alt: "Agent Playground consensus reasoning poster",
+  },
+  {
+    src: "/project_banners/agent-playground/artifact-lifecycle.png",
+    label: "Create, evaluate, publish",
+    alt: "Agent Playground artifact lifecycle poster",
+  },
+  {
+    src: "/project_banners/agent-playground/evaluation-trials.png",
+    label: "Do not trust claims. Run trials.",
+    alt: "Agent Playground evaluation trials poster",
+  },
+  {
+    src: "/project_banners/agent-playground/dream-memory.png",
+    label: "Dreams leave a residue",
+    alt: "Agent Playground dream memory poster",
+  },
+  {
+    src: "/project_banners/agent-playground/scenario-branches.png",
+    label: "Explore the branch before you take it",
+    alt: "Agent Playground scenario branching poster",
+  },
+  {
+    src: "/project_banners/agent-playground/explainable-growth.png",
+    label: "Growth should be explainable",
+    alt: "Agent Playground explainable growth poster",
+  },
+  {
+    src: "/project_banners/agent-playground/trust-relationships.png",
+    label: "Trust is a system, not a star",
+    alt: "Agent Playground trust relationships poster",
+  },
+  {
+    src: "/project_banners/agent-playground/state-change-trace.png",
+    label: "See what changed inside",
+    alt: "Agent Playground state change trace poster",
+  },
+] satisfies readonly ProjectBanner[];
 
 function AgentHero() {
   return (
@@ -61,48 +133,10 @@ function AgentOverview({ onOpenFeatures }: { onOpenFeatures: () => void }) {
     <>
       <AgentHero />
       <section className="agent-overview-hero">
-        <figure className="agent-cockpit-preview">
-          <header>
-            <b>◈ AGENT PLAYGROUND</b>
-            <span>Inspect persistent state, workflow traces, and evidence</span>
-            <i>●</i>
-          </header>
-          <aside>
-            <b>⌁ Agent cockpit</b>
-            <span>▧ Chat turns</span>
-            <span>◌ Memory graph</span>
-            <span>◈ Knowledge Library</span>
-            <span>◇ Arena runs</span>
-          </aside>
-          <main>
-            <section>
-              <small>INSPECTABLE AGENT RUNTIME</small>
-              <h3>Every change leaves a trail.</h3>
-              <p>
-                Identity, memory, emotion, learning, and provider-backed work
-                remain visible product state.
-              </p>
-              <span>Open an agent workspace →</span>
-            </section>
-            <div>
-              <article>
-                <small>CANONICAL STORE</small>
-                <b>PostgreSQL + Drizzle</b>
-                <span>44 durable tables</span>
-              </article>
-              <article>
-                <small>QUALITY WORKFLOWS</small>
-                <b>Draft → evaluate → repair</b>
-                <span>bounded, inspectable state</span>
-              </article>
-              <article>
-                <small>NETWORK INTELLIGENCE</small>
-                <b>Validate → retrieve → use</b>
-                <span>governed shared knowledge</span>
-              </article>
-            </div>
-          </main>
-        </figure>
+        <ProjectImageCarousel
+          banners={agentPlaygroundBanners}
+          projectName="Agent Playground"
+        />
         <aside className="agent-overview-copy">
           <div>
             <h2>Overview</h2>

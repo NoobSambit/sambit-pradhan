@@ -10,6 +10,10 @@ import {
   type InspectableFeature,
 } from "@/components/os/projects/ArmyverseProjectViews";
 import { ProjectActionIcon } from "@/components/os/projects/ProjectActionIcon";
+import {
+  ProjectImageCarousel,
+  type ProjectBanner,
+} from "@/components/os/projects/ProjectImageCarousel";
 import { kisanSetuArchitectureMaps } from "@/data/kisan-setu/architecture";
 import { kisanSetuFeatures } from "@/data/kisan-setu/features";
 import {
@@ -17,6 +21,39 @@ import {
   kisanSetuProject,
 } from "@/data/kisan-setu/project";
 import type { KisanSetuFeature, KisanSetuView } from "@/data/kisan-setu/types";
+
+const kisanSetuBanners = [
+  {
+    src: "/project_banners/kisansetu/farm-memory.png",
+    label: "My farm remembers me",
+    alt: "KisanSetu farm memory poster",
+  },
+  {
+    src: "/project_banners/kisansetu/voice-farm-advice.png",
+    label: "Ask in your language. Act on your farm.",
+    alt: "KisanSetu voice farm advice poster",
+  },
+  {
+    src: "/project_banners/kisansetu/scheme-support-pathway.png",
+    label: "Find the support you can actually use",
+    alt: "KisanSetu scheme support pathway poster",
+  },
+  {
+    src: "/project_banners/kisansetu/satellite-health.png",
+    label: "See your farm from space—honestly",
+    alt: "KisanSetu satellite health poster",
+  },
+  {
+    src: "/project_banners/kisansetu/market-intelligence.png",
+    label: "Know the market. Choose the moment.",
+    alt: "KisanSetu market intelligence poster",
+  },
+  {
+    src: "/project_banners/kisansetu/weekly-action-briefing.png",
+    label: "What needs attention this week",
+    alt: "KisanSetu weekly action briefing poster",
+  },
+] satisfies readonly ProjectBanner[];
 
 function KisanSetuHero() {
   return (
@@ -58,51 +95,10 @@ function KisanSetuOverview({ onOpenFeatures }: { onOpenFeatures: () => void }) {
     <>
       <KisanSetuHero />
       <section className="agent-overview-hero kisansetu-overview-hero">
-        <figure className="agent-cockpit-preview kisansetu-preview">
-          <header>
-            <b>◈ KISANSETU</b>
-            <span>
-              Farm context, trusted advisories, and field intelligence
-            </span>
-            <i>● ACTIVE BUILD</i>
-          </header>
-          <aside>
-            <b>▣ Farmer workspace</b>
-            <span>◉ Farm profile</span>
-            <span>◇ Scheme library</span>
-            <span>◫ Satellite health</span>
-            <span>✦ Market intelligence</span>
-          </aside>
-          <main>
-            <section>
-              <small>PERSONALIZED FARM INTELLIGENCE</small>
-              <h3>Make the next farm decision with context.</h3>
-              <p>
-                Farm memory, government support, crop-health signals, weather
-                risk, and market data connect through one practical farmer
-                workflow.
-              </p>
-              <span>Open farmer workspace →</span>
-            </section>
-            <div>
-              <article>
-                <small>SCHEME CORPUS</small>
-                <b>825 agriculture records</b>
-                <span>explainable eligibility</span>
-              </article>
-              <article>
-                <small>SATELLITE</small>
-                <b>Source-aware crop health</b>
-                <span>AOI · zones · confidence</span>
-              </article>
-              <article>
-                <small>ACTIVE SCOPE</small>
-                <b>Market + dashboard work</b>
-                <span>Day 4–6 in progress</span>
-              </article>
-            </div>
-          </main>
-        </figure>
+        <ProjectImageCarousel
+          banners={kisanSetuBanners}
+          projectName="KisanSetu"
+        />
         <aside className="agent-overview-copy kisansetu-overview-copy">
           <div>
             <h2>Overview</h2>

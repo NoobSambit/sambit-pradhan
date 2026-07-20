@@ -10,6 +10,10 @@ import {
   type InspectableFeature,
 } from "@/components/os/projects/ArmyverseProjectViews";
 import { ProjectActionIcon } from "@/components/os/projects/ProjectActionIcon";
+import {
+  ProjectImageCarousel,
+  type ProjectBanner,
+} from "@/components/os/projects/ProjectImageCarousel";
 import { insightQuillArchitectureMaps } from "@/data/insightquill/architecture";
 import { insightQuillFeatures } from "@/data/insightquill/features";
 import {
@@ -20,6 +24,34 @@ import type {
   InsightQuillFeature,
   InsightQuillView,
 } from "@/data/insightquill/types";
+
+const insightQuillBanners = [
+  {
+    src: "/project_banners/insightquill/role-governance.png",
+    label: "Every academic action has a rightful owner",
+    alt: "InsightQuill role governance poster",
+  },
+  {
+    src: "/project_banners/insightquill/attendance-eligibility.png",
+    label: "Attendance is eligibility",
+    alt: "InsightQuill attendance and assessment eligibility poster",
+  },
+  {
+    src: "/project_banners/insightquill/quiz-lifecycle.png",
+    label: "From question to live evidence",
+    alt: "InsightQuill assessment lifecycle poster",
+  },
+  {
+    src: "/project_banners/insightquill/feedback-intelligence.png",
+    label: "Feedback becomes a signal you can trust",
+    alt: "InsightQuill feedback intelligence poster",
+  },
+  {
+    src: "/project_banners/insightquill/leadership-analytics.png",
+    label: "Leadership sees the condition, not just the count",
+    alt: "InsightQuill leadership analytics poster",
+  },
+] satisfies readonly ProjectBanner[];
 
 function InsightQuillHero() {
   return (
@@ -66,52 +98,10 @@ function InsightQuillOverview({
     <>
       <InsightQuillHero />
       <section className="agent-overview-hero insightquill-overview-hero">
-        <figure className="agent-cockpit-preview insightquill-preview">
-          <header>
-            <b>◈ INSIGHTQUILL</b>
-            <span>
-              Academic operations, assessment integrity, and feedback
-              intelligence
-            </span>
-            <i>●</i>
-          </header>
-          <aside>
-            <b>▣ Academic workspace</b>
-            <span>◉ Student tasks</span>
-            <span>◇ Faculty courses</span>
-            <span>▦ HOD oversight</span>
-            <span>✦ Feedback intelligence</span>
-          </aside>
-          <main>
-            <section>
-              <small>ROLE-BASED ACADEMIC OPERATIONS</small>
-              <h3>Run the class. Keep the evidence.</h3>
-              <p>
-                One academic system for course ownership, live assessments,
-                reflective feedback, and reporting that preserves the context
-                behind every result.
-              </p>
-              <span>Open faculty workspace →</span>
-            </section>
-            <div>
-              <article>
-                <small>ASSESSMENT</small>
-                <b>Timed, integrity-aware quizzes</b>
-                <span>schedule · flags · outcomes</span>
-              </article>
-              <article>
-                <small>FEEDBACK V2</small>
-                <b>Guided quality validation</b>
-                <span>class + quiz domains</span>
-              </article>
-              <article>
-                <small>OPERATIONS</small>
-                <b>College-scoped control</b>
-                <span>roles · courses · reports</span>
-              </article>
-            </div>
-          </main>
-        </figure>
+        <ProjectImageCarousel
+          banners={insightQuillBanners}
+          projectName="InsightQuill"
+        />
         <aside className="agent-overview-copy insightquill-overview-copy">
           <div>
             <h2>Overview</h2>

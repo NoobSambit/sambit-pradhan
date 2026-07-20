@@ -3658,25 +3658,30 @@ button {
 .armyverse-overview-hero {
   display: grid;
   grid-template-columns: minmax(0, 2.05fr) minmax(260px, 0.75fr);
+  align-items: start;
   gap: 10px;
   margin: 12px 0 15px;
 }
 .agent-overview-hero {
   display: grid;
   grid-template-columns: minmax(0, 2.05fr) minmax(280px, 0.8fr);
+  align-items: start;
   gap: 12px;
   margin: 12px 0 15px;
 }
 .docbuilder-overview-hero {
   display: grid;
   grid-template-columns: minmax(0, 2.05fr) minmax(280px, 0.8fr);
+  align-items: start;
   gap: 12px;
   margin: 12px 0 15px;
 }
 .agent-cockpit-preview {
   display: grid;
+  width: 100%;
   min-width: 0;
   aspect-ratio: 16 / 9;
+  align-self: start;
   min-height: 0;
   grid-template-columns: 145px minmax(0, 1fr);
   grid-template-rows: 37px minmax(0, 1fr);
@@ -3913,8 +3918,10 @@ button {
 }
 .docbuilder-preview {
   display: grid;
+  width: 100%;
   min-width: 0;
   aspect-ratio: 16 / 9;
+  align-self: start;
   min-height: 0;
   grid-template-columns: 145px minmax(0, 1fr);
   grid-template-rows: 37px minmax(0, 1fr);
@@ -4172,141 +4179,246 @@ button {
   grid-template-columns: minmax(0, 1fr);
 }
 .armyverse-product-preview {
-  display: grid;
+  position: relative;
+  width: 100%;
   aspect-ratio: 16 / 9;
+  align-self: start;
   min-width: 0;
   margin: 0;
-  grid-template-columns: 130px minmax(0, 1fr);
-  grid-template-rows: 34px minmax(0, 1fr);
   overflow: hidden;
   border: 1px solid #39434f;
   border-radius: 5px;
-  background: radial-gradient(
-    ellipse at 70% 10%,
-    #1a1740 0%,
-    #08141b 48%,
-    #061016 100%
-  );
+  background: #071018;
 }
-.armyverse-product-preview > header {
-  grid-column: 1 / -1;
+.armyverse-carousel-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: armyverse-screen-in 260ms ease-out both;
+  object-fit: cover;
+  object-position: center;
+}
+.armyverse-carousel-scrim {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 30%;
+  pointer-events: none;
+  background: linear-gradient(transparent, rgba(4, 9, 14, 0.82));
+}
+.armyverse-carousel-controls {
+  position: absolute;
+  z-index: 2;
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
   display: flex;
   min-width: 0;
   align-items: center;
-  gap: 13px;
-  padding: 0 13px;
-  border-bottom: 1px solid #263944;
-  color: #9fb0b6;
-  font-size: 8px;
+  gap: 5px;
+  min-height: 34px;
+  padding: 4px 6px;
+  border: 1px solid rgba(170, 190, 200, 0.54);
+  border-radius: 6px;
+  background: rgba(6, 13, 19, 0.46);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(8px);
 }
-.armyverse-product-preview > header b {
-  color: #c2b7ff;
-  font-size: 10px;
-}
-.armyverse-product-preview > header span {
-  min-width: 0;
-  overflow: hidden;
-  padding: 5px 9px;
-  border: 1px solid #263b47;
+.armyverse-carousel-controls button {
+  display: grid;
+  width: 26px;
+  height: 24px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 0;
   border-radius: 3px;
-  color: #82989f;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  background: transparent;
+  color: #d7e4e8;
+  cursor: pointer;
 }
-.armyverse-product-preview > header i {
-  margin-left: auto;
-  color: #82d774;
-  font-size: 9px;
-  font-style: normal;
+.armyverse-carousel-controls > button:hover,
+.armyverse-carousel-controls > button:focus-visible,
+.armyverse-carousel-dots button:hover,
+.armyverse-carousel-dots button:focus-visible {
+  outline: 0;
+  background: rgba(142, 218, 235, 0.13);
+  color: #a9e7f6;
 }
-.armyverse-product-preview > aside {
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-  padding: 13px 11px;
-  border-right: 1px solid #263944;
-  color: #a9bac0;
-  font-size: 8px;
+.armyverse-carousel-icon {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
 }
-.armyverse-product-preview > aside b {
-  padding: 6px 7px;
-  border-radius: 3px;
-  background: #201c46;
-  color: #cdc4ff;
-  font-size: 8px;
-}
-.armyverse-product-preview > main {
+.armyverse-carousel-label {
   display: grid;
   min-width: 0;
-  grid-template-rows: minmax(0, 1fr) auto;
-  gap: 8px;
-  padding: 11px;
+  margin-right: auto;
+  padding: 0 6px 0 2px;
 }
-.armyverse-preview-hero-card {
-  min-width: 0;
-  padding: clamp(11px, 2vw, 20px);
-  border: 1px solid #3b4365;
-  border-radius: 4px;
-  background: linear-gradient(
-    105deg,
-    rgba(22, 20, 55, 0.94),
-    rgba(11, 28, 36, 0.72)
-  );
-}
-.armyverse-preview-hero-card small,
-.armyverse-preview-stats small {
-  color: #ada2fb;
+.armyverse-carousel-label small {
+  color: #91a7af;
   font-size: 7px;
   letter-spacing: 0.08em;
+  line-height: 9px;
 }
-.armyverse-preview-hero-card h3 {
-  max-width: 250px;
-  margin: 8px 0 7px;
-  color: #e4e8eb;
-  font-size: clamp(13px, 1.55vw, 22px);
-  line-height: 1.12;
+.armyverse-carousel-label b {
+  overflow: hidden;
+  color: #e3ebed;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.armyverse-preview-hero-card p {
-  max-width: 410px;
-  margin: 0;
-  color: #b1c0c5;
-  font-size: clamp(7px, 0.68vw, 9px);
-  line-height: 1.45;
+.armyverse-carousel-autoplay {
+  margin-left: 2px;
+  border-left: 1px solid rgba(166, 185, 195, 0.28) !important;
 }
-.armyverse-preview-hero-card span {
-  display: inline-block;
-  margin-top: 12px;
-  color: #7fdbec;
-  font-size: clamp(7px, 0.68vw, 9px);
+.armyverse-carousel-expand {
+  margin-left: 2px;
+  border-left: 1px solid rgba(166, 185, 195, 0.28) !important;
 }
-.armyverse-preview-stats {
+.armyverse-carousel-dots {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 4px;
+  max-width: 32%;
+  overflow-x: auto;
+  padding: 0 3px;
+  scrollbar-width: none;
+}
+.armyverse-carousel-dots::-webkit-scrollbar {
+  display: none;
+}
+.armyverse-carousel-dots button {
+  display: block;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 1px solid #b1c5cb;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+.armyverse-carousel-dots button.active {
+  border-color: #9fe3f2;
+  background: #9fe3f2;
+  box-shadow: 0 0 8px rgba(126, 222, 243, 0.75);
+}
+.armyverse-image-dialog {
+  width: min(96vw, 1672px);
+  max-width: calc(100vw - 24px);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #dce8eb;
+}
+.armyverse-image-dialog::backdrop {
+  background: rgba(1, 5, 9, 0.84);
+  backdrop-filter: blur(5px);
+}
+.armyverse-image-viewer {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 7px;
+  height: calc(100dvh - 28px);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  overflow: hidden;
+  border: 1px solid rgba(123, 166, 181, 0.6);
+  border-radius: 7px;
+  background: #071018;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.58);
 }
-.armyverse-preview-stats article {
+.armyverse-image-viewer > header,
+.armyverse-image-viewer > footer {
+  display: flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 9px;
+  background: rgba(6, 13, 19, 0.9);
+}
+.armyverse-image-viewer > header {
+  border-bottom: 1px solid rgba(115, 153, 168, 0.32);
+}
+.armyverse-image-viewer > header span {
+  flex: 0 0 auto;
+  color: #91a7af;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+.armyverse-image-viewer > header b {
   min-width: 0;
-  padding: 8px;
-  border: 1px solid #2c424d;
-  border-radius: 3px;
-  background: #09171f;
-}
-.armyverse-preview-stats b {
-  display: block;
-  margin: 5px 0 3px;
+  margin-right: auto;
   overflow: hidden;
-  color: #d6dfe2;
-  font-size: clamp(7px, 0.68vw, 9px);
+  color: #e3ebed;
+  font-size: 11px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.armyverse-preview-stats span {
-  display: block;
+.armyverse-image-viewer > header button,
+.armyverse-image-viewer > footer > button {
+  display: grid;
+  width: 27px;
+  height: 25px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(151, 186, 198, 0.48);
+  border-radius: 4px;
+  background: rgba(12, 26, 35, 0.66);
+  color: #d7e4e8;
+  cursor: pointer;
+}
+.armyverse-image-viewer > header button:hover,
+.armyverse-image-viewer > header button:focus-visible,
+.armyverse-image-viewer > footer > button:hover,
+.armyverse-image-viewer > footer > button:focus-visible {
+  outline: 0;
+  border-color: rgba(139, 221, 239, 0.84);
+  background: rgba(80, 178, 202, 0.16);
+  color: #a9e7f6;
+}
+.armyverse-image-viewer-frame {
+  display: grid;
+  min-height: 0;
   overflow: hidden;
-  color: #84979e;
-  font-size: clamp(6px, 0.58vw, 8px);
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  place-items: center;
+  background: #03090e;
+}
+.armyverse-image-viewer-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.armyverse-image-viewer > footer {
+  justify-content: space-between;
+  min-height: 42px;
+  border-top: 1px solid rgba(115, 153, 168, 0.32);
+}
+.armyverse-image-viewer > footer .armyverse-carousel-dots {
+  margin: 0 auto;
+}
+@keyframes armyverse-screen-in {
+  from {
+    opacity: 0.68;
+    transform: scale(1.008);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .armyverse-carousel-image {
+    animation: none;
+  }
 }
 .armyverse-overview-copy {
   display: grid;
@@ -6822,15 +6934,29 @@ button {
   .docbuilder-overview-hero {
     grid-template-columns: 1fr;
   }
-  .armyverse-product-preview {
-    grid-template-columns: 100px minmax(0, 1fr);
+  .armyverse-carousel-controls {
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    min-height: 30px;
+    padding: 3px 4px;
   }
-  .armyverse-product-preview > header span {
+  .armyverse-carousel-controls button {
+    width: 23px;
+    height: 22px;
+  }
+  .armyverse-carousel-label small {
     display: none;
   }
-  .armyverse-product-preview > aside {
-    gap: 8px;
-    padding: 10px 8px;
+  .armyverse-carousel-label b {
+    font-size: 8px;
+  }
+  .armyverse-carousel-dots {
+    gap: 3px;
+  }
+  .armyverse-carousel-dots button {
+    width: 7px;
+    height: 7px;
   }
   .armyverse-overview-copy {
     padding: 12px 0 0;
