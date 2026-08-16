@@ -178,7 +178,17 @@ function Inspector({
           {statuses.map(([label, value], index) => (
             <div key={label} style={motionStyle(index)}>
               <span>{label}</span>
-              <b className={label === "Status" ? project.tone : ""}>{value}</b>
+              <b
+                className={
+                  label === "Status"
+                    ? project.tone
+                    : label === "Branch" || label === "HEAD"
+                      ? "blue"
+                      : ""
+                }
+              >
+                {value}
+              </b>
             </div>
           ))}
           <RepositoryLink project={project}>Open repository ↗</RepositoryLink>

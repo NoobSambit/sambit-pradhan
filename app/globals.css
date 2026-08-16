@@ -11327,3 +11327,416 @@ button {
     min-height: 25px;
   }
 }
+/* Landing color system: semantic contrast without changing the OS geometry. */
+.landing-shell {
+  --text-primary: #d4d9dd;
+  --text-secondary: #a5afb7;
+  --text-muted: #87929c;
+  --text-faint: #727e88;
+  --semantic-blue: #7b9ee7;
+  --semantic-cyan: #75d3d2;
+  --semantic-green: #8ecf62;
+  --semantic-purple: #c795ef;
+  --semantic-amber: #e7a74c;
+}
+
+.landing-shell .panel {
+  border-color: #26323c;
+}
+
+.landing-shell .panel-title,
+.landing-shell .terminal-prompt {
+  color: var(--text-secondary);
+  text-shadow: none;
+  border-bottom-color: #25313a;
+}
+
+.landing-shell .section-command {
+  color: var(--text-muted);
+  text-shadow: none;
+}
+
+.landing-shell .terminal-lines > div:first-child,
+.landing-shell .terminal h1,
+.landing-shell .terminal h1 > .hero-line {
+  color: var(--text-primary);
+  text-shadow: none;
+}
+
+.landing-shell .terminal h1 > .hero-line .hero-highlight {
+  color: var(--semantic-purple);
+}
+
+.landing-shell .terminal h1 > .hero-line > strong.hero-highlight {
+  color: var(--semantic-green);
+}
+
+.landing-shell .boot,
+.landing-shell .boot-message,
+.landing-shell .terminal > p,
+.landing-shell .command-log,
+.landing-shell .terminal-actions button {
+  color: var(--text-secondary);
+  text-shadow: none;
+}
+
+.landing-shell .boot > span:first-child,
+.landing-shell .intro {
+  color: var(--text-faint);
+}
+
+.landing-shell .boot b,
+.landing-shell .ready,
+.landing-shell .command-log b {
+  color: var(--semantic-green);
+}
+
+.landing-shell .command-log i,
+.landing-shell .terminal-prompt > span,
+.landing-shell .identity p > span,
+.landing-shell .about-commands > span > b,
+.landing-shell .projects-command > span > b {
+  color: var(--semantic-green);
+}
+
+.landing-shell .command-log .tree,
+.landing-shell .project-preview > .terminal-prompt > span {
+  color: var(--semantic-blue);
+}
+
+.landing-shell .terminal-actions .primary,
+.landing-shell .primary-nav a.active {
+  color: var(--semantic-cyan);
+}
+
+.landing-shell .quick-stats {
+  color: var(--text-muted);
+  text-shadow: none;
+}
+
+.landing-shell .quick-stats b {
+  color: var(--text-secondary);
+}
+
+.landing-shell .quick-stats b strong {
+  color: var(--text-primary);
+}
+
+.landing-shell .brand {
+  color: var(--text-primary);
+}
+
+.landing-shell .brand-terminal {
+  color: var(--semantic-cyan);
+}
+
+.landing-shell .primary-nav a,
+.landing-shell .topbar,
+.landing-shell .top-tools {
+  color: var(--text-secondary);
+}
+
+.landing-shell .search,
+.landing-shell .top-tools small,
+.landing-shell .side-group h2,
+.landing-shell .side-label {
+  color: var(--text-muted);
+}
+
+.landing-shell .top-tools small b,
+.landing-shell .top-tools time,
+.landing-shell .side-row,
+.landing-shell .side-row b {
+  color: var(--text-secondary);
+}
+
+.landing-shell .side-label em,
+.landing-shell .profile-overview-details > div > i,
+.landing-shell .profile-details i,
+.landing-shell .quick-links i {
+  color: var(--semantic-cyan);
+}
+
+.landing-shell .side-social {
+  color: var(--text-faint);
+}
+
+.landing-shell .profile-overview-details h2,
+.landing-shell .active-project h2,
+.landing-shell .profile-card h2,
+.landing-shell .about-content article h1,
+.landing-shell .project-card > b,
+.landing-shell .project-intro h1,
+.landing-shell .project-facts b {
+  color: var(--text-primary);
+  text-shadow: none;
+}
+
+.landing-shell .active-project > p,
+.landing-shell .profile-overview-details > div > b,
+.landing-shell .profile-details b,
+.landing-shell .identity > div b,
+.landing-shell .project-stack b {
+  color: var(--text-secondary);
+  text-shadow: none;
+}
+
+.landing-shell .profile-overview-details > div > span,
+.landing-shell .profile-details span,
+.landing-shell .identity > div span,
+.landing-shell .project-stack span,
+.landing-shell .profile-details span,
+.landing-shell .about-info span {
+  color: var(--text-muted);
+}
+
+.landing-shell .active-project footer,
+.landing-shell .skills footer,
+.landing-shell .roadmap footer,
+.landing-shell .system-info footer,
+.landing-shell .project-list footer,
+.landing-shell > .statusbar {
+  color: var(--text-muted);
+  text-shadow: none;
+  border-top-color: #25313a;
+}
+
+.landing-shell .streaks-content header {
+  color: var(--text-primary);
+  text-shadow: none;
+}
+
+.landing-shell .streaks-content header i,
+.landing-shell .streaks-content footer b,
+.landing-shell .git-rows .git-commit i {
+  color: var(--semantic-cyan);
+}
+
+.landing-shell .streaks-content header span {
+  color: var(--semantic-green);
+}
+
+.landing-shell .streak-months,
+.landing-shell .streaks-content footer,
+.landing-shell .git-rows .git-commit small {
+  color: var(--text-muted);
+}
+
+.landing-shell .streaks-content footer b {
+  color: var(--text-secondary);
+}
+
+.landing-shell .git-rows .git-commit,
+.landing-shell .git-rows .git-commit span,
+.landing-shell .git-rows .git-commit-loading,
+.landing-shell .git-rows .git-commit-loading span {
+  color: var(--text-secondary);
+  text-shadow: none;
+}
+
+.landing-shell .skill-grid span {
+  color: var(--text-secondary);
+  border-color: #2b3943;
+}
+
+.landing-shell .skill-dot,
+.landing-shell .skill-dot.d1,
+.landing-shell .skill-dot.d2,
+.landing-shell .skill-dot.d3,
+.landing-shell .skill-dot.d4,
+.landing-shell .skill-dot.d5 {
+  background: #6d9da9;
+}
+
+.landing-shell .roadmap > div:not(.panel-title),
+.landing-shell .system-info > div:not(.panel-title),
+.landing-shell .environment > div:not(.panel-title),
+.landing-shell .releases > div,
+.landing-shell .quick-links > div:not(.panel-title) {
+  color: var(--text-secondary);
+  text-shadow: none;
+}
+
+.landing-shell .roadmap > div > span,
+.landing-shell .environment > div > span,
+.landing-shell .releases > div > span,
+.landing-shell .quick-links span,
+.landing-shell .roadmap small,
+.landing-shell .releases p,
+.landing-shell .quick-links em {
+  color: var(--text-muted);
+}
+
+.landing-shell .system-info b {
+  color: var(--semantic-green);
+}
+
+.landing-shell .environment b {
+  color: var(--semantic-blue);
+}
+
+.landing-shell .releases b,
+.landing-shell .quick-links b {
+  color: var(--text-primary);
+}
+
+.landing-shell .releases a,
+.landing-shell .quick-links em {
+  color: var(--semantic-cyan);
+}
+
+.landing-shell .profile-card h2 span,
+.landing-shell .career-row.current i,
+.landing-shell .career-row.current b,
+.landing-shell .principles b,
+.landing-shell > .statusbar strong,
+.landing-shell > .statusbar b {
+  color: var(--semantic-green);
+}
+
+.landing-shell .about-content article p,
+.landing-shell .career-row,
+.landing-shell .principles div,
+.landing-shell .stack-grid article div,
+.landing-shell .learning > div:not(.panel-title),
+.landing-shell .diagnostics > div:not(.panel-title),
+.landing-shell .about-info > div:not(.panel-title) {
+  color: var(--text-secondary);
+  text-shadow: none;
+}
+
+.landing-shell .about-content article p strong {
+  color: var(--semantic-cyan);
+}
+
+.landing-shell .about-content article p strong.purple {
+  color: var(--semantic-purple);
+}
+
+.landing-shell .about-content article p strong.blue {
+  color: var(--semantic-blue);
+}
+
+.landing-shell .career-row i,
+.landing-shell .stack-grid i,
+.landing-shell .principles i,
+.landing-shell .engineering-notes i,
+.landing-shell .architecture-rail li > i,
+.landing-shell .project-capabilities li i,
+.landing-shell .inspector-log i {
+  color: var(--semantic-cyan);
+}
+
+.landing-shell .career-row span,
+.landing-shell .career-row time,
+.landing-shell .learning em,
+.landing-shell .diagnostics em,
+.landing-shell .stack-grid b,
+.landing-shell .engineering-notes span,
+.landing-shell .architecture-rail small,
+.landing-shell .inspector-log time {
+  color: var(--text-muted);
+}
+
+.landing-shell .career-row b,
+.landing-shell .stack-grid span,
+.landing-shell .engineering-notes b,
+.landing-shell .about-info b {
+  color: var(--text-secondary);
+}
+
+.landing-shell .stack-grid h2 {
+  color: var(--semantic-blue);
+}
+
+.landing-shell .learning strong.high,
+.landing-shell .learning strong.medium {
+  color: var(--semantic-amber);
+}
+
+.landing-shell .about-commands button,
+.landing-shell .projects-command button {
+  color: var(--text-secondary);
+  text-shadow: none;
+}
+
+.landing-shell .about-commands button b,
+.landing-shell .projects-command button b {
+  color: var(--semantic-cyan);
+}
+
+.landing-shell .about-commands button small,
+.landing-shell .projects-command button small {
+  color: var(--text-muted);
+}
+
+.landing-shell .project-card > div {
+  color: var(--text-muted);
+}
+
+.landing-shell .project-card > div span {
+  color: var(--semantic-blue);
+}
+
+.landing-shell .project-card > small {
+  color: var(--text-secondary);
+  border-color: #2b3943;
+}
+
+.landing-shell .project-intro p,
+.landing-shell .project-facts > div:not(.section-command),
+.landing-shell .architecture-rail li,
+.landing-shell .project-capabilities li,
+.landing-shell .inspector-log > div:not(.section-command),
+.landing-shell .inspector-stack > span,
+.landing-shell .engineering-notes > div:not(.section-command) {
+  color: var(--text-secondary);
+  text-shadow: none;
+}
+
+.landing-shell .project-intro .project-product-name {
+  color: var(--semantic-cyan);
+}
+
+.landing-shell .project-tags i {
+  color: var(--text-muted);
+  border-color: #2b3943;
+}
+
+.landing-shell .project-tags i:first-child {
+  color: var(--semantic-blue);
+  border-color: #36516b;
+}
+
+.landing-shell .project-tags a,
+.landing-shell .status-list > a,
+.landing-shell .inspector-log > a {
+  color: var(--semantic-cyan);
+}
+
+.landing-shell .project-facts > div:not(.section-command) > span,
+.landing-shell .status-list div:not(.section-command) > span {
+  color: var(--text-muted);
+}
+
+.landing-shell .project-facts b,
+.landing-shell .status-list b:not(.green):not(.yellow):not(.blue) {
+  color: var(--text-primary);
+  text-shadow: none;
+}
+
+.landing-shell .status-list b.yellow {
+  color: var(--semantic-amber);
+}
+
+.landing-shell .status-list b.blue {
+  color: var(--semantic-blue);
+}
+
+.landing-shell .architecture-rail li:not(:last-child)::after {
+  color: var(--semantic-blue);
+}
+
+.landing-shell .inspector-stack > span {
+  border-color: #2b3943;
+}

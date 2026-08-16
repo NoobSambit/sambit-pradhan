@@ -82,7 +82,7 @@ export function AboutContent() {
         </p>
         <p style={motionStyle(1)}>
           I specialize in{" "}
-          <strong className="purple">distributed architectures</strong>, API
+          <strong className="blue">distributed architectures</strong>, API
           design, and infrastructure that scales with clarity and resilience.
         </p>
         <p style={motionStyle(2)}>

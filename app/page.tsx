@@ -26,7 +26,7 @@ import { LandingMotionController } from "@/components/os/motion/LandingMotionCon
 
 export default function Home() {
   return (
-    <main className="os-shell portfolio-shell">
+    <main className="os-shell portfolio-shell landing-shell">
       <LandingMotionController />
       <Header mode="home" />
       <div className="os-main portfolio-main">
