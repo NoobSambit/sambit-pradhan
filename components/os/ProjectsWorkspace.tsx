@@ -251,8 +251,8 @@ export function ProjectsWorkspace() {
     swapTimer.current = window.setTimeout(() => {
       setDisplayed(pendingProject.current);
       setPhase("in");
-      settleTimer.current = window.setTimeout(() => setPhase("idle"), 400);
-    }, 85);
+      settleTimer.current = window.setTimeout(() => setPhase("idle"), 520);
+    }, 120);
   };
 
   const commands = [

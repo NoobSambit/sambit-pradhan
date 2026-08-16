@@ -6974,11 +6974,11 @@ button {
 /* Effective landing-page motion cascade. This is intentionally last because
    globals.css also contains styles for the separate IDE workspaces. */
 :root {
-  --motion-instant: 90ms;
-  --motion-fast: 140ms;
-  --motion-ui: 180ms;
-  --motion-panel: 260ms;
-  --motion-section: 340ms;
+  --motion-instant: 100ms;
+  --motion-fast: 160ms;
+  --motion-ui: 210ms;
+  --motion-panel: 320ms;
+  --motion-section: 420ms;
   --ease-system: cubic-bezier(0.2, 0.8, 0.2, 1);
   --ease-terminal: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -7079,35 +7079,35 @@ button {
   margin: auto 0;
   pointer-events: none;
   background: rgba(117, 211, 210, 0.8);
-  animation: scan-sweep 240ms var(--motion-panel) var(--ease-system) both;
+  animation: scan-sweep 300ms var(--motion-panel) var(--ease-system) both;
 }
 
 .portfolio-shell[data-motion-boot="active"] .traffic i {
   opacity: 0.45;
-  animation: terminal-confirm 110ms var(--ease-system) both;
+  animation: terminal-confirm 140ms var(--ease-system) both;
 }
 
-.portfolio-shell[data-motion-boot="active"] .traffic i:nth-child(2) { animation-delay: 40ms; }
-.portfolio-shell[data-motion-boot="active"] .traffic i:nth-child(3) { animation-delay: 80ms; }
+.portfolio-shell[data-motion-boot="active"] .traffic i:nth-child(2) { animation-delay: 60ms; }
+.portfolio-shell[data-motion-boot="active"] .traffic i:nth-child(3) { animation-delay: 120ms; }
 
 .portfolio-shell[data-motion-boot="active"] .boot > span,
 .portfolio-shell[data-motion-boot="active"] .boot-message {
   opacity: 0;
-  animation: terminal-line 150ms var(--ease-terminal) both;
-  animation-delay: calc(160ms + var(--motion-index) * 90ms);
+  animation: terminal-line 190ms var(--ease-terminal) both;
+  animation-delay: calc(180ms + var(--motion-index) * 125ms);
 }
 
 .portfolio-shell[data-motion-boot="active"] .boot b {
   opacity: 0;
-  animation: terminal-confirm 120ms var(--ease-system) both;
-  animation-delay: calc(200ms + var(--motion-index) * 90ms);
+  animation: terminal-confirm 160ms var(--ease-system) both;
+  animation-delay: calc(230ms + var(--motion-index) * 125ms);
 }
 
 .portfolio-shell[data-motion-boot="active"] .ready {
   position: relative;
   overflow: hidden;
   opacity: 0;
-  animation: terminal-confirm 190ms var(--ease-system) 720ms both;
+  animation: terminal-confirm 220ms var(--ease-system) 950ms both;
 }
 
 .portfolio-shell[data-motion-boot="active"] .ready::after {
@@ -7120,23 +7120,23 @@ button {
   background: var(--green);
   transform: scaleX(0);
   transform-origin: left;
-  animation: bar-resolve 220ms var(--ease-terminal) 780ms both;
+  animation: bar-resolve 260ms var(--ease-terminal) 1010ms both;
 }
 
 .portfolio-shell[data-motion-boot="active"] .terminal h1 .hero-line {
   display: inline-block;
   color: #f0f0ed;
   opacity: 0;
-  animation: os-resolve 165ms var(--ease-terminal) both;
-  animation-delay: calc(815ms + var(--motion-index) * 40ms);
+  animation: os-resolve 190ms var(--ease-terminal) both;
+  animation-delay: calc(1060ms + var(--motion-index) * 60ms);
 }
 
 .portfolio-shell .terminal h1 .hero-highlight { color: var(--purple); }
 .portfolio-shell .terminal h1 strong.hero-highlight { color: var(--green); }
 
 .portfolio-shell[data-motion-boot="active"] .hero-highlight {
-  animation: terminal-confirm 180ms var(--ease-system) both;
-  animation-delay: calc(850ms + var(--motion-index) * 40ms);
+  animation: terminal-confirm 210ms var(--ease-system) both;
+  animation-delay: calc(1100ms + var(--motion-index) * 60ms);
 }
 
 .portfolio-shell[data-motion-boot="active"] .terminal [data-motion="supporting"] {
@@ -7144,31 +7144,31 @@ button {
   animation: os-resolve 170ms var(--ease-terminal) both;
 }
 
-.portfolio-shell[data-motion-boot="active"] .terminal .intro { animation-delay: 790ms; }
-.portfolio-shell[data-motion-boot="active"] .terminal > p { animation-delay: 950ms; }
-.portfolio-shell[data-motion-boot="active"] .terminal-actions { animation-delay: 980ms; }
-.portfolio-shell[data-motion-boot="active"] .terminal .quick-stats { animation-delay: 1010ms; }
-.portfolio-shell[data-motion-boot="active"] .terminal .command-log { animation-delay: 1035ms; }
+.portfolio-shell[data-motion-boot="active"] .terminal .intro { animation-delay: 1030ms; }
+.portfolio-shell[data-motion-boot="active"] .terminal > p { animation-delay: 1300ms; }
+.portfolio-shell[data-motion-boot="active"] .terminal-actions { animation-delay: 1350ms; }
+.portfolio-shell[data-motion-boot="active"] .terminal .quick-stats { animation-delay: 1380ms; }
+.portfolio-shell[data-motion-boot="active"] .terminal .command-log { animation-delay: 1420ms; }
 
 .portfolio-shell .cursor {
-  animation: terminal-cursor 1s steps(1, end) infinite;
+  animation: terminal-cursor 1.05s steps(1, end) infinite;
 }
 
 .portfolio-shell .status-dot {
   display: inline-block;
   font-style: normal;
-  animation: status-pulse 2.8s ease-in-out infinite;
+  animation: status-pulse 3.2s ease-in-out infinite;
 }
 
 .portfolio-shell [data-motion-refresh] {
-  animation: data-refresh 140ms var(--ease-system);
+  animation: data-refresh 170ms var(--ease-system);
 }
 
 .portfolio-shell .meter span {
   width: 100%;
   transform: scaleX(var(--meter-level, 0.3));
   transform-origin: left;
-  transition: transform 220ms var(--ease-system);
+  transition: transform 260ms var(--ease-system);
 }
 
 .portfolio-shell .roadmap b i,
@@ -7286,7 +7286,7 @@ button {
 }
 
 .overview-workspace [data-motion-section][data-motion-visible="true"] .mini-avatar {
-  animation: raster-reveal 280ms var(--ease-terminal) both;
+  animation: raster-reveal 360ms var(--ease-terminal) both;
 }
 
 .overview-workspace [data-motion-section][data-motion-visible="true"] .profile-overview-details h2,
@@ -7297,8 +7297,8 @@ button {
 .overview-workspace [data-motion-section][data-motion-visible="true"] .environment > div:not(.panel-title),
 .overview-workspace [data-motion-section][data-motion-visible="true"] .quick-links > div:not(.panel-title) {
   opacity: 0;
-  animation: os-resolve 150ms var(--ease-terminal) both;
-  animation-delay: calc(var(--motion-index, 0) * 24ms);
+  animation: os-resolve 190ms var(--ease-terminal) both;
+  animation-delay: calc(var(--motion-index, 0) * 32ms);
 }
 
 .overview-workspace [data-motion-section][data-motion-visible="true"] .roadmap b i,
@@ -7306,19 +7306,19 @@ button {
   width: 100%;
   transform: scaleX(0);
   transform-origin: left;
-  animation: bar-resolve 420ms var(--ease-terminal) calc(80ms + var(--motion-index, 0) * 35ms) both;
+  animation: bar-resolve 520ms var(--ease-terminal) calc(110ms + var(--motion-index, 0) * 45ms) both;
 }
 
 .overview-workspace .git-log[data-motion-visible="true"]:has(.git-commit) .git-commit {
   opacity: 0;
-  animation: git-node-resolve 160ms var(--ease-terminal) both;
-  animation-delay: calc(var(--motion-index) * 55ms);
+  animation: git-node-resolve 200ms var(--ease-terminal) both;
+  animation-delay: calc(var(--motion-index) * 75ms);
 }
 
 .overview-workspace .git-log[data-motion-visible="true"]:has(.git-commit) .commit-graph {
   transform: scaleY(0);
   transform-origin: top;
-  animation: bar-resolve 360ms var(--ease-terminal) both;
+  animation: bar-resolve 480ms var(--ease-terminal) both;
 }
 
 .overview-workspace .git-log:not(:has(.git-commit)) .commit-graph {
@@ -7327,13 +7327,13 @@ button {
 
 .overview-workspace .quick-stats[data-live-state="received"] [data-motion="live-value"] {
   display: inline-block;
-  animation: data-refresh 140ms var(--ease-system);
+  animation: data-refresh 170ms var(--ease-system);
 }
 
 .overview-workspace .streaks-content article[data-live-state="received"] .streak-calendar i {
   animation-name: graph-cell, graph-latest;
-  animation-duration: 150ms, 150ms;
-  animation-delay: calc(var(--motion-index) * 11ms), 690ms;
+  animation-duration: 190ms, 170ms;
+  animation-delay: calc(var(--motion-index) * 15ms), 850ms;
   animation-fill-mode: both;
 }
 
@@ -7342,16 +7342,16 @@ button {
 }
 
 .overview-workspace .releases p[data-live-state="received"] {
-  animation: data-refresh 160ms var(--ease-system);
+  animation: data-refresh 190ms var(--ease-system);
 }
 
 .overview-workspace .system-info[data-motion-visible="true"] > div:not(.panel-title) b {
-  animation: terminal-confirm 120ms var(--ease-system) both;
-  animation-delay: calc(60ms + var(--motion-index, 0) * 24ms);
+  animation: terminal-confirm 160ms var(--ease-system) both;
+  animation-delay: calc(90ms + var(--motion-index, 0) * 32ms);
 }
 
 .about-workspace [data-motion-section][data-motion-visible="true"] .avatar {
-  animation: raster-reveal 300ms var(--ease-terminal) both;
+  animation: raster-reveal 380ms var(--ease-terminal) both;
 }
 
 .about-workspace [data-motion-section][data-motion-visible="true"] .profile-details > div,
@@ -7363,54 +7363,54 @@ button {
 .about-workspace [data-motion-section][data-motion-visible="true"] .about-commands button,
 .about-workspace [data-motion-section][data-motion-visible="true"] .principles > div:not(.section-command) {
   opacity: 0;
-  animation: terminal-line 160ms var(--ease-terminal) both;
-  animation-delay: calc(40ms + var(--motion-index, 0) * 24ms);
+  animation: terminal-line 190ms var(--ease-terminal) both;
+  animation-delay: calc(60ms + var(--motion-index, 0) * 32ms);
 }
 
 .about-workspace [data-motion-section][data-motion-visible="true"] .principles > div:not(.section-command) b {
   display: inline-block;
-  animation: terminal-confirm 120ms var(--ease-system) both;
-  animation-delay: calc(70ms + var(--motion-index, 0) * 28ms);
+  animation: terminal-confirm 160ms var(--ease-system) both;
+  animation-delay: calc(90ms + var(--motion-index, 0) * 34ms);
 }
 
 .about-workspace [data-motion-section][data-motion-visible="true"] .career-row i::after {
   transform: scaleY(0);
   transform-origin: top;
-  animation: bar-resolve 180ms var(--ease-terminal) calc(100ms + var(--motion-index) * 55ms) both;
+  animation: bar-resolve 240ms var(--ease-terminal) calc(130ms + var(--motion-index) * 70ms) both;
 }
 
 .about-workspace [data-motion-section][data-motion-visible="true"] .career-row.current i {
-  animation: terminal-confirm 130ms var(--ease-system) 320ms both;
+  animation: terminal-confirm 170ms var(--ease-system) 420ms both;
 }
 
 .about-workspace [data-motion-section][data-motion-visible="true"] .stack-grid article {
   opacity: 0;
-  animation: os-resolve 180ms var(--ease-terminal) both;
-  animation-delay: calc(var(--motion-index) * 35ms);
+  animation: os-resolve 220ms var(--ease-terminal) both;
+  animation-delay: calc(var(--motion-index) * 45ms);
 }
 
 .about-workspace [data-motion-section][data-motion-visible="true"] .stack-grid article div {
   opacity: 0;
-  animation: terminal-line 140ms var(--ease-terminal) both;
-  animation-delay: calc(80ms + var(--motion-index) * 15ms);
+  animation: terminal-line 180ms var(--ease-terminal) both;
+  animation-delay: calc(110ms + var(--motion-index) * 20ms);
 }
 
 .about-workspace [data-motion-section][data-motion-visible="true"] .learning > div:not(.panel-title),
 .about-workspace [data-motion-section][data-motion-visible="true"] .diagnostics > div:not(.panel-title) {
   opacity: 0;
-  animation: os-resolve 150ms var(--ease-terminal) both;
-  animation-delay: calc(var(--motion-index) * 35ms);
+  animation: os-resolve 190ms var(--ease-terminal) both;
+  animation-delay: calc(var(--motion-index) * 45ms);
 }
 
 .about-workspace [data-motion-section][data-motion-visible="true"] .diagnostics i b.full {
-  animation: diagnostic-block 120ms var(--ease-system) both;
-  animation-delay: calc(100ms + var(--motion-row, 0) * 28ms + var(--motion-index) * 16ms);
+  animation: diagnostic-block 150ms var(--ease-system) both;
+  animation-delay: calc(120ms + var(--motion-row, 0) * 36ms + var(--motion-index) * 22ms);
 }
 
 .projects-workspace[data-motion-visible="true"] .project-card {
   opacity: 0;
-  animation: terminal-line 170ms var(--ease-terminal) both;
-  animation-delay: calc(var(--motion-index, 0) * 30ms);
+  animation: terminal-line 210ms var(--ease-terminal) both;
+  animation-delay: calc(var(--motion-index, 0) * 42ms);
 }
 
 .projects-workspace .project-card {
@@ -7441,7 +7441,7 @@ button {
 .projects-workspace .project-card.selected > i { color: #a4e8e8; }
 
 .projects-workspace .project-state {
-  transition: opacity 90ms var(--ease-system), transform 90ms var(--ease-system);
+  transition: opacity 120ms var(--ease-system), transform 120ms var(--ease-system);
 }
 
 .projects-workspace .project-state.is-switching-out {
@@ -7455,7 +7455,7 @@ button {
 }
 
 .projects-workspace .project-state.is-switching-in [data-project-motion="intro"] {
-  animation: os-resolve 170ms var(--ease-terminal) both;
+  animation: os-resolve 210ms var(--ease-terminal) both;
 }
 
 .projects-workspace .project-state.is-switching-in [data-project-motion="facts"] > div:not(.section-command),
@@ -7464,26 +7464,26 @@ button {
 .projects-workspace .project-state.is-switching-in .inspector-log > div:not(.section-command),
 .projects-workspace .project-state.is-switching-in .engineering-notes > div:not(.section-command) {
   opacity: 0;
-  animation: terminal-line 150ms var(--ease-terminal) both;
-  animation-delay: calc(40ms + var(--motion-index, 0) * 24ms);
+  animation: terminal-line 190ms var(--ease-terminal) both;
+  animation-delay: calc(60ms + var(--motion-index, 0) * 32ms);
 }
 
 .projects-workspace .project-state.is-switching-in .architecture-rail li {
   opacity: 0;
-  animation: git-node-resolve 160ms var(--ease-terminal) both;
-  animation-delay: calc(var(--motion-index) * 55ms);
+  animation: git-node-resolve 200ms var(--ease-terminal) both;
+  animation-delay: calc(var(--motion-index) * 75ms);
 }
 
 .projects-workspace .project-state.is-switching-in .architecture-rail li::after {
   opacity: 0;
-  animation: arrow-resolve 120ms var(--ease-system) both;
-  animation-delay: calc(80ms + var(--motion-index) * 55ms);
+  animation: arrow-resolve 160ms var(--ease-system) both;
+  animation-delay: calc(110ms + var(--motion-index) * 75ms);
 }
 
 .projects-workspace .project-state.is-switching-in .inspector-stack > span {
   opacity: 0;
-  animation: os-resolve 140ms var(--ease-terminal) both;
-  animation-delay: calc(var(--motion-index) * 18ms);
+  animation: os-resolve 180ms var(--ease-terminal) both;
+  animation-delay: calc(var(--motion-index) * 24ms);
 }
 
 .projects-workspace .project-state.is-switching-in .inspector-log > div:not(.section-command) i {
@@ -7499,7 +7499,7 @@ button {
   border-left: 1px solid #4a899e;
   transform: scaleY(0);
   transform-origin: top;
-  animation: bar-resolve 180ms var(--ease-terminal) calc(70ms + var(--motion-index, 0) * 55ms) both;
+  animation: bar-resolve 240ms var(--ease-terminal) calc(90ms + var(--motion-index, 0) * 75ms) both;
 }
 
 .portfolio-shell > .statusbar[data-motion-visible="true"] {
@@ -7508,15 +7508,15 @@ button {
 
 @media (max-width: 760px) {
   .portfolio-shell[data-motion-boot="active"] .terminal h1 .hero-line {
-    animation-duration: 130ms;
+    animation-duration: 160ms;
   }
 
   .overview-workspace .streaks-content article[data-live-state="received"] .streak-calendar i {
-    animation-delay: calc(var(--motion-index) * 7ms), 430ms;
+    animation-delay: calc(var(--motion-index) * 10ms), 560ms;
   }
 
   .projects-workspace .project-state.is-switching-in .architecture-rail li {
-    animation-delay: calc(var(--motion-index) * 30ms);
+    animation-delay: calc(var(--motion-index) * 45ms);
   }
 }
 
