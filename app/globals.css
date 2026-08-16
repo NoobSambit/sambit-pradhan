@@ -7356,6 +7356,7 @@ button {
 
 .about-workspace [data-motion-section][data-motion-visible="true"] .profile-details > div,
 .about-workspace [data-motion-section][data-motion-visible="true"] .identity > div:not(.terminal-prompt),
+.about-workspace [data-motion-section][data-motion-visible="true"] .about-content article h1,
 .about-workspace [data-motion-section][data-motion-visible="true"] .about-content article p,
 .about-workspace [data-motion-section][data-motion-visible="true"] .career-row,
 .about-workspace [data-motion-section][data-motion-visible="true"] .about-info > div:not(.panel-title),
@@ -7376,6 +7377,10 @@ button {
   transform: scaleY(0);
   transform-origin: top;
   animation: bar-resolve 180ms var(--ease-terminal) calc(100ms + var(--motion-index) * 55ms) both;
+}
+
+.about-workspace [data-motion-section][data-motion-visible="true"] .career-row.current i {
+  animation: terminal-confirm 130ms var(--ease-system) 320ms both;
 }
 
 .about-workspace [data-motion-section][data-motion-visible="true"] .stack-grid article {
@@ -7479,6 +7484,22 @@ button {
   opacity: 0;
   animation: os-resolve 140ms var(--ease-terminal) both;
   animation-delay: calc(var(--motion-index) * 18ms);
+}
+
+.projects-workspace .project-state.is-switching-in .inspector-log > div:not(.section-command) i {
+  position: relative;
+}
+
+.projects-workspace .project-state.is-switching-in .inspector-log > div:not(.section-command) i::after {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: 4px;
+  height: 18px;
+  border-left: 1px solid #4a899e;
+  transform: scaleY(0);
+  transform-origin: top;
+  animation: bar-resolve 180ms var(--ease-terminal) calc(70ms + var(--motion-index, 0) * 55ms) both;
 }
 
 .portfolio-shell > .statusbar[data-motion-visible="true"] {

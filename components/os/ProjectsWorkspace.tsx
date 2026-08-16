@@ -43,7 +43,9 @@ function ProjectList({
           >
             <i>▱</i>
             <b>{project.name}</b>
-            <em className={project.tone}>● {project.state}</em>
+            <em className={project.tone}>
+              <i className="status-dot">●</i> {project.state}
+            </em>
             <div>
               <span>{project.runtime}</span>
               <span>⌘ {project.branch}</span>
@@ -84,7 +86,10 @@ function ProjectPreview({
       >
         <article className="project-intro" data-project-motion="intro">
           <h1>
-            {project.name} <b className={project.tone}>● {project.state}</b>
+            {project.name}{" "}
+            <b className={project.tone}>
+              <i className="status-dot">●</i> {project.state}
+            </b>
           </h1>
           {project.productName && (
             <p className="project-product-name">{project.productName}</p>
