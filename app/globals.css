@@ -6971,6 +6971,564 @@ button {
   }
 }
 
+/* Effective landing-page motion cascade. This is intentionally last because
+   globals.css also contains styles for the separate IDE workspaces. */
+:root {
+  --motion-instant: 90ms;
+  --motion-fast: 140ms;
+  --motion-ui: 180ms;
+  --motion-panel: 260ms;
+  --motion-section: 340ms;
+  --ease-system: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-terminal: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes os-shell-initialize {
+  from { opacity: 0.88; border-color: #1a242d; }
+  to { opacity: 1; border-color: #2a3540; }
+}
+
+@keyframes os-resolve {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes terminal-line {
+  from { opacity: 0; transform: translateX(-3px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes terminal-confirm {
+  0% { opacity: 0; color: #d8f2b4; text-shadow: 0 0 7px rgba(142, 207, 98, 0.65); }
+  55% { opacity: 1; color: #d8f2b4; text-shadow: 0 0 7px rgba(142, 207, 98, 0.65); }
+  100% { opacity: 1; color: var(--green); text-shadow: none; }
+}
+
+@keyframes arrow-resolve {
+  from { opacity: 0; color: #b3e4e4; }
+  55% { opacity: 1; color: #b3e4e4; }
+  to { opacity: 1; color: #4d9aac; }
+}
+
+@keyframes terminal-cursor {
+  0%, 46% { opacity: 1; }
+  47%, 100% { opacity: 0; }
+}
+
+@keyframes status-pulse {
+  0%, 72%, 100% { opacity: 0.68; box-shadow: none; }
+  82% { opacity: 1; box-shadow: 0 0 0 3px rgba(142, 207, 98, 0.1); }
+}
+
+@keyframes raster-reveal {
+  from { opacity: 0.7; clip-path: inset(0 0 100% 0); }
+  to { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+
+@keyframes bar-resolve {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes git-node-resolve {
+  from { opacity: 0; transform: translateX(-2px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes workspace-activate {
+  from { opacity: 0; transform: scaleX(0); transform-origin: left; }
+  to { opacity: 1; transform: scaleX(1); transform-origin: left; }
+}
+
+@keyframes data-refresh {
+  from { opacity: 0.45; color: var(--cyan); transform: translateY(1px); }
+  to { opacity: 1; color: inherit; transform: translateY(0); }
+}
+
+@keyframes graph-cell {
+  from { opacity: 0.28; }
+  to { opacity: 1; }
+}
+
+@keyframes graph-latest {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.72; }
+}
+
+@keyframes diagnostic-block {
+  from { opacity: 0.25; }
+  to { opacity: 1; }
+}
+
+@keyframes scan-sweep {
+  from { opacity: 0; transform: translateX(-100%); }
+  20% { opacity: 0.035; }
+  to { opacity: 0; transform: translateX(100%); }
+}
+
+.portfolio-shell[data-motion-boot="active"] {
+  animation: os-shell-initialize var(--motion-panel) var(--ease-system) both;
+}
+
+.portfolio-shell[data-motion-boot="active"]::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  height: 1px;
+  margin: auto 0;
+  pointer-events: none;
+  background: rgba(117, 211, 210, 0.8);
+  animation: scan-sweep 240ms var(--motion-panel) var(--ease-system) both;
+}
+
+.portfolio-shell[data-motion-boot="active"] .traffic i {
+  opacity: 0.45;
+  animation: terminal-confirm 110ms var(--ease-system) both;
+}
+
+.portfolio-shell[data-motion-boot="active"] .traffic i:nth-child(2) { animation-delay: 40ms; }
+.portfolio-shell[data-motion-boot="active"] .traffic i:nth-child(3) { animation-delay: 80ms; }
+
+.portfolio-shell[data-motion-boot="active"] .boot > span,
+.portfolio-shell[data-motion-boot="active"] .boot-message {
+  opacity: 0;
+  animation: terminal-line 150ms var(--ease-terminal) both;
+  animation-delay: calc(160ms + var(--motion-index) * 90ms);
+}
+
+.portfolio-shell[data-motion-boot="active"] .boot b {
+  opacity: 0;
+  animation: terminal-confirm 120ms var(--ease-system) both;
+  animation-delay: calc(200ms + var(--motion-index) * 90ms);
+}
+
+.portfolio-shell[data-motion-boot="active"] .ready {
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: terminal-confirm 190ms var(--ease-system) 720ms both;
+}
+
+.portfolio-shell[data-motion-boot="active"] .ready::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: bar-resolve 220ms var(--ease-terminal) 780ms both;
+}
+
+.portfolio-shell[data-motion-boot="active"] .terminal h1 .hero-line {
+  display: inline-block;
+  color: #f0f0ed;
+  opacity: 0;
+  animation: os-resolve 165ms var(--ease-terminal) both;
+  animation-delay: calc(815ms + var(--motion-index) * 40ms);
+}
+
+.portfolio-shell .terminal h1 .hero-highlight { color: var(--purple); }
+.portfolio-shell .terminal h1 strong.hero-highlight { color: var(--green); }
+
+.portfolio-shell[data-motion-boot="active"] .hero-highlight {
+  animation: terminal-confirm 180ms var(--ease-system) both;
+  animation-delay: calc(850ms + var(--motion-index) * 40ms);
+}
+
+.portfolio-shell[data-motion-boot="active"] .terminal [data-motion="supporting"] {
+  opacity: 0;
+  animation: os-resolve 170ms var(--ease-terminal) both;
+}
+
+.portfolio-shell[data-motion-boot="active"] .terminal .intro { animation-delay: 790ms; }
+.portfolio-shell[data-motion-boot="active"] .terminal > p { animation-delay: 985ms; }
+.portfolio-shell[data-motion-boot="active"] .terminal-actions { animation-delay: 1020ms; }
+.portfolio-shell[data-motion-boot="active"] .terminal .quick-stats { animation-delay: 1050ms; }
+.portfolio-shell[data-motion-boot="active"] .terminal .command-log { animation-delay: 1080ms; }
+
+.portfolio-shell .cursor {
+  animation: terminal-cursor 1s steps(1, end) infinite;
+}
+
+.portfolio-shell .status-dot {
+  display: inline-block;
+  font-style: normal;
+  animation: status-pulse 2.8s ease-in-out infinite;
+}
+
+.portfolio-shell [data-motion-refresh] {
+  animation: data-refresh 140ms var(--ease-system);
+}
+
+.portfolio-shell .meter span {
+  width: 100%;
+  transform: scaleX(var(--meter-level, 0.3));
+  transform-origin: left;
+  transition: transform 220ms var(--ease-system);
+}
+
+.portfolio-shell .quick-stats b strong {
+  font-weight: inherit;
+}
+
+.portfolio-shell .search {
+  transition: border-color var(--motion-fast) var(--ease-system), background-color var(--motion-fast) var(--ease-system), color var(--motion-fast) var(--ease-system);
+}
+
+.portfolio-shell .search:hover,
+.portfolio-shell .search:focus-visible {
+  border-color: #52727d;
+  background-color: rgba(30, 48, 57, 0.35);
+  color: #aabac1;
+  outline: none;
+}
+
+.portfolio-shell .primary-nav a {
+  transition: color var(--motion-fast) var(--ease-system);
+}
+
+.portfolio-shell button,
+.portfolio-shell a {
+  transition: color var(--motion-fast) var(--ease-system), border-color var(--motion-fast) var(--ease-system), background-color var(--motion-fast) var(--ease-system), opacity var(--motion-fast) var(--ease-system), transform var(--motion-instant) var(--ease-system);
+}
+
+.portfolio-shell button:focus-visible,
+.portfolio-shell a:focus-visible,
+.portfolio-shell [tabindex]:focus-visible {
+  outline: 1px solid #69cbd5;
+  outline-offset: 2px;
+}
+
+.portfolio-shell button:active,
+.portfolio-shell a:active {
+  transform: translateY(1px);
+  transition-duration: var(--motion-instant);
+}
+
+.portfolio-shell .terminal-actions button:hover,
+.portfolio-shell .about-commands button:hover,
+.portfolio-shell .projects-command button:hover {
+  border-color: #477987;
+  background-color: rgba(28, 49, 56, 0.38);
+  color: #d8e7e8;
+}
+
+.portfolio-shell .quick-links > div:not(.panel-title) {
+  transition: background-color var(--motion-fast) var(--ease-system);
+}
+
+.portfolio-shell .quick-links > div:not(.panel-title) em {
+  transition: color var(--motion-fast) var(--ease-system), transform var(--motion-fast) var(--ease-system);
+}
+
+.portfolio-shell .quick-links > div:not(.panel-title):hover {
+  background-color: rgba(36, 68, 76, 0.18);
+}
+
+.portfolio-shell .quick-links > div:not(.panel-title):hover b,
+.portfolio-shell .quick-links > div:not(.panel-title):hover em {
+  color: #d8ebec;
+}
+
+.portfolio-shell .quick-links > div:not(.panel-title):hover em {
+  transform: translate(2px, -1px);
+}
+
+.portfolio-shell [data-motion-section].panel {
+  position: relative;
+}
+
+.portfolio-shell [data-motion-section].panel::after,
+.portfolio-shell > .statusbar::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  pointer-events: none;
+  background: rgba(117, 211, 210, 0.55);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.portfolio-shell [data-motion-section].panel[data-motion-visible="true"]::after,
+.portfolio-shell > .statusbar[data-motion-visible="true"]::after {
+  animation: workspace-activate var(--motion-section) var(--ease-terminal) both;
+}
+
+.portfolio-shell > .statusbar { position: relative; }
+.portfolio-shell .about-workspace,
+.portfolio-shell .projects-workspace { position: relative; }
+
+.portfolio-shell .about-workspace[data-motion-visible="true"]::before,
+.portfolio-shell .projects-workspace[data-motion-visible="true"]::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: 0;
+  left: 0;
+  height: 1px;
+  pointer-events: none;
+  background: rgba(117, 211, 210, 0.55);
+  transform-origin: left;
+  animation: workspace-activate var(--motion-section) var(--ease-terminal) both;
+}
+
+.overview-workspace [data-motion-section][data-motion-visible="true"] .mini-avatar {
+  animation: raster-reveal 280ms var(--ease-terminal) both;
+}
+
+.overview-workspace [data-motion-section][data-motion-visible="true"] .profile-overview-details h2,
+.overview-workspace [data-motion-section][data-motion-visible="true"] .profile-overview-details > div,
+.overview-workspace [data-motion-section][data-motion-visible="true"] .skill-grid > span,
+.overview-workspace [data-motion-section][data-motion-visible="true"] .roadmap > div:not(.panel-title),
+.overview-workspace [data-motion-section][data-motion-visible="true"] .system-info > div:not(.panel-title),
+.overview-workspace [data-motion-section][data-motion-visible="true"] .environment > div:not(.panel-title),
+.overview-workspace [data-motion-section][data-motion-visible="true"] .quick-links > div:not(.panel-title) {
+  opacity: 0;
+  animation: os-resolve 150ms var(--ease-terminal) both;
+  animation-delay: calc(var(--motion-index, 0) * 24ms);
+}
+
+.overview-workspace [data-motion-section][data-motion-visible="true"] .roadmap b i,
+.about-workspace [data-motion-section][data-motion-visible="true"] .learning i b {
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: bar-resolve 420ms var(--ease-terminal) calc(80ms + var(--motion-index, 0) * 35ms) both;
+}
+
+.overview-workspace .git-log[data-motion-visible="true"]:has(.git-commit) .git-commit {
+  opacity: 0;
+  animation: git-node-resolve 160ms var(--ease-terminal) both;
+  animation-delay: calc(var(--motion-index) * 55ms);
+}
+
+.overview-workspace .git-log[data-motion-visible="true"]:has(.git-commit) .commit-graph {
+  transform: scaleY(0);
+  transform-origin: top;
+  animation: bar-resolve 360ms var(--ease-terminal) both;
+}
+
+.overview-workspace .git-log:not(:has(.git-commit)) .commit-graph {
+  opacity: 0;
+}
+
+.overview-workspace .quick-stats[data-live-state="received"] [data-motion="live-value"] {
+  display: inline-block;
+  animation: data-refresh 140ms var(--ease-system);
+}
+
+.overview-workspace .streaks-content article[data-live-state="received"] .streak-calendar i {
+  animation-name: graph-cell, graph-latest;
+  animation-duration: 150ms, 150ms;
+  animation-delay: calc(var(--motion-index) * 11ms), 690ms;
+  animation-fill-mode: both;
+}
+
+.overview-workspace .streaks-content article[data-live-state="waiting"] header span {
+  color: #77838a;
+}
+
+.overview-workspace .releases p[data-live-state="received"] {
+  animation: data-refresh 160ms var(--ease-system);
+}
+
+.overview-workspace .system-info[data-motion-visible="true"] > div:not(.panel-title) b {
+  animation: terminal-confirm 120ms var(--ease-system) both;
+  animation-delay: calc(60ms + var(--motion-index, 0) * 24ms);
+}
+
+.about-workspace [data-motion-section][data-motion-visible="true"] .avatar {
+  animation: raster-reveal 300ms var(--ease-terminal) both;
+}
+
+.about-workspace [data-motion-section][data-motion-visible="true"] .profile-details > div,
+.about-workspace [data-motion-section][data-motion-visible="true"] .identity > div:not(.terminal-prompt),
+.about-workspace [data-motion-section][data-motion-visible="true"] .about-content article p,
+.about-workspace [data-motion-section][data-motion-visible="true"] .career-row,
+.about-workspace [data-motion-section][data-motion-visible="true"] .about-info > div:not(.panel-title),
+.about-workspace [data-motion-section][data-motion-visible="true"] .about-commands button,
+.about-workspace [data-motion-section][data-motion-visible="true"] .principles > div:not(.section-command) {
+  opacity: 0;
+  animation: terminal-line 160ms var(--ease-terminal) both;
+  animation-delay: calc(40ms + var(--motion-index, 0) * 24ms);
+}
+
+.about-workspace [data-motion-section][data-motion-visible="true"] .principles > div:not(.section-command) b {
+  display: inline-block;
+  animation: terminal-confirm 120ms var(--ease-system) both;
+  animation-delay: calc(70ms + var(--motion-index, 0) * 28ms);
+}
+
+.about-workspace [data-motion-section][data-motion-visible="true"] .career-row i::after {
+  transform: scaleY(0);
+  transform-origin: top;
+  animation: bar-resolve 180ms var(--ease-terminal) calc(100ms + var(--motion-index) * 55ms) both;
+}
+
+.about-workspace [data-motion-section][data-motion-visible="true"] .stack-grid article {
+  opacity: 0;
+  animation: os-resolve 180ms var(--ease-terminal) both;
+  animation-delay: calc(var(--motion-index) * 35ms);
+}
+
+.about-workspace [data-motion-section][data-motion-visible="true"] .stack-grid article div {
+  opacity: 0;
+  animation: terminal-line 140ms var(--ease-terminal) both;
+  animation-delay: calc(80ms + var(--motion-index) * 15ms);
+}
+
+.about-workspace [data-motion-section][data-motion-visible="true"] .learning > div:not(.panel-title),
+.about-workspace [data-motion-section][data-motion-visible="true"] .diagnostics > div:not(.panel-title) {
+  opacity: 0;
+  animation: os-resolve 150ms var(--ease-terminal) both;
+  animation-delay: calc(var(--motion-index) * 35ms);
+}
+
+.about-workspace [data-motion-section][data-motion-visible="true"] .diagnostics i b.full {
+  animation: diagnostic-block 120ms var(--ease-system) both;
+  animation-delay: calc(100ms + var(--motion-row, 0) * 28ms + var(--motion-index) * 16ms);
+}
+
+.projects-workspace[data-motion-visible="true"] .project-card {
+  opacity: 0;
+  animation: terminal-line 170ms var(--ease-terminal) both;
+  animation-delay: calc(var(--motion-index, 0) * 30ms);
+}
+
+.projects-workspace .project-card {
+  transition: border-color var(--motion-ui) var(--ease-system), background-color var(--motion-ui) var(--ease-system), box-shadow var(--motion-ui) var(--ease-system), color var(--motion-ui) var(--ease-system);
+}
+
+.projects-workspace .project-card::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 0;
+  width: 1px;
+  background: #75d3d2;
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: opacity var(--motion-fast) var(--ease-system), transform var(--motion-fast) var(--ease-terminal);
+}
+
+.projects-workspace .project-card.selected::before,
+.projects-workspace .project-card:hover::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.projects-workspace .project-card:hover > i,
+.projects-workspace .project-card.selected > i { color: #a4e8e8; }
+
+.projects-workspace .project-state {
+  transition: opacity 90ms var(--ease-system), transform 90ms var(--ease-system);
+}
+
+.projects-workspace .project-state.is-switching-out {
+  opacity: 0.35;
+  transform: translateY(2px);
+}
+
+.projects-workspace .project-state.is-switching-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.projects-workspace .project-state.is-switching-in [data-project-motion="intro"] {
+  animation: os-resolve 170ms var(--ease-terminal) both;
+}
+
+.projects-workspace .project-state.is-switching-in [data-project-motion="facts"] > div:not(.section-command),
+.projects-workspace .project-state.is-switching-in [data-project-motion="capabilities"] li,
+.projects-workspace .project-state.is-switching-in .status-list > div:not(.section-command),
+.projects-workspace .project-state.is-switching-in .inspector-log > div:not(.section-command),
+.projects-workspace .project-state.is-switching-in .engineering-notes > div:not(.section-command) {
+  opacity: 0;
+  animation: terminal-line 150ms var(--ease-terminal) both;
+  animation-delay: calc(40ms + var(--motion-index, 0) * 24ms);
+}
+
+.projects-workspace .project-state.is-switching-in .architecture-rail li {
+  opacity: 0;
+  animation: git-node-resolve 160ms var(--ease-terminal) both;
+  animation-delay: calc(var(--motion-index) * 55ms);
+}
+
+.projects-workspace .project-state.is-switching-in .architecture-rail li::after {
+  opacity: 0;
+  animation: arrow-resolve 120ms var(--ease-system) both;
+  animation-delay: calc(80ms + var(--motion-index) * 55ms);
+}
+
+.projects-workspace .project-state.is-switching-in .inspector-stack > span {
+  opacity: 0;
+  animation: os-resolve 140ms var(--ease-terminal) both;
+  animation-delay: calc(var(--motion-index) * 18ms);
+}
+
+.portfolio-shell > .statusbar[data-motion-visible="true"] {
+  animation: os-resolve 180ms var(--ease-system) both;
+}
+
+@media (max-width: 760px) {
+  .portfolio-shell[data-motion-boot="active"] .terminal h1 .hero-line {
+    animation-duration: 130ms;
+  }
+
+  .overview-workspace .streaks-content article[data-live-state="received"] .streak-calendar i {
+    animation-delay: calc(var(--motion-index) * 7ms), 430ms;
+  }
+
+  .projects-workspace .project-state.is-switching-in .architecture-rail li {
+    animation-delay: calc(var(--motion-index) * 30ms);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-shell[data-motion-boot="active"],
+  .portfolio-shell[data-motion-boot="active"]::after,
+  .portfolio-shell[data-motion-boot="active"] .traffic i,
+  .portfolio-shell[data-motion-boot="active"] .boot > span,
+  .portfolio-shell[data-motion-boot="active"] .boot-message,
+  .portfolio-shell[data-motion-boot="active"] .boot b,
+  .portfolio-shell[data-motion-boot="active"] .ready,
+  .portfolio-shell[data-motion-boot="active"] .ready::after,
+  .portfolio-shell[data-motion-boot="active"] .terminal h1 .hero-line,
+  .portfolio-shell[data-motion-boot="active"] .hero-highlight,
+  .portfolio-shell[data-motion-boot="active"] .terminal [data-motion="supporting"],
+  .portfolio-shell .cursor,
+  .portfolio-shell .status-dot,
+  .portfolio-shell [data-motion-refresh],
+  .portfolio-shell [data-motion-section].panel::after,
+  .portfolio-shell > .statusbar::after,
+  .portfolio-shell .about-workspace::before,
+  .portfolio-shell .projects-workspace::before,
+  .portfolio-shell .streak-calendar i,
+  .portfolio-shell .project-card,
+  .portfolio-shell .project-state,
+  .portfolio-shell .project-state [data-project-motion],
+  .portfolio-shell .project-state [data-project-motion] > *,
+  .portfolio-shell .career-row i::after {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  .portfolio-shell .project-state.is-switching-out { opacity: 1; }
+  .portfolio-shell .meter span { transition: none; }
+}
+
 /* Keep the skills workspace readable after its responsive overrides. */
 .skills-ide-workspace,
 .skills-ide-workspace .skills-tree button,

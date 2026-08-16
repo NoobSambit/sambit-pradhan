@@ -1,9 +1,12 @@
 import { career, profileDetails, stackGroups } from "@/data/about";
 
+const motionStyle = (index: number) =>
+  ({ "--motion-index": index }) as React.CSSProperties;
+
 export function ProfileCard() {
   return (
     <>
-      <section className="profile-card panel">
+      <section className="profile-card panel" data-motion-section="about-profile">
         <div className="terminal-prompt">
           <span>developer@sambit:~/profile</span>$ whoami
         </div>
@@ -18,11 +21,11 @@ export function ProfileCard() {
           </div>
         </div>
         <h2>
-          Sambit Pradhan <span>● Online</span>
+          Sambit Pradhan <span><i className="status-dot">●</i> Online</span>
         </h2>
         <div className="profile-details">
-          {profileDetails.map(([icon, label, value]) => (
-            <div key={label}>
+          {profileDetails.map(([icon, label, value], index) => (
+            <div key={label} style={motionStyle(index)}>
               <i>{icon}</i>
               <span>{label}</span>
               <b
@@ -36,7 +39,7 @@ export function ProfileCard() {
           ))}
         </div>
       </section>
-      <section className="identity panel">
+      <section className="identity panel" data-motion-section="about-identity">
         <div className="terminal-prompt">
           <span>developer@sambit:~/profile</span>$ id
         </div>
@@ -50,8 +53,8 @@ export function ProfileCard() {
           ["git_user", "sambit-pradhan"],
           ["theme", "ayu-dark"],
           ["terminal_font", "JetBrains Mono"],
-        ].map(([key, value]) => (
-          <div key={key}>
+        ].map(([key, value], index) => (
+          <div key={key} style={motionStyle(index)}>
             <span>{key}</span>
             <b>:　{value}</b>
           </div>
@@ -66,28 +69,28 @@ export function ProfileCard() {
 
 export function AboutContent() {
   return (
-    <section className="about-content panel">
+    <section className="about-content panel" data-motion-section="about-content">
       <div className="terminal-prompt">
         <span>developer@sambit:~/about</span>$ cat whoami.md
       </div>
       <article>
         <h1>WHOAMI</h1>
-        <p>
+        <p style={motionStyle(0)}>
           I&apos;m a <strong>backend engineer</strong> who designs and builds
           scalable, reliable and high-performance systems that power real-world
           products.
         </p>
-        <p>
+        <p style={motionStyle(1)}>
           I specialize in{" "}
           <strong className="purple">distributed architectures</strong>, API
           design, and infrastructure that scales with clarity and resilience.
         </p>
-        <p>
+        <p style={motionStyle(2)}>
           I enjoy solving complex problems, building{" "}
           <strong>clean abstractions</strong>, and delivering exceptional
           developer experiences.
         </p>
-        <p>
+        <p style={motionStyle(3)}>
           Currently focusing on{" "}
           <strong className="purple">AI-powered systems</strong>, LLM
           infrastructure, and building the next generation of intelligent
@@ -100,6 +103,7 @@ export function AboutContent() {
           <div
             className={`career-row ${index === career.length - 1 ? "current" : ""}`}
             key={hash}
+            style={motionStyle(index)}
           >
             <i>●</i>
             <span>{hash}</span>
@@ -119,8 +123,8 @@ export function AboutContent() {
           ["security", "enabled"],
           ["simplicity", "enabled"],
           ["continuous_learning", "enabled"],
-        ].map(([key, value]) => (
-          <div key={key}>
+          ].map(([key, value], index) => (
+          <div key={key} style={motionStyle(index)}>
             <span>{key}</span>
             <i>=</i>
             <b>{value}</b>
@@ -133,14 +137,14 @@ export function AboutContent() {
 
 export function TechnologyStack() {
   return (
-    <section className="technology-stack panel">
+    <section className="technology-stack panel" data-motion-section="about-stack">
       <div className="terminal-prompt">$ npm ls --depth=0</div>
       <div className="stack-grid">
-        {stackGroups.map(([name, packages]) => (
-          <article key={name}>
+        {stackGroups.map(([name, packages], categoryIndex) => (
+          <article key={name} style={motionStyle(categoryIndex)}>
             <h2>▣ {name}</h2>
-            {packages.map(([pkg, version]) => (
-              <div key={pkg}>
+            {packages.map(([pkg, version], packageIndex) => (
+              <div key={pkg} style={motionStyle(packageIndex)}>
                 <i>◉</i>
                 <span>{pkg}</span>
                 <b>{version}</b>
@@ -172,15 +176,15 @@ export function LearningAndDiagnostics() {
   ] as const;
   return (
     <>
-      <section className="learning panel">
+      <section className="learning panel" data-motion-section="about-learning">
         <div className="panel-title">
           $ learning --roadmap <small>Progress　 Priority</small>
         </div>
-        {learning.map(([name, value, priority]) => (
-          <div key={name}>
+        {learning.map(([name, value, priority], index) => (
+          <div key={name} style={motionStyle(index)}>
             <span>{name}</span>
             <i>
-              <b style={{ width: `${value}%` }} />
+                <b style={{ "--bar-level": `${value}%` } as React.CSSProperties} />
             </i>
             <em>{value}%</em>
             <strong className={priority === "High" ? "high" : "medium"}>
@@ -189,15 +193,21 @@ export function LearningAndDiagnostics() {
           </div>
         ))}
       </section>
-      <section className="diagnostics panel">
+      <section className="diagnostics panel" data-motion-section="about-diagnostics">
         <div className="panel-title">$ diagnostics --profile</div>
-        {health.map(([label, value]) => (
-          <div key={label}>
+        {health.map(([label, value], rowIndex) => (
+          <div key={label} style={motionStyle(rowIndex)}>
             <span>{label}</span>
             <i>
               {Array.from({ length: 10 }).map((_, index) => (
                 <b
                   className={index < Math.round(value / 10) ? "full" : ""}
+                  style={
+                    {
+                      "--motion-index": index,
+                      "--motion-row": rowIndex,
+                    } as React.CSSProperties
+                  }
                   key={index}
                 />
               ))}
@@ -229,10 +239,10 @@ export function AboutInfo() {
     ["Infra Provider", "AWS"],
   ];
   return (
-    <section className="about-info panel">
+    <section className="about-info panel" data-motion-section="about-info">
       <div className="panel-title">$ info</div>
-      {info.map(([label, value]) => (
-        <div key={label}>
+      {info.map(([label, value], index) => (
+        <div key={label} style={motionStyle(index)}>
           <span>{label}</span>
           <b>:　{value}</b>
         </div>
@@ -243,7 +253,7 @@ export function AboutInfo() {
 
 export function AboutCommands() {
   return (
-    <section className="about-commands panel">
+    <section className="about-commands panel" data-motion-section="about-commands">
       <span>
         <b>developer@sambit:~/profile</b>$ <i>▌</i>
       </span>

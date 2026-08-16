@@ -1,6 +1,9 @@
 import { bootLines } from "@/data/dashboard";
 import { LiveQuickStats } from "@/components/os/LivePortfolioData";
 
+const motionStyle = (index: number) =>
+  ({ "--motion-index": index }) as React.CSSProperties;
+
 export function Terminal() {
   return (
     <section className="terminal panel">
@@ -10,39 +13,49 @@ export function Terminal() {
           --interactive
         </div>
         {bootLines.map((line, index) => (
-          <div className="boot" key={line}>
+          <div className="boot" key={line} style={motionStyle(index)}>
             <span>[22:42:{String(index + 1).padStart(2, "0")}]</span>
-            {line}
+            <span className="boot-message">{line}</span>
             <b>OK　✓</b>
           </div>
         ))}
-        <div className="ready">
+        <div className="ready" data-motion="ready">
           [22:42:04]　▣ SYSTEM READY — Developer Workspace Online
         </div>
       </div>
-      <div className="intro"># Welcome to my engineering operating system</div>
+      <div className="intro" data-motion="supporting">
+        # Welcome to my engineering operating system
+      </div>
       <h1>
-        I design scalable backend systems,
+        <span className="hero-line" style={motionStyle(0)}>
+          I design scalable backend systems,
+        </span>
         <br />
-        distributed architectures,
+        <span className="hero-line" style={motionStyle(1)}>
+          distributed architectures,
+        </span>
         <br />
-        and <span>AI-powered</span> products
+        <span className="hero-line" style={motionStyle(2)}>
+          and <span className="hero-highlight">AI-powered</span> products
+        </span>
         <br />
-        that run in <strong>production.</strong>
+        <span className="hero-line" style={motionStyle(3)}>
+          that run in <strong className="hero-highlight">production.</strong>
+        </span>
       </h1>
-      <p>
+      <p data-motion="supporting">
         Backend engineer with a product mindset.
         <br />I architect reliable systems, build APIs, and
         <br />
         ship solutions that create real impact.
       </p>
-      <div className="terminal-actions">
+      <div className="terminal-actions" data-motion="supporting">
         <button className="primary">› Explore Projects</button>
         <button>› Download Resume</button>
         <button>› Contact</button>
       </div>
       <LiveQuickStats />
-      <div className="command-log">
+      <div className="command-log" data-motion="supporting">
         <p>
           <i>developer@sambit:~$</i> cat currently_building.md
         </p>

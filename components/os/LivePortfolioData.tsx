@@ -72,7 +72,7 @@ function ActivityGraph({
   days: Day[];
 }) {
   return (
-    <article>
+    <article data-live-state={days.length ? "received" : "waiting"}>
       <header>
         <i>{icon}</i>
         <b>{name}</b>
@@ -89,9 +89,16 @@ function ActivityGraph({
       </div>
       <div className="streak-calendar">
         {days.length
-          ? days.map((day) => (
+          ? days.map((day, index) => (
               <i
                 className={activityClass(day.count)}
+                data-motion-index={Math.floor(index / 7)}
+                data-current-week={index >= days.length - 7 ? "true" : undefined}
+                style={
+                  {
+                    "--motion-index": Math.floor(index / 7),
+                  } as React.CSSProperties
+                }
                 title={`${day.date}: ${day.count}`}
                 key={day.date}
               />
@@ -142,15 +149,20 @@ export function LiveGitLog() {
   return (
     <>
       {commits.length ? (
-        commits.slice(0, overviewCommitLimit).map((commit) => (
-          <div key={commit.sha}>
+        commits.slice(0, overviewCommitLimit).map((commit, index) => (
+          <div
+            className="git-commit"
+            data-motion-index={index}
+            key={commit.sha}
+            style={{ "--motion-index": index } as React.CSSProperties}
+          >
             <i>●</i>
             <span title={commit.message}>{commit.message}</span>
             <small>{relativeTime(commit.date)}</small>
           </div>
         ))
       ) : (
-        <div>
+        <div className="git-commit-loading">
           <i>●</i>
           <span>Loading repository commits...</span>
           <small>—</small>
@@ -163,13 +175,15 @@ export function LiveGitLog() {
 export function LiveQuickStats() {
   const data = usePortfolioData();
   return (
-    <div className="quick-stats">
+    <div className="quick-stats" data-live-state={data ? "received" : "waiting"}>
       <span>
         ⌘
         <b>
           Public Repos
           <br />
-          {data?.github.publicRepositories ?? "—"}
+          <strong data-motion="live-value">
+            {data?.github.publicRepositories ?? "—"}
+          </strong>
         </b>
       </span>
       <span>
@@ -177,7 +191,7 @@ export function LiveQuickStats() {
         <b>
           Followers
           <br />
-          {data?.github.followers ?? "—"}
+          <strong data-motion="live-value">{data?.github.followers ?? "—"}</strong>
         </b>
       </span>
       <span>
@@ -185,7 +199,9 @@ export function LiveQuickStats() {
         <b>
           Contributions
           <br />
-          {data?.github.totalContributions ?? "—"}
+          <strong data-motion="live-value">
+            {data?.github.totalContributions ?? "—"}
+          </strong>
         </b>
       </span>
       <span>
@@ -193,7 +209,7 @@ export function LiveQuickStats() {
         <b>
           Stars
           <br />
-          {data?.github.stars ?? "—"}
+          <strong data-motion="live-value">{data?.github.stars ?? "—"}</strong>
         </b>
       </span>
       <span>
@@ -201,7 +217,7 @@ export function LiveQuickStats() {
         <b>
           Forks
           <br />
-          {data?.github.forks ?? "—"}
+          <strong data-motion="live-value">{data?.github.forks ?? "—"}</strong>
         </b>
       </span>
     </div>
@@ -215,7 +231,7 @@ export function LiveRelease() {
     <>
       {release ? (
         <>
-          <p>
+          <p data-live-state="received">
             <b>
               {release.tagName}　<span className="green">●　(Latest)</span>
             </b>
@@ -234,7 +250,7 @@ export function LiveRelease() {
           </div>
         </>
       ) : (
-        <p className="release-empty">
+        <p className="release-empty" data-live-state="waiting">
           {data
             ? "No GitHub release published yet."
             : "Loading latest GitHub release..."}
@@ -254,5 +270,9 @@ export function LiveRelease() {
 export function LiveFooterCommit() {
   const data = usePortfolioData();
   const latest = data?.github.commits[0];
-  return <span>Latest Commit {latest ? relativeTime(latest.date) : "—"}</span>;
+  return (
+    <span data-motion-refresh={latest ? "received" : "waiting"}>
+      Latest Commit {latest ? relativeTime(latest.date) : "—"}
+    </span>
+  );
 }

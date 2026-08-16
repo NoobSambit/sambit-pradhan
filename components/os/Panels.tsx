@@ -5,6 +5,9 @@ import {
   LiveRelease,
 } from "@/components/os/LivePortfolioData";
 
+const motionStyle = (index: number) =>
+  ({ "--motion-index": index }) as React.CSSProperties;
+
 function PanelTitle({ children }: { children: React.ReactNode }) {
   return <div className="panel-title">$ {children}</div>;
 }
@@ -21,9 +24,12 @@ export function ActiveProject() {
     ["◉", "Response Time", "< 24h"],
   ];
   return (
-    <section className="active-project profile-overview panel">
+    <section
+      className="active-project profile-overview panel"
+      data-motion-section="overview-profile"
+    >
       <PanelTitle>
-        whoami --profile <span className="live">● ONLINE</span>
+        whoami --profile <span className="live"><i className="status-dot">●</i> ONLINE</span>
       </PanelTitle>
       <div className="profile-overview-body profile-with-image">
         <div className="mini-avatar heisenberg-avatar">
@@ -36,8 +42,8 @@ export function ActiveProject() {
         </div>
         <div className="profile-overview-details">
           <h2>Sambit Pradhan</h2>
-          {details.map(([icon, label, value]) => (
-            <div key={label}>
+          {details.map(([icon, label, value], index) => (
+            <div key={label} style={motionStyle(index)}>
               <i>{icon}</i>
               <span>{label}</span>
               <b className={label === "Status" ? "green" : ""}>{value}</b>
@@ -55,7 +61,10 @@ export function ActiveProject() {
 
 export function Architecture() {
   return (
-    <section className="architecture activity-streaks panel">
+    <section
+      className="architecture activity-streaks panel"
+      data-motion-section="overview-graphs"
+    >
       <PanelTitle>
         coding_activity --streaks <span>↗</span>
       </PanelTitle>
@@ -66,7 +75,7 @@ export function Architecture() {
 
 export function GitLog() {
   return (
-    <section className="git-log panel">
+    <section className="git-log panel" data-motion-section="overview-git">
       <PanelTitle>
         git log --graph <span className="blue">⌘ main</span>
       </PanelTitle>
@@ -80,11 +89,11 @@ export function GitLog() {
 
 export function Skills() {
   return (
-    <section className="skills panel">
+    <section className="skills panel" data-motion-section="overview-skills">
       <PanelTitle>npm ls --depth=0</PanelTitle>
       <div className="skill-grid">
         {skills.map((skill, index) => (
-          <span key={skill}>
+          <span key={skill} style={motionStyle(index)}>
             <i className={`skill-dot d${index % 6}`} />
             {skill}
           </span>
@@ -97,13 +106,13 @@ export function Skills() {
 
 export function Roadmap() {
   return (
-    <section className="roadmap panel">
+    <section className="roadmap panel" data-motion-section="overview-roadmap">
       <PanelTitle>learning --roadmap</PanelTitle>
-      {roadmap.map(([label, value]) => (
-        <div key={label}>
+      {roadmap.map(([label, value], index) => (
+        <div key={label} style={motionStyle(index)}>
           <span>{label}</span>
           <b>
-            <i style={{ width: `${value}%` }} />
+            <i style={{ "--bar-level": `${value}%` } as React.CSSProperties} />
           </b>
           <small>{value}%</small>
         </div>
@@ -125,10 +134,10 @@ export function SystemInfo() {
     "simplicity",
   ];
   return (
-    <section className="system-info panel">
+    <section className="system-info panel" data-motion-section="overview-principles">
       <PanelTitle>systemctl --principles</PanelTitle>
-      {rows.map((row) => (
-        <div key={row}>
+      {rows.map((row, index) => (
+        <div key={row} style={motionStyle(index)}>
           <span>{row}</span>
           <b>enabled</b>
         </div>
@@ -140,7 +149,7 @@ export function SystemInfo() {
 
 export function Environment() {
   return (
-    <section className="environment panel">
+    <section className="environment panel" data-motion-section="overview-environment">
       <PanelTitle>env --info</PanelTitle>
       {[
         ["Runtime", "Node.js 20.x"],
@@ -151,8 +160,8 @@ export function Environment() {
         ["Monitoring", "Datadog"],
         ["Logging", "Grafana Loki"],
         ["Tracing", "OpenTelemetry"],
-      ].map(([l, v]) => (
-        <div key={l}>
+      ].map(([l, v], index) => (
+        <div key={l} style={motionStyle(index)}>
           <span>{l}</span>
           <b>{v}</b>
         </div>
@@ -163,7 +172,7 @@ export function Environment() {
 
 export function Releases() {
   return (
-    <section className="releases panel">
+    <section className="releases panel" data-motion-section="overview-releases">
       <PanelTitle>releases --latest</PanelTitle>
       <LiveRelease />
     </section>
@@ -172,15 +181,15 @@ export function Releases() {
 
 export function QuickLinks() {
   return (
-    <section className="quick-links panel">
+    <section className="quick-links panel" data-motion-section="overview-links">
       <PanelTitle>quick --links</PanelTitle>
       {[
         ["◉", "GitHub", "github.com/sambit-pradhan"],
         ["♧", "Resume", "sambit.dev/resume.pdf"],
         ["in", "LinkedIn", "linkedin.com/in/sambit-pradhan"],
         ["□", "Email", "sambit.pradhan.dev@gmail.com"],
-      ].map(([i, l, v]) => (
-        <div key={l}>
+      ].map(([i, l, v], index) => (
+        <div key={l} style={motionStyle(index)}>
           <i>{i}</i>
           <b>{l}</b>
           <span>{v}</span>

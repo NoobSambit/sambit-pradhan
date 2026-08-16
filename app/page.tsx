@@ -22,15 +22,20 @@ import {
 } from "@/components/os/Panels";
 import { Sidebar } from "@/components/os/Sidebar";
 import { Terminal } from "@/components/os/Terminal";
+import { LandingMotionController } from "@/components/os/motion/LandingMotionController";
 
 export default function Home() {
   return (
     <main className="os-shell portfolio-shell">
+      <LandingMotionController />
       <Header mode="home" />
       <div className="os-main portfolio-main">
         <Sidebar />
         <div className="portfolio-content">
-          <section className="workspace overview-workspace">
+          <section
+            className="workspace overview-workspace"
+            data-motion-section="overview"
+          >
             <Terminal />
             <div className="right-workspace">
               <ActiveProject />
@@ -44,7 +49,7 @@ export default function Home() {
               <QuickLinks />
             </div>
           </section>
-          <section className="about-workspace">
+          <section className="about-workspace" data-motion-section="about">
             <div className="about-grid">
               <div className="about-profile-column">
                 <ProfileCard />
