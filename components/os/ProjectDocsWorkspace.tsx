@@ -20,6 +20,7 @@ import { DocBuilderDocsWorkspace } from "@/components/os/projects/DocBuilderDocs
 import { KiranaCornerDocsWorkspace } from "@/components/os/projects/KiranaCornerDocsWorkspace";
 import { InsightQuillDocsWorkspace } from "@/components/os/projects/InsightQuillDocsWorkspace";
 import { KisanSetuDocsWorkspace } from "@/components/os/projects/KisanSetuDocsWorkspace";
+import { GymTrackerDocsWorkspace } from "@/components/os/projects/GymTrackerDocsWorkspace";
 
 type DocumentedProject =
   | "armyverse"
@@ -27,7 +28,8 @@ type DocumentedProject =
   | "docbuilder"
   | "kirana-corner"
   | "insightquill"
-  | "kisan-setu";
+  | "kisan-setu"
+  | "gym-tracker";
 
 type ProjectView = (typeof armyverseNavigation)[number]["id"];
 
@@ -166,7 +168,8 @@ export function ProjectDocsWorkspace() {
         project === "docbuilder" ||
         project === "kirana-corner" ||
         project === "insightquill" ||
-        project === "kisan-setu"
+        project === "kisan-setu" ||
+        project === "gym-tracker"
       ) {
         setActiveProject(project);
         setSurface("documentation");
@@ -218,6 +221,10 @@ export function ProjectDocsWorkspace() {
 
   if (activeProject === "kisan-setu") {
     return <KisanSetuDocsWorkspace onBack={openRepositories} />;
+  }
+
+  if (activeProject === "gym-tracker") {
+    return <GymTrackerDocsWorkspace onBack={openRepositories} />;
   }
 
   return (

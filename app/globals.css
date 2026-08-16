@@ -5745,6 +5745,193 @@ button {
   }
 }
 
+/* Final reading pass: preserve the established grids while keeping text legible
+   over the prepared artwork on the portfolio surfaces. */
+.os-shell:not(.project-docs-shell) .panel-title,
+.os-shell:not(.project-docs-shell) .section-command,
+.os-shell:not(.project-docs-shell) .terminal-prompt {
+  color: #c5d2d6;
+  text-shadow: 0 1px 7px rgba(0, 0, 0, 0.9);
+}
+
+.workspace .panel,
+.about-grid .panel,
+.about-commands,
+.skills-ide-workspace {
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.88);
+}
+
+.workspace .panel-title,
+.about-grid .panel-title,
+.skills-ide-workspace header {
+  color: #cddadd;
+}
+
+.workspace .terminal-lines,
+.workspace .command-log,
+.workspace .git-rows div,
+.workspace .metric,
+.workspace .skill-grid span,
+.workspace .roadmap > div:not(.panel-title),
+.workspace .system-info > div:not(.panel-title),
+.workspace .environment > div:not(.panel-title),
+.workspace .releases > div,
+.workspace .quick-links > div:not(.panel-title) {
+  color: #c0cdd1;
+}
+
+.workspace .terminal-lines > div:first-child,
+.workspace .terminal h1,
+.workspace .active-project h2,
+.workspace .profile-overview-details h2,
+.workspace .metric b,
+.workspace .system-info b,
+.workspace .releases b,
+.workspace .quick-links b {
+  color: #f0f5f5;
+}
+
+.workspace .terminal > p,
+.workspace .active-project > p,
+.workspace .project-stack span,
+.workspace .profile-overview-details > div > span,
+.workspace .profile-overview-details > div > b,
+.workspace .git-rows small,
+.workspace .streak,
+.workspace .skills footer,
+.workspace .roadmap small,
+.workspace .quick-links span {
+  color: #c1cdd1;
+}
+
+.workspace .terminal h1,
+.workspace .profile-overview-details h2 {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
+}
+
+.workspace .terminal-lines,
+.workspace .boot,
+.workspace .ready {
+  font-size: 12px;
+}
+
+.workspace .command-log,
+.workspace .git-rows div,
+.workspace .metric,
+.workspace .skill-grid span,
+.workspace .roadmap > div:not(.panel-title),
+.workspace .system-info > div:not(.panel-title),
+.workspace .environment > div:not(.panel-title),
+.workspace .releases > div,
+.workspace .quick-links > div:not(.panel-title) {
+  font-size: 11px;
+}
+
+.workspace .git-rows small,
+.workspace .streak > span,
+.workspace .streak small {
+  font-size: 9px;
+}
+
+.workspace .active-project > p,
+.workspace .project-stack div,
+.workspace .metric b,
+.workspace .roadmap small,
+.workspace .system-info > div:not(.panel-title),
+.workspace .environment > div:not(.panel-title),
+.workspace .releases > div,
+.workspace .quick-links > div:not(.panel-title) {
+  font-size: 11px;
+}
+
+.about-grid .profile-details div,
+.about-grid .identity > div:not(.terminal-prompt),
+.about-grid .identity p,
+.about-grid .career-row,
+.about-grid .principles div,
+.about-grid .stack-grid article div,
+.about-grid .learning > div:not(.panel-title),
+.about-grid .diagnostics > div:not(.panel-title),
+.about-grid .about-info > div:not(.panel-title) {
+  color: #c2cfd3;
+  font-size: 10px;
+}
+
+.about-grid .profile-card h2,
+.about-grid .about-content article h1,
+.about-grid .about-content article p,
+.about-grid .stack-grid span,
+.about-grid .about-info b,
+.about-grid .about-commands > span,
+.about-grid .about-commands button {
+  color: #edf4f5;
+}
+
+.about-grid .about-content article p,
+.about-grid .stack-grid article div,
+.about-grid .about-info > div:not(.panel-title) {
+  font-size: 10px;
+}
+
+.about-grid .stack-grid h2,
+.about-grid .learning em,
+.about-grid .learning strong,
+.about-grid .diagnostics em,
+.about-grid .career-row time,
+.about-grid .about-commands button small {
+  font-size: 9px;
+}
+
+.projects-grid .project-card,
+.projects-grid .project-preview,
+.projects-grid .project-inspector,
+.projects-command {
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
+}
+
+.projects-grid .project-card > b,
+.projects-grid .project-preview article h1,
+.projects-grid .project-inspector .section-command {
+  color: #f0f5f5;
+}
+
+.projects-grid .project-card > b {
+  font-size: 12px;
+}
+
+.projects-grid .project-card > em,
+.projects-grid .project-card > div,
+.projects-grid .project-card > small,
+.projects-grid .project-tags i,
+.projects-grid .project-attributes div,
+.projects-grid .status-list div,
+.projects-grid .inspector-log > div:not(.section-command),
+.projects-grid .inspector-stack > span,
+.projects-grid .engineering-notes > div:not(.section-command),
+.projects-command,
+.projects-command button {
+  color: #c5d2d6;
+  font-size: 10px;
+}
+
+.projects-grid .project-preview article > p,
+.projects-grid .project-description,
+.projects-grid .project-attributes b,
+.projects-grid .status-list b,
+.projects-grid .engineering-notes b {
+  color: #e3ecee;
+  font-size: 11px;
+}
+
+.projects-grid .project-architecture a,
+.projects-grid .project-gallery a,
+.projects-grid .inspector-log a,
+.projects-grid .inspector-stack a,
+.projects-grid .engineering-notes a,
+.projects-command button small {
+  font-size: 9px;
+}
+
 /* Repository landing workspace. This is deliberately scoped so it cannot inherit
    the generic documentation controls or turn into a light browser-default UI. */
 .repository-workspace {
@@ -6782,6 +6969,33 @@ button {
   .skills-focus-row {
     min-height: 25px;
   }
+}
+
+/* Keep the skills workspace readable after its responsive overrides. */
+.skills-ide-workspace,
+.skills-ide-workspace .skills-tree button,
+.skills-ide-workspace .skills-tree > b,
+.skills-ide-workspace .skills-matrix-body > div,
+.skills-ide-workspace .skills-inspector-split p {
+  color: #cbd8dc;
+  font-size: 11px;
+  text-shadow: 0 1px 7px rgba(0, 0, 0, 0.88);
+}
+
+.skills-ide-workspace .skills-code,
+.skills-ide-workspace .skills-terminal p,
+.skills-ide-workspace .skills-summary-row,
+.skills-ide-workspace .skills-focus-row {
+  color: #e1ecee;
+  font-size: 12px;
+}
+
+.skills-ide-workspace .skills-terminal p,
+.skills-ide-workspace .skills-summary-row em,
+.skills-ide-workspace .skills-focus-row em,
+.skills-ide-workspace .skills-tags span,
+.skills-ide-workspace .skills-actions a {
+  font-size: 11px;
 }
 
 /* Armyverse project workspace responsive overrides */
@@ -10285,6 +10499,110 @@ button {
   .skills-minimap {
     display: none;
   }
+}
+
+/* Final readability override: colors and type stay legible without changing the OS geometry. */
+.os-shell .panel-title,
+.os-shell .section-command,
+.os-shell .terminal-prompt,
+.os-shell .project-docs-nav header,
+.os-shell .project-tabs,
+.os-shell .project-terminal header,
+.os-shell .skills-explorer > header,
+.os-shell .skills-matrix header,
+.os-shell .skills-inspector header {
+  color: #d2dfe2;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.92);
+}
+
+.os-shell .panel-title,
+.os-shell .section-command,
+.os-shell .terminal-prompt,
+.os-shell .project-tabs,
+.os-shell .project-terminal header {
+  font-size: 11px;
+}
+
+.os-shell .terminal-lines,
+.os-shell .command-log,
+.os-shell .git-rows div,
+.os-shell .metric,
+.os-shell .skill-grid span,
+.os-shell .roadmap > div:not(.panel-title),
+.os-shell .system-info > div:not(.panel-title),
+.os-shell .environment > div:not(.panel-title),
+.os-shell .releases > div,
+.os-shell .quick-links > div:not(.panel-title),
+.os-shell .profile-details div,
+.os-shell .identity > div:not(.terminal-prompt),
+.os-shell .career-row,
+.os-shell .principles div,
+.os-shell .stack-grid article div,
+.os-shell .learning > div:not(.panel-title),
+.os-shell .diagnostics > div:not(.panel-title),
+.os-shell .about-info > div:not(.panel-title),
+.os-shell .project-feature-rows button,
+.os-shell .project-card > div,
+.os-shell .project-attributes div,
+.os-shell .status-list div,
+.os-shell .inspector-log > div:not(.section-command),
+.os-shell .engineering-notes > div:not(.section-command) {
+  color: #cbd8dc;
+  font-size: 11px;
+  text-shadow: 0 1px 7px rgba(0, 0, 0, 0.88);
+}
+
+.os-shell .terminal h1,
+.os-shell .profile-overview-details h2,
+.os-shell .profile-card h2,
+.os-shell .about-content article h1,
+.os-shell .project-card > b,
+.os-shell .project-preview article h1,
+.os-shell .project-docs-hero h1,
+.os-shell .project-overview-body h2,
+.os-shell .project-features-detail h2,
+.os-shell .project-architecture-view h2,
+.os-shell .skills-code,
+.os-shell .skills-summary-row,
+.os-shell .skills-focus-row {
+  color: #f1f6f6;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.96);
+}
+
+.os-shell .terminal > p,
+.os-shell .active-project > p,
+.os-shell .project-stack span,
+.os-shell .about-content article p,
+.os-shell .stack-grid span,
+.os-shell .project-preview article > p,
+.os-shell .project-description,
+.os-shell .project-problem-solution p,
+.os-shell .project-timeline span,
+.os-shell .project-docs-inspector .key-value,
+.os-shell .project-docs-inspector .project-stack-tags span,
+.os-shell .skills-inspector-split p,
+.os-shell .skills-tags span,
+.os-shell .skills-actions a {
+  color: #d0dcdf;
+  font-size: 11px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
+}
+
+.os-shell .badges b,
+.os-shell .project-tags i,
+.os-shell .project-card > small,
+.os-shell .project-stack-tags span,
+.os-shell .repository-stack span {
+  color: #c7e1e5;
+}
+
+.os-shell .terminal-lines {
+  font-size: 12px;
+}
+
+.os-shell .skills-code {
+  font-size: 13px;
+  line-height: 19px;
 }
 
 /* Final desktop override: readable type wins; dense sections retain their own scrollbars. */

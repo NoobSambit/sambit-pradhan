@@ -407,11 +407,15 @@ export const projects: Project[] = [
       "PostgreSQL",
       "OpenAPI",
       "Material 3",
+      "go_router",
+      "Secure Storage",
     ],
     facts: [
       { label: "Exercise catalog", value: "118 original entries" },
       { label: "Client source of truth", value: "Drift / SQLite" },
       { label: "API", value: "NestJS + OpenAPI" },
+      { label: "Feature domains", value: "8 Flutter systems" },
+      { label: "Remote domain", value: "32 Prisma models" },
       { label: "Release phase", value: "PRD 09 stabilization" },
       { label: "Sync model", value: "Outbox + conflict handling" },
       { label: "Social model", value: "Invite-only by design" },
@@ -419,14 +423,17 @@ export const projects: Project[] = [
     architecture: [
       { icon: "◉", name: "Flutter app", detail: "Android-first UX" },
       { icon: "▦", name: "Drift / SQLite", detail: "offline source" },
+      { icon: "◌", name: "Workout engine", detail: "autosave + recovery" },
       { icon: "⌁", name: "Sync outbox", detail: "conflict-aware" },
       { icon: "◇", name: "NestJS API", detail: "REST + auth" },
       { icon: "▣", name: "Prisma", detail: "data access" },
       { icon: "●", name: "PostgreSQL", detail: "account sync" },
+      { icon: "↗", name: "OpenAPI client", detail: "generated transport" },
     ],
     capabilities: [
       "Fast active-workout logging with rest timers, autosave, and restart recovery",
-      "Versioned routines, scheduling, exercise metadata, custom exercises, and workout history",
+      "Guest-first onboarding, preferences, and 118 original exercises with custom local records",
+      "Versioned routines, scheduling state machine, exercise metadata, and workout history",
       "Progress metrics, goals, achievements, JSON/CSV export, and accessible chart alternatives",
       "Generated Dart API client from an OpenAPI-backed NestJS contract",
       "Optional account sync with local outbox and conflict-aware remote persistence",
@@ -446,6 +453,11 @@ export const projects: Project[] = [
         label: "Verification",
         value:
           "Release gate covers API, mobile, contracts, audits, and APK build",
+      },
+      {
+        label: "Release state",
+        value:
+          "PRD 08 feature gate complete; PRD 09 manual stabilization remains",
       },
       {
         label: "Runtime",
