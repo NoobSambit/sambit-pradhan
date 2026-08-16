@@ -309,7 +309,7 @@ button {
   letter-spacing: -0.05em;
   font-weight: 600;
 }
-.terminal h1 span {
+.terminal h1 .hero-highlight {
   color: var(--purple);
 }
 .terminal h1 strong {
@@ -7135,6 +7135,11 @@ button {
 .portfolio-shell .terminal h1 strong.hero-highlight { color: var(--green); }
 
 .portfolio-shell[data-motion-boot="active"] .hero-highlight {
+  animation: os-resolve 210ms var(--ease-terminal) both;
+  animation-delay: calc(1100ms + var(--motion-index) * 60ms);
+}
+
+.portfolio-shell[data-motion-boot="active"] .terminal h1 strong.hero-highlight {
   animation: terminal-confirm 210ms var(--ease-system) both;
   animation-delay: calc(1100ms + var(--motion-index) * 60ms);
 }
@@ -11344,15 +11349,15 @@ button {
   border-color: #26323c;
 }
 
-.landing-shell .panel-title,
-.landing-shell .terminal-prompt {
+.landing-shell.os-shell .panel-title,
+.landing-shell.os-shell .terminal-prompt {
   color: var(--text-secondary);
   text-shadow: none;
-  border-bottom-color: #25313a;
+  border-bottom-color: #202c35;
 }
 
-.landing-shell .section-command {
-  color: var(--text-muted);
+.landing-shell.os-shell .section-command {
+  color: var(--text-secondary);
   text-shadow: none;
 }
 
@@ -11380,9 +11385,12 @@ button {
   text-shadow: none;
 }
 
-.landing-shell .boot > span:first-child,
-.landing-shell .intro {
+.landing-shell .boot > span:first-child {
   color: var(--text-faint);
+}
+
+.landing-shell .intro {
+  color: var(--text-muted);
 }
 
 .landing-shell .boot b,
@@ -11434,6 +11442,20 @@ button {
 .landing-shell .topbar,
 .landing-shell .top-tools {
   color: var(--text-secondary);
+}
+
+.landing-shell a,
+.landing-shell a:visited {
+  color: var(--semantic-cyan);
+}
+
+.landing-shell .primary-nav a,
+.landing-shell .primary-nav a:visited {
+  color: var(--text-secondary);
+}
+
+.landing-shell .primary-nav a:hover {
+  color: var(--semantic-cyan);
 }
 
 .landing-shell .search,
@@ -11498,7 +11520,7 @@ button {
 .landing-shell > .statusbar {
   color: var(--text-muted);
   text-shadow: none;
-  border-top-color: #25313a;
+  border-top-color: #202c35;
 }
 
 .landing-shell .streaks-content header {
@@ -11632,7 +11654,6 @@ button {
 .landing-shell .learning em,
 .landing-shell .diagnostics em,
 .landing-shell .stack-grid b,
-.landing-shell .engineering-notes span,
 .landing-shell .architecture-rail small,
 .landing-shell .inspector-log time {
   color: var(--text-muted);
@@ -11641,6 +11662,7 @@ button {
 .landing-shell .career-row b,
 .landing-shell .stack-grid span,
 .landing-shell .engineering-notes b,
+.landing-shell .engineering-notes span,
 .landing-shell .about-info b {
   color: var(--text-secondary);
 }
@@ -11649,7 +11671,10 @@ button {
   color: var(--semantic-blue);
 }
 
-.landing-shell .learning strong.high,
+.landing-shell .learning strong.high {
+  color: #c78369;
+}
+
 .landing-shell .learning strong.medium {
   color: var(--semantic-amber);
 }
@@ -11675,12 +11700,28 @@ button {
 }
 
 .landing-shell .project-card > div span {
+  color: var(--text-muted);
+}
+
+.landing-shell .project-card > div span:first-child {
+  color: var(--text-secondary);
+}
+
+.landing-shell .project-card > div span:nth-child(2) {
   color: var(--semantic-blue);
 }
 
 .landing-shell .project-card > small {
   color: var(--text-secondary);
   border-color: #2b3943;
+}
+
+.landing-shell .project-card > em.yellow {
+  color: var(--semantic-amber);
+}
+
+.landing-shell .project-card > em.blue {
+  color: var(--semantic-blue);
 }
 
 .landing-shell .project-intro p,
