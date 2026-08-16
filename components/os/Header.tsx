@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { TerminalIcon } from "@/components/os/TerminalIcon";
 
 function formatTime(date: Date) {
   return new Intl.DateTimeFormat("en-IN", {
@@ -112,10 +113,18 @@ export function Header({
       </nav>
       <div className="top-tools">
         <div className="search" tabIndex={0} role="search">
-          ⌘K Search Portfolio...　⌕
+          {mode === "home" ? (
+            <>
+              <TerminalIcon name="search" />
+              <span>Search Portfolio...</span>
+              <kbd>⌘K</kbd>
+            </>
+          ) : (
+            "⌘K Search Portfolio...　⌕"
+          )}
         </div>
         <span>
-          ☁
+          {mode === "home" ? <TerminalIcon name="cpu" /> : "☁"}
           <small>
             CPU
             <br />
@@ -123,7 +132,7 @@ export function Header({
           </small>
         </span>
         <span>
-          ⌁
+          {mode === "home" ? <TerminalIcon name="memory" /> : "⌁"}
           <small>
             MEM
             <br />
@@ -131,14 +140,17 @@ export function Header({
           </small>
         </span>
         <span>
-          ⌁
+          {mode === "home" ? <TerminalIcon name="network" /> : "⌁"}
           <small>
             NET
             <br />
             <b data-motion-refresh={telemetryRevision}>{system.network}</b>
           </small>
         </span>
-        <time>◷　{time}</time>
+        <time>
+          {mode === "home" && <TerminalIcon name="clock" />}
+          {mode === "home" ? time : `◷　${time}`}
+        </time>
       </div>
     </header>
   );

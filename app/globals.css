@@ -8371,7 +8371,7 @@ button {
   z-index: -1;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(2, 8, 13, 0.68), rgba(2, 8, 13, 0.68)),
+    linear-gradient(rgba(2, 8, 13, 0.54), rgba(2, 8, 13, 0.54)),
     url("/luffy_ascii.png");
   background-position: center;
   background-size: cover, contain;
@@ -11328,19 +11328,28 @@ button {
 }
 /* Landing color system: semantic contrast without changing the OS geometry. */
 .landing-shell {
-  --text-primary: #d4d9dd;
-  --text-secondary: #a5afb7;
-  --text-muted: #87929c;
-  --text-faint: #727e88;
-  --semantic-blue: #7b9ee7;
-  --semantic-cyan: #75d3d2;
-  --semantic-green: #8ecf62;
-  --semantic-purple: #c795ef;
-  --semantic-amber: #e7a74c;
+  --text-primary: #f0f5f6;
+  --text-secondary: #c5d1d5;
+  --text-muted: #9eacb3;
+  --text-faint: #89989f;
+  --semantic-blue: #8db3ff;
+  --semantic-cyan: #7ce3eb;
+  --semantic-green: #9bea6f;
+  --semantic-purple: #d5a0ff;
+  --semantic-amber: #f2bd64;
 }
 
 .landing-shell .panel {
-  border-color: #26323c;
+  border-color: rgba(83, 112, 126, 0.58);
+  background: linear-gradient(
+    145deg,
+    rgba(3, 9, 14, 0.58),
+    rgba(3, 8, 12, 0.46)
+  );
+  box-shadow:
+    inset 0 1px rgba(211, 239, 244, 0.025),
+    0 8px 24px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(1.5px) saturate(0.85);
 }
 
 .landing-shell.os-shell .panel-title,
@@ -11774,4 +11783,176 @@ button {
 
 .landing-shell .inspector-stack > span {
   border-color: #2b3943;
+}
+
+/* Landing-only premium legibility and icon pass. */
+.landing-shell .terminal-icon {
+  width: 1.05em;
+  height: 1.05em;
+  flex: 0 0 auto;
+  overflow: visible;
+  vertical-align: -0.14em;
+}
+
+.landing-shell .topbar,
+.landing-shell .sidebar,
+.landing-shell > .statusbar {
+  text-shadow: 0 1px 2px #000, 0 0 10px rgba(0, 0, 0, 0.72);
+}
+
+.landing-shell .sidebar {
+  background: linear-gradient(
+    90deg,
+    rgba(2, 8, 13, 0.58),
+    rgba(2, 8, 13, 0.24)
+  );
+  backdrop-filter: blur(1px);
+}
+
+.landing-shell > .statusbar {
+  background: rgba(2, 8, 13, 0.5);
+  backdrop-filter: blur(1.5px) saturate(0.8);
+}
+
+.landing-shell .side-label em,
+.landing-shell .profile-overview-details > div > i,
+.landing-shell .profile-details > div > i,
+.landing-shell .quick-links > div > i,
+.landing-shell .stack-grid article h2,
+.landing-shell .stack-grid article div > i,
+.landing-shell .project-card > i,
+.landing-shell .engineering-notes div > i {
+  display: inline-grid;
+  place-items: center;
+  color: var(--semantic-cyan);
+}
+
+.landing-shell .side-label em .terminal-icon {
+  width: 12px;
+  height: 12px;
+  stroke-width: 1.8;
+}
+
+.landing-shell .side-social span {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  color: var(--text-muted);
+}
+
+.landing-shell .side-social .terminal-icon {
+  width: 13px;
+  height: 13px;
+}
+
+.landing-shell .profile-overview-details .terminal-icon,
+.landing-shell .profile-details .terminal-icon,
+.landing-shell .quick-links .terminal-icon {
+  width: 13px;
+  height: 13px;
+  stroke-width: 1.75;
+}
+
+.landing-shell .profile-overview-details > div > b,
+.landing-shell .profile-details > div > b,
+.landing-shell .status-list b,
+.landing-shell .project-facts b,
+.landing-shell .about-info b {
+  color: var(--text-primary);
+}
+
+.landing-shell .panel-title,
+.landing-shell .terminal-prompt,
+.landing-shell .section-command {
+  color: #d8e3e6 !important;
+  text-shadow: 0 1px 2px #000 !important;
+}
+
+.landing-shell .top-tools .search {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  gap: 7px;
+  color: var(--text-muted);
+}
+
+.landing-shell .top-tools .search span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.landing-shell .top-tools .search kbd {
+  border: 1px solid rgba(126, 157, 170, 0.38);
+  border-radius: 3px;
+  padding: 1px 4px;
+  background: rgba(4, 11, 16, 0.42);
+  color: var(--text-secondary);
+  font: inherit;
+}
+
+.landing-shell .top-tools > span > .terminal-icon,
+.landing-shell .top-tools time > .terminal-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--semantic-cyan);
+}
+
+.landing-shell .top-tools time,
+.landing-shell .statusbar span:first-child,
+.landing-shell .statusbar strong,
+.landing-shell .panel-title > span.blue,
+.landing-shell .project-tags i,
+.landing-shell .project-tags a,
+.landing-shell .status-list > a,
+.landing-shell .inspector-log > a,
+.landing-shell .project-card > div span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.landing-shell .statusbar span:first-child .terminal-icon,
+.landing-shell .statusbar strong .terminal-icon {
+  width: 13px;
+  height: 13px;
+}
+
+.landing-shell .stack-grid article h2 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.landing-shell .stack-grid article h2 .terminal-icon,
+.landing-shell .stack-grid article div .terminal-icon,
+.landing-shell .project-card > i .terminal-icon,
+.landing-shell .engineering-notes .terminal-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.landing-shell .projects-command button b,
+.landing-shell .project-tags a,
+.landing-shell .status-list > a,
+.landing-shell .inspector-log > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.landing-shell .projects-command button b .terminal-icon,
+.landing-shell .project-tags .terminal-icon,
+.landing-shell .status-list > a .terminal-icon,
+.landing-shell .inspector-log > a .terminal-icon {
+  width: 12px;
+  height: 12px;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .landing-shell .panel,
+  .landing-shell .sidebar,
+  .landing-shell > .statusbar {
+    backdrop-filter: none;
+  }
 }

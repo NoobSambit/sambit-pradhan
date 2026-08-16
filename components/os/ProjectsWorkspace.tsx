@@ -2,6 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { projects, type Project } from "@/data/projects";
+import {
+  TerminalIcon,
+  type TerminalIconName,
+} from "@/components/os/TerminalIcon";
 
 const motionStyle = (index: number) =>
   ({ "--motion-index": index }) as React.CSSProperties;
@@ -41,15 +45,15 @@ function ProjectList({
             key={project.id}
             style={motionStyle(index)}
           >
-            <i>▱</i>
+            <i><TerminalIcon name="folder" /></i>
             <b>{project.name}</b>
             <em className={project.tone}>
               <i className="status-dot">●</i> {project.state}
             </em>
             <div>
               <span>{project.runtime}</span>
-              <span>⌘ {project.branch}</span>
-              <span>⌁ {project.commitCount} commits</span>
+              <span><TerminalIcon name="git-branch" /> {project.branch}</span>
+              <span><TerminalIcon name="activity" /> {project.commitCount} commits</span>
             </div>
             <small>{project.tag}</small>
           </button>
@@ -96,10 +100,10 @@ function ProjectPreview({
           )}
           <p>{project.description}</p>
           <div className="project-tags">
-            <i>⌘ {project.branch}</i>
+            <i><TerminalIcon name="git-branch" /> {project.branch}</i>
             <i>{project.commitCount} commits</i>
             <i>{project.latestCommit.sha}</i>
-            <RepositoryLink project={project}>↗ Repository</RepositoryLink>
+            <RepositoryLink project={project}><TerminalIcon name="external-link" /> Repository</RepositoryLink>
           </div>
         </article>
 
@@ -191,7 +195,7 @@ function Inspector({
               </b>
             </div>
           ))}
-          <RepositoryLink project={project}>Open repository ↗</RepositoryLink>
+          <RepositoryLink project={project}>Open repository <TerminalIcon name="external-link" /></RepositoryLink>
         </section>
 
         <section className="inspector-log">
@@ -204,7 +208,7 @@ function Inspector({
             </div>
           ))}
           <RepositoryLink project={project}>
-            View commit history ↗
+            View commit history <TerminalIcon name="external-link" />
           </RepositoryLink>
         </section>
 
@@ -222,7 +226,7 @@ function Inspector({
           <div className="section-command">$ engineering_notes</div>
           {project.engineeringNotes.map((note, index) => (
             <div key={note.label} style={motionStyle(index)}>
-              <i>▣</i>
+              <i><TerminalIcon name="file-text" /></i>
               <b>{note.label}</b>
               <span>{note.value}</span>
             </div>
@@ -265,11 +269,11 @@ export function ProjectsWorkspace() {
     }, 120);
   };
 
-  const commands = [
-    [`⌘ git log ${displayed.branch}`, "Inspect project history"],
-    ["⌁ view system map", "Inspect actual architecture"],
-    ["⌕ browse capabilities", "Read documented features"],
-    ["›_ open github", "Open source repository"],
+  const commands: [TerminalIconName, string, string][] = [
+    ["git-branch", `git log ${displayed.branch}`, "Inspect project history"],
+    ["network", "view system map", "Inspect actual architecture"],
+    ["search", "browse capabilities", "Read documented features"],
+    ["github", "open github", "Open source repository"],
   ];
 
   return (
@@ -283,9 +287,9 @@ export function ProjectsWorkspace() {
         <span>
           <b>developer@sambit:~/projects</b>$ <i>▌</i>
         </span>
-        {commands.map(([command, description]) => (
+        {commands.map(([icon, command, description]) => (
           <button key={command}>
-            <b>{command}</b>
+            <b><TerminalIcon name={icon} /> {command}</b>
             <small>{description}</small>
           </button>
         ))}

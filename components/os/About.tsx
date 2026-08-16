@@ -1,4 +1,8 @@
 import { career, profileDetails, stackGroups } from "@/data/about";
+import {
+  TerminalIcon,
+  type TerminalIconName,
+} from "@/components/os/TerminalIcon";
 
 const motionStyle = (index: number) =>
   ({ "--motion-index": index }) as React.CSSProperties;
@@ -26,7 +30,7 @@ export function ProfileCard() {
         <div className="profile-details">
           {profileDetails.map(([icon, label, value], index) => (
             <div key={label} style={motionStyle(index)}>
-              <i>{icon}</i>
+              <i><TerminalIcon name={icon as TerminalIconName} /></i>
               <span>{label}</span>
               <b
                 className={
@@ -142,10 +146,10 @@ export function TechnologyStack() {
       <div className="stack-grid">
         {stackGroups.map(([name, packages], categoryIndex) => (
           <article key={name} style={motionStyle(categoryIndex)}>
-            <h2>▣ {name}</h2>
+            <h2><TerminalIcon name="package" /> {name}</h2>
             {packages.map(([pkg, version], packageIndex) => (
               <div key={pkg} style={motionStyle(packageIndex)}>
-                <i>◉</i>
+                <i><TerminalIcon name="package" /></i>
                 <span>{pkg}</span>
                 <b>{version}</b>
               </div>

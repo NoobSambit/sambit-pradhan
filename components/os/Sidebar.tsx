@@ -1,6 +1,10 @@
 "use client";
 
 import { systemGroups } from "@/data/dashboard";
+import {
+  TerminalIcon,
+  type TerminalIconName,
+} from "@/components/os/TerminalIcon";
 import { useEffect, useState } from "react";
 
 type SystemState = {
@@ -85,7 +89,9 @@ export function Sidebar() {
                 key={label}
               >
                 <span className="side-label">
-                  <em>{icon}</em>
+                  <em>
+                    <TerminalIcon name={icon as TerminalIconName} />
+                  </em>
                   {label}
                 </span>
                 <b
@@ -127,11 +133,11 @@ export function Sidebar() {
           })}
         </section>
       ))}
-      <div className="side-social">
-        <span>◉</span>
-        <span>◉</span>
-        <span>◉</span>
-        <span>▣</span>
+      <div className="side-social" aria-hidden="true">
+        <span><TerminalIcon name="github" /></span>
+        <span><TerminalIcon name="linkedin" /></span>
+        <span><TerminalIcon name="mail" /></span>
+        <span><TerminalIcon name="external-link" /></span>
       </div>
     </aside>
   );

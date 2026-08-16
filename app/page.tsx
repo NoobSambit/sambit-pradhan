@@ -68,7 +68,7 @@ export default function Home() {
           <ProjectsWorkspace />
         </div>
       </div>
-      <Footer />
+      <Footer landing />
     </main>
   );
 }

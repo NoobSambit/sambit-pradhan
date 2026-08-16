@@ -4,6 +4,10 @@ import {
   LiveGitLog,
   LiveRelease,
 } from "@/components/os/LivePortfolioData";
+import {
+  TerminalIcon,
+  type TerminalIconName,
+} from "@/components/os/TerminalIcon";
 
 const motionStyle = (index: number) =>
   ({ "--motion-index": index }) as React.CSSProperties;
@@ -14,14 +18,14 @@ function PanelTitle({ children }: { children: React.ReactNode }) {
 
 export function ActiveProject() {
   const details = [
-    ["♙", "Role", "Backend Engineer"],
-    ["▣", "Status", "Building"],
-    ["◉", "Availability", "Open to Opportunities"],
-    ["⌖", "Location", "Kolkata, India"],
-    ["◷", "Timezone", "IST (UTC +5:30)"],
-    ["♧", "Preferred Role", "Backend / Infra"],
-    ["⌘", "Experience", "3+ Years"],
-    ["◉", "Response Time", "< 24h"],
+    ["briefcase", "Role", "Backend Engineer"],
+    ["activity", "Status", "Building"],
+    ["check-circle", "Availability", "Open to Opportunities"],
+    ["map-pin", "Location", "Kolkata, India"],
+    ["clock", "Timezone", "IST (UTC +5:30)"],
+    ["layers", "Preferred Role", "Backend / Infra"],
+    ["timer", "Experience", "3+ Years"],
+    ["activity", "Response Time", "< 24h"],
   ];
   return (
     <section
@@ -44,7 +48,7 @@ export function ActiveProject() {
           <h2>Sambit Pradhan</h2>
           {details.map(([icon, label, value], index) => (
             <div key={label} style={motionStyle(index)}>
-              <i>{icon}</i>
+              <i><TerminalIcon name={icon as TerminalIconName} /></i>
               <span>{label}</span>
               <b className={label === "Status" ? "green" : ""}>{value}</b>
             </div>
@@ -66,7 +70,7 @@ export function Architecture() {
       data-motion-section="overview-graphs"
     >
       <PanelTitle>
-        coding_activity --streaks <span>↗</span>
+        coding_activity --streaks <span><TerminalIcon name="external-link" /></span>
       </PanelTitle>
       <LiveActivityStreaks />
     </section>
@@ -77,7 +81,7 @@ export function GitLog() {
   return (
     <section className="git-log panel" data-motion-section="overview-git">
       <PanelTitle>
-        git log --graph <span className="blue">⌘ main</span>
+        git log --graph <span className="blue"><TerminalIcon name="git-branch" /> main</span>
       </PanelTitle>
       <div className="git-rows">
         <LiveGitLog />
@@ -184,16 +188,16 @@ export function QuickLinks() {
     <section className="quick-links panel" data-motion-section="overview-links">
       <PanelTitle>quick --links</PanelTitle>
       {[
-        ["◉", "GitHub", "github.com/sambit-pradhan"],
-        ["♧", "Resume", "sambit.dev/resume.pdf"],
-        ["in", "LinkedIn", "linkedin.com/in/sambit-pradhan"],
-        ["□", "Email", "sambit.pradhan.dev@gmail.com"],
+        ["github", "GitHub", "github.com/sambit-pradhan"],
+        ["file-text", "Resume", "sambit.dev/resume.pdf"],
+        ["linkedin", "LinkedIn", "linkedin.com/in/sambit-pradhan"],
+        ["mail", "Email", "sambit.pradhan.dev@gmail.com"],
       ].map(([i, l, v], index) => (
         <div key={l} style={motionStyle(index)}>
-          <i>{i}</i>
+          <i><TerminalIcon name={i as TerminalIconName} /></i>
           <b>{l}</b>
           <span>{v}</span>
-          <em>↗</em>
+          <em><TerminalIcon name="external-link" /></em>
         </div>
       ))}
     </section>
