@@ -9695,7 +9695,7 @@ button {
   }
 }
 
-/* Overview Git log: four fixed, single-line commits only. */
+/* Overview Git log: seven fixed, single-line commits sized for this panel. */
 .git-log .git-rows {
   overflow: hidden;
   padding-top: 10px;
@@ -9721,7 +9721,7 @@ button {
 .git-log .commit-graph {
   top: 49px;
   bottom: auto;
-  height: 82px;
+  height: 155px;
 }
 .overview-workspace .git-log {
   grid-column: span 2;

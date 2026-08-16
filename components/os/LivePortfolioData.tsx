@@ -22,7 +22,7 @@ type PortfolioData = {
 };
 
 let dataPromise: Promise<PortfolioData> | null = null;
-const overviewCommitLimit = 4;
+const overviewCommitLimit = 7;
 
 function loadPortfolioData() {
   dataPromise ??= fetch("/api/portfolio-data").then(async (response) => {
