@@ -7145,10 +7145,10 @@ button {
 }
 
 .portfolio-shell[data-motion-boot="active"] .terminal .intro { animation-delay: 790ms; }
-.portfolio-shell[data-motion-boot="active"] .terminal > p { animation-delay: 985ms; }
-.portfolio-shell[data-motion-boot="active"] .terminal-actions { animation-delay: 1020ms; }
-.portfolio-shell[data-motion-boot="active"] .terminal .quick-stats { animation-delay: 1050ms; }
-.portfolio-shell[data-motion-boot="active"] .terminal .command-log { animation-delay: 1080ms; }
+.portfolio-shell[data-motion-boot="active"] .terminal > p { animation-delay: 950ms; }
+.portfolio-shell[data-motion-boot="active"] .terminal-actions { animation-delay: 980ms; }
+.portfolio-shell[data-motion-boot="active"] .terminal .quick-stats { animation-delay: 1010ms; }
+.portfolio-shell[data-motion-boot="active"] .terminal .command-log { animation-delay: 1035ms; }
 
 .portfolio-shell .cursor {
   animation: terminal-cursor 1s steps(1, end) infinite;
@@ -7169,6 +7169,11 @@ button {
   transform: scaleX(var(--meter-level, 0.3));
   transform-origin: left;
   transition: transform 220ms var(--ease-system);
+}
+
+.portfolio-shell .roadmap b i,
+.portfolio-shell .learning i b {
+  width: var(--bar-level, 100%);
 }
 
 .portfolio-shell .quick-stats b strong {
