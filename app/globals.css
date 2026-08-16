@@ -11349,7 +11349,6 @@ button {
   box-shadow:
     inset 0 1px rgba(211, 239, 244, 0.025),
     0 8px 24px rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(1.5px) saturate(0.85);
 }
 
 .landing-shell.os-shell .panel-title,
@@ -11794,6 +11793,53 @@ button {
   vertical-align: -0.14em;
 }
 
+.landing-shell .tech-icon {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 auto;
+  opacity: 0.96;
+  vertical-align: -0.14em;
+}
+
+.landing-shell .skill-grid {
+  gap: 3px;
+  padding: 7px 9px 30px;
+}
+
+.landing-shell .skill-grid span {
+  display: flex;
+  height: 16px;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 5px;
+}
+
+.landing-shell .skill-grid .tech-icon {
+  width: 10px;
+  height: 10px;
+}
+
+.landing-shell .stack-grid article h2 .tech-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.landing-shell .stack-grid article div .tech-icon {
+  width: 10px;
+  height: 10px;
+}
+
+.landing-shell .inspector-stack > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.landing-shell .inspector-stack .tech-icon {
+  width: 10px;
+  height: 10px;
+}
+
 .landing-shell .topbar,
 .landing-shell .sidebar,
 .landing-shell > .statusbar {
@@ -11806,12 +11852,10 @@ button {
     rgba(2, 8, 13, 0.58),
     rgba(2, 8, 13, 0.24)
   );
-  backdrop-filter: blur(1px);
 }
 
 .landing-shell > .statusbar {
   background: rgba(2, 8, 13, 0.5);
-  backdrop-filter: blur(1.5px) saturate(0.8);
 }
 
 .landing-shell .side-label em,
@@ -11947,12 +11991,4 @@ button {
 .landing-shell .inspector-log > a .terminal-icon {
   width: 12px;
   height: 12px;
-}
-
-@media (prefers-reduced-transparency: reduce) {
-  .landing-shell .panel,
-  .landing-shell .sidebar,
-  .landing-shell > .statusbar {
-    backdrop-filter: none;
-  }
 }

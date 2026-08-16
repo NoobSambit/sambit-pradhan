@@ -6,6 +6,7 @@ import {
   TerminalIcon,
   type TerminalIconName,
 } from "@/components/os/TerminalIcon";
+import { TechIcon } from "@/components/os/TechIcon";
 
 const motionStyle = (index: number) =>
   ({ "--motion-index": index }) as React.CSSProperties;
@@ -216,7 +217,7 @@ function Inspector({
           <div className="section-command">$ stack --project</div>
           {project.stack.map((tech, index) => (
             <span key={tech} style={motionStyle(index)}>
-              <i className={`skill-dot d${index % 6}`} />
+              <TechIcon name={tech} />
               {tech}
             </span>
           ))}

@@ -3,6 +3,7 @@ import {
   TerminalIcon,
   type TerminalIconName,
 } from "@/components/os/TerminalIcon";
+import { TechIcon } from "@/components/os/TechIcon";
 
 const motionStyle = (index: number) =>
   ({ "--motion-index": index }) as React.CSSProperties;
@@ -146,10 +147,10 @@ export function TechnologyStack() {
       <div className="stack-grid">
         {stackGroups.map(([name, packages], categoryIndex) => (
           <article key={name} style={motionStyle(categoryIndex)}>
-            <h2><TerminalIcon name="package" /> {name}</h2>
+            <h2><TechIcon name={name} /> {name}</h2>
             {packages.map(([pkg, version], packageIndex) => (
               <div key={pkg} style={motionStyle(packageIndex)}>
-                <i><TerminalIcon name="package" /></i>
+                <i><TechIcon name={pkg} /></i>
                 <span>{pkg}</span>
                 <b>{version}</b>
               </div>

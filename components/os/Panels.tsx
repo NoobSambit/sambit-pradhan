@@ -8,6 +8,7 @@ import {
   TerminalIcon,
   type TerminalIconName,
 } from "@/components/os/TerminalIcon";
+import { TechIcon } from "@/components/os/TechIcon";
 
 const motionStyle = (index: number) =>
   ({ "--motion-index": index }) as React.CSSProperties;
@@ -98,7 +99,7 @@ export function Skills() {
       <div className="skill-grid">
         {skills.map((skill, index) => (
           <span key={skill} style={motionStyle(index)}>
-            <i className={`skill-dot d${index % 6}`} />
+            <TechIcon name={skill} />
             {skill}
           </span>
         ))}
