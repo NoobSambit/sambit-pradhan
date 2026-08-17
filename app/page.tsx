@@ -12,13 +12,11 @@ import { ProjectsWorkspace } from "@/components/os/ProjectsWorkspace";
 import {
   ActiveProject,
   Architecture,
-  Environment,
   GitLog,
+  ProjectDossier,
   QuickLinks,
-  Releases,
   Roadmap,
   Skills,
-  SystemInfo,
 } from "@/components/os/Panels";
 import { Sidebar } from "@/components/os/Sidebar";
 import { Terminal } from "@/components/os/Terminal";
@@ -43,9 +41,7 @@ export default function Home() {
               <GitLog />
               <Skills />
               <Roadmap />
-              <SystemInfo />
-              <Environment />
-              <Releases />
+              <ProjectDossier />
               <QuickLinks />
             </div>
           </section>

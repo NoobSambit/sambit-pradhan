@@ -899,6 +899,166 @@ button {
 .quick-links {
   position: relative;
 }
+.project-dossier {
+  grid-column: span 3;
+  position: relative;
+}
+.project-dossier-status {
+  color: #b7c0c5;
+  font-size: 8px;
+}
+.project-dossier-status .status-dot {
+  color: var(--green);
+  font-style: normal;
+  margin-right: 4px;
+}
+.project-dossier-body {
+  display: grid;
+  grid-template-columns: minmax(165px, 1.05fr) minmax(190px, 1.25fr) minmax(165px, 1.15fr);
+  gap: 12px;
+  height: calc(100% - 31px);
+  min-height: 0;
+  padding: 14px 14px 38px;
+}
+.project-dossier-intro {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.project-dossier-label,
+.project-dossier-section-title {
+  color: var(--cyan);
+  font-size: 9px;
+  letter-spacing: 0.02em;
+}
+.project-dossier-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.project-dossier-label .terminal-icon {
+  width: 12px;
+  height: 12px;
+}
+.project-dossier h2 {
+  margin: 9px 0 6px;
+  color: #eef1f0;
+  font-size: 19px;
+  letter-spacing: -0.06em;
+}
+.project-dossier-intro p {
+  max-width: 360px;
+  margin: 0;
+  color: #b5bdc3;
+  font-size: 10px;
+  line-height: 15px;
+}
+.project-dossier-io {
+  display: grid;
+  gap: 5px;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid var(--line-soft);
+}
+.project-dossier-io > div {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 5px;
+  align-items: center;
+  font-size: 8px;
+}
+.project-dossier-io b {
+  color: var(--cyan);
+  font-size: 8px;
+  font-weight: 500;
+}
+.project-dossier-io span {
+  color: #9aa5ad;
+  overflow-wrap: anywhere;
+}
+.project-dossier-pipeline,
+.project-dossier-guarantees {
+  display: grid;
+  position: relative;
+  border-left: 1px solid var(--line-soft);
+  padding-left: 16px;
+}
+.project-dossier-pipeline {
+  grid-template-rows: auto repeat(5, minmax(0, 1fr));
+}
+.project-dossier-guarantees {
+  grid-template-rows: auto repeat(4, minmax(0, 1fr));
+}
+.project-dossier-pipeline::before {
+  content: "";
+  position: absolute;
+  top: 31px;
+  bottom: 11px;
+  left: 25px;
+  width: 1px;
+  background: linear-gradient(var(--cyan), #263740 78%, transparent);
+}
+.project-dossier-pipeline > div:not(.project-dossier-section-title) {
+  display: grid;
+  grid-template-columns: 28px 70px minmax(0, 1fr);
+  min-height: 27px;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  position: relative;
+}
+.project-dossier-pipeline > div:not(.project-dossier-section-title) b {
+  display: grid;
+  place-items: center;
+  z-index: 1;
+  width: 19px;
+  height: 19px;
+  border: 1px solid #3c8991;
+  border-radius: 50%;
+  background: #0d141b;
+  color: var(--green);
+  font-size: 8px;
+  font-weight: 500;
+}
+.project-dossier-pipeline > div:not(.project-dossier-section-title) span {
+  color: #d5dade;
+  font-size: 9px;
+}
+.project-dossier-pipeline small {
+  color: #87939b;
+  font-size: 8px;
+  line-height: 11px;
+  overflow-wrap: anywhere;
+}
+.project-dossier-guarantees > div:not(.project-dossier-section-title) {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 5px;
+  min-height: 29px;
+  align-items: center;
+  font-size: 8px;
+}
+.project-dossier-guarantees > div:not(.project-dossier-section-title) b {
+  color: var(--cyan);
+  font-size: 8px;
+  font-weight: 500;
+}
+.project-dossier-guarantees > div:not(.project-dossier-section-title) span {
+  color: #c1c9cd;
+  font-size: 8px;
+  line-height: 11px;
+  overflow-wrap: anywhere;
+}
+.project-dossier footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 9px 13px;
+  border-top: 1px solid #202c35;
+  color: #89939b;
+  font-size: 9px;
+}
 .system-info > div:not(.panel-title),
 .environment > div:not(.panel-title),
 .releases > div {
@@ -7298,6 +7458,8 @@ button {
 .overview-workspace [data-motion-section][data-motion-visible="true"] .profile-overview-details > div,
 .overview-workspace [data-motion-section][data-motion-visible="true"] .skill-grid > span,
 .overview-workspace [data-motion-section][data-motion-visible="true"] .roadmap > div:not(.panel-title),
+.overview-workspace [data-motion-section][data-motion-visible="true"] .project-dossier-pipeline > div:not(.project-dossier-section-title),
+.overview-workspace [data-motion-section][data-motion-visible="true"] .project-dossier-guarantees > div:not(.project-dossier-section-title),
 .overview-workspace [data-motion-section][data-motion-visible="true"] .system-info > div:not(.panel-title),
 .overview-workspace [data-motion-section][data-motion-visible="true"] .environment > div:not(.panel-title),
 .overview-workspace [data-motion-section][data-motion-visible="true"] .quick-links > div:not(.panel-title) {
@@ -7353,6 +7515,9 @@ button {
 .overview-workspace .system-info[data-motion-visible="true"] > div:not(.panel-title) b {
   animation: terminal-confirm 160ms var(--ease-system) both;
   animation-delay: calc(90ms + var(--motion-index, 0) * 32ms);
+}
+.overview-workspace .project-dossier[data-motion-visible="true"] .project-dossier-status {
+  animation: terminal-confirm 180ms var(--ease-system) 120ms both;
 }
 
 .about-workspace [data-motion-section][data-motion-visible="true"] .avatar {
@@ -8320,6 +8485,30 @@ button {
   }
   .profile-overview footer {
     font-size: 10px;
+  }
+}
+
+@media (max-width: 760px) {
+  .right-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .project-dossier {
+    grid-column: auto;
+  }
+
+  .project-dossier-body {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 12px;
+  }
+
+  .project-dossier-pipeline,
+  .project-dossier-guarantees {
+    border-top: 1px solid var(--line-soft);
+    border-left: 0;
+    padding-top: 10px;
+    padding-left: 0;
   }
 }
 
@@ -11991,4 +12180,75 @@ button {
 .landing-shell .inspector-log > a .terminal-icon {
   width: 12px;
   height: 12px;
+}
+
+/* Landing heading hierarchy: each workspace gets a distinct semantic accent. */
+.landing-shell .panel-title {
+  font-weight: 700;
+  letter-spacing: 0.025em;
+}
+
+.landing-shell .panel-title > span {
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.landing-shell .profile-overview > .panel-title {
+  color: var(--semantic-purple) !important;
+  border-bottom-color: rgba(213, 160, 255, 0.34);
+}
+
+.landing-shell .activity-streaks > .panel-title {
+  color: var(--semantic-cyan) !important;
+  border-bottom-color: rgba(124, 227, 235, 0.34);
+}
+
+.landing-shell .git-log > .panel-title {
+  color: var(--semantic-blue) !important;
+  border-bottom-color: rgba(141, 179, 255, 0.34);
+}
+
+.landing-shell .skills > .panel-title {
+  color: var(--semantic-green) !important;
+  border-bottom-color: rgba(155, 234, 111, 0.34);
+}
+
+.landing-shell .roadmap > .panel-title {
+  color: var(--semantic-amber) !important;
+  border-bottom-color: rgba(242, 189, 100, 0.34);
+}
+
+.landing-shell .project-dossier > .panel-title {
+  color: #ff9b84 !important;
+  border-bottom-color: rgba(255, 155, 132, 0.34);
+}
+
+.landing-shell .quick-links > .panel-title {
+  color: #b8c7e6 !important;
+  border-bottom-color: rgba(184, 199, 230, 0.34);
+}
+
+.landing-shell .side-group h2 {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.landing-shell .side-group:nth-child(1) h2 {
+  color: var(--semantic-cyan);
+}
+
+.landing-shell .side-group:nth-child(2) h2 {
+  color: var(--semantic-blue);
+}
+
+.landing-shell .side-group:nth-child(3) h2 {
+  color: var(--semantic-green);
+}
+
+.landing-shell .side-group:nth-child(4) h2 {
+  color: var(--semantic-purple);
+}
+
+.landing-shell .side-group:nth-child(5) h2 {
+  color: var(--semantic-amber);
 }

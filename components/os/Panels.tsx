@@ -2,7 +2,6 @@ import { roadmap, skills } from "@/data/dashboard";
 import {
   LiveActivityStreaks,
   LiveGitLog,
-  LiveRelease,
 } from "@/components/os/LivePortfolioData";
 import {
   TerminalIcon,
@@ -127,59 +126,62 @@ export function Roadmap() {
   );
 }
 
-export function SystemInfo() {
-  const rows = [
-    "clean_architecture",
-    "performance_first",
-    "developer_experience",
-    "maintainability",
-    "scalability",
-    "observability",
-    "security",
-    "simplicity",
-  ];
-  return (
-    <section className="system-info panel" data-motion-section="overview-principles">
-      <PanelTitle>systemctl --principles</PanelTitle>
-      {rows.map((row, index) => (
-        <div key={row} style={motionStyle(index)}>
-          <span>{row}</span>
-          <b>enabled</b>
-        </div>
-      ))}
-      <footer>config loaded　✓</footer>
-    </section>
-  );
-}
+export function ProjectDossier() {
+  const pipeline = [
+    ["01", "DISCOVER", "repository + task"],
+    ["02", "CONTRACT", "requirements become checks"],
+    ["03", "EXECUTE", "controlled tests + attacks"],
+    ["04", "CHALLENGE", "independent verification"],
+    ["05", "REPORT", "evidence-linked result"],
+  ] as const;
+  const guarantees = [
+    ["PROVIDER-NEUTRAL", "Codex · Claude · Gemini · OpenCode"],
+    ["DURABLE", "resume · cancel · lease safely"],
+    ["ISOLATED", "disposable worktrees · no target writes"],
+    ["TRACEABLE", "commit-bound evidence graph"],
+  ] as const;
 
-export function Environment() {
   return (
-    <section className="environment panel" data-motion-section="overview-environment">
-      <PanelTitle>env --info</PanelTitle>
-      {[
-        ["Runtime", "Node.js 20.x"],
-        ["Language", "TypeScript"],
-        ["Architecture", "Microservices"],
-        ["Infra Provider", "AWS (ECS)"],
-        ["Region", "ap-south-1"],
-        ["Monitoring", "Datadog"],
-        ["Logging", "Grafana Loki"],
-        ["Tracing", "OpenTelemetry"],
-      ].map(([l, v], index) => (
-        <div key={l} style={motionStyle(index)}>
-          <span>{l}</span>
-          <b>{v}</b>
+    <section className="project-dossier panel" data-motion-section="overview-active-project">
+      <PanelTitle>
+        active project <span className="project-dossier-status"><i className="status-dot">●</i> AgentProof · BUILDING</span>
+      </PanelTitle>
+      <div className="project-dossier-body">
+        <div className="project-dossier-intro">
+          <div className="project-dossier-label"><TerminalIcon name="terminal" /> LOCAL-FIRST / AI-DRIVEN</div>
+          <h2>AgentProof</h2>
+          <p>
+            I’m building the verification layer for agent-written software: a CLI that turns
+            an agent’s work into a result you can inspect, challenge, and replay.
+          </p>
+          <div className="project-dossier-io">
+            <div><b>INPUT</b><span>repo · task · audit depth</span></div>
+            <div><b>OUTPUT</b><span>report card · replayable evidence</span></div>
+          </div>
         </div>
-      ))}
-    </section>
-  );
-}
-
-export function Releases() {
-  return (
-    <section className="releases panel" data-motion-section="overview-releases">
-      <PanelTitle>releases --latest</PanelTitle>
-      <LiveRelease />
+        <div className="project-dossier-pipeline">
+          <div className="project-dossier-section-title">audit pipeline</div>
+          {pipeline.map(([step, label, detail], index) => (
+            <div key={step} style={motionStyle(index)}>
+              <b>{step}</b>
+              <span>{label}</span>
+              <small>{detail}</small>
+            </div>
+          ))}
+        </div>
+        <div className="project-dossier-guarantees">
+          <div className="project-dossier-section-title">engineering surface</div>
+          {guarantees.map(([label, detail], index) => (
+            <div key={label} style={motionStyle(index)}>
+              <b>{label}</b>
+              <span>{detail}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <footer>
+        active project loaded　<span className="green">✓</span>　verification layer for agent-written software
+      </footer>
     </section>
   );
 }
