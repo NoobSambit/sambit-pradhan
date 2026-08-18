@@ -35,7 +35,7 @@ export function ProfileCard() {
               <span>{label}</span>
               <b
                 className={
-                  label === "Status" || label === "Open To Work" ? "green" : ""
+                  label === "Status" || label === "Availability" ? "green" : ""
                 }
               >
                 {value}
@@ -81,25 +81,23 @@ export function AboutContent() {
       <article>
         <h1>WHOAMI</h1>
         <p style={motionStyle(0)}>
-          I&apos;m a <strong>backend engineer</strong> who designs and builds
-          scalable, reliable and high-performance systems that power real-world
-          products.
+          I&apos;m a <strong>backend engineer</strong> and 2026 CSE graduate. I
+          mostly work on backend-heavy products and the system logic that makes
+          them hold together.
         </p>
         <p style={motionStyle(1)}>
-          I specialize in{" "}
-          <strong className="blue">distributed architectures</strong>, API
-          design, and infrastructure that scales with clarity and resilience.
+          I started taking software seriously in{" "}
+          <strong className="blue">2023</strong>, moving from rebuilding
+          existing projects to shipping ideas of my own.
         </p>
         <p style={motionStyle(2)}>
-          I enjoy solving complex problems, building{" "}
-          <strong>clean abstractions</strong>, and delivering exceptional
-          developer experiences.
+          I like projects that get complicated before they get good. I keep
+          working through the details after the first version works.
         </p>
         <p style={motionStyle(3)}>
-          Currently focusing on{" "}
-          <strong className="purple">AI-powered systems</strong>, LLM
-          infrastructure, and building the next generation of intelligent
-          applications.
+          Right now I&apos;m building <strong className="purple">AgentProof</strong>
+          and Agent Playground while going deeper into system design, CLI
+          tooling, and code review systems.
         </p>
       </article>
       <div className="career">
@@ -227,7 +225,7 @@ export function LearningAndDiagnostics() {
 
 export function AboutInfo() {
   const info = [
-    ["Years Coding", "3+"],
+    ["Building Since", "2023"],
     ["Projects Built", "18+"],
     ["Repositories", "42"],
     ["Contributions", "512+"],

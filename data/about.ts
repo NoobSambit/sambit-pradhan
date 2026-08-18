@@ -4,11 +4,9 @@ export const profileDetails = [
   ["check-circle", "Availability", "Open to Opportunities"],
   ["map-pin", "Location", "Kolkata, India"],
   ["clock", "Timezone", "IST (UTC +5:30)"],
-  ["timer", "Experience", "3+ Years"],
-  ["layers", "Focus", "AI Systems · Backend Infra"],
-  ["check-circle", "Open To Work", "Yes"],
-  ["boxes", "Domains", "Backend · Cloud · AI"],
-  ["type", "Languages", "English · Hindi · Bengali"],
+  ["layers", "Looking For", "Backend · Full Stack · SWE"],
+  ["timer", "Building Since", "2023"],
+  ["type", "Graduation", "2026"],
 ] as const;
 
 export const stackGroups = [
