@@ -8,24 +8,22 @@ export function Footer({ landing = false }: { landing?: boolean }) {
     <footer className="statusbar" data-motion-section="footer">
       <span>
         {landing && <TerminalIcon name="terminal" />}
-        {landing ? "Sambit OS v2.0.0" : "⊠ Sambit OS v2.0.0"}
+        {landing ? "Sambit OS v2.0" : "⊠ Sambit OS v2.0"}
       </span>
-      <span>Build 2024.05.18-22.41</span>
+      <span>2026 CSE Graduate</span>
       <span>Branch main</span>
       <LiveFooterCommit />
-      <span>Latest Deploy —</span>
-      <span>Resume v2.1.pdf</span>
-      <span>
-        Latency <b>41ms</b>
-      </span>
-      <span>Uptime 7d 14h 22m</span>
+      <span>Open to Work</span>
+      <span>Resume.pdf</span>
+      <span>Kolkata, India</span>
+      <span>IST UTC+5:30</span>
       <strong>
         {landing ? (
           <TerminalIcon name="check-circle" />
         ) : (
           <i className="status-dot">●</i>
         )}{" "}
-        All Systems Operational
+        Portfolio Online
       </strong>
     </footer>
   );

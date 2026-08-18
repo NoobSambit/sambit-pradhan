@@ -56,8 +56,8 @@ export function ActiveProject() {
         </div>
       </div>
       <footer>
-        profile loaded　 <span className="green">✓</span>　 available for
-        impactful work
+        profile loaded　 <span className="green">✓</span>　 open to engineering
+        roles
       </footer>
     </section>
   );
@@ -94,7 +94,7 @@ export function GitLog() {
 export function Skills() {
   return (
     <section className="skills panel" data-motion-section="overview-skills">
-      <PanelTitle>npm ls --depth=0</PanelTitle>
+      <PanelTitle>stack --working-set</PanelTitle>
       <div className="skill-grid">
         {skills.map((skill, index) => (
           <span key={skill} style={motionStyle(index)}>
@@ -103,7 +103,6 @@ export function Skills() {
           </span>
         ))}
       </div>
-      <footer>32 packages installed</footer>
     </section>
   );
 }

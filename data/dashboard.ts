@@ -18,12 +18,12 @@ export const systemGroups = [
     ],
   },
   {
-    title: "DEPLOYMENT",
+    title: "RUNTIME",
     items: [
-      ["server", "Environment", "Production ●"],
+      ["terminal", "Mode", "Portfolio"],
       ["map-pin", "Region", "ap-south-1"],
-      ["boxes", "Services", "12"],
-      ["heart-pulse", "Health", "● Healthy"],
+      ["git-branch", "Build", "main"],
+      ["heart-pulse", "State", "Online ●"],
     ],
   },
   {

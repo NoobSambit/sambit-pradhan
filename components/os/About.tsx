@@ -137,7 +137,7 @@ export function AboutContent() {
 export function TechnologyStack() {
   return (
     <section className="technology-stack panel" data-motion-section="about-stack">
-      <div className="terminal-prompt">$ npm ls --depth=0</div>
+      <div className="terminal-prompt">$ stack --working-set</div>
       <div className="stack-grid">
         {stackGroups.map(([name, packages], categoryIndex) => (
           <article key={name} style={motionStyle(categoryIndex)}>
@@ -212,10 +212,10 @@ export function AboutInfo() {
     ["Database Models", "24"],
     ["AI Applications", "6"],
     ["Last Release", "v2.1.0"],
-    ["Latest Commit", "2h ago"],
-    ["Architecture Style", "Microservices"],
+    ["Current Build", "AgentProof"],
+    ["Focus", "Backend · Product Systems"],
     ["Backend Runtime", "Node.js 20"],
-    ["Infra Provider", "AWS"],
+    ["Interests", "System Design · CLI Tooling"],
   ];
   return (
     <section className="about-info panel" data-motion-section="about-info">
