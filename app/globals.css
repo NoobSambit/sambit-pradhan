@@ -1938,7 +1938,7 @@ button {
 .about-right-column {
   min-height: 0;
   display: grid;
-  grid-template-rows: 365px 196px minmax(168px, 1fr);
+  grid-template-rows: minmax(420px, 1fr) 196px 168px;
   gap: 9px;
 }
 .technology-stack {
@@ -12244,7 +12244,26 @@ button {
 .landing-shell .stack-grid article h2 {
   color: var(--semantic-blue) !important;
   font-weight: 700;
+  font-size: 11px;
   letter-spacing: 0.035em;
+}
+
+.landing-shell .technology-stack > .terminal-prompt {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.landing-shell .stack-grid article {
+  padding: 10px 11px;
+}
+
+.landing-shell .stack-grid article h2 {
+  margin-bottom: 8px;
+}
+
+.landing-shell .stack-grid article div {
+  min-height: 20px;
+  font-size: 12px;
 }
 
 .landing-shell .career-row b {
