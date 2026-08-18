@@ -12278,3 +12278,206 @@ button {
 .landing-shell .side-group:nth-child(5) h2 {
   color: var(--semantic-amber);
 }
+
+/* Final visual hierarchy pass: make the useful labels scan before the body copy. */
+.landing-shell .terminal h1 .hero-highlight {
+  font-weight: 700;
+}
+
+.landing-shell .terminal-prompt {
+  color: var(--semantic-cyan) !important;
+  font-weight: 700;
+}
+
+.landing-shell .panel-title > span,
+.landing-shell .profile-card h2 span {
+  font-weight: 700;
+}
+
+.landing-shell .about-content > .terminal-prompt {
+  color: var(--semantic-purple) !important;
+}
+
+.landing-shell .technology-stack > .terminal-prompt {
+  color: var(--semantic-blue) !important;
+}
+
+.landing-shell .about-content .section-command {
+  color: var(--semantic-blue) !important;
+  font-weight: 700;
+}
+
+.landing-shell .about-content article h1,
+.landing-shell .profile-overview-details h2,
+.landing-shell .profile-card h2 {
+  color: var(--semantic-cyan) !important;
+  font-weight: 700;
+}
+
+.landing-shell .stack-grid article h2 {
+  color: var(--semantic-blue) !important;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+}
+
+.landing-shell .career-row b {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.landing-shell .principles b,
+.landing-shell .learning .learning-note b,
+.landing-shell .diagnostics > div:not(.panel-title) > b {
+  font-weight: 700;
+}
+
+.landing-shell .about-info > .panel-title {
+  color: var(--semantic-cyan) !important;
+}
+
+.landing-shell .about-info > div:not(.panel-title) > b {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.landing-shell .learning > .panel-title {
+  color: var(--semantic-amber) !important;
+  border-bottom-color: rgba(242, 189, 100, 0.34);
+}
+
+.landing-shell .diagnostics > .panel-title {
+  color: var(--semantic-purple) !important;
+  border-bottom-color: rgba(213, 160, 255, 0.34);
+}
+
+.landing-shell .learning .learning-note > span,
+.landing-shell .diagnostics > div:not(.panel-title) > span {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.landing-shell .roadmap > div:not(.panel-title) > span {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.landing-shell .roadmap > div:not(.panel-title) > small {
+  color: var(--semantic-green);
+  font-weight: 700;
+}
+
+.landing-shell .roadmap > div:not(.panel-title):last-of-type > small {
+  color: var(--semantic-amber);
+}
+
+.landing-shell .project-dossier h2 {
+  color: #ffb19f;
+  font-weight: 700;
+}
+
+.landing-shell .project-dossier-section-title {
+  color: var(--semantic-cyan);
+  font-weight: 700;
+  letter-spacing: 0.035em;
+}
+
+.landing-shell .project-dossier-pipeline > div:not(.project-dossier-section-title) > span,
+.landing-shell .project-dossier-guarantees > div:not(.project-dossier-section-title) > b {
+  font-weight: 700;
+}
+
+.landing-shell .quick-links > div:not(.panel-title) > b {
+  color: var(--semantic-blue);
+  font-weight: 700;
+}
+
+.landing-shell > .statusbar span:first-child {
+  color: var(--semantic-cyan);
+  font-weight: 700;
+}
+
+.landing-shell > .statusbar span:nth-child(2) {
+  color: var(--semantic-blue);
+  font-weight: 600;
+}
+
+.landing-shell > .statusbar span:nth-child(3) {
+  color: var(--semantic-purple);
+  font-weight: 600;
+}
+
+.landing-shell > .statusbar span:nth-child(4) {
+  color: var(--semantic-blue);
+  font-weight: 600;
+}
+
+.landing-shell > .statusbar span:nth-child(5) {
+  color: var(--semantic-green);
+  font-weight: 700;
+}
+
+.landing-shell > .statusbar span:nth-child(6) {
+  color: var(--semantic-amber);
+  font-weight: 600;
+}
+
+.landing-shell > .statusbar span:nth-child(7) {
+  color: var(--semantic-cyan);
+  font-weight: 600;
+}
+
+/* The repository view is also part of the portfolio’s public landing flow. */
+.project-docs-shell .repository-explorer > header,
+.project-docs-shell .repository-table > header,
+.project-docs-shell .repository-inspector > section > header {
+  font-weight: 700;
+  letter-spacing: 0.045em;
+}
+
+.project-docs-shell .repository-explorer > header {
+  color: #7ce3eb;
+}
+
+.project-docs-shell .repository-explorer > section > h3 {
+  color: #f2bd64;
+  font-weight: 700;
+  letter-spacing: 0.045em;
+}
+
+.project-docs-shell .repository-tree > b {
+  color: #8db3ff;
+  font-weight: 700;
+}
+
+.project-docs-shell .repository-table > header {
+  color: #8db3ff;
+}
+
+.project-docs-shell .repository-table > button > div:first-child > b {
+  color: #7ce3eb;
+  font-weight: 700;
+}
+
+.project-docs-shell .repository-table > button > div:nth-child(4) > em,
+.project-docs-shell .repository-table > button > strong {
+  font-weight: 700;
+}
+
+.project-docs-shell .repository-table > button > span {
+  color: #d5a0ff;
+  font-weight: 600;
+}
+
+.project-docs-shell .repository-inspector > section > header {
+  color: #d5a0ff;
+}
+
+.project-docs-shell .repository-inspector-title h2 {
+  color: #7ce3eb;
+  font-weight: 700;
+}
+
+.project-docs-shell .repository-inspector-title > em,
+.project-docs-shell .repository-inspector .key-value > b {
+  font-weight: 700;
+}
