@@ -1681,8 +1681,7 @@ button {
   min-height: 0;
   padding: 10px;
   display: grid;
-  grid-template-rows: minmax(0, 1fr) 63px;
-  gap: 8px;
+  grid-template-rows: minmax(0, 1fr);
 }
 .about-grid {
   min-height: 0;
@@ -1704,8 +1703,7 @@ button {
   font-size: 9px;
 }
 .terminal-prompt span,
-.identity p span,
-.about-commands span b {
+.identity p span {
   color: #78c178;
 }
 .profile-card {
@@ -2108,44 +2106,6 @@ button {
 .about-info b {
   color: #d5d9dc;
   font-weight: 500;
-}
-.about-commands {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 9px 12px;
-  min-width: 0;
-}
-.about-commands > span {
-  min-width: 235px;
-  font-size: 9px;
-  white-space: nowrap;
-}
-.about-commands > span i {
-  font-style: normal;
-  color: #d8dddf;
-}
-.about-commands button {
-  flex: 1;
-  max-width: 140px;
-  height: 42px;
-  border: 1px solid #263844;
-  border-radius: 4px;
-  color: #a8b3bb;
-  background: #0d161d;
-  text-align: left;
-  padding: 6px 9px;
-  font-size: 8px;
-}
-.about-commands button b,
-.about-commands button small {
-  display: block;
-  font-weight: 500;
-}
-.about-commands button small {
-  color: #71818c;
-  font-size: 7px;
-  margin-top: 3px;
 }
 /* Desktop reading scale: preserve the OS grid while making dense data comfortable to scan. */
 @media (min-width: 761px) {
@@ -5942,7 +5902,6 @@ button {
 
 .workspace .panel,
 .about-grid .panel,
-.about-commands,
 .skills-ide-workspace {
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.88);
 }
@@ -6047,9 +6006,7 @@ button {
 .about-grid .about-content article h1,
 .about-grid .about-content article p,
 .about-grid .stack-grid span,
-.about-grid .about-info b,
-.about-grid .about-commands > span,
-.about-grid .about-commands button {
+.about-grid .about-info b {
   color: #edf4f5;
 }
 
@@ -6063,8 +6020,7 @@ button {
 .about-grid .learning em,
 .about-grid .learning strong,
 .about-grid .diagnostics em,
-.about-grid .career-row time,
-.about-grid .about-commands button small {
+.about-grid .career-row time {
   font-size: 9px;
 }
 
@@ -7406,7 +7362,6 @@ button {
 }
 
 .portfolio-shell .terminal-actions button:hover,
-.portfolio-shell .about-commands button:hover,
 .portfolio-shell .projects-command button:hover {
   border-color: #477987;
   background-color: rgba(28, 49, 56, 0.38);
@@ -7556,7 +7511,6 @@ button {
 .about-workspace [data-motion-section][data-motion-visible="true"] .about-content article p,
 .about-workspace [data-motion-section][data-motion-visible="true"] .career-row,
 .about-workspace [data-motion-section][data-motion-visible="true"] .about-info > div:not(.panel-title),
-.about-workspace [data-motion-section][data-motion-visible="true"] .about-commands button,
 .about-workspace [data-motion-section][data-motion-visible="true"] .principles > div:not(.section-command) {
   opacity: 0;
   animation: terminal-line 190ms var(--ease-terminal) both;
@@ -8097,8 +8051,7 @@ button {
   .about-workspace {
     overflow: auto;
   }
-  .about-grid,
-  .about-commands {
+  .about-grid {
     min-width: 1298px;
   }
 }
@@ -8140,15 +8093,8 @@ button {
   .learning strong,
   .diagnostics > div:not(.panel-title),
   .diagnostics em,
-  .about-info > div:not(.panel-title),
-  .about-commands > span {
+  .about-info > div:not(.panel-title) {
     font-size: 9px;
-  }
-  .about-commands button {
-    font-size: 9px;
-  }
-  .about-commands button small {
-    font-size: 8px;
   }
 }
 @media (max-width: 760px) {
@@ -8190,20 +8136,6 @@ button {
   }
   .about-info {
     min-height: 250px;
-  }
-  .about-commands {
-    min-width: 0;
-    margin-top: 7px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: auto;
-  }
-  .about-commands > span {
-    grid-column: span 2;
-    min-width: 0;
-  }
-  .about-commands button {
-    max-width: none;
   }
   .about-shell .topbar .search {
     display: none;
@@ -8608,7 +8540,6 @@ button {
   box-shadow: none;
 }
 .about-workspace .stack-grid article,
-.about-workspace .about-commands button,
 .projects-workspace .project-card,
 .projects-workspace .flow-node,
 .projects-workspace .project-gallery figure,
@@ -11619,7 +11550,6 @@ button {
 .landing-shell .command-log i,
 .landing-shell .terminal-prompt > span,
 .landing-shell .identity p > span,
-.landing-shell .about-commands > span > b,
 .landing-shell .projects-command > span > b {
   color: var(--semantic-green);
 }
@@ -11896,18 +11826,15 @@ button {
   color: var(--semantic-amber);
 }
 
-.landing-shell .about-commands button,
 .landing-shell .projects-command button {
   color: var(--text-secondary);
   text-shadow: none;
 }
 
-.landing-shell .about-commands button b,
 .landing-shell .projects-command button b {
   color: var(--semantic-cyan);
 }
 
-.landing-shell .about-commands button small,
 .landing-shell .projects-command button small {
   color: var(--text-muted);
 }

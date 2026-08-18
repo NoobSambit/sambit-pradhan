@@ -1,7 +1,6 @@
 import { Footer } from "@/components/os/Footer";
 import { Header } from "@/components/os/Header";
 import {
-  AboutCommands,
   AboutContent,
   AboutInfo,
   LearningAndDiagnostics,
@@ -59,7 +58,6 @@ export default function Home() {
                 <AboutInfo />
               </div>
             </div>
-            <AboutCommands />
           </section>
           <ProjectsWorkspace />
         </div>

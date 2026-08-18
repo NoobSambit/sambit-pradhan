@@ -229,26 +229,3 @@ export function AboutInfo() {
     </section>
   );
 }
-
-export function AboutCommands() {
-  return (
-    <section className="about-commands panel" data-motion-section="about-commands">
-      <span>
-        <b>developer@sambit:~/profile</b>$ <i>▌</i>
-      </span>
-      {[
-        ["cat experience.md", "View detailed timeline"],
-        ["open resume.pdf", "Open resume"],
-        ["ls certifications/", "View certifications"],
-        ["cat strengths.txt", "View strengths"],
-        ["goto projects/", "Explore projects"],
-        ["help", "Show commands"],
-      ].map(([cmd, text]) => (
-        <button key={cmd}>
-          <b>{cmd}</b>
-          <small>{text}</small>
-        </button>
-      ))}
-    </section>
-  );
-}
