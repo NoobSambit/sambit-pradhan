@@ -28,26 +28,24 @@ export function Terminal() {
       </div>
       <h1>
         <span className="hero-line" style={motionStyle(0)}>
-          I design scalable backend systems,
+          I build <span className="hero-highlight hero-cyan">backend-heavy</span> products,
         </span>
         <br />
         <span className="hero-line" style={motionStyle(1)}>
-          distributed architectures,
+          design the systems behind them,
         </span>
         <br />
         <span className="hero-line" style={motionStyle(2)}>
-          and <span className="hero-highlight">AI-powered</span> products
+          and keep pushing past the
         </span>
         <br />
         <span className="hero-line" style={motionStyle(3)}>
-          that run in <strong className="hero-highlight">production.</strong>
+          <span className="hero-highlight">“good enough”</span> version.
         </span>
       </h1>
       <p data-motion="supporting">
-        Backend engineer with a product mindset.
-        <br />I architect reliable systems, build APIs, and
-        <br />
-        ship solutions that create real impact.
+        2026 CSE graduate. I mostly work on backend-heavy
+        <br />products and the system logic that makes them hold together.
       </p>
       <div className="terminal-actions" data-motion="supporting">
         <button className="primary">› Explore Projects</button>
@@ -60,9 +58,14 @@ export function Terminal() {
           <i>developer@sambit:~$</i> cat currently_building.md
         </p>
         <p>
-          　› DevFlow — AI Copilot Platform for Engineering Teams
+          　› AgentProof
           <br />
-          　› Real-time codebase understanding and autonomous task execution
+          　　CLI verification for agent-written code
+          <br />
+          <br />
+          　› Agent Playground
+          <br />
+          　　inspectable agents, persistent state, migration work
         </p>
         <p>
           <i>developer@sambit:~$</i> git status
@@ -78,17 +81,17 @@ export function Terminal() {
           <i>developer@sambit:~$</i> tree projects/
         </p>
         <p className="tree">
-          devflow/　 api-gateway/　 auth-service/　 event-stream/　
-          analytics-pipeline/
+          agentproof/　 agent-playground/　 armyverse/　 gym-tracker/
+          kisansetu/
         </p>
         <p>
           <i>developer@sambit:~$</i> whoami
         </p>
         <p>
-          Sambit · Backend Engineer · System Architect · Problem Solver
+          Sambit · Backend Engineer · 2026 CSE Grad
           <br />
           <span className="green">
-            Building reliable systems that make an impact.
+            Usually somewhere between product logic and backend code.
           </span>
         </p>
         <p>

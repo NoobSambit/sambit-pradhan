@@ -312,6 +312,9 @@ button {
 .terminal h1 .hero-highlight {
   color: var(--purple);
 }
+.terminal h1 .hero-cyan {
+  color: var(--cyan);
+}
 .terminal h1 strong {
   color: var(--green);
   font-weight: 600;
