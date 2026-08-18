@@ -161,61 +161,41 @@ export function TechnologyStack() {
 }
 
 export function LearningAndDiagnostics() {
-  const learning = [
-    ["Distributed Systems", 68, "High"],
-    ["Kubernetes", 54, "High"],
-    ["Cloud Infrastructure", 62, "High"],
-    ["LLM Engineering", 71, "High"],
-    ["System Design", 60, "Medium"],
-    ["High Performance APIs", 78, "Medium"],
-  ] as const;
-  const health = [
-    ["Backend Engineering", 92],
-    ["System Design", 88],
-    ["API Design", 90],
-    ["Performance", 82],
-    ["Developer Experience", 85],
-    ["AI Integration", 80],
+  const habits = [
+    ["project_horizon", "months > weekends"],
+    ["iteration_mode", "ship → test → revisit"],
+    ["default_focus", "product logic"],
+    ["backend_bias", "strong"],
+    ["current_rabbit_hole", "CLI verification"],
+    ["stop_condition", 'not "works on my machine"'],
   ] as const;
   return (
     <>
       <section className="learning panel" data-motion-section="about-learning">
-        <div className="panel-title">
-          $ learning --roadmap <small>Progress　 Priority</small>
+        <div className="panel-title">$ learning --now</div>
+        <div className="learning-note">
+          <span>system_design</span>
+          <b>active</b>
         </div>
-        {learning.map(([name, value, priority], index) => (
-          <div key={name} style={motionStyle(index)}>
-            <span>{name}</span>
-            <i>
-                <b style={{ "--bar-level": `${value}%` } as React.CSSProperties} />
-            </i>
-            <em>{value}%</em>
-            <strong className={priority === "High" ? "high" : "medium"}>
-              {priority}
-            </strong>
-          </div>
-        ))}
+        <div className="learning-note">
+          <span>cli_tooling</span>
+          <b>active</b>
+        </div>
+        <div className="learning-note">
+          <span>code_review_systems</span>
+          <b>active</b>
+        </div>
+        <div className="learning-note">
+          <span>security_review</span>
+          <b>exploring</b>
+        </div>
       </section>
       <section className="diagnostics panel" data-motion-section="about-diagnostics">
-        <div className="panel-title">$ diagnostics --profile</div>
-        {health.map(([label, value], rowIndex) => (
+        <div className="panel-title">$ diagnostics --habits</div>
+        {habits.map(([label, value], rowIndex) => (
           <div key={label} style={motionStyle(rowIndex)}>
             <span>{label}</span>
-            <i>
-              {Array.from({ length: 10 }).map((_, index) => (
-                <b
-                  className={index < Math.round(value / 10) ? "full" : ""}
-                  style={
-                    {
-                      "--motion-index": index,
-                      "--motion-row": rowIndex,
-                    } as React.CSSProperties
-                  }
-                  key={index}
-                />
-              ))}
-            </i>
-            <em>{value}%</em>
+            <b>{value}</b>
           </div>
         ))}
       </section>

@@ -87,11 +87,9 @@ export const skills = [
   "ESLint",
 ];
 
-export const roadmap = [
-  ["Distributed Systems", 70],
-  ["Kubernetes", 45],
-  ["System Design", 90],
-  ["Event Driven Arch", 55],
-  ["LLM Engineering", 40],
-  ["Cloud Infrastructure", 50],
+export const learningNow = [
+  ["System Design", "ACTIVE", 70],
+  ["CLI Tooling", "ACTIVE", 80],
+  ["Code Review Systems", "ACTIVE", 70],
+  ["Security Review", "EXPLORING", 50],
 ] as const;

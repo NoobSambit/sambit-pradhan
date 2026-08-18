@@ -1,4 +1,4 @@
-import { roadmap, skills } from "@/data/dashboard";
+import { learningNow, skills } from "@/data/dashboard";
 import {
   LiveActivityStreaks,
   LiveGitLog,
@@ -111,17 +111,20 @@ export function Skills() {
 export function Roadmap() {
   return (
     <section className="roadmap panel" data-motion-section="overview-roadmap">
-      <PanelTitle>learning --roadmap</PanelTitle>
-      {roadmap.map(([label, value], index) => (
+      <PanelTitle>learning --now</PanelTitle>
+      {learningNow.map(([label, status, attention], index) => (
         <div key={label} style={motionStyle(index)}>
           <span>{label}</span>
           <b>
-            <i style={{ "--bar-level": `${value}%` } as React.CSSProperties} />
+            <i
+              style={{ "--bar-level": `${attention}%` } as React.CSSProperties}
+              aria-hidden="true"
+            />
           </b>
-          <small>{value}%</small>
+          <small>{status}</small>
         </div>
       ))}
-      <footer>2 active courses</footer>
+      <footer>current attention</footer>
     </section>
   );
 }

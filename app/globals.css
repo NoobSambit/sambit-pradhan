@@ -2008,6 +2008,18 @@ button {
   padding: 0 13px;
   font-size: 8px;
 }
+.learning .learning-note {
+  grid-template-columns: 1fr auto;
+}
+.learning .learning-note b {
+  color: #8ecf62;
+  font-size: 8px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.learning .learning-note:last-child b {
+  color: #e5bb58;
+}
 .learning i {
   height: 3px;
   background: #263943;
@@ -2036,11 +2048,22 @@ button {
 }
 .diagnostics > div:not(.panel-title) {
   display: grid;
-  grid-template-columns: 1fr 96px 29px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
   align-items: center;
   padding: 0 12px;
   height: 24px;
   font-size: 8px;
+}
+.diagnostics > div:not(.panel-title) > span {
+  color: #aeb9bf;
+}
+.diagnostics > div:not(.panel-title) > b {
+  overflow: hidden;
+  color: #cbd8dc;
+  font-weight: 500;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .diagnostics i {
   display: flex;
