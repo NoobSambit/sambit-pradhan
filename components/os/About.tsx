@@ -1,4 +1,9 @@
-import { career, profileDetails, stackGroups } from "@/data/about";
+import {
+  career,
+  engineeringConfig,
+  profileDetails,
+  stackGroups,
+} from "@/data/about";
 import {
   TerminalIcon,
   type TerminalIconName,
@@ -116,17 +121,8 @@ export function AboutContent() {
         ))}
       </div>
       <div className="principles">
-        <div className="section-command">$ cat values.conf</div>
-        {[
-          ["performance", "enabled"],
-          ["maintainability", "enabled"],
-          ["scalability", "enabled"],
-          ["developer_experience", "enabled"],
-          ["observability", "enabled"],
-          ["security", "enabled"],
-          ["simplicity", "enabled"],
-          ["continuous_learning", "enabled"],
-          ].map(([key, value], index) => (
+        <div className="section-command">$ cat engineering.conf</div>
+        {engineeringConfig.map(([key, value], index) => (
           <div key={key} style={motionStyle(index)}>
             <span>{key}</span>
             <i>=</i>
