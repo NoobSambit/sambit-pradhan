@@ -701,20 +701,12 @@ export function AboutIDEWorkspace() {
                   <span className="comment">/**</span>
                 </li>
                 <li>
-                  <span className="comment"> * Developer Introduction</span>
-                </li>
-                <li>
-                  <span className="comment"> * Last Updated: 2026-07-18</span>
-                </li>
-                <li>
-                  <span className="comment"> * Git Author: Sambit Pradhan</span>
+                  <span className="comment"> * introduction.ts</span>
                 </li>
                 <li>
                   <span className="comment">
-                    {" "}
-                    * Purpose: Structured representation of{" "}
+                    {" "}* the short version of the person behind the repos
                   </span>
-                  <span className="green-code">my engineering identity</span>
                 </li>
                 <li>
                   <span className="comment"> */</span>
@@ -722,136 +714,166 @@ export function AboutIDEWorkspace() {
                 <li />
                 <li>
                   <span className="keyword">export const</span>{" "}
-                  <span className="function">introduction</span> = () =&gt;{" "}
-                  {"{"}
-                </li>
-                <li />
-                <li>
-                  <span className="comment"> // ▼ Introduction</span>
+                  <span className="variable">sambit</span> = {"{"}
                 </li>
                 <li>
-                  <span className="keyword"> const</span>{" "}
-                  <span className="variable">engineer</span> = {"{"}
-                </li>
-                <li>
-                  {" "}
+                  {"  "}
                   <span className="property">name</span>:{" "}
                   <span className="string">"Sambit Pradhan"</span>,
                 </li>
                 <li>
-                  {" "}
-                  <span className="property">role</span>:{" "}
+                  {"  "}
+                  <span className="property">primaryRole</span>:{" "}
                   <span className="string">"Backend Engineer"</span>,
                 </li>
                 <li>
-                  {" "}
-                  <span className="property">mindset</span>:{" "}
-                  <span className="string">"production_first"</span>,{" "}
-                  <span className="comment">// Ship reliable systems</span>
+                  {"  "}
+                  <span className="property">secondaryRole</span>:{" "}
+                  <span className="string">"Full-Stack Engineer"</span>,
                 </li>
                 <li>
-                  {" "}
-                  <span className="property">architecture</span>:{" "}
-                  <span className="string">"scalable_by_design"</span>,{" "}
-                  <span className="comment">
-                    // Think long-term, build modular
-                  </span>
+                  {"  "}
+                  <span className="property">education</span>: {"{"}
                 </li>
                 <li>
-                  {" "}
-                  <span className="property">focus</span>:{" "}
-                  <span className="string">"backend_engineering"</span>,{" "}
-                  <span className="comment">
-                    // APIs, services, data &amp; infra
-                  </span>
+                  {"    "}
+                  <span className="property">university</span>:{" "}
+                  <span className="string">"Vellore Institute of Technology"</span>,
                 </li>
                 <li>
-                  {" "}
-                  <span className="property">passion</span>: [
-                  <span className="string">"problem_solving"</span>,{" "}
-                  <span className="string">"automation"</span>,{" "}
-                  <span className="string">"ai_infrastructure"</span>],
+                  {"    "}
+                  <span className="property">degree</span>:{" "}
+                  <span className="string">"B.Tech · Computer Science &amp; Engineering"</span>,
                 </li>
                 <li>
-                  {" "}
-                  <span className="property">currentLearning</span>: [
+                  {"    "}
+                  <span className="property">graduation</span>: 2026,
                 </li>
                 <li>
-                  {" "}
-                  <span className="string">"advanced_frontend"</span>,
+                  <span className="string">{"  },"}</span>
                 </li>
                 <li>
-                  {" "}
-                  <span className="string">"distributed_systems"</span>,
+                  {"  "}
+                  <span className="property">careerStage</span>:{" "}
+                  <span className="string">"2026 graduate / fresher"</span>,
                 </li>
                 <li>
-                  {" "}
-                  <span className="string">"kubernetes"</span>,
-                </li>
-                <li>
-                  {" "}
-                  <span className="string">"system_design"</span>
-                </li>
-                <li> ],</li>
-                <li>
-                  {" "}
+                  {"  "}
                   <span className="property">location</span>:{" "}
                   <span className="string">"Kolkata, India"</span>,
                 </li>
                 <li>
-                  {" "}
+                  {"  "}
                   <span className="property">status</span>:{" "}
-                  <span className="string">"open_to_opportunities"</span>
+                  <span className="string">"open_to_opportunities"</span>,
                 </li>
-                <li> {"}"};</li>
+                <li>
+                  <span className="string">{"};"}</span>
+                </li>
                 <li />
                 <li>
-                  <span className="comment"> // ▼ Engineering Philosophy</span>
+                  <span className="keyword">export const</span>{" "}
+                  <span className="variable">builder</span> = {"{"}
                 </li>
-                <li>
-                  <span className="keyword"> const</span>{" "}
-                  <span className="variable">philosophy</span> = {"{"}
-                </li>
-                <li>
-                  {" "}
-                  <span className="property">code</span>:{" "}
-                  <span className="string">
-                    "Clean, readable, and maintainable"
-                  </span>
-                  ,
-                </li>
-                <li>
-                  {" "}
-                  <span className="property">systems</span>:{" "}
-                  <span className="string">
-                    "Scalable, observable, and resilient"
-                  </span>
-                  ,
-                </li>
-                <li>
-                  {" "}
-                  <span className="property">approach</span>:{" "}
-                  <span className="string">
-                    "Solve real problems with elegant abstractions"
-                  </span>
-                  ,
-                </li>
-                <li>
-                  {" "}
-                  <span className="property">belief</span>:{" "}
-                  <span className="string">
-                    "Developer experience is product experience"
-                  </span>
-                </li>
-                <li> {"}"};</li>
                 <li />
                 <li>
-                  <span className="comment"> // ▸ Personal Interests</span>
+                  {"  "}
+                  <span className="property">strongestAt</span>:{" "}
+                  <span className="string">"backend"</span>,
                 </li>
                 <li>
-                  <span className="comment"> // ▸ Future Goals</span>
+                  {"  "}
+                  <span className="property">favoritePart</span>: [
                 </li>
-                <li>{"}"};</li>
+                <li>
+                  {"    "}
+                  <span className="string">"product logic"</span>,
+                </li>
+                <li>
+                  {"    "}
+                  <span className="string">"architecture"</span>,
+                </li>
+                <li>
+                  {"    "}
+                  <span className="string">"planning"</span>,
+                </li>
+                <li>
+                  {"  ],"}
+                </li>
+                <li>
+                  {"  "}
+                  <span className="property">startsWith</span>:{" "}
+                  <span className="string">"a problem worth solving"</span>,
+                </li>
+                <li>
+                  {"  "}
+                  <span className="property">prefers</span>:{" "}
+                  <span className="string">"building from scratch"</span>,
+                </li>
+                <li>
+                  {"  "}
+                  <span className="property">problemSpace</span>:{" "}
+                  <span className="string">"useful products — not only developer tools"</span>,
+                </li>
+                <li>
+                  {"  "}
+                  <span className="property">planningTime</span>:{" "}
+                  <span className="string">"probably too much"</span>,
+                </li>
+                <li>
+                  {"  "}
+                  <span className="property">qualityBar</span>:{" "}
+                  <span className="string">"working !== finished"</span>,
+                </li>
+                <li>
+                  {"  "}
+                  <span className="property">frontend</span>:
+                </li>
+                <li>
+                  {"    "}
+                  <span className="string">
+                    "not my strongest side; still not allowed to feel half-done"
+                  </span>,
+                </li>
+                <li>
+                  <span className="string">{"};"}</span>
+                </li>
+                <li />
+                <li>
+                  <span className="keyword">export const</span>{" "}
+                  <span className="variable">notes</span> = [
+                </li>
+                <li>
+                  {"  "}
+                  <span className="string">
+                    "I like products that have a reason to exist outside a demo."
+                  </span>,
+                </li>
+                <li>
+                  {"  "}
+                  <span className="string">
+                    "I spend a lot of time on the idea, product flow and architecture before the implementation gets serious."
+                  </span>,
+                </li>
+                <li>
+                  {"  "}
+                  <span className="string">
+                    "Backend is where I'm most comfortable, but I care about the whole product."
+                  </span>,
+                </li>
+                <li>
+                  {"  "}
+                  <span className="string">
+                    "If something works and still feels wrong, I usually keep going until it doesn't."
+                  </span>,
+                </li>
+                <li>
+                  {"  "}
+                  <span className="string">
+                    "I'd rather spend months pushing one original build than collect tutorial clones."
+                  </span>,
+                </li>
+                <li>];</li>
               </ol>
               {activeFile !== "introduction.ts" && (
                 <div className="ide-coming-soon">
