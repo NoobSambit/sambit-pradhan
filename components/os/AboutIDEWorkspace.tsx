@@ -694,7 +694,7 @@ export function AboutIDEWorkspace() {
             >
               <ol
                 className="ide-code"
-                aria-label="Introduction TypeScript source code"
+                aria-label="Sambit Pradhan developer introduction TypeScript source"
               >
                 <li>
                   <span className="comment">/**</span>
@@ -937,16 +937,19 @@ export function AboutIDEWorkspace() {
                   <strong>developer@sambit:~/about</strong>$ npm run about
                 </p>
                 <p>
-                  [10:42:28]　<span>✓</span> Introduction loaded
+                  [time]　<span>✓</span> Profile loaded
                 </p>
                 <p>
-                  [10:42:28]　<span>✓</span> Engineering philosophy loaded
+                  [time]　<span>✓</span> Education loaded
                 </p>
                 <p>
-                  [10:42:28]　<span>✓</span> Workspace initialized
+                  [time]　<span>✓</span> Build preferences loaded
                 </p>
                 <p>
-                  [10:42:28]　<span>✓</span> Ready.
+                  [time]　<span>✓</span> Opportunity status loaded
+                </p>
+                <p>
+                  [time]　<span>✓</span> Workspace ready
                 </p>
                 <p>
                   <strong>developer@sambit:~/about</strong>${" "}
