@@ -14,14 +14,13 @@ const explorerFiles = [
 ];
 const tags = [
   "Backend",
-  "System Design",
-  "AI",
-  "Scalability",
-  "Performance",
-  "Developer Experience",
-  "Distributed Systems",
-  "Architecture",
-  "Production Ready",
+  "Full Stack",
+  "Product Logic",
+  "Product Planning",
+  "Original Builds",
+  "2026 Graduate",
+  "Open to Work",
+  "From Scratch",
 ];
 
 type ActivityIconName =
@@ -963,17 +962,15 @@ export function AboutIDEWorkspace() {
             </header>
             <InspectorSection title="FILE INFO">
               <KeyValue label="Language" value="TypeScript" />
-              <KeyValue label="Lines" value="182" />
-              <KeyValue label="Functions" value="9" />
-              <KeyValue label="Interfaces" value="3" />
-              <KeyValue label="Comments" value="42%" />
+              <KeyValue label="File" value="introduction.ts" />
+              <KeyValue label="Type" value="Developer profile" />
+              <KeyValue label="Stage" value="2026 Graduate" />
+              <KeyValue label="Status" value="Current" />
+              <KeyValue label="Updated" value="Aug 2026" />
             </InspectorSection>
             <InspectorSection title="GIT">
-              <KeyValue label="Current Branch" value="⌘　about-v2" />
-              <KeyValue
-                label="Latest Commit"
-                value="◉　refactor: developer story"
-              />
+              <KeyValue label="Current Branch" value="main" />
+              <KeyValue label="Latest Change" value="content: rewrite introduction" />
               <KeyValue
                 label="Status"
                 value={<span className="green">● Clean</span>}
@@ -983,7 +980,7 @@ export function AboutIDEWorkspace() {
               <div className="ide-tags">
                 {tags.map((tag) => (
                   <span
-                    className={tag === "Production Ready" ? "ready" : ""}
+                    className={tag === "Open to Work" ? "ready" : ""}
                     key={tag}
                   >
                     {tag}
@@ -994,13 +991,16 @@ export function AboutIDEWorkspace() {
             <InspectorSection title="CURRENT FOCUS">
               <div className="ide-focus">
                 <p>
-                  Building　 <b>▱ Developer Operating System</b>
+                  Building　 <b>AgentProof</b>
+                </p>
+                <p>
+                  Learning　 <b>System Design</b>
+                </p>
+                <p>
+                  Exploring　 <b>CLI verification</b>
                 </p>
                 <p>
                   Status　　<span className="green">● Active</span>
-                </p>
-                <p>
-                  Sprint　　 <b>Week 3 of 4　　━━━</b>
                 </p>
               </div>
             </InspectorSection>
