@@ -486,29 +486,26 @@ function CareerHistoryWorkspace({
           <header>$ cat values.yaml</header>
           <pre>
             <span className="tok-keyword">values</span>: {"\n  "}
-            <span className="tok-key">clarity</span>:{" "}
-            <span className="tok-boolean">true</span>
-            {"\n  "}
-            <span className="tok-key">ownership</span>:{" "}
-            <span className="tok-boolean">true</span>
-            {"\n  "}
-            <span className="tok-key">curiosity</span>:{" "}
-            <span className="tok-boolean">true</span>
-            {"\n  "}
-            <span className="tok-key">craftsmanship</span>:{" "}
-            <span className="tok-boolean">true</span>
+            <span className="tok-key">architecture</span>:{" "}
+            <span className="tok-string">protect</span>
             {"\n  "}
             <span className="tok-key">shipping</span>:{" "}
-            <span className="tok-boolean">true</span>
+            <span className="tok-string">move_fast</span>
             {"\n  "}
-            <span className="tok-key">patience</span>:{" "}
-            <span className="tok-boolean">true</span>
+            <span className="tok-key">ui_ux</span>:{" "}
+            <span className="tok-string">product_work</span>
             {"\n  "}
-            <span className="tok-key">ego</span>:{" "}
-            <span className="tok-false">false</span>
+            <span className="tok-key">complexity</span>:{" "}
+            <span className="tok-string">earned</span>
             {"\n  "}
-            <span className="tok-key">impact</span>:{" "}
-            <span className="tok-boolean">true</span>
+            <span className="tok-key">ai</span>:{" "}
+            <span className="tok-string">decisions_owned</span>
+            {"\n  "}
+            <span className="tok-key">learning</span>:{" "}
+            <span className="tok-string">build_driven</span>
+            {"\n  "}
+            <span className="tok-key">originality</span>:{" "}
+            <span className="tok-string">preferred</span>
           </pre>
         </section>
         <section className="career-history-terminal">
