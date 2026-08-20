@@ -52,9 +52,20 @@ const personalityTags = [
   "Product Polish",
   "Self-Aware",
 ];
+const visionTags = [
+  "Product",
+  "Market Research",
+  "Backend",
+  "Startups",
+  "Long-Horizon",
+  "Ownership",
+  "Learning",
+  "Useful Software",
+];
 const implementedFiles = [
   "introduction.ts",
   "engineering.ts",
+  "vision.ts",
   "values.ts",
   "personality.ts",
 ] as const;
@@ -1889,6 +1900,465 @@ function PersonalitySource() {
   );
 }
 
+function VisionSource() {
+  return (
+    <ol
+      className="ide-code"
+      aria-label="Sambit Pradhan product vision TypeScript source"
+    >
+      <li>
+        <span className="comment">/**</span>
+      </li>
+      <li>
+        <span className="comment"> * vision.ts</span>
+      </li>
+      <li>
+        <span className="comment">
+          {" "}* what I think is worth building, and where I'm trying to go
+        </span>
+      </li>
+      <li>
+        <span className="comment"> */</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">products</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">category</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"secondary"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">requirement</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"the product needs a reason to exist"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">audience</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "developers, consumers, communities — depends on the problem"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">technicalNovelty</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"optional"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">usefulness</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"not optional"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">projectHorizon</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"the problem decides"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">timeBudget</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "if the right version takes months, it takes months"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">versionOne</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"a checkpoint, not the reason to leave"</span>,
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">productFilter</span> = [
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"does the problem actually exist?"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">
+          "who already cares enough to solve it somehow?"
+        </span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">
+          "what do existing products still get wrong?"
+        </span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"is there enough depth beyond the MVP?"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">
+          "would I still care about this six months from now?"
+        </span>,
+      </li>
+      <li>];</li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">market</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">demand</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"evidence that the problem isn't imaginary"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">signals</span>: [
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"existing products"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "communities already discussing the problem"
+        </span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "awkward workarounds people rely on"
+        </span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"user feedback"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"gaps that keep showing up"</span>,
+      </li>
+      <li>
+        {"  ],"}
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">personalPain</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "a useful signal, not market research by itself"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">competition</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "proof that someone cares; the question is whether I have a reason to build another version"
+        </span>,
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">career</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">preferredEnvironment</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"startup / small product team"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">why</span>: [
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"closer to the product"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"more ownership"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "shorter distance between a decision and its consequence"
+        </span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"more surface area to learn from"</span>,
+      </li>
+      <li>
+        {"  ],"}
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">condition</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "I still need to care about what we're building"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">mustHave</span>: [
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"people I can learn from"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "a team that actually cares about the work"
+        </span>,
+      </li>
+      <li>
+        {"  ],"}
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">dealBreakers</span>: [
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"low learning ceiling"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"weak team"</span>,
+      </li>
+      <li>
+        {"  ],"}
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">founder</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">someday</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"I'd like to try"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">appeal</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "I like the product ownership more than the title"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">currentConfidence</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "higher in building products than in leading a company"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">rightNow</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "I'd rather earn the engineering depth first"
+        </span>,
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">nextStep</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">role</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"engineer first"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">environment</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "somewhere my current habits get challenged by engineers better than me"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">ownership</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"as much as I've earned"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">title</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "secondary to the kind of problems I'm working on"
+        </span>,
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">longTerm</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">direction</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "strong backend engineer who can still think about the whole product"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">goal</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "become the engineer who can take a hard product from vague idea to something people actually use"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">fixedPlan</span>:{" "}
+        <span className="green-code">false</span>,
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">shortVersion</span> = [
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"build things worth maintaining"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"let the problem decide the timeline"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">
+          "use market research to kill imaginary problems early"
+        </span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"stay close to the product"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"work around people better than me"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"earn depth before chasing titles"</span>,
+      </li>
+      <li>];</li>
+    </ol>
+  );
+}
+
 export function AboutIDEWorkspace() {
   const [activeFile, setActiveFile] = useState("introduction.ts");
   const [openFiles, setOpenFiles] = useState([
@@ -1902,9 +2372,10 @@ export function AboutIDEWorkspace() {
     setOpenFiles((files) => (files.includes(file) ? files : [...files, file]));
   };
   const isEngineering = activeFile === "engineering.ts";
+  const isVision = activeFile === "vision.ts";
   const isValues = activeFile === "values.ts";
   const isPersonality = activeFile === "personality.ts";
-  const isLongSource = isEngineering || isValues || isPersonality;
+  const isLongSource = isEngineering || isVision || isValues || isPersonality;
   const isImplemented = implementedFiles.some((file) => file === activeFile);
 
   return (
@@ -2055,9 +2526,10 @@ export function AboutIDEWorkspace() {
               className={`ide-editor ${isImplemented ? "" : "pending"}`}
             >
               {isEngineering && <EngineeringSource />}
+              {isVision && <VisionSource />}
               {isValues && <ValuesSource />}
               {isPersonality && <PersonalitySource />}
-              {!isEngineering && !isValues && !isPersonality && (
+              {!isEngineering && !isVision && !isValues && !isPersonality && (
                 <ol
                 className="ide-code"
                 aria-label={
