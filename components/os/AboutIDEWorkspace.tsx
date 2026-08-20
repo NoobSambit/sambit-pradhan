@@ -2774,15 +2774,35 @@ export function AboutIDEWorkspace() {
               <div>
                 <p>
                   <strong>developer@sambit:~/about</strong>
-                  {isPersonality
-                    ? "$ npm run about -- personality"
-                    : isValues
-                      ? "$ npm run about -- values"
-                      : isEngineering
-                        ? "$ npm run about -- engineering"
-                        : "$ npm run about"}
+                  {isVision
+                    ? "$ npm run about -- vision"
+                    : isPersonality
+                      ? "$ npm run about -- personality"
+                      : isValues
+                        ? "$ npm run about -- values"
+                        : isEngineering
+                          ? "$ npm run about -- engineering"
+                          : "$ npm run about"}
                 </p>
-                {isPersonality ? (
+                {isVision ? (
+                  <>
+                    <p>
+                      [time]　<span>✓</span> Product filter loaded
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> Market assumptions checked
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> Founder certainty not found
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> Career direction loaded
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> vision.ts ready
+                    </p>
+                  </>
+                ) : isPersonality ? (
                   <>
                     <p>
                       [time]　<span>✓</span> Traits loaded
@@ -2868,7 +2888,15 @@ export function AboutIDEWorkspace() {
               INSPECTOR <span>⌘　⌗　◎</span>
             </header>
             <InspectorSection title="FILE INFO">
-              {isPersonality ? (
+              {isVision ? (
+                <>
+                  <KeyValue label="Language" value="TypeScript" />
+                  <KeyValue label="File" value="vision.ts" />
+                  <KeyValue label="Type" value="Direction" />
+                  <KeyValue label="Horizon" value="Long" />
+                  <KeyValue label="Status" value="Not hardcoded" />
+                </>
+              ) : isPersonality ? (
                 <>
                   <KeyValue label="Language" value="TypeScript" />
                   <KeyValue label="File" value="personality.ts" />
@@ -2908,13 +2936,15 @@ export function AboutIDEWorkspace() {
               <KeyValue
                 label="Latest Change"
                 value={
-                  isPersonality
-                    ? "docs: add actual personality"
-                    : isValues
-                      ? "refactor: remove generic values"
-                      : isEngineering
-                        ? "docs: engineering process"
-                        : "content: rewrite introduction"
+                  isVision
+                    ? "docs: define direction"
+                    : isPersonality
+                      ? "docs: add actual personality"
+                      : isValues
+                        ? "refactor: remove generic values"
+                        : isEngineering
+                          ? "docs: engineering process"
+                          : "content: rewrite introduction"
                 }
               />
               <KeyValue
@@ -2924,24 +2954,28 @@ export function AboutIDEWorkspace() {
             </InspectorSection>
             <InspectorSection title="ENGINEERING TAGS">
               <div className="ide-tags">
-                {(isPersonality
-                  ? personalityTags
-                  : isValues
-                    ? valuesTags
-                    : isEngineering
-                      ? engineeringTags
-                      : tags
+                {(isVision
+                  ? visionTags
+                  : isPersonality
+                    ? personalityTags
+                    : isValues
+                      ? valuesTags
+                      : isEngineering
+                        ? engineeringTags
+                        : tags
                 ).map((tag) => (
                   <span
                     className={
                       tag ===
-                        (isPersonality
-                          ? "Self-Aware"
-                          : isValues
-                            ? "Trade-offs"
-                            : isEngineering
-                              ? "AI-Assisted"
-                              : "Open to Work")
+                        (isVision
+                          ? "Useful Software"
+                          : isPersonality
+                            ? "Self-Aware"
+                            : isValues
+                              ? "Trade-offs"
+                              : isEngineering
+                                ? "AI-Assisted"
+                                : "Open to Work")
                         ? "ready"
                         : ""
                     }
@@ -2954,15 +2988,32 @@ export function AboutIDEWorkspace() {
             </InspectorSection>
             <InspectorSection
               title={
-                isPersonality
-                  ? "CURRENT STATE"
-                  : isValues
-                    ? "CURRENT PRIORITY"
-                    : "CURRENT FOCUS"
+                isVision
+                  ? "CURRENT DIRECTION"
+                  : isPersonality
+                    ? "CURRENT STATE"
+                    : isValues
+                      ? "CURRENT PRIORITY"
+                      : "CURRENT FOCUS"
               }
             >
               <div className="ide-focus">
-                {isPersonality ? (
+                {isVision ? (
+                  <>
+                    <p>
+                      Role　　　<b>Engineer</b>
+                    </p>
+                    <p>
+                      Environment　 <b>Startup / Product</b>
+                    </p>
+                    <p>
+                      Priority　 <b>Learning + Team</b>
+                    </p>
+                    <p>
+                      Horizon　 <b>Keep building</b>
+                    </p>
+                  </>
+                ) : isPersonality ? (
                   <>
                     <p>
                       Mode　　 <b>Building</b>
