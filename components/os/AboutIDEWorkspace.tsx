@@ -22,6 +22,17 @@ const tags = [
   "Open to Work",
   "From Scratch",
 ];
+const engineeringTags = [
+  "Product Research",
+  "Product Logic",
+  "Architecture",
+  "PRDs",
+  "Backend",
+  "Testing",
+  "Refactoring",
+  "AI-Assisted",
+];
+const implementedFiles = ["introduction.ts", "engineering.ts"] as const;
 
 type ActivityIconName =
   | "explorer"
@@ -532,6 +543,500 @@ function CareerHistoryWorkspace({
   );
 }
 
+function EngineeringSource() {
+  return (
+    <ol
+      className="ide-code"
+      aria-label="Sambit Pradhan engineering workflow TypeScript source"
+    >
+      <li>
+        <span className="comment">/**</span>
+      </li>
+      <li>
+        <span className="comment"> * engineering.ts</span>
+      </li>
+      <li>
+        <span className="comment">
+          {" "}* how I usually turn an idea into something I'm willing to ship
+        </span>
+      </li>
+      <li>
+        <span className="comment"> */</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">process</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">start</span>: {" "}
+        <span className="string">"the problem, not the stack"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">discovery</span>: [
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"think the idea through on my own first"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "use AI to pressure-test it and dig through the unknowns"
+        </span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "study similar products, APIs and platform constraints"
+        </span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"figure out who would use it and why"</span>,
+      </li>
+      <li>
+        {"  ],"}
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">stack</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"picked after I understand the product"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">planning</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"slow on purpose"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">prd</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "detailed enough that coding isn't where I rediscover the product"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">implementation</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"move fast once the decisions are made"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">validation</span>: [
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"build a useful slice"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"test it"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"fix the assumptions"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"then stack the next phase"</span>,
+      </li>
+      <li>
+        {"  ],"}
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">finish</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"revisit whatever still feels improvised"</span>,
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">oldCode</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">hindsight</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"I can usually see what I didn't know yet."</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">rewriteTriggers</span>: [
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"folders that grew without a plan"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"logic that should have been split sooner"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"UI I wouldn't ship today"</span>,
+      </li>
+      <li>
+        {"  ],"}
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">rule</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"working code isn't protected from being rewritten"</span>,
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">caseStudy</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">project</span>: {" "}
+        <span className="string">"ArmyVerse"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="property">feature</span>: {" "}
+        <span className="string">"playlist → Spotify export"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">firstMiss</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "I designed the MVP before researching Spotify's public-app constraints deeply enough."
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">constraint</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "one development-mode Spotify app wasn't a clean path for a public product"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">response</span>: [
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"added a per-user BYO Spotify app flow"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "let users connect through their own Client ID / optional Client Secret"
+        </span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "encrypted Spotify credentials and refresh tokens at rest"
+        </span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"kept the original owner-account export as a fallback"</span>,
+      </li>
+      <li>
+        {"  ],"}
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">lesson</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "platform constraints belong in product research, not in a surprise after the MVP"
+        </span>,
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">ai</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">take</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "AI can write very strong code now. I still don't let it own the important decisions."
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">usefulFor</span>: [
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"research"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"implementation speed"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"challenging an approach"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"working through unfamiliar territory"</span>,
+      </li>
+      <li>
+        {"  ],"}
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">IStillOwn</span>: [
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"what should exist"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"product trade-offs"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"architecture"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"what gets trusted"</span>,
+      </li>
+      <li>
+        {"  ],"}
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">tradeoffs</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">badHabit</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "I can over-engineer things that deserve a smaller answer"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">evidence</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"this portfolio is probably Exhibit A"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">correction</span>: [
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"start from the product constraint"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"make complexity justify itself"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"prefer the simple path until it stops being enough"</span>,
+      </li>
+      <li>
+        {"  ],"}
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">unknowns</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">policy</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "not knowing the stack yet isn't a reason to cut the idea"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">response</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"learn enough to make the decision, then keep moving"</span>,
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">done</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">working</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"required"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">finished</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"different question"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">definition</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "I can use it without immediately wanting to explain away the rough parts"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">realUsers</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "they find assumptions, edge cases and awkward flows faster than I do"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">withoutUsers</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "still worth building; the feedback loop is just different"
+        </span>,
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">rules</span> = [
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"product before stack"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"research before architecture hardens"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"complexity has to earn its place"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"working !== finished"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">
+          "AI accelerates implementation; decisions still need an owner"
+        </span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"old code is allowed to be rewritten"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"users expose assumptions"</span>,
+      </li>
+      <li>];</li>
+    </ol>
+  );
+}
+
 export function AboutIDEWorkspace() {
   const [activeFile, setActiveFile] = useState("introduction.ts");
   const [openFiles, setOpenFiles] = useState([
@@ -544,6 +1049,8 @@ export function AboutIDEWorkspace() {
     setActiveFile(file);
     setOpenFiles((files) => (files.includes(file) ? files : [...files, file]));
   };
+  const isEngineering = activeFile === "engineering.ts";
+  const isImplemented = implementedFiles.some((file) => file === activeFile);
 
   return (
     <section
@@ -690,11 +1197,17 @@ export function AboutIDEWorkspace() {
               {activeFile}
             </div>
             <section
-              className={`ide-editor ${activeFile === "introduction.ts" ? "" : "pending"}`}
+              className={`ide-editor ${isImplemented ? "" : "pending"}`}
             >
-              <ol
+              {isEngineering && <EngineeringSource />}
+              {!isEngineering && (
+                <ol
                 className="ide-code"
-                aria-label="Sambit Pradhan developer introduction TypeScript source"
+                aria-label={
+                  activeFile === "introduction.ts"
+                    ? "Sambit Pradhan developer introduction TypeScript source"
+                    : `${activeFile} source`
+                }
               >
                 <li>
                   <span className="comment">/**</span>
@@ -873,8 +1386,9 @@ export function AboutIDEWorkspace() {
                   </span>,
                 </li>
                 <li>];</li>
-              </ol>
-              {activeFile !== "introduction.ts" && (
+                </ol>
+              )}
+              {!isImplemented && (
                 <div className="ide-coming-soon">
                   <i>◫</i>
                   <b>{activeFile}</b>
@@ -910,16 +1424,9 @@ export function AboutIDEWorkspace() {
                 )}
               </aside>
               <div className="ide-minimap" aria-hidden="true">
-                <i />
-                <i />
-                <i />
-                <i />
-                <i />
-                <i />
-                <i />
-                <i />
-                <i />
-                <i />
+                {Array.from({ length: isEngineering ? 15 : 10 }, (_, index) => (
+                  <i key={index} />
+                ))}
               </div>
             </section>
             <section className="ide-terminal-panel">
@@ -934,23 +1441,48 @@ export function AboutIDEWorkspace() {
               </header>
               <div>
                 <p>
-                  <strong>developer@sambit:~/about</strong>$ npm run about
+                  <strong>developer@sambit:~/about</strong>
+                  {isEngineering
+                    ? "$ npm run about -- engineering"
+                    : "$ npm run about"}
                 </p>
-                <p>
-                  [time]　<span>✓</span> Profile loaded
-                </p>
-                <p>
-                  [time]　<span>✓</span> Education loaded
-                </p>
-                <p>
-                  [time]　<span>✓</span> Build preferences loaded
-                </p>
-                <p>
-                  [time]　<span>✓</span> Opportunity status loaded
-                </p>
-                <p>
-                  [time]　<span>✓</span> Workspace ready
-                </p>
+                {isEngineering ? (
+                  <>
+                    <p>
+                      [time]　<span>✓</span> Process loaded
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> Case study loaded
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> Trade-offs loaded
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> AI stance loaded
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> engineering.ts ready
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      [time]　<span>✓</span> Profile loaded
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> Education loaded
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> Build preferences loaded
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> Opportunity status loaded
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> Workspace ready
+                    </p>
+                  </>
+                )}
                 <p>
                   <strong>developer@sambit:~/about</strong>${" "}
                   <b className="cursor">▌</b>
@@ -964,16 +1496,35 @@ export function AboutIDEWorkspace() {
               INSPECTOR <span>⌘　⌗　◎</span>
             </header>
             <InspectorSection title="FILE INFO">
-              <KeyValue label="Language" value="TypeScript" />
-              <KeyValue label="File" value="introduction.ts" />
-              <KeyValue label="Type" value="Developer profile" />
-              <KeyValue label="Stage" value="2026 Graduate" />
-              <KeyValue label="Status" value="Current" />
-              <KeyValue label="Updated" value="Aug 2026" />
+              {isEngineering ? (
+                <>
+                  <KeyValue label="Language" value="TypeScript" />
+                  <KeyValue label="File" value="engineering.ts" />
+                  <KeyValue label="Type" value="Working model" />
+                  <KeyValue label="Bias" value="Backend + Product" />
+                  <KeyValue label="Status" value="Always iterating" />
+                </>
+              ) : (
+                <>
+                  <KeyValue label="Language" value="TypeScript" />
+                  <KeyValue label="File" value="introduction.ts" />
+                  <KeyValue label="Type" value="Developer profile" />
+                  <KeyValue label="Stage" value="2026 Graduate" />
+                  <KeyValue label="Status" value="Current" />
+                  <KeyValue label="Updated" value="Aug 2026" />
+                </>
+              )}
             </InspectorSection>
             <InspectorSection title="GIT">
               <KeyValue label="Current Branch" value="main" />
-              <KeyValue label="Latest Change" value="content: rewrite introduction" />
+              <KeyValue
+                label="Latest Change"
+                value={
+                  isEngineering
+                    ? "docs: engineering process"
+                    : "content: rewrite introduction"
+                }
+              />
               <KeyValue
                 label="Status"
                 value={<span className="green">● Clean</span>}
@@ -981,9 +1532,13 @@ export function AboutIDEWorkspace() {
             </InspectorSection>
             <InspectorSection title="ENGINEERING TAGS">
               <div className="ide-tags">
-                {tags.map((tag) => (
+                {(isEngineering ? engineeringTags : tags).map((tag) => (
                   <span
-                    className={tag === "Open to Work" ? "ready" : ""}
+                    className={
+                      tag === (isEngineering ? "AI-Assisted" : "Open to Work")
+                        ? "ready"
+                        : ""
+                    }
                     key={tag}
                   >
                     {tag}
@@ -993,18 +1548,37 @@ export function AboutIDEWorkspace() {
             </InspectorSection>
             <InspectorSection title="CURRENT FOCUS">
               <div className="ide-focus">
-                <p>
-                  Building　 <b>AgentProof</b>
-                </p>
-                <p>
-                  Learning　 <b>System Design</b>
-                </p>
-                <p>
-                  Exploring　 <b>CLI verification</b>
-                </p>
-                <p>
-                  Status　　<span className="green">● Active</span>
-                </p>
+                {isEngineering ? (
+                  <>
+                    <p>
+                      Learning　 <b>System Design</b>
+                    </p>
+                    <p>
+                      Building　 <b>AgentProof</b>
+                    </p>
+                    <p>
+                      Rabbit Hole　 <b>CLI verification</b>
+                    </p>
+                    <p>
+                      Status　　<span className="green">● Active</span>
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      Building　 <b>AgentProof</b>
+                    </p>
+                    <p>
+                      Learning　 <b>System Design</b>
+                    </p>
+                    <p>
+                      Exploring　 <b>CLI verification</b>
+                    </p>
+                    <p>
+                      Status　　<span className="green">● Active</span>
+                    </p>
+                  </>
+                )}
               </div>
             </InspectorSection>
             <InspectorSection title="QUICK ACTIONS">
