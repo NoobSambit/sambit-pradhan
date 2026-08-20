@@ -1904,6 +1904,7 @@ export function AboutIDEWorkspace() {
   const isEngineering = activeFile === "engineering.ts";
   const isValues = activeFile === "values.ts";
   const isPersonality = activeFile === "personality.ts";
+  const isLongSource = isEngineering || isValues || isPersonality;
   const isImplemented = implementedFiles.some((file) => file === activeFile);
 
   return (
@@ -2282,8 +2283,7 @@ export function AboutIDEWorkspace() {
               <div className="ide-minimap" aria-hidden="true">
                 {Array.from(
                   {
-                    length:
-                      isEngineering || isValues || isPersonality ? 15 : 10,
+                    length: isLongSource ? 15 : 10,
                   },
                   (_, index) => <i key={index} />,
                 )}
