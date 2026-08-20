@@ -32,7 +32,21 @@ const engineeringTags = [
   "Refactoring",
   "AI-Assisted",
 ];
-const implementedFiles = ["introduction.ts", "engineering.ts"] as const;
+const valuesTags = [
+  "Architecture",
+  "Shipping",
+  "UI / UX",
+  "Originality",
+  "Utility",
+  "AI Judgment",
+  "Learning",
+  "Trade-offs",
+];
+const implementedFiles = [
+  "introduction.ts",
+  "engineering.ts",
+  "values.ts",
+] as const;
 
 type ActivityIconName =
   | "explorer"
@@ -1037,6 +1051,342 @@ function EngineeringSource() {
   );
 }
 
+function ValuesSource() {
+  return (
+    <ol
+      className="ide-code"
+      aria-label="Sambit Pradhan engineering values and opinions TypeScript source"
+    >
+      <li>
+        <span className="comment">/**</span>
+      </li>
+      <li>
+        <span className="comment"> * values.ts</span>
+      </li>
+      <li>
+        <span className="comment">
+          {" "}* things I actually believe — not a list of virtues set to true
+        </span>
+      </li>
+      <li>
+        <span className="comment"> */</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">priorities</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">defaultOrder</span>: [
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"architecture"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"shipping speed"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"UI / UX"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"learning"</span>,
+      </li>
+      <li>
+        {"  ],"}
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">caveat</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "context wins; this is just the order I naturally protect"
+        </span>,
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">engineering</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">architecture</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "get the shape right before trying to move fast"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">complexity</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"it has to earn its place"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">shipping</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "move fast after the important decisions stop being vague"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">uiUx</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "if the user has to fight it, the backend doesn't get extra credit"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">learning</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"best when it changes what I can build"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">originality</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "learn from other people's builds; ship your own"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">utility</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "I'd rather build something useful than something impressive only to developers"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">ai</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "use it aggressively; keep the important decisions owned"
+        </span>,
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">takes</span> = [
+      </li>
+      <li>
+        {"  "}&#123;
+      </li>
+      <li>
+        {"    "}
+        <span className="property">topic</span>: {" "}
+        <span className="string">"computer science"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="property">opinion</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">
+          "CS is easier to get started in than a lot of core engineering. Getting genuinely good at it is a different question."
+        </span>,
+      </li>
+      <li>
+        {"  "}&#125;,
+      </li>
+      <li />
+      <li>
+        {"  "}&#123;
+      </li>
+      <li>
+        {"    "}
+        <span className="property">topic</span>: {" "}
+        <span className="string">"AI and jobs"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="property">opinion</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">
+          "AI will replace a lot of work. I don't think it replaces everyone."
+        </span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="property">reason</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">
+          "as implementation gets cheaper, decisions, context and ownership matter more"
+        </span>,
+      </li>
+      <li>
+        {"  "}&#125;,
+      </li>
+      <li />
+      <li>
+        {"  "}&#123;
+      </li>
+      <li>
+        {"    "}
+        <span className="property">topic</span>: {" "}
+        <span className="string">"doctors vs software engineers"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="property">opinion</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">
+          "If you force me to compare direct social value, I put doctors above software engineers. Keeping people alive wins."
+        </span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="property">note</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">
+          "that doesn't make engineering unimportant; the jobs solve very different problems"
+        </span>,
+      </li>
+      <li>
+        {"  "}&#125;,
+      </li>
+      <li />
+      <li>
+        {"  "}&#123;
+      </li>
+      <li>
+        {"    "}
+        <span className="property">topic</span>: {" "}
+        <span className="string">"degrees"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="property">opinion</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">
+          "a harder syllabus doesn't automatically make the person doing it more valuable"
+        </span>,
+      </li>
+      <li>
+        {"  "}&#125;,
+      </li>
+      <li>];</li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">notForMe</span> = [
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"architecture added because it sounds advanced"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"tutorial clones presented like original work"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">
+          "AI output nobody involved actually understands"
+        </span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">
+          "treating UI as somebody else's problem"
+        </span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"learning that never turns into building"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"calling the first working version finished"</span>,
+      </li>
+      <li>];</li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">shortVersion</span> = [
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"architecture before acceleration"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"ship once the decisions are clear"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"UI / UX is product work"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"learn by building"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"complexity must justify itself"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">
+          "AI makes implementation cheaper; judgment matters more"
+        </span>,
+      </li>
+      <li>];</li>
+    </ol>
+  );
+}
+
 export function AboutIDEWorkspace() {
   const [activeFile, setActiveFile] = useState("introduction.ts");
   const [openFiles, setOpenFiles] = useState([
@@ -1050,6 +1400,7 @@ export function AboutIDEWorkspace() {
     setOpenFiles((files) => (files.includes(file) ? files : [...files, file]));
   };
   const isEngineering = activeFile === "engineering.ts";
+  const isValues = activeFile === "values.ts";
   const isImplemented = implementedFiles.some((file) => file === activeFile);
 
   return (
@@ -1200,7 +1551,8 @@ export function AboutIDEWorkspace() {
               className={`ide-editor ${isImplemented ? "" : "pending"}`}
             >
               {isEngineering && <EngineeringSource />}
-              {!isEngineering && (
+              {isValues && <ValuesSource />}
+              {!isEngineering && !isValues && (
                 <ol
                 className="ide-code"
                 aria-label={
@@ -1424,9 +1776,10 @@ export function AboutIDEWorkspace() {
                 )}
               </aside>
               <div className="ide-minimap" aria-hidden="true">
-                {Array.from({ length: isEngineering ? 15 : 10 }, (_, index) => (
-                  <i key={index} />
-                ))}
+                {Array.from(
+                  { length: isEngineering || isValues ? 15 : 10 },
+                  (_, index) => <i key={index} />,
+                )}
               </div>
             </section>
             <section className="ide-terminal-panel">
@@ -1442,11 +1795,31 @@ export function AboutIDEWorkspace() {
               <div>
                 <p>
                   <strong>developer@sambit:~/about</strong>
-                  {isEngineering
-                    ? "$ npm run about -- engineering"
-                    : "$ npm run about"}
+                  {isValues
+                    ? "$ npm run about -- values"
+                    : isEngineering
+                      ? "$ npm run about -- engineering"
+                      : "$ npm run about"}
                 </p>
-                {isEngineering ? (
+                {isValues ? (
+                  <>
+                    <p>
+                      [time]　<span>✓</span> Trade-offs loaded
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> Engineering rules loaded
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> Opinions loaded
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> Generic virtues removed
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> values.ts ready
+                    </p>
+                  </>
+                ) : isEngineering ? (
                   <>
                     <p>
                       [time]　<span>✓</span> Process loaded
@@ -1496,7 +1869,15 @@ export function AboutIDEWorkspace() {
               INSPECTOR <span>⌘　⌗　◎</span>
             </header>
             <InspectorSection title="FILE INFO">
-              {isEngineering ? (
+              {isValues ? (
+                <>
+                  <KeyValue label="Language" value="TypeScript" />
+                  <KeyValue label="File" value="values.ts" />
+                  <KeyValue label="Type" value="Opinions + trade-offs" />
+                  <KeyValue label="Mode" value="Opinionated" />
+                  <KeyValue label="Status" value="Subject to change" />
+                </>
+              ) : isEngineering ? (
                 <>
                   <KeyValue label="Language" value="TypeScript" />
                   <KeyValue label="File" value="engineering.ts" />
@@ -1520,9 +1901,11 @@ export function AboutIDEWorkspace() {
               <KeyValue
                 label="Latest Change"
                 value={
-                  isEngineering
-                    ? "docs: engineering process"
-                    : "content: rewrite introduction"
+                  isValues
+                    ? "refactor: remove generic values"
+                    : isEngineering
+                      ? "docs: engineering process"
+                      : "content: rewrite introduction"
                 }
               />
               <KeyValue
@@ -1532,10 +1915,16 @@ export function AboutIDEWorkspace() {
             </InspectorSection>
             <InspectorSection title="ENGINEERING TAGS">
               <div className="ide-tags">
-                {(isEngineering ? engineeringTags : tags).map((tag) => (
+                {(isValues ? valuesTags : isEngineering ? engineeringTags : tags).map(
+                  (tag) => (
                   <span
                     className={
-                      tag === (isEngineering ? "AI-Assisted" : "Open to Work")
+                      tag ===
+                        (isValues
+                          ? "Trade-offs"
+                          : isEngineering
+                            ? "AI-Assisted"
+                            : "Open to Work")
                         ? "ready"
                         : ""
                     }
@@ -1543,12 +1932,30 @@ export function AboutIDEWorkspace() {
                   >
                     {tag}
                   </span>
-                ))}
+                  ),
+                )}
               </div>
             </InspectorSection>
-            <InspectorSection title="CURRENT FOCUS">
+            <InspectorSection
+              title={isValues ? "CURRENT PRIORITY" : "CURRENT FOCUS"}
+            >
               <div className="ide-focus">
-                {isEngineering ? (
+                {isValues ? (
+                  <>
+                    <p>
+                      1　 <b>Architecture</b>
+                    </p>
+                    <p>
+                      2　 <b>Shipping</b>
+                    </p>
+                    <p>
+                      3　 <b>UI / UX</b>
+                    </p>
+                    <p>
+                      4　 <b>Learning</b>
+                    </p>
+                  </>
+                ) : isEngineering ? (
                   <>
                     <p>
                       Learning　 <b>System Design</b>
