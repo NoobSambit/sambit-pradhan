@@ -3,6 +3,7 @@ export type CareerMilestone = {
   ref: string;
   period: string;
   title: string;
+  detailTitle?: string;
   subtitle: string;
   state?: "head";
   metadata: ReadonlyArray<readonly [string, string]>;
@@ -59,7 +60,7 @@ export const careerMilestones: readonly CareerMilestone[] = [
     commit: { type: "feat", title: "go deeper into engineering", lines: ["build larger projects instead of collecting more projects", "understand the system underneath the feature", "use AI for implementation speed without outsourcing decisions", "keep researching, building, testing and rewriting", "prepare for the first engineering team"] },
   },
   {
-    id: "armyverse", ref: "story/armyverse", period: "early 2026", title: "ArmyVerse crosses 1.1k users", subtitle: "first 1k+ user platform",
+    id: "armyverse", ref: "story/armyverse", period: "early 2026", title: "ArmyVerse crosses 1.1k users", detailTitle: "ArmyVerse", subtitle: "first 1k+ user platform",
     metadata: [["Project", "ArmyVerse"], ["Focus", "Real users + iteration"], ["Signal", "1.1k users"], ["Distribution", "BTS community · Twitter/X"]],
     whyItMattered: "ArmyVerse was the first project where launch stopped feeling like the finish line. Once more than a thousand people had access to it, every assumption about UI, auth, rewards and reliability became testable.",
     changes: ["Real-user behavior started shaping UI decisions", "Launch became the beginning of maintenance", "Feedback changed product flows", "Free-tier/platform constraints became product constraints", "Debugging shifted from ‘my test case passes’ to ‘a stranger is stuck’"],
@@ -75,7 +76,7 @@ export const careerMilestones: readonly CareerMilestone[] = [
     commit: { type: "feat", title: "make the community loop stateful", lines: ["battles need rules after the first click", "verify listening, score teams, update leaderboards", "leave room for hosts to run the thing"] }, storyId: "armybattles",
   },
   {
-    id: "fangate", ref: "story/fangate", period: "late 2025", title: "FanGate finds its audience", subtitle: "500+ participants in ~1 day",
+    id: "fangate", ref: "story/fangate", period: "late 2025", title: "FanGate finds its audience", detailTitle: "FanGate", subtitle: "500+ participants in ~1 day",
     metadata: [["Project", "FanGate"], ["Flow", "Last.fm → quiz → scorecard"], ["Launch", "Twitter/X + BTS community"], ["Signal", "500+ participants in ~1 day"]],
     whyItMattered: "FanGate was small on purpose. It was the first time I put something simple in front of a community I already understood and watched strangers actually show up.",
     changes: ["Built around a community I was already part of", "Removed unnecessary signup friction", "Learned that scope and distribution matter as much as project size", "Started building an audience around things I was shipping"],

@@ -155,7 +155,7 @@ export function CareerHistoryWorkspace({ onOpenIntroduction }: CareerHistoryWork
             <TerminalPrompt>git show {selected.ref}</TerminalPrompt>
             <article>
               <header><span>{selected.state === "head" ? "CURRENT HEAD" : "SELECTED MILESTONE"}</span><time>{selected.period}</time></header>
-              <h1>{selected.title}</h1>
+              <h1>{selected.detailTitle ?? selected.title}</h1>
               <p className="career-v2-subtitle">{selected.subtitle}</p>
               <dl className="career-v2-metadata">
                 {selected.metadata.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
