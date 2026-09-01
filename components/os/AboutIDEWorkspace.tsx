@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import { CareerHistoryWorkspace as CareerHistoryWorkspaceV2 } from "@/components/os/career/CareerHistoryWorkspace";
 
 const explorerFiles = [
   "introduction.ts",
@@ -2787,7 +2788,7 @@ export function AboutIDEWorkspace() {
       </nav>
 
       {activeView === "career" ? (
-        <CareerHistoryWorkspace
+        <CareerHistoryWorkspaceV2
           onOpenIntroduction={() => setActiveView("editor")}
         />
       ) : (
