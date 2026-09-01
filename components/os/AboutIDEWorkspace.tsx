@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 
 const explorerFiles = [
   "introduction.ts",
+  "education.ts",
   "engineering.ts",
   "vision.ts",
   "values.ts",
@@ -62,8 +63,19 @@ const visionTags = [
   "Learning",
   "Useful Software",
 ];
+const educationTags = [
+  "VIT Vellore",
+  "CSE",
+  "Bioinformatics",
+  "2026 Graduate",
+  "Self-Learning",
+  "Project-Based",
+  "Documentation",
+  "AI-Assisted",
+];
 const implementedFiles = [
   "introduction.ts",
+  "education.ts",
   "engineering.ts",
   "vision.ts",
   "values.ts",
@@ -2359,6 +2371,361 @@ function VisionSource() {
   );
 }
 
+function EducationSource() {
+  return (
+    <ol
+      className="ide-code"
+      aria-label="Sambit Pradhan education TypeScript source"
+    >
+      <li>
+        <span className="comment">/**</span>
+      </li>
+      <li>
+        <span className="comment"> * education.ts</span>
+      </li>
+      <li>
+        <span className="comment">
+          {" "}* formal education + where most of the actual learning happened
+        </span>
+      </li>
+      <li>
+        <span className="comment"> */</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">university</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">institution</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"Vellore Institute of Technology"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">campus</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"Vellore"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">degree</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"B.Tech · Computer Science &amp; Engineering"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">specialization</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"Bioinformatics"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">graduation</span>:
+      </li>
+      <li>
+        {"    "}2026,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">cgpa</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"8.10 / 10"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">status</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"graduated"</span>,
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">school</span> = [
+      </li>
+      <li>
+        {"  "}&#123;
+      </li>
+      <li>
+        {"    "}
+        <span className="property">stage</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">"Class XI–XII"</span>,
+      </li>
+      <li />
+      <li>
+        {"    "}
+        <span className="property">institution</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">
+          "Pathfinder Higher Secondary Public School"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"    "}
+        <span className="property">stream</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">"PCM + Computer Science"</span>,
+      </li>
+      <li />
+      <li>
+        {"    "}
+        <span className="property">board</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">"West Bengal Board"</span>,
+      </li>
+      <li />
+      <li>
+        {"    "}
+        <span className="property">score</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">"81.60%"</span>,
+      </li>
+      <li>
+        {"  "}&#125;,
+      </li>
+      <li />
+      <li>
+        {"  "}&#123;
+      </li>
+      <li>
+        {"    "}
+        <span className="property">stage</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">"Up to Class X"</span>,
+      </li>
+      <li />
+      <li>
+        {"    "}
+        <span className="property">institution</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">"Nava Nalanda High School"</span>,
+      </li>
+      <li />
+      <li>
+        {"    "}
+        <span className="property">examination</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">"Madhyamik"</span>,
+      </li>
+      <li />
+      <li>
+        {"    "}
+        <span className="property">board</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">"West Bengal Board"</span>,
+      </li>
+      <li />
+      <li>
+        {"    "}
+        <span className="property">score</span>:
+      </li>
+      <li>
+        {"      "}
+        <span className="string">"87.75%"</span>,
+      </li>
+      <li>
+        {"  "}&#125;,
+      </li>
+      <li>];</li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">actualLearning</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">classroom</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "useful as a baseline; rarely where most of my engineering happened"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">afterClass</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"where most of it happened"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">sources</span>: [
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"documentation"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"YouTube"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"AI"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"research"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"building things"</span>,
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "breaking things and figuring out why"
+        </span>,
+      </li>
+      <li>
+        {"  ],"}
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">syllabus</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"a baseline, not where I wanted to stop"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">bestTeacher</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "having something I actually wanted to build"
+        </span>,
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">learningLoop</span> = [
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"need to build something"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"find the part I don't understand"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"research it"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"build it"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"break an assumption"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"learn the next thing"</span>,
+      </li>
+      <li>
+        {"  "}
+        <span className="string">"repeat"</span>,
+      </li>
+      <li>];</li>
+      <li />
+      <li>
+        <span className="keyword">export const</span>{" "}
+        <span className="variable">perspective</span> = {"{"}
+      </li>
+      <li>
+        {"  "}
+        <span className="property">degree</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "gave me structure, deadlines and a formal CS foundation"
+        </span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">engineering</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">"mostly came from what I chased after class"</span>,
+      </li>
+      <li />
+      <li>
+        {"  "}
+        <span className="property">takeaway</span>:
+      </li>
+      <li>
+        {"    "}
+        <span className="string">
+          "I learn much faster when the knowledge has somewhere to go"
+        </span>,
+      </li>
+      <li>
+        <span className="string">{"};"}</span>
+      </li>
+    </ol>
+  );
+}
+
 export function AboutIDEWorkspace() {
   const [activeFile, setActiveFile] = useState("introduction.ts");
   const [openFiles, setOpenFiles] = useState([
@@ -2373,9 +2740,11 @@ export function AboutIDEWorkspace() {
   };
   const isEngineering = activeFile === "engineering.ts";
   const isVision = activeFile === "vision.ts";
+  const isEducation = activeFile === "education.ts";
   const isValues = activeFile === "values.ts";
   const isPersonality = activeFile === "personality.ts";
-  const isLongSource = isEngineering || isVision || isValues || isPersonality;
+  const isLongSource =
+    isEngineering || isVision || isEducation || isValues || isPersonality;
   const isImplemented = implementedFiles.some((file) => file === activeFile);
 
   return (
@@ -2527,9 +2896,14 @@ export function AboutIDEWorkspace() {
             >
               {isEngineering && <EngineeringSource />}
               {isVision && <VisionSource />}
+              {isEducation && <EducationSource />}
               {isValues && <ValuesSource />}
               {isPersonality && <PersonalitySource />}
-              {!isEngineering && !isVision && !isValues && !isPersonality && (
+              {!isEngineering &&
+                !isVision &&
+                !isEducation &&
+                !isValues &&
+                !isPersonality && (
                 <ol
                 className="ide-code"
                 aria-label={
@@ -2579,12 +2953,17 @@ export function AboutIDEWorkspace() {
                 <li>
                   {"    "}
                   <span className="property">university</span>:{" "}
-                  <span className="string">"Vellore Institute of Technology"</span>,
+                  <span className="string">"VIT Vellore"</span>,
                 </li>
                 <li>
                   {"    "}
                   <span className="property">degree</span>:{" "}
-                  <span className="string">"B.Tech · Computer Science &amp; Engineering"</span>,
+                  <span className="string">"B.Tech · CSE"</span>,
+                </li>
+                <li>
+                  {"    "}
+                  <span className="property">specialization</span>: {" "}
+                  <span className="string">"Bioinformatics"</span>,
                 </li>
                 <li>
                   {"    "}
@@ -2774,17 +3153,37 @@ export function AboutIDEWorkspace() {
               <div>
                 <p>
                   <strong>developer@sambit:~/about</strong>
-                  {isVision
-                    ? "$ npm run about -- vision"
-                    : isPersonality
-                      ? "$ npm run about -- personality"
-                      : isValues
-                        ? "$ npm run about -- values"
-                        : isEngineering
-                          ? "$ npm run about -- engineering"
-                          : "$ npm run about"}
+                  {isEducation
+                    ? "$ npm run about -- education"
+                    : isVision
+                      ? "$ npm run about -- vision"
+                      : isPersonality
+                        ? "$ npm run about -- personality"
+                        : isValues
+                          ? "$ npm run about -- values"
+                          : isEngineering
+                            ? "$ npm run about -- engineering"
+                            : "$ npm run about"}
                 </p>
-                {isVision ? (
+                {isEducation ? (
+                  <>
+                    <p>
+                      [time]　<span>✓</span> Academic history loaded
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> Degree status: graduated
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> Self-learning path indexed
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> Syllabus ceiling removed
+                    </p>
+                    <p>
+                      [time]　<span>✓</span> education.ts ready
+                    </p>
+                  </>
+                ) : isVision ? (
                   <>
                     <p>
                       [time]　<span>✓</span> Product filter loaded
@@ -2888,7 +3287,15 @@ export function AboutIDEWorkspace() {
               INSPECTOR <span>⌘　⌗　◎</span>
             </header>
             <InspectorSection title="FILE INFO">
-              {isVision ? (
+              {isEducation ? (
+                <>
+                  <KeyValue label="Language" value="TypeScript" />
+                  <KeyValue label="File" value="education.ts" />
+                  <KeyValue label="Type" value="Education" />
+                  <KeyValue label="Degree" value="B.Tech CSE" />
+                  <KeyValue label="Status" value="Graduated · 2026" />
+                </>
+              ) : isVision ? (
                 <>
                   <KeyValue label="Language" value="TypeScript" />
                   <KeyValue label="File" value="vision.ts" />
@@ -2936,15 +3343,17 @@ export function AboutIDEWorkspace() {
               <KeyValue
                 label="Latest Change"
                 value={
-                  isVision
-                    ? "docs: define direction"
-                    : isPersonality
-                      ? "docs: add actual personality"
-                      : isValues
-                        ? "refactor: remove generic values"
-                        : isEngineering
-                          ? "docs: engineering process"
-                          : "content: rewrite introduction"
+                  isEducation
+                    ? "docs: add education history"
+                    : isVision
+                      ? "docs: define direction"
+                      : isPersonality
+                        ? "docs: add actual personality"
+                        : isValues
+                          ? "refactor: remove generic values"
+                          : isEngineering
+                            ? "docs: engineering process"
+                            : "content: rewrite introduction"
                 }
               />
               <KeyValue
@@ -2954,28 +3363,32 @@ export function AboutIDEWorkspace() {
             </InspectorSection>
             <InspectorSection title="ENGINEERING TAGS">
               <div className="ide-tags">
-                {(isVision
-                  ? visionTags
-                  : isPersonality
-                    ? personalityTags
-                    : isValues
-                      ? valuesTags
-                      : isEngineering
-                        ? engineeringTags
-                        : tags
+                {(isEducation
+                  ? educationTags
+                  : isVision
+                    ? visionTags
+                    : isPersonality
+                      ? personalityTags
+                      : isValues
+                        ? valuesTags
+                        : isEngineering
+                          ? engineeringTags
+                          : tags
                 ).map((tag) => (
                   <span
                     className={
                       tag ===
-                        (isVision
-                          ? "Useful Software"
-                          : isPersonality
-                            ? "Self-Aware"
-                            : isValues
-                              ? "Trade-offs"
-                              : isEngineering
-                                ? "AI-Assisted"
-                                : "Open to Work")
+                        (isEducation
+                          ? "AI-Assisted"
+                          : isVision
+                            ? "Useful Software"
+                            : isPersonality
+                              ? "Self-Aware"
+                              : isValues
+                                ? "Trade-offs"
+                                : isEngineering
+                                  ? "AI-Assisted"
+                                  : "Open to Work")
                         ? "ready"
                         : ""
                     }
@@ -2988,17 +3401,34 @@ export function AboutIDEWorkspace() {
             </InspectorSection>
             <InspectorSection
               title={
-                isVision
-                  ? "CURRENT DIRECTION"
-                  : isPersonality
-                    ? "CURRENT STATE"
-                    : isValues
-                      ? "CURRENT PRIORITY"
-                      : "CURRENT FOCUS"
+                isEducation
+                  ? "LEARNING MODE"
+                  : isVision
+                    ? "CURRENT DIRECTION"
+                    : isPersonality
+                      ? "CURRENT STATE"
+                      : isValues
+                        ? "CURRENT PRIORITY"
+                        : "CURRENT FOCUS"
               }
             >
               <div className="ide-focus">
-                {isVision ? (
+                {isEducation ? (
+                  <>
+                    <p>
+                      Formal　 <b>VIT Vellore</b>
+                    </p>
+                    <p>
+                      Primary　 <b>Self-directed</b>
+                    </p>
+                    <p>
+                      Method　 <b>Build + Research</b>
+                    </p>
+                    <p>
+                      Status　 <b>Graduated</b>
+                    </p>
+                  </>
+                ) : isVision ? (
                   <>
                     <p>
                       Role　　　<b>Engineer</b>
