@@ -174,7 +174,7 @@ export const careerStories: readonly BuildStory[] = [
     ], closingCommit: { type: "refactor", title: "make state transitions inspectable", lines: ["separate services from persistence adapters", "move carefully from Firestore", "keep failures visible"] },
   },
   {
-    id: "agentproof", milestoneId: "going-deeper", title: "AgentProof", subtitle: "A local CLI for checking software changed by coding agents.", descriptor: "verification and trust", tags: ["CLI", "Evidence", "Verification"], links: { repo: "https://github.com/NoobSambit/AgentProof" },
+    id: "agentproof", milestoneId: "going-deeper", title: "AgentProof", subtitle: "A local CLI for checking software changed by coding agents.", descriptor: "verification and trust", tags: ["CLI", "Evidence", "Verification"],
     sections: [
       { title: "WHY I BUILT IT", kind: "text", content: ["Modern AI can write extremely strong code. The harder problem is deciding what to trust, what to verify, and who still owns the decision."] },
       { title: "WHAT IT VERIFIES", kind: "list", content: ["It takes a repository plus a task, issue or PRD.", "It turns the task into checkable requirements and proof obligations.", "It records what was checked, what happened and the evidence behind each claim.", "Missing tools, permissions or provider access stay visible instead of becoming a pretend pass."] },
