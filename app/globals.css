@@ -9229,7 +9229,7 @@ button {
   }
 }
 
-/* Git Career History view: a source-control workspace that replaces the editor. */
+/* Git Build History view: a source-control workspace that replaces the editor. */
 .about-ide-workspace.career-mode {
   --about-inspector-width: 0px;
   grid-template-columns: 52px 350px minmax(520px, 1fr) minmax(420px, 0.8fr);
@@ -10430,7 +10430,7 @@ button {
   text-shadow: 0 0 12px rgba(240, 91, 61, 0.8);
 }
 .ide-activity-bar .git-history-trigger::after {
-  content: "Git Career History";
+  content: "Git: Build History";
   position: absolute;
   left: 43px;
   top: 7px;
@@ -10478,7 +10478,7 @@ button {
   color: #ffe2da;
   box-shadow: inset 0 -1px rgba(240, 91, 61, 0.3);
 }
-/* Keep the regular editor and Git Career History visibly paired in one tab row. */
+/* Keep the regular editor and Git: Build History visibly paired in one tab row. */
 .career-tabs .career-editor-tab {
   appearance: none;
   border: 0;
@@ -10505,7 +10505,7 @@ button {
   color: #e1eaed;
 }
 
-/* Career History v2: data-driven milestones and a native build-story workspace. */
+/* Build History v2: data-driven milestones and a native build-story workspace. */
 .about-ide-workspace.career-mode {
   --about-inspector-width: 0px;
   grid-template-columns: 52px 330px minmax(0, 1fr) 320px;
@@ -10704,7 +10704,7 @@ button {
 .career-story-section--commit h2 { color: #bdcbd0; }
 .career-story-section--commit strong { color: #87d773; font-weight: 500; }
 
-/* Career History readability polish: preserve the workstation grid, improve its syntax hierarchy. */
+/* Build History readability polish: preserve the workstation grid, improve its syntax hierarchy. */
 .career-v2-sidebar,
 .career-v2-main,
 .career-v2-context,

@@ -2369,8 +2369,8 @@ export function AboutIDEWorkspace() {
         <button
           className={`git-history-trigger ${activeView === "career" ? "active" : ""}`}
           onClick={() => setActiveView("career")}
-          aria-label="Git Career History"
-          title="Open Git Career History"
+          aria-label="Git: Build History"
+          title="Open Git: Build History"
         >
           <ActivityIcon name="source" />
         </button>
@@ -2470,10 +2470,10 @@ export function AboutIDEWorkspace() {
                 className="career-history-tab"
                 type="button"
                 onClick={() => setActiveView("career")}
-                title="Open Git Career History"
+                title="Open Git: Build History"
               >
                 <ActivityIcon name="source" />
-                <span>Git: Career History</span>
+                <span>Git: Build History</span>
               </button>
               {openFiles.filter((tab) => tab !== "introduction.ts").map((tab) => (
                 <div className={`ide-tab ${activeFile === tab ? "active" : ""}`} key={tab}>

@@ -15,7 +15,7 @@ type CareerHistoryWorkspaceProps = { onOpenIntroduction: () => void };
 const storyOrder = careerStories.map((story) => story.id);
 
 function TerminalPrompt({ children }: { children: React.ReactNode }) {
-  return <p className="career-v2-prompt"><b>developer@sambit:~/career</b>$ {children}</p>;
+  return <p className="career-v2-prompt"><b>developer@sambit:~/builds</b>$ {children}</p>;
 }
 
 function StorySection({ section }: { section: BuildStorySection }) {
@@ -122,10 +122,10 @@ export function CareerHistoryWorkspace({ onOpenIntroduction }: CareerHistoryWork
 
   return (
     <>
-      <aside className="career-v2-sidebar" aria-label="Career history">
-        <header>GIT HISTORY</header>
+      <aside className="career-v2-sidebar" aria-label="Build history">
+        <header>BUILD HISTORY</header>
         <section className="career-v2-commit-list">
-          <TerminalPrompt>git log --graph --career</TerminalPrompt>
+          <TerminalPrompt>git log --graph --all</TerminalPrompt>
           <div className="career-v2-timeline" role="list" aria-label="Career milestones">
             {careerMilestones.map((milestone) => {
               const selectedState = milestone.id === selected.id;
@@ -157,7 +157,7 @@ export function CareerHistoryWorkspace({ onOpenIntroduction }: CareerHistoryWork
         <main className="career-v2-main">
           <nav className="career-v2-tabs" aria-label="Open editor tabs">
             <button type="button" onClick={onOpenIntroduction} title="Return to introduction.ts"><i>TS</i> introduction.ts</button>
-            <b><span aria-hidden="true">⌘</span> Git: career-history</b>
+            <b><span aria-hidden="true">⌘</span> Git: Build History</b>
             <i aria-hidden="true">＋</i>
           </nav>
           <section className="career-v2-selected" aria-live="polite">
