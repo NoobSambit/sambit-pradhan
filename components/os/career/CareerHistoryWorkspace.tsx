@@ -21,9 +21,11 @@ function TerminalPrompt({ children }: { children: React.ReactNode }) {
 function StorySection({ section }: { section: BuildStorySection }) {
   const metadata = section.content as ReadonlyArray<readonly [string, string]>;
   const lines = section.content as readonly string[];
+  const tone = section.tone ?? "neutral";
+  const marker = tone === "positive" ? "✓" : tone === "timeline" ? "●" : tone === "danger" ? "×" : tone === "warning" ? "!" : "→";
 
   return (
-    <section className={`career-story-section career-story-section--${section.kind ?? "list"}`}>
+    <section className={`career-story-section career-story-section--${section.kind ?? "list"}`} data-tone={tone}>
       <h2>{section.title}</h2>
       {section.kind === "metadata" ? (
         <dl>
@@ -33,7 +35,7 @@ function StorySection({ section }: { section: BuildStorySection }) {
         lines.map((line) => <p key={line}>{line}</p>)
       ) : (
         <ul>
-          {lines.map((line) => <li key={line}>{line}</li>)}
+          {lines.map((line) => <li key={line}><span className="career-story-marker" aria-hidden="true">{marker}</span>{line}</li>)}
         </ul>
       )}
     </section>
@@ -79,10 +81,10 @@ function BuildStoryViewer({ story, onClose, onNavigate }: { story: BuildStory; o
         </div>
         <div className="career-story-grid">
           {story.sections.map((section) => <StorySection key={section.title} section={section} />)}
-          <section className="career-story-section career-story-section--commit">
+          <section className="career-story-section career-story-section--commit" data-tone="neutral">
             <h2>COMMIT MESSAGE</h2>
             <p><strong>{story.closingCommit.type}:</strong> {story.closingCommit.title}</p>
-            <ul>{story.closingCommit.lines.map((line) => <li key={line}>{line}</li>)}</ul>
+            <ul>{story.closingCommit.lines.map((line) => <li key={line}><span className="career-story-marker" aria-hidden="true">→</span>{line}</li>)}</ul>
           </section>
         </div>
       </article>
@@ -139,11 +141,11 @@ export function CareerHistoryWorkspace({ onOpenIntroduction }: CareerHistoryWork
         </section>
         <section className="career-v2-branches">
           <h2>CAREER BRANCHES</h2>
-          {careerBranches.map(([branch, detail, state]) => <div key={branch}><i aria-hidden="true" /><b>{branch}</b><span>{detail}</span><em>{state}</em></div>)}
+          {careerBranches.map(([branch, detail, state]) => <div key={branch} data-branch={branch} data-state={state}><i aria-hidden="true" /><b>{branch}</b><span>{detail}</span><em>{state}</em></div>)}
         </section>
         <section className="career-v2-learning">
           <h2>LEARNING TIMELINE</h2>
-          {learningTimeline.map(([period, title, state]) => <div key={`${period}-${title}`}><b>{period}</b><span>{title}</span><em>{state}</em></div>)}
+          {learningTimeline.map(([period, title, state]) => <div key={`${period}-${title}`} data-state={state}><b>{period}</b><span>{title}</span><em>{state}</em></div>)}
         </section>
         <footer>
           <b>$ git status</b>
@@ -165,23 +167,23 @@ export function CareerHistoryWorkspace({ onOpenIntroduction }: CareerHistoryWork
               <h1>{selected.detailTitle ?? selected.title}</h1>
               <p className="career-v2-subtitle">{selected.subtitle}</p>
               <dl className="career-v2-metadata">
-                {selected.metadata.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
+                {selected.metadata.map(([label, value]) => <div key={label} data-label={label.toLowerCase().replaceAll(" ", "-")}><dt>{label}</dt><dd>{value}</dd></div>)}
               </dl>
               <div className="career-v2-detail-grid">
-                <section><h2>WHY IT MATTERED</h2><p>{selected.whyItMattered}</p></section>
-                <section><h2>WHAT CHANGED</h2><ul>{selected.changes.map((change) => <li key={change}>{change}</li>)}</ul></section>
-                <section><h2>EVIDENCE / OUTCOME</h2><ul>{selected.evidence.map((item) => <li key={item}>{item}</li>)}</ul></section>
+                <section data-tone="story"><h2>WHY IT MATTERED</h2><p>{selected.whyItMattered}</p></section>
+                <section data-tone="technical"><h2>WHAT CHANGED</h2><ul>{selected.changes.map((change) => <li key={change}>{change}</li>)}</ul></section>
+                <section data-tone="positive"><h2>EVIDENCE / OUTCOME</h2><ul>{selected.evidence.map((item) => <li key={item}>{item}</li>)}</ul></section>
               </div>
-              <section className="career-v2-commit"><h2>COMMIT MESSAGE</h2><p><strong>{selected.commit.type}:</strong> {selected.commit.title}</p><ul>{selected.commit.lines.map((line) => <li key={line}>{line}</li>)}</ul></section>
+              <section className="career-v2-commit" data-commit-type={selected.commit.type}><h2>COMMIT MESSAGE</h2><p><strong>{selected.commit.type}:</strong> {selected.commit.title}</p><ul>{selected.commit.lines.map((line) => <li key={line}>{line}</li>)}</ul></section>
               {selected.storyId && <button type="button" className="career-v2-open-story" onClick={() => openStory(selected.storyId!)}>OPEN BUILD STORY ↗</button>}
             </article>
           </section>
           <section className="career-v2-evolution"><h2>ENGINEERING EVOLUTION</h2><div>{[["Tutorials", "Original Products", "learning phase → 2025"], ["Code First", "Research / PRD First", "earlier → now"], ["Small Builds", "Long-Horizon Products", "2025 → now"], ["General Full Stack", "Backend Bias", "2025 → now"], ["AI for Help", "AI in the Workflow", "earlier → now"]].map(([from, to, note]) => <article key={to}><span>{from}</span><b>↓</b><strong>{to}</strong><small>{note}</small></article>)}</div></section>
-          <section className="career-v2-current"><h2>CURRENT LEARNING</h2><div>{[["System Design", "active"], ["CLI Architecture", "active"], ["Code Verification", "active"], ["Security Review", "exploring"]].map(([name, state]) => <span key={name}>{name}<b>{state}</b></span>)}</div></section>
+          <section className="career-v2-current"><h2>CURRENT LEARNING</h2><div>{[["System Design", "active"], ["CLI Architecture", "active"], ["Code Verification", "active"], ["Security Review", "exploring"]].map(([name, state]) => <span key={name} data-state={state}>{name}<b>{state}</b></span>)}</div></section>
         </main>
         <aside className="career-v2-context" aria-label="Career context">
-          <section><header>$ cat career.toml <b>TOML</b></header><pre><span>[career]</span>{"\n"}stage = "2026 Graduate"{"\n"}primary = "Backend"{"\n"}secondary = "Full Stack"{"\n"}status = "Open to Work"{"\n\n"}<span>[direction]</span>{"\n"}focus = "Backend-heavy Product Engineering"{"\n"}environment = "Startup / Product Team"{"\n"}priority = "Strong Team + Learning"</pre></section>
-          <section><header>$ cat now.md <b>MD</b></header><pre><span>## Building</span>{"\n"}- AgentProof — primary{"\n"}- Agent Playground{"\n"}- Sambit OS{"\n\n"}<span>## Learning</span>{"\n"}- System Design{"\n"}- CLI / Code Verification{"\n"}- Security review concepts</pre></section>
+          <section><header>$ cat career.toml <b>TOML</b></header><div className="career-v2-toml"><p>[career]</p><div><span>stage</span><i>=</i><b data-value="stage">"2026 Graduate"</b></div><div><span>primary</span><i>=</i><b data-value="primary">"Backend"</b></div><div><span>secondary</span><i>=</i><b>"Full Stack"</b></div><div><span>status</span><i>=</i><b data-value="status">"Open to Work"</b></div><p>[direction]</p><div><span>focus</span><i>=</i><b data-value="focus">"Backend-heavy Product Engineering"</b></div><div><span>environment</span><i>=</i><b>"Startup / Product Team"</b></div><div><span>priority</span><i>=</i><b data-value="priority">"Strong Team + Learning"</b></div></div></section>
+          <section><header>$ cat now.md <b>MD</b></header><div className="career-v2-now"><h3>## Building</h3><p><b>AgentProof</b><em>— primary</em></p><p><b>Agent Playground</b></p><p><b>Sambit OS</b></p><h3>## Learning</h3><p><b>System Design</b></p><p><b>CLI / Code Verification</b></p><p><b>Security review concepts</b></p></div></section>
           <section className="career-v2-stories"><header>$ cat stories.index <b>IDX</b></header><div>{careerStories.map((story) => <button type="button" key={story.id} onClick={() => openStory(story.id)}><i>{story.milestoneId === "going-deeper" ? "•" : "✓"}</i><span>{story.id}.story<small>{story.descriptor}</small></span><em>↗</em></button>)}</div><p>(+ add new story file to keep growing)</p></section>
         </aside>
       </>}

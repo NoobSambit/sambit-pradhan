@@ -10668,6 +10668,186 @@ button {
 .career-story-section--commit { grid-column: span 2; }
 .career-story-section--commit h2 { color: #bdcbd0; }
 .career-story-section--commit strong { color: #87d773; font-weight: 500; }
+
+/* Career History readability polish: preserve the workstation grid, improve its syntax hierarchy. */
+.career-v2-sidebar,
+.career-v2-main,
+.career-v2-context,
+.career-v2-story { border-color: #344852; }
+.career-v2-prompt { color: #c4d0d4; font-size: 10px; }
+.career-v2-commit-list,
+.career-v2-branches,
+.career-v2-learning,
+.career-v2-tabs,
+.career-v2-selected,
+.career-v2-evolution,
+.career-v2-current,
+.career-story-toolbar { border-color: #344852; }
+
+.career-v2-timeline button > span { color: #a5b5ba; font-size: 10px; }
+.career-v2-timeline button > b { color: #e0e9eb; font-size: 12px; font-weight: 600; line-height: 15px; }
+.career-v2-timeline button > small { color: #afbec3; font-size: 10px; line-height: 14px; }
+.career-v2-timeline button > em { color: #82adba; font-size: 9.5px; }
+.career-v2-timeline button:hover { background: rgba(83, 151, 171, 0.12); }
+.career-v2-timeline button.is-selected { border-left-color: #86d978; background: rgba(85, 164, 102, 0.18); }
+.career-v2-timeline button.is-selected > i { border-color: #91df7d; background: #91df7d; box-shadow: 0 0 0 2px #0b151b, 0 0 0 3px rgba(145, 223, 125, 0.26); }
+.career-v2-timeline button.is-selected > b { color: #b9f19b; }
+.career-v2-timeline button.is-selected > em { color: #9be889; }
+
+.career-v2-branches h2,
+.career-v2-learning h2,
+.career-v2-evolution h2,
+.career-v2-current h2 { color: #d0dde0; font-size: 11px; font-weight: 600; }
+.career-v2-branches div { min-height: 21px; font-size: 10px; }
+.career-v2-branches b { color: #dee8ea; font-weight: 600; }
+.career-v2-branches span { color: #a8b8bd; }
+.career-v2-branches em,
+.career-v2-learning em { color: #8fd978; font-size: 9.5px; }
+.career-v2-branches div[data-branch="main"] i { background: #e3af5d; }
+.career-v2-branches div[data-branch="main"] b,
+.career-v2-branches div[data-branch="main"] em { color: #e5b760; }
+.career-v2-branches div[data-branch="backend"] i,
+.career-v2-branches div[data-branch="backend"] b { background: #6ed4e8; color: #8bdfee; }
+.career-v2-branches div[data-branch="fullstack"] i { background: #78b6e8; }
+.career-v2-branches div[data-branch="ai"] i,
+.career-v2-branches div[data-branch="ai"] b { background: #bf85df; color: #d0a0e9; }
+.career-v2-branches div[data-branch="cli"] i { background: #85d873; }
+.career-v2-branches div[data-branch="system-design"] i { background: #dfb15d; }
+.career-v2-branches div[data-state="learning"] em { color: #dfb15d; }
+.career-v2-learning div { min-height: 21px; font-size: 10px; }
+.career-v2-learning b { color: #aebdc1; }
+.career-v2-learning span { color: #d1dcdf; }
+.career-v2-learning div[data-state="completed"] em { color: #8dcf79; }
+.career-v2-learning div[data-state="evolving"] em { color: #e2b35e; }
+.career-v2-learning div[data-state="learned-by-shipping"] em { color: #c0a16c; }
+.career-v2-learning div[data-state="active"] em { color: #77d8df; }
+.career-v2-sidebar footer { color: #b5c3c8; font-size: 10px; line-height: 15px; }
+
+.career-v2-tabs > * { border-color: #344852; color: #c7d4d8; font-size: 10px; }
+.career-v2-tabs button i { font-size: 9px; }
+.career-v2-selected article { border-color: #394e58; background: linear-gradient(135deg, rgba(7, 19, 25, 0.46), rgba(6, 17, 23, 0.36)); }
+.career-v2-selected article > header { color: #aebdc2; font-size: 10px; }
+.career-v2-selected h1 { color: #f0f5f4; }
+.career-v2-subtitle { color: #c1ced2; font-size: 11px; }
+.career-v2-metadata { border-color: #344a54; background: rgba(7, 19, 25, 0.46); }
+.career-v2-metadata div { font-size: 10px; line-height: 15px; }
+.career-v2-metadata dt { color: #9caeb5; }
+.career-v2-metadata dd { color: #e0e8e9; font-weight: 500; }
+.career-v2-metadata div[data-label="signal"] dd,
+.career-v2-metadata div[data-label="outcome"] dd,
+.career-v2-metadata div[data-label="status"] dd { color: #95df7d; }
+.career-v2-metadata div[data-label="focus"] dd,
+.career-v2-metadata div[data-label="direction"] dd,
+.career-v2-metadata div[data-label="verification"] dd { color: #8dddec; }
+.career-v2-metadata div[data-label="distribution"] dd,
+.career-v2-metadata div[data-label="launch"] dd { color: #c69ae3; }
+.career-v2-detail-grid h2,
+.career-v2-commit h2 { color: #dce6e7; font-size: 11px; font-weight: 600; }
+.career-v2-detail-grid section { border-left: 2px solid #344852; padding-left: 9px; }
+.career-v2-detail-grid section[data-tone="story"] { border-color: #b987db; }
+.career-v2-detail-grid section[data-tone="story"] h2 { color: #c895e0; }
+.career-v2-detail-grid section[data-tone="technical"] { border-color: #72d1e3; }
+.career-v2-detail-grid section[data-tone="technical"] h2 { color: #81dced; }
+.career-v2-detail-grid section[data-tone="positive"] { border-color: #83d772; }
+.career-v2-detail-grid section[data-tone="positive"] h2 { color: #91df7e; }
+.career-v2-detail-grid p,
+.career-v2-detail-grid ul,
+.career-v2-commit p,
+.career-v2-commit ul { color: #d3dde0; font-size: 11px; line-height: 17px; }
+.career-v2-detail-grid li::before { color: #7dd7e5; }
+.career-v2-detail-grid section[data-tone="positive"] li::before { color: #8bdd79; }
+.career-v2-commit { border-color: #344852; }
+.career-v2-commit strong { color: #d5e0e2; }
+.career-v2-commit[data-commit-type="feat"] strong { color: #8ddb78; }
+.career-v2-commit[data-commit-type="fix"] strong { color: #e4b060; }
+.career-v2-commit[data-commit-type="learn"] strong { color: #80d7e7; }
+.career-v2-commit[data-commit-type="init"] strong { color: #c599e3; }
+.career-v2-commit[data-commit-type="chore"] strong { color: #a8b6bb; }
+.career-v2-commit li::before { color: #9aabb0; }
+.career-v2-open-story { border-color: rgba(107, 216, 235, 0.8); background: rgba(48, 151, 176, 0.15); color: #9be5f2; font-size: 11px; }
+.career-v2-open-story:hover { background: rgba(53, 165, 190, 0.25); box-shadow: inset 0 0 12px rgba(99, 218, 237, 0.08); }
+
+.career-v2-evolution article { border-color: #344a54; background: rgba(7, 19, 25, 0.24); transition: border-color 140ms ease, background 140ms ease; }
+.career-v2-evolution article:hover { border-color: #4d6d78; background: rgba(19, 48, 58, 0.32); }
+.career-v2-evolution span { color: #aebdc2; font-size: 10px; }
+.career-v2-evolution strong { color: #e0e9eb; font-size: 10px; }
+.career-v2-evolution small { color: #9badb3; font-size: 9px; }
+.career-v2-current span { border-color: #426673; background: rgba(7, 19, 25, 0.24); color: #dce6e8; font-size: 10px; }
+.career-v2-current span b { color: #8cdc78; font-size: 9px; }
+.career-v2-current span[data-state="exploring"] { border-color: #655944; }
+.career-v2-current span[data-state="exploring"] b { color: #deb25e; }
+
+.career-v2-context { background: rgba(7, 18, 24, 0.28); }
+.career-v2-context section { border-color: #344852; background: rgba(7, 18, 24, 0.32); }
+.career-v2-context header { border-color: #344852; color: #d0dde0; font-size: 10px; }
+.career-v2-context header b { border-color: #4b636d; color: #aebfc4; font-size: 9px; }
+.career-v2-toml,
+.career-v2-now { padding: 10px; font: 10px/16px "JetBrains Mono", monospace; }
+.career-v2-toml p { margin: 0 0 3px; color: #80d8e8; }
+.career-v2-toml p + div { margin-top: 0; }
+.career-v2-toml div { display: grid; grid-template-columns: 72px 12px minmax(0, 1fr); }
+.career-v2-toml div + p { margin-top: 8px; }
+.career-v2-toml span { color: #9aabb2; }
+.career-v2-toml i { color: #71848c; font-style: normal; }
+.career-v2-toml b { color: #d7e1e3; font-weight: 500; }
+.career-v2-toml b[data-value="stage"],
+.career-v2-toml b[data-value="priority"] { color: #d8bf79; }
+.career-v2-toml b[data-value="primary"],
+.career-v2-toml b[data-value="focus"] { color: #89ddec; }
+.career-v2-toml b[data-value="status"] { color: #90dd7b; }
+.career-v2-now h3 { margin: 0 0 4px; color: #84d8e8; font: 600 10px/16px "JetBrains Mono", monospace; }
+.career-v2-now h3 + p { margin-top: 0; }
+.career-v2-now p { margin: 2px 0; color: #aab9be; }
+.career-v2-now p::before { color: #71848c; content: "- "; }
+.career-v2-now b { color: #e0e8e9; font-weight: 500; }
+.career-v2-now em { color: #8fdd7b; font-style: normal; }
+.career-v2-now h3:nth-of-type(2) { margin-top: 9px; color: #c495df; }
+.career-v2-stories button { color: #d9e3e5; font-size: 10px; }
+.career-v2-stories button small { color: #9baeb5; font-size: 9px; }
+.career-v2-stories button:hover { background: rgba(67, 142, 161, 0.17); }
+.career-v2-stories button i { color: #91dc7b; }
+.career-v2-stories button:has(i:first-child) em { color: #7fd8e8; }
+.career-v2-stories p { color: #96a9b0; font-size: 9px; }
+
+.career-story-toolbar button { border-color: #3f5a65; background: rgba(16, 44, 53, 0.48); font-size: 10px; }
+.career-story-toolbar button:first-child { color: #e2b660; }
+.career-story-toolbar button:last-child:hover { border-color: #9c5f5b; color: #f1aaa1; }
+.career-story-heading p { color: #cbd7da; font-size: 11px; }
+.career-story-links a { color: #91d8ef; font-size: 10px; }
+.career-story-tags span { color: #91d9e8; font-size: 10px; }
+.career-story-section { border-color: #344a54; background: linear-gradient(135deg, rgba(8, 22, 29, 0.44), rgba(6, 17, 23, 0.33)); }
+.career-story-section h2 { color: #d6e0e2; font-size: 11px; font-weight: 600; }
+.career-story-section p,
+.career-story-section li,
+.career-story-section dt,
+.career-story-section dd { color: #d4dfe2; font-size: 11px; line-height: 17px; }
+.career-story-section li { display: grid; grid-template-columns: 13px minmax(0, 1fr); gap: 4px; }
+.career-story-section--list li::before,
+.career-story-section--timeline li::before,
+.career-story-section--commit li::before { content: none; }
+.career-story-marker { color: #aebec3; }
+.career-story-section[data-tone] { border-left-width: 2px; }
+.career-story-section[data-tone="story"] { border-left-color: #bb89dd; }
+.career-story-section[data-tone="story"] h2 { color: #ca98e5; }
+.career-story-section[data-tone="story"] .career-story-marker { color: #c99ae2; }
+.career-story-section[data-tone="technical"] { border-left-color: #73d2e4; }
+.career-story-section[data-tone="technical"] h2 { color: #88dfed; }
+.career-story-section[data-tone="technical"] .career-story-marker { color: #83ddeb; }
+.career-story-section[data-tone="positive"] { border-left-color: #86d876; }
+.career-story-section[data-tone="positive"] h2 { color: #94df80; }
+.career-story-section[data-tone="positive"] .career-story-marker { color: #92df7c; }
+.career-story-section[data-tone="timeline"] { border-left-color: #dfae5a; }
+.career-story-section[data-tone="timeline"] h2 { color: #e2b968; }
+.career-story-section[data-tone="timeline"] .career-story-marker { color: #e2b660; }
+.career-story-section[data-tone="warning"] { border-left-color: #d9ab5d; }
+.career-story-section[data-tone="warning"] h2 { color: #dfb967; }
+.career-story-section[data-tone="warning"] .career-story-marker { color: #dfb967; }
+.career-story-section[data-tone="danger"] { border-left-color: #dc766d; }
+.career-story-section[data-tone="danger"] h2 { color: #ec9589; }
+.career-story-section[data-tone="danger"] .career-story-marker { color: #ed9187; }
+.career-story-section dt { color: #aebfc5; }
+.career-story-section dd { color: #e1e9ea; }
+.career-story-section--commit strong { color: #d7e2e4; }
 @media (max-width: 1320px) and (min-width: 761px) {
   .about-ide-workspace.career-mode { grid-template-columns: 45px 300px minmax(0, 1fr); }
   .career-v2-context { display: none; }
@@ -10680,7 +10860,7 @@ button {
   .career-v2-sidebar { grid-template-rows: 43px minmax(250px, 1fr) 168px 158px 112px; }
   .career-v2-evolution > div { grid-template-columns: repeat(3, 1fr); }
   .career-v2-evolution article:nth-child(n + 4) { display: none; }
-  .career-v2-story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .career-story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
   .about-ide-workspace.career-mode { display: block; overflow: visible; }

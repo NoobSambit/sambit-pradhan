@@ -14,9 +14,12 @@ export type CareerMilestone = {
   storyId?: string;
 };
 
+export type StoryTone = "story" | "technical" | "positive" | "timeline" | "warning" | "danger" | "neutral";
+
 export type BuildStorySection = {
   title: string;
   kind?: "list" | "text" | "metadata" | "timeline";
+  tone?: StoryTone;
   content: readonly string[] | ReadonlyArray<readonly [string, string]>;
 };
 
@@ -126,68 +129,68 @@ export const careerStories: readonly BuildStory[] = [
     id: "kirana-corner", milestoneId: "kirana-corner", title: "Kirana Corner", subtitle: "First finished product where the idea and product direction were mine.", descriptor: "first original product", tags: ["Product model", "Marketplace", "Firebase"],
     links: { live: "https://kirana-corner.vercel.app/", repo: "https://github.com/NoobSambit/KIRANA-CORNER" },
     sections: [
-      { title: "WHY I BUILT IT", kind: "text", content: ["The idea started with a question about warehouse-first quick commerce: could the network of neighbourhood kirana stores already holding inventory become the fulfilment layer instead?"] },
-      { title: "PRODUCT MODEL", kind: "list", content: ["Customers discover nearby stores and products.", "Shop owners manage inventory and orders.", "Stores themselves remain the fulfilment layer."] },
-      { title: "WHAT I BUILT", kind: "list", content: ["Map-first nearby-store discovery with distance filtering.", "Customer browsing, cart, address selection and order tracking.", "Separate shop-owner inventory and order workflows.", "Role-aware Firebase authentication and protected screens."] },
-      { title: "TECHNICAL SHAPE", kind: "metadata", content: [["Frontend", "React + TypeScript + Vite"], ["Data", "Firebase Firestore"], ["Auth", "Firebase Auth"], ["Maps", "Leaflet"]] },
-      { title: "WHAT IT CHANGED FOR ME", kind: "text", content: ["It was the first product where deciding what belonged in the product was the job. Coding was still hard; choosing the problem shape became more interesting."] },
+      { title: "WHY I BUILT IT", kind: "text", tone: "story", content: ["The idea started with a question about warehouse-first quick commerce: could the network of neighbourhood kirana stores already holding inventory become the fulfilment layer instead?"] },
+      { title: "PRODUCT MODEL", kind: "list", tone: "technical", content: ["Customers discover nearby stores and products.", "Shop owners manage inventory and orders.", "Stores themselves remain the fulfilment layer."] },
+      { title: "WHAT I BUILT", kind: "list", tone: "technical", content: ["Map-first nearby-store discovery with distance filtering.", "Customer browsing, cart, address selection and order tracking.", "Separate shop-owner inventory and order workflows.", "Role-aware Firebase authentication and protected screens."] },
+      { title: "TECHNICAL SHAPE", kind: "metadata", tone: "technical", content: [["Frontend", "React + TypeScript + Vite"], ["Data", "Firebase Firestore"], ["Auth", "Firebase Auth"], ["Maps", "Leaflet"]] },
+      { title: "WHAT IT CHANGED FOR ME", kind: "text", tone: "story", content: ["It was the first product where deciding what belonged in the product was the job. Coding was still hard; choosing the problem shape became more interesting."] },
     ], closingCommit: { type: "feat", title: "start from a product question", lines: ["build customer and shop-owner workflows", "keep the local store in the loop", "finish the thing"] },
   },
   {
     id: "fangate", milestoneId: "fangate", title: "FanGate", subtitle: "Small BTS experiment. First real public traction.", descriptor: "first public traction", tags: ["Community", "Last.fm", "Quiz"], links: { live: "https://fangate.netlify.app/" },
     sections: [
-      { title: "WHY I BUILT IT", kind: "text", content: ["I was already part of the BTS community and wanted to make a small, fun thing for people who would understand the joke without much explanation."] },
-      { title: "HOW IT WORKED", kind: "list", content: ["A Last.fm username starts the flow; there is no account wall.", "Public listening history contributes to a BTS fan score.", "A BTS quiz adds a second signal.", "The result becomes a shareable ticket-style scorecard."] },
-      { title: "LAUNCH", kind: "timeline", content: ["Shared through Twitter/X and the BTS community.", "People arrived without a complicated acquisition plan.", "The small release became the audience seed for later projects."] },
-      { title: "SIGNAL / OUTCOME", kind: "metadata", content: [["500+", "Participants in ~1 day"], ["Twitter/X", "Launch channel"], ["Community", "Audience carried forward"]] },
-      { title: "WHAT I LEARNED", kind: "text", content: ["Scope and distribution matter as much as project size. A small product with a clear audience can teach more than a larger one nobody sees."] },
+      { title: "WHY I BUILT IT", kind: "text", tone: "story", content: ["I was already part of the BTS community and wanted to make a small, fun thing for people who would understand the joke without much explanation."] },
+      { title: "HOW IT WORKED", kind: "list", tone: "technical", content: ["A Last.fm username starts the flow; there is no account wall.", "Public listening history contributes to a BTS fan score.", "A BTS quiz adds a second signal.", "The result becomes a shareable ticket-style scorecard."] },
+      { title: "LAUNCH", kind: "timeline", tone: "timeline", content: ["Shared through Twitter/X and the BTS community.", "People arrived without a complicated acquisition plan.", "The small release became the audience seed for later projects."] },
+      { title: "SIGNAL / OUTCOME", kind: "metadata", tone: "positive", content: [["500+", "Participants in ~1 day"], ["Twitter/X", "Launch channel"], ["Community", "Audience carried forward"]] },
+      { title: "WHAT I LEARNED", kind: "text", tone: "story", content: ["Scope and distribution matter as much as project size. A small product with a clear audience can teach more than a larger one nobody sees."] },
     ], closingCommit: { type: "feat", title: "ship something small enough to spread", lines: ["Last.fm username in", "listening score + BTS quiz", "shareable result out", "no account wall"] },
   },
   {
     id: "armybattles", milestoneId: "armybattles", title: "ARMYBATTLES", subtitle: "The community project gets deeper.", descriptor: "state, rules and verification", tags: ["Battles", "Verification", "Teams"], links: { repo: "https://github.com/NoobSambit/ARMYBATTLES" },
     sections: [
-      { title: "WHY I BUILT IT", kind: "text", content: ["FanGate proved that people would show up. ARMYBATTLES was about building something that could keep making sense after they did."] },
-      { title: "WHAT CHANGED", kind: "list", content: ["Battles moved through a lifecycle instead of ending at one result.", "Solo and team participation had separate scoring concerns.", "Leaderboards had to reflect verified listening rather than just clicks.", "Host controls and moderation became part of the product surface."] },
-      { title: "VERIFICATION PATH", kind: "list", content: ["Spotify helpers support the music flow.", "Last.fm scrobbles are checked for listening verification.", "Scheduled verification scripts keep counts and battle state moving.", "Suspicious-stream handling exists because rules are only useful if they survive contact with people."] },
-      { title: "WHAT IT CHANGED FOR ME", kind: "text", content: ["The same community feedback loop got much more stateful: battles, verified listening, teams, leaderboards and rules that had to keep working after the first click."] },
+      { title: "WHY I BUILT IT", kind: "text", tone: "story", content: ["FanGate proved that people would show up. ARMYBATTLES was about building something that could keep making sense after they did."] },
+      { title: "WHAT CHANGED", kind: "list", tone: "technical", content: ["Battles moved through a lifecycle instead of ending at one result.", "Solo and team participation had separate scoring concerns.", "Leaderboards had to reflect verified listening rather than just clicks.", "Host controls and moderation became part of the product surface."] },
+      { title: "VERIFICATION PATH", kind: "list", tone: "technical", content: ["Spotify helpers support the music flow.", "Last.fm scrobbles are checked for listening verification.", "Scheduled verification scripts keep counts and battle state moving.", "Suspicious-stream handling exists because rules are only useful if they survive contact with people."] },
+      { title: "WHAT IT CHANGED FOR ME", kind: "text", tone: "story", content: ["The same community feedback loop got much more stateful: battles, verified listening, teams, leaderboards and rules that had to keep working after the first click."] },
     ], closingCommit: { type: "feat", title: "make the community loop stateful", lines: ["verify listening", "score teams", "keep battle rules moving"] },
   },
   {
     id: "armyverse", milestoneId: "armyverse", title: "ArmyVerse", subtitle: "First 1k+ user platform. Real users, real bugs, real lessons.", descriptor: "first 1k+ user platform", tags: ["Community", "Feedback", "Iteration"], links: { live: "https://armyverse.vercel.app/", repo: "https://github.com/NoobSambit/ARMYVERSE2" },
     sections: [
-      { title: "WHY I BUILT IT", kind: "text", content: ["After FanGate and ARMYBATTLES, I wanted to build a larger persistent product for the same BTS community rather than another isolated mini-tool. I did not start with a growth funnel. I kept shipping into the same community, and each launch became less cold."] },
-      { title: "WHAT I BUILT", kind: "list", content: ["Playlist creation with Spotify export.", "Streaming-focused quests, streaks and rewards.", "BTS music discovery and YouTube data views.", "Profiles, community surfaces and leaderboard-style game systems.", "Guided tours for playlist creation flows."] },
-      { title: "TECH & ARCHITECTURE", kind: "metadata", content: [["Frontend", "Next.js + TypeScript"], ["Data", "MongoDB"], ["Auth", "NextAuth + Firebase/JWT paths"], ["Integrations", "Spotify · Last.fm · YouTube"], ["Hosting", "Vercel"]] },
-      { title: "LAUNCH TIMELINE", kind: "timeline", content: ["Built while sharing progress with the BTS community on Twitter/X.", "FanGate and ARMYBATTLES had already created an initial audience.", "ArmyVerse was announced before release; feedback and bug reports arrived immediately.", "The first 2–3 days were mostly fix → test → ship."] },
-      { title: "SIGNALS / OUTCOMES", kind: "metadata", content: [["1.1k", "Users"], ["~2–3 days", "Continuous post-launch fixing"], ["Twitter/X", "Primary distribution channel"], ["Community", "Direct feedback loop"]] },
-      { title: "WHAT BROKE / REAL LESSONS", kind: "list", content: ["The UI looked obvious to me. It wasn’t.", "Some flows needed tours and guidance.", "Leaderboard and streak/reward behaviour broke during early testing.", "Authentication issues appeared.", "Free-tier constraints showed up at the worst possible time.", "Some failures were user-side; some were absolutely mine."] },
-      { title: "WHAT CHANGED AFTER THIS", kind: "list", content: ["User empathy became a design requirement.", "‘Obvious’ stopped being a valid UX argument.", "Release became the start of the feedback loop.", "Platform constraints started getting researched earlier."] },
-      { title: "EVIDENCE / PROOF", kind: "list", content: ["1.1k users.", "Guided-tour and auth/streaming fixes are visible in the project’s Git history.", "The live product and public repository are linked above."] },
+      { title: "WHY I BUILT IT", kind: "text", tone: "story", content: ["After FanGate and ARMYBATTLES, I wanted to build a larger persistent product for the same BTS community rather than another isolated mini-tool. I did not start with a growth funnel. I kept shipping into the same community, and each launch became less cold."] },
+      { title: "WHAT I BUILT", kind: "list", tone: "technical", content: ["Playlist creation with Spotify export.", "Streaming-focused quests, streaks and rewards.", "BTS music discovery and YouTube data views.", "Profiles, community surfaces and leaderboard-style game systems.", "Guided tours for playlist creation flows."] },
+      { title: "TECH & ARCHITECTURE", kind: "metadata", tone: "technical", content: [["Frontend", "Next.js + TypeScript"], ["Data", "MongoDB"], ["Auth", "NextAuth + Firebase/JWT paths"], ["Integrations", "Spotify · Last.fm · YouTube"], ["Hosting", "Vercel"]] },
+      { title: "LAUNCH TIMELINE", kind: "timeline", tone: "timeline", content: ["Built while sharing progress with the BTS community on Twitter/X.", "FanGate and ARMYBATTLES had already created an initial audience.", "ArmyVerse was announced before release; feedback and bug reports arrived immediately.", "The first 2–3 days were mostly fix → test → ship."] },
+      { title: "SIGNALS / OUTCOMES", kind: "metadata", tone: "positive", content: [["1.1k", "Users"], ["~2–3 days", "Continuous post-launch fixing"], ["Twitter/X", "Primary distribution channel"], ["Community", "Direct feedback loop"]] },
+      { title: "WHAT BROKE / REAL LESSONS", kind: "list", tone: "danger", content: ["The UI looked obvious to me. It wasn’t.", "Some flows needed tours and guidance.", "Leaderboard and streak/reward behaviour broke during early testing.", "Authentication issues appeared.", "Free-tier constraints showed up at the worst possible time.", "Some failures were user-side; some were absolutely mine."] },
+      { title: "WHAT CHANGED AFTER THIS", kind: "list", tone: "technical", content: ["User empathy became a design requirement.", "‘Obvious’ stopped being a valid UX argument.", "Release became the start of the feedback loop.", "Platform constraints started getting researched earlier."] },
+      { title: "EVIDENCE / PROOF", kind: "list", tone: "positive", content: ["1.1k users.", "Guided-tour and auth/streaming fixes are visible in the project’s Git history.", "The live product and public repository are linked above."] },
     ], closingCommit: { type: "fix", title: "keep listening after launch", lines: ["guided tours for unclear flows", "repair auth, leaderboard and reward edges", "fix → test → ship"] },
   },
   {
     id: "agent-playground", milestoneId: "going-deeper", title: "Agent Playground", subtitle: "A project that became a state, persistence and migration problem.", descriptor: "current systems work", tags: ["State", "PostgreSQL", "Migration"], links: { repo: "https://github.com/NoobSambit/AGENT-PLAYGROUND" },
     sections: [
-      { title: "WHY IT MATTERS", kind: "text", content: ["The interesting part stopped being how many AI actions existed. The harder question became what an agent remembers, what gets persisted, and how that data changes safely as the system grows."] },
-      { title: "SYSTEM SHAPE", kind: "list", content: ["Agent chat is the write point for memory, traits and state side effects.", "Services own domain rules; repositories own PostgreSQL reads and writes.", "Memory and relationship data have explicit, inspectable projections.", "Generation work uses sessions, versioned artifacts and pipeline traces."] },
-      { title: "PERSISTENCE WORK", kind: "list", content: ["Four persistence modes cover Firestore, dual-write cutover and PostgreSQL.", "Export, backfill and parity checks support migration rather than a blind switch.", "Failed mirrored writes are captured in a migration outbox."] },
-      { title: "WHAT I’M LEARNING", kind: "text", content: ["This is where feature work kept turning into questions about state boundaries, data ownership and how to change a live system without casually losing its past."] },
+      { title: "WHY IT MATTERS", kind: "text", tone: "story", content: ["The interesting part stopped being how many AI actions existed. The harder question became what an agent remembers, what gets persisted, and how that data changes safely as the system grows."] },
+      { title: "SYSTEM SHAPE", kind: "list", tone: "technical", content: ["Agent chat is the write point for memory, traits and state side effects.", "Services own domain rules; repositories own PostgreSQL reads and writes.", "Memory and relationship data have explicit, inspectable projections.", "Generation work uses sessions, versioned artifacts and pipeline traces."] },
+      { title: "PERSISTENCE WORK", kind: "list", tone: "technical", content: ["Four persistence modes cover Firestore, dual-write cutover and PostgreSQL.", "Export, backfill and parity checks support migration rather than a blind switch.", "Failed mirrored writes are captured in a migration outbox."] },
+      { title: "WHAT I’M LEARNING", kind: "text", tone: "story", content: ["This is where feature work kept turning into questions about state boundaries, data ownership and how to change a live system without casually losing its past."] },
     ], closingCommit: { type: "refactor", title: "make state transitions inspectable", lines: ["separate services from persistence adapters", "move carefully from Firestore", "keep failures visible"] },
   },
   {
     id: "agentproof", milestoneId: "going-deeper", title: "AgentProof", subtitle: "A local CLI for checking software changed by coding agents.", descriptor: "verification and trust", tags: ["CLI", "Evidence", "Verification"],
     sections: [
-      { title: "WHY I BUILT IT", kind: "text", content: ["Modern AI can write extremely strong code. The harder problem is deciding what to trust, what to verify, and who still owns the decision."] },
-      { title: "WHAT IT VERIFIES", kind: "list", content: ["It takes a repository plus a task, issue or PRD.", "It turns the task into checkable requirements and proof obligations.", "It records what was checked, what happened and the evidence behind each claim.", "Missing tools, permissions or provider access stay visible instead of becoming a pretend pass."] },
-      { title: "CLI / PIPELINE", kind: "list", content: ["A local CLI coordinates discovery, requirements, controlled checks and reports.", "Provider adapters can investigate without owning the verdict.", "Results distinguish evidence, cautions, blockers and incomplete coverage."] },
-      { title: "TRUST MODEL", kind: "text", content: ["The target repository is an input to an audit, not a place to casually mutate. The report has to say what is proven, not simply sound reassuring."] },
-      { title: "CURRENT STATE", kind: "text", content: ["Active pre-alpha work. The CLI, contract, controlled-runner, provider and evidence foundations are implemented in a staged roadmap; the product does not claim finished coverage it cannot prove."] },
+      { title: "WHY I BUILT IT", kind: "text", tone: "story", content: ["Modern AI can write extremely strong code. The harder problem is deciding what to trust, what to verify, and who still owns the decision."] },
+      { title: "WHAT IT VERIFIES", kind: "list", tone: "technical", content: ["It takes a repository plus a task, issue or PRD.", "It turns the task into checkable requirements and proof obligations.", "It records what was checked, what happened and the evidence behind each claim.", "Missing tools, permissions or provider access stay visible instead of becoming a pretend pass."] },
+      { title: "CLI / PIPELINE", kind: "list", tone: "technical", content: ["A local CLI coordinates discovery, requirements, controlled checks and reports.", "Provider adapters can investigate without owning the verdict.", "Results distinguish evidence, cautions, blockers and incomplete coverage."] },
+      { title: "TRUST MODEL", kind: "text", tone: "story", content: ["The target repository is an input to an audit, not a place to casually mutate. The report has to say what is proven, not simply sound reassuring."] },
+      { title: "CURRENT STATE", kind: "text", tone: "warning", content: ["Active pre-alpha work. The CLI, contract, controlled-runner, provider and evidence foundations are implemented in a staged roadmap; the product does not claim finished coverage it cannot prove."] },
     ], closingCommit: { type: "feat", title: "make evidence part of the answer", lines: ["turn tasks into checkable requirements", "keep controls and gaps explicit", "do not let a provider approve itself"] },
   },
 ];
 
 export const careerBranches = [
-  ["main", "product-engineering", "primary"], ["backend", "server · APIs · systems", "primary"], ["fullstack", "end-to-end web", "active"], ["ai", "AI features · agents", "active"], ["cli", "CLI tools · workflows", "active"], ["system-design", "systems thinking", "learning"],
+  ["main", "product-engineering", "HEAD"], ["backend", "server · APIs · systems", "primary"], ["fullstack", "end-to-end web", "active"], ["ai", "AI features · agents", "active"], ["cli", "CLI tools · workflows", "active"], ["system-design", "systems thinking", "learning"],
 ] as const;
 
 export const learningTimeline = [
