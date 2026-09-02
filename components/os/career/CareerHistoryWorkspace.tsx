@@ -96,6 +96,13 @@ export function CareerHistoryWorkspace({ onOpenIntroduction }: CareerHistoryWork
   const selected = useMemo(() => careerMilestones.find((milestone) => milestone.id === selectedId) ?? careerMilestones[0], [selectedId]);
   const activeStory = useMemo(() => careerStories.find((story) => story.id === storyId) ?? null, [storyId]);
 
+  const selectMilestone = (id: string) => {
+    setSelectedId(id);
+    // A timeline selection is a Level 1 navigation action. Clear any open
+    // story so the selected milestone can take over the center workspace.
+    setStoryId(null);
+  };
+
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape" && storyId) setStoryId(null);
@@ -120,7 +127,7 @@ export function CareerHistoryWorkspace({ onOpenIntroduction }: CareerHistoryWork
           <div className="career-v2-timeline" role="list" aria-label="Career milestones">
             {careerMilestones.map((milestone) => {
               const selectedState = milestone.id === selected.id;
-              return <button type="button" role="listitem" key={milestone.id} className={selectedState ? "is-selected" : ""} onClick={() => setSelectedId(milestone.id)} aria-pressed={selectedState}>
+              return <button type="button" role="listitem" key={milestone.id} className={selectedState ? "is-selected" : ""} onClick={() => selectMilestone(milestone.id)} aria-pressed={selectedState}>
                 <i aria-hidden="true" />
                 <span>{milestone.period}</span>
                 <b>{milestone.title}</b>
