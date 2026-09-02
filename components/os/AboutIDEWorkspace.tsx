@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { CareerHistoryWorkspace as CareerHistoryWorkspaceV2 } from "@/components/os/career/CareerHistoryWorkspace";
 
 const explorerFiles = [
@@ -14,66 +14,6 @@ const explorerFiles = [
   "workstation.toml",
   "languages.yml",
 ];
-const tags = [
-  "Backend",
-  "Full Stack",
-  "Product Logic",
-  "Product Planning",
-  "Original Builds",
-  "2026 Graduate",
-  "Open to Work",
-  "From Scratch",
-];
-const engineeringTags = [
-  "Product Research",
-  "Product Logic",
-  "Architecture",
-  "PRDs",
-  "Backend",
-  "Testing",
-  "Refactoring",
-  "AI-Assisted",
-];
-const valuesTags = [
-  "Architecture",
-  "Shipping",
-  "UI / UX",
-  "Originality",
-  "Utility",
-  "AI Judgment",
-  "Learning",
-  "Trade-offs",
-];
-const personalityTags = [
-  "Introverted",
-  "Stubborn",
-  "Persistent",
-  "Adaptable",
-  "Sarcastic",
-  "Competitive",
-  "Product Polish",
-  "Self-Aware",
-];
-const visionTags = [
-  "Product",
-  "Market Research",
-  "Backend",
-  "Startups",
-  "Long-Horizon",
-  "Ownership",
-  "Learning",
-  "Useful Software",
-];
-const educationTags = [
-  "VIT Vellore",
-  "CSE",
-  "Bioinformatics",
-  "2026 Graduate",
-  "Self-Learning",
-  "Project-Based",
-  "Documentation",
-  "AI-Assisted",
-];
 const implementedFiles = [
   "introduction.ts",
   "education.ts",
@@ -82,6 +22,86 @@ const implementedFiles = [
   "values.ts",
   "personality.ts",
 ] as const;
+
+type SemanticTone = "cyan" | "purple" | "green" | "orange";
+type SemanticProperty = {
+  label: string;
+  values: readonly string[];
+  tone?: SemanticTone;
+};
+type SemanticNode = {
+  id: string;
+  summary: string;
+  accent: SemanticTone;
+  properties: readonly SemanticProperty[];
+};
+type SemanticMapDefinition = {
+  defaultNode: string;
+  nodes: readonly SemanticNode[];
+};
+
+const semanticMaps: Partial<Record<string, SemanticMapDefinition>> = {
+  "introduction.ts": {
+    defaultNode: "builder",
+    nodes: [
+      { id: "sambit", summary: "identity / education / role", accent: "purple", properties: [{ label: "primaryRole", values: ["Backend Engineer"], tone: "cyan" }, { label: "education", values: ["VIT Vellore", "B.Tech CSE · Bioinformatics", "2026"], tone: "orange" }, { label: "status", values: ["open to opportunities"], tone: "green" }] },
+      { id: "builder", summary: "product logic / architecture / planning", accent: "cyan", properties: [{ label: "strongestAt", values: ["backend"], tone: "cyan" }, { label: "favoritePart", values: ["product logic", "architecture", "planning"], tone: "purple" }, { label: "startsWith", values: ["a problem worth solving"], tone: "orange" }, { label: "qualityBar", values: ["working !== finished"], tone: "green" }, { label: "frontend", values: ["not my strongest side;", "still not allowed to feel half-done"], tone: "orange" }] },
+      { id: "notes", summary: "working style / quality bar", accent: "orange", properties: [{ label: "builds", values: ["products with a reason beyond a demo"], tone: "purple" }, { label: "beforeCode", values: ["idea, flow and architecture"], tone: "cyan" }, { label: "response", values: ["keep going until it feels right"], tone: "green" }] },
+    ],
+  },
+  "engineering.ts": {
+    defaultNode: "process",
+    nodes: [
+      { id: "process", summary: "idea → research → PRD → build", accent: "cyan", properties: [{ label: "start", values: ["the problem, not the stack"], tone: "orange" }, { label: "discovery", values: ["research products, APIs and constraints"], tone: "cyan" }, { label: "validation", values: ["build → test → fix assumptions"], tone: "green" }] },
+      { id: "caseStudy", summary: "Spotify constraint → BYOK redesign", accent: "orange", properties: [{ label: "project", values: ["ArmyVerse"], tone: "purple" }, { label: "constraint", values: ["public-app path was not clean"], tone: "orange" }, { label: "response", values: ["per-user Spotify app flow"], tone: "cyan" }] },
+      { id: "ai", summary: "speed without decision outsourcing", accent: "purple", properties: [{ label: "usefulFor", values: ["research", "implementation speed"], tone: "cyan" }, { label: "stillOwn", values: ["product trade-offs", "architecture", "what gets trusted"], tone: "green" }] },
+      { id: "tradeoffs", summary: "complexity must justify itself", accent: "orange", properties: [{ label: "correction", values: ["start from the product constraint", "prefer the simple path first"], tone: "orange" }] },
+      { id: "rules", summary: "working principles", accent: "green", properties: [{ label: "rule", values: ["product before stack", "working !== finished", "users expose assumptions"], tone: "green" }] },
+    ],
+  },
+  "education.ts": {
+    defaultNode: "actualLearning",
+    nodes: [
+      { id: "university", summary: "formal education", accent: "purple", properties: [{ label: "institution", values: ["Vellore Institute of Technology"], tone: "purple" }, { label: "degree", values: ["B.Tech · CSE", "Bioinformatics", "2026"], tone: "orange" }] },
+      { id: "school", summary: "West Bengal schooling", accent: "orange", properties: [{ label: "path", values: ["PCM + Computer Science", "West Bengal Board"], tone: "orange" }] },
+      { id: "actualLearning", summary: "where most engineering happened", accent: "cyan", properties: [{ label: "afterClass", values: ["where most of it happened"], tone: "cyan" }, { label: "sources", values: ["documentation", "projects", "research"], tone: "purple" }, { label: "bestTeacher", values: ["something I wanted to build"], tone: "green" }] },
+      { id: "learningLoop", summary: "build → research → break → repeat", accent: "green", properties: [{ label: "loop", values: ["need to build", "find the gap", "learn enough", "repeat"], tone: "green" }] },
+      { id: "perspective", summary: "degree vs self-learning", accent: "orange", properties: [{ label: "takeaway", values: ["knowledge needs somewhere to go"], tone: "orange" }] },
+    ],
+  },
+  "vision.ts": {
+    defaultNode: "products",
+    nodes: [
+      { id: "products", summary: "what deserves time", accent: "purple", properties: [{ label: "requirement", values: ["a reason to exist"], tone: "purple" }, { label: "usefulness", values: ["not optional"], tone: "green" }, { label: "horizon", values: ["the problem decides"], tone: "orange" }] },
+      { id: "productFilter", summary: "questions before the MVP", accent: "cyan", properties: [{ label: "asks", values: ["does the problem exist?", "who is it for?", "will it still matter later?"], tone: "cyan" }] },
+      { id: "market", summary: "is the problem real?", accent: "orange", properties: [{ label: "signals", values: ["existing products", "personal pain", "honest competition"], tone: "orange" }] },
+      { id: "career", summary: "startup / product-team preference", accent: "cyan", properties: [{ label: "environment", values: ["startup / small product team"], tone: "cyan" }, { label: "mustHave", values: ["people I can learn from"], tone: "green" }] },
+      { id: "founder", summary: "maybe someday; engineering first", accent: "purple", properties: [{ label: "rightNow", values: ["become a better engineer first"], tone: "purple" }] },
+      { id: "longTerm", summary: "backend depth + product thinking", accent: "green", properties: [{ label: "direction", values: ["deep backend work with whole-product context"], tone: "green" }] },
+    ],
+  },
+  "values.ts": {
+    defaultNode: "engineering",
+    nodes: [
+      { id: "priorities", summary: "what gets protected first", accent: "orange", properties: [{ label: "defaultOrder", values: ["architecture", "shipping speed", "UI / UX", "learning"], tone: "orange" }] },
+      { id: "engineering", summary: "technical rules with product context", accent: "cyan", properties: [{ label: "architecture", values: ["get the shape right first"], tone: "cyan" }, { label: "complexity", values: ["it has to earn its place"], tone: "orange" }, { label: "uiUx", values: ["the backend gets no extra credit"], tone: "purple" }] },
+      { id: "takes", summary: "opinions with trade-offs", accent: "purple", properties: [{ label: "reason", values: ["decisions, context and ownership matter more"], tone: "purple" }] },
+      { id: "notForMe", summary: "things that do not qualify", accent: "orange", properties: [{ label: "reject", values: ["architecture for show", "tutorial clones", "unowned AI output"], tone: "orange" }] },
+      { id: "shortVersion", summary: "compressed working principles", accent: "green", properties: [{ label: "keeps", values: ["useful, original, understood"], tone: "green" }] },
+    ],
+  },
+  "personality.ts": {
+    defaultNode: "qualityControl",
+    nodes: [
+      { id: "baseline", summary: "default operating style", accent: "purple", properties: [{ label: "socialBattery", values: ["introvert"], tone: "purple" }, { label: "comfortZone", values: ["not particularly protective"], tone: "green" }] },
+      { id: "qualityControl", summary: "polish vs time", accent: "cyan", properties: [{ label: "threshold", values: ["rough edges are hard to ignore"], tone: "cyan" }, { label: "downside", values: ["too long on the last 10%"], tone: "orange" }, { label: "response", values: ["keep iterating anyway"], tone: "green" }] },
+      { id: "debugging", summary: "tonight / three days / three weeks", accent: "green", properties: [{ label: "default", values: ["until it is actually fixed"], tone: "green" }] },
+      { id: "teamwork", summary: "professional data still incomplete", accent: "orange", properties: [{ label: "experience", values: ["not enough data yet"], tone: "orange" }, { label: "expectation", values: ["listen, contribute, learn"], tone: "cyan" }] },
+      { id: "competition", summary: "strong people nearby → push harder", accent: "purple", properties: [{ label: "effect", values: ["I start pushing harder"], tone: "purple" }] },
+      { id: "adaptability", summary: "learn enough, then move", accent: "cyan", properties: [{ label: "response", values: ["adapt without pretending to know it all"], tone: "cyan" }] },
+    ],
+  },
+};
 
 type ActivityIconName =
   | "explorer"
@@ -150,28 +170,64 @@ function ActivityIcon({ name }: { name: ActivityIconName }) {
   );
 }
 
-function InspectorSection({
-  title,
-  children,
+function SemanticMap({
+  activeFile,
+  selectedNodeId,
+  activeLine,
+  collapsed,
+  onSelectNode,
+  onToggleCollapsed,
 }: {
-  title: string;
-  children: ReactNode;
+  activeFile: string;
+  selectedNodeId: string | undefined;
+  activeLine: number | undefined;
+  collapsed: boolean;
+  onSelectNode: (id: string) => void;
+  onToggleCollapsed: () => void;
 }) {
-  return (
-    <section className="ide-inspector-section">
-      <h2>⌄ {title}</h2>
-      {children}
-    </section>
-  );
-}
+  const definition = semanticMaps[activeFile];
+  const activeNode = definition?.nodes.find((node) => node.id === selectedNodeId);
 
-function KeyValue({ label, value }: { label: string; value: ReactNode }) {
   return (
-    <div className="ide-key-value">
-      <span>{label}</span>
-      <i>:</i>
-      <b>{value}</b>
-    </div>
+    <aside className={`semantic-map ${collapsed ? "is-collapsed" : ""}`} aria-label={`Semantic map for ${activeFile}`}>
+      <header className="semantic-map-header">
+        <b><span aria-hidden="true">◇</span><span className="semantic-map-title">SEMANTIC MAP</span></b>
+        {!collapsed && <><em>{activeFile}</em><small>{activeLine ? `Ln ${activeLine}` : "Ln —"}</small></>}
+        <button type="button" onClick={onToggleCollapsed} aria-label={collapsed ? "Expand semantic map" : "Collapse semantic map"} title={collapsed ? "Expand semantic map" : "Collapse semantic map"}>{collapsed ? "›" : "‹"}</button>
+      </header>
+      {!collapsed && <>
+        <div className="semantic-map-body">
+          {definition ? (
+            <div className="semantic-map-graph">
+              <div className="semantic-map-node-list" role="group" aria-label={`${activeFile} semantic nodes`}>
+                {definition.nodes.map((node) => {
+                  const active = node.id === activeNode?.id;
+                  return <div className={`semantic-map-node-wrap ${active ? "is-active" : ""}`} key={node.id}>
+                    <button className={`semantic-map-node semantic-map-node--${node.accent}`} type="button" onClick={() => onSelectNode(node.id)} aria-pressed={active}>
+                      <i aria-hidden="true" />
+                      <span><b>{node.id}</b><small>{node.summary}</small></span>
+                      <em>{active ? "⌄" : ""}</em>
+                    </button>
+                    {active && <div className="semantic-map-properties" aria-label={`${node.id} properties`}>
+                      {node.properties.map((property) => <div className={`semantic-map-property semantic-map-property--${property.tone ?? node.accent}`} key={property.label}>
+                        <span>{property.label}</span><i aria-hidden="true">→</i><div>{property.values.map((value) => <b key={value}>{value}</b>)}</div>
+                      </div>)}
+                    </div>}
+                  </div>;
+                })}
+              </div>
+            </div>
+          ) : (
+            <p className="semantic-map-empty"><span aria-hidden="true">◇</span>No semantic structure yet.<small>{activeFile} is still pending implementation.</small></p>
+          )}
+        </div>
+        <nav className="semantic-map-actions" aria-label="About workspace links">
+          <a href="https://sambit.dev/resume.pdf" target="_blank" rel="noopener noreferrer"><i aria-hidden="true">▧</i>Resume</a>
+          <a href="/projects"><i aria-hidden="true">◫</i>Projects</a>
+          <a href="https://github.com/NoobSambit" target="_blank" rel="noopener noreferrer"><i aria-hidden="true">◉</i>GitHub</a>
+        </nav>
+      </>}
+    </aside>
   );
 }
 
@@ -198,7 +254,7 @@ function EngineeringSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">process</span> = {"{"}
+        <span className="variable" data-semantic-node="process">process</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -355,7 +411,7 @@ function EngineeringSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">caseStudy</span> = {"{"}
+        <span className="variable" data-semantic-node="caseStudy">caseStudy</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -434,7 +490,7 @@ function EngineeringSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">ai</span> = {"{"}
+        <span className="variable" data-semantic-node="ai">ai</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -500,7 +556,7 @@ function EngineeringSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">tradeoffs</span> = {"{"}
+        <span className="variable" data-semantic-node="tradeoffs">tradeoffs</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -632,7 +688,7 @@ function EngineeringSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">rules</span> = [
+        <span className="variable" data-semantic-node="rules">rules</span> = [
       </li>
       <li>
         {"  "}
@@ -692,7 +748,7 @@ function ValuesSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">priorities</span> = {"{"}
+        <span className="variable" data-semantic-node="priorities">priorities</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -734,7 +790,7 @@ function ValuesSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">engineering</span> = {"{"}
+        <span className="variable" data-semantic-node="engineering">engineering</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -825,7 +881,7 @@ function ValuesSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">takes</span> = [
+        <span className="variable" data-semantic-node="takes">takes</span> = [
       </li>
       <li>
         {"  "}&#123;
@@ -938,7 +994,7 @@ function ValuesSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">notForMe</span> = [
+        <span className="variable" data-semantic-node="notForMe">notForMe</span> = [
       </li>
       <li>
         {"  "}
@@ -972,7 +1028,7 @@ function ValuesSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">shortVersion</span> = [
+        <span className="variable" data-semantic-node="shortVersion">shortVersion</span> = [
       </li>
       <li>
         {"  "}
@@ -1028,7 +1084,7 @@ function PersonalitySource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">baseline</span> = {"{"}
+        <span className="variable" data-semantic-node="baseline">baseline</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -1080,7 +1136,7 @@ function PersonalitySource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">qualityControl</span> = {"{"}
+        <span className="variable" data-semantic-node="qualityControl">qualityControl</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -1143,7 +1199,7 @@ function PersonalitySource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">debugging</span> = {"{"}
+        <span className="variable" data-semantic-node="debugging">debugging</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -1228,7 +1284,7 @@ function PersonalitySource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">teamwork</span> = {"{"}
+        <span className="variable" data-semantic-node="teamwork">teamwork</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -1297,7 +1353,7 @@ function PersonalitySource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">competition</span> = {"{"}
+        <span className="variable" data-semantic-node="competition">competition</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -1340,7 +1396,7 @@ function PersonalitySource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">adaptability</span> = {"{"}
+        <span className="variable" data-semantic-node="adaptability">adaptability</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -1522,7 +1578,7 @@ function VisionSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">products</span> = {"{"}
+        <span className="variable" data-semantic-node="products">products</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -1605,7 +1661,7 @@ function VisionSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">productFilter</span> = [
+        <span className="variable" data-semantic-node="productFilter">productFilter</span> = [
       </li>
       <li>
         {"  "}
@@ -1637,7 +1693,7 @@ function VisionSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">market</span> = {"{"}
+        <span className="variable" data-semantic-node="market">market</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -1707,7 +1763,7 @@ function VisionSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">career</span> = {"{"}
+        <span className="variable" data-semantic-node="career">career</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -1794,7 +1850,7 @@ function VisionSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">founder</span> = {"{"}
+        <span className="variable" data-semantic-node="founder">founder</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -1890,7 +1946,7 @@ function VisionSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">longTerm</span> = {"{"}
+        <span className="variable" data-semantic-node="longTerm">longTerm</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -1981,7 +2037,7 @@ function EducationSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">university</span> = {"{"}
+        <span className="variable" data-semantic-node="university">university</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -2050,7 +2106,7 @@ function EducationSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">school</span> = [
+        <span className="variable" data-semantic-node="school">school</span> = [
       </li>
       <li>
         {"  "}&#123;
@@ -2159,7 +2215,7 @@ function EducationSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">actualLearning</span> = {"{"}
+        <span className="variable" data-semantic-node="actualLearning">actualLearning</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -2240,7 +2296,7 @@ function EducationSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">learningLoop</span> = [
+        <span className="variable" data-semantic-node="learningLoop">learningLoop</span> = [
       </li>
       <li>
         {"  "}
@@ -2274,7 +2330,7 @@ function EducationSource() {
       <li />
       <li>
         <span className="keyword">export const</span>{" "}
-        <span className="variable">perspective</span> = {"{"}
+        <span className="variable" data-semantic-node="perspective">perspective</span> = {"{"}
       </li>
       <li>
         {"  "}
@@ -2321,6 +2377,11 @@ export function AboutIDEWorkspace() {
     "vision.ts",
   ]);
   const [activeView, setActiveView] = useState<"editor" | "career">("editor");
+  const [semanticSelections, setSemanticSelections] = useState<Record<string, string>>(() =>
+    Object.fromEntries(Object.entries(semanticMaps).map(([file, map]) => [file, map?.defaultNode ?? ""])),
+  );
+  const [semanticMapCollapsed, setSemanticMapCollapsed] = useState(false);
+  const [semanticLine, setSemanticLine] = useState<number>();
   const openFile = (file: string) => {
     setActiveFile(file);
     setOpenFiles((files) => (files.includes(file) ? files : [...files, file]));
@@ -2349,10 +2410,49 @@ export function AboutIDEWorkspace() {
   const isLongSource =
     isEngineering || isVision || isEducation || isValues || isPersonality;
   const isImplemented = implementedFiles.some((file) => file === activeFile);
+  const currentSemanticMap = semanticMaps[activeFile];
+  const selectedSemanticNode = currentSemanticMap
+    ? (semanticSelections[activeFile] ?? currentSemanticMap.defaultNode)
+    : undefined;
+
+  const getSemanticAnchor = (nodeId: string) =>
+    document.querySelector<HTMLElement>(`.ide-editor [data-semantic-node="${nodeId}"]`);
+  const updateSemanticLine = (nodeId: string | undefined) => {
+    if (!nodeId) return setSemanticLine(undefined);
+    const anchor = getSemanticAnchor(nodeId);
+    const line = anchor?.closest("li");
+    const source = line?.parentElement;
+    if (!line || !source) return setSemanticLine(undefined);
+    setSemanticLine(Array.from(source.children).indexOf(line) + 1);
+  };
+
+  useEffect(() => {
+    updateSemanticLine(selectedSemanticNode);
+  }, [activeFile, selectedSemanticNode]);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 1100px)");
+    const updateCollapsedState = () => setSemanticMapCollapsed(query.matches);
+    updateCollapsedState();
+    query.addEventListener("change", updateCollapsedState);
+    return () => query.removeEventListener("change", updateCollapsedState);
+  }, []);
+
+  const selectSemanticNode = (nodeId: string) => {
+    setSemanticSelections((selections) => ({ ...selections, [activeFile]: nodeId }));
+    const anchor = getSemanticAnchor(nodeId);
+    const line = anchor?.closest("li");
+    updateSemanticLine(nodeId);
+    if (!line) return;
+    line.scrollIntoView({ behavior: "smooth", block: "center" });
+    line.classList.remove("is-semantic-highlight");
+    window.requestAnimationFrame(() => line.classList.add("is-semantic-highlight"));
+    window.setTimeout(() => line.classList.remove("is-semantic-highlight"), 900);
+  };
 
   return (
     <section
-      className={`about-ide-workspace ${activeView === "career" ? "career-mode" : ""}`}
+      className={`about-ide-workspace ${activeView === "career" ? "career-mode" : ""} ${semanticMapCollapsed ? "semantic-map-collapsed" : ""}`}
       aria-label="About developer workspace"
     >
       <nav className="ide-activity-bar" aria-label="Workspace tools">
@@ -2544,7 +2644,7 @@ export function AboutIDEWorkspace() {
                 <li />
                 <li>
                   <span className="keyword">export const</span>{" "}
-                  <span className="variable">sambit</span> = {"{"}
+                  <span className="variable" data-semantic-node="sambit">sambit</span> = {"{"}
                 </li>
                 <li>
                   {"  "}
@@ -2608,7 +2708,7 @@ export function AboutIDEWorkspace() {
                 <li />
                 <li>
                   <span className="keyword">export const</span>{" "}
-                  <span className="variable">builder</span> = {"{"}
+                  <span className="variable" data-semantic-node="builder">builder</span> = {"{"}
                 </li>
                 <li />
                 <li>
@@ -2676,7 +2776,7 @@ export function AboutIDEWorkspace() {
                 <li />
                 <li>
                   <span className="keyword">export const</span>{" "}
-                  <span className="variable">notes</span> = [
+                  <span className="variable" data-semantic-node="notes">notes</span> = [
                 </li>
                 <li>
                   {"  "}
@@ -2719,33 +2819,6 @@ export function AboutIDEWorkspace() {
                   <small>Coming soon</small>
                 </div>
               )}
-              <aside className="ide-blame">
-                <h2>Git Blame</h2>
-                {["2d ago", "3d ago", "4d ago", "5d ago", "1w ago"].map(
-                  (age, index) => (
-                    <div key={age}>
-                      <i>◉</i>
-                      <span>
-                        {age}
-                        <br />
-                        Sambit
-                        <br />
-                        <b>
-                          {
-                            [
-                              "fa83d2c",
-                              "9b7e1a2",
-                              "c21df7",
-                              "4ca91e",
-                              "a8d9c2f",
-                            ][index]
-                          }
-                        </b>
-                      </span>
-                    </div>
-                  ),
-                )}
-              </aside>
               <div className="ide-minimap" aria-hidden="true">
                 {Array.from(
                   {
@@ -2897,247 +2970,14 @@ export function AboutIDEWorkspace() {
             </section>
           </main>
 
-          <aside className="ide-inspector">
-            <header>
-              INSPECTOR <span>⌘　⌗　◎</span>
-            </header>
-            <InspectorSection title="FILE INFO">
-              {isEducation ? (
-                <>
-                  <KeyValue label="Language" value="TypeScript" />
-                  <KeyValue label="File" value="education.ts" />
-                  <KeyValue label="Type" value="Education" />
-                  <KeyValue label="Degree" value="B.Tech CSE" />
-                  <KeyValue label="Status" value="Graduated · 2026" />
-                </>
-              ) : isVision ? (
-                <>
-                  <KeyValue label="Language" value="TypeScript" />
-                  <KeyValue label="File" value="vision.ts" />
-                  <KeyValue label="Type" value="Direction" />
-                  <KeyValue label="Horizon" value="Long" />
-                  <KeyValue label="Status" value="Not hardcoded" />
-                </>
-              ) : isPersonality ? (
-                <>
-                  <KeyValue label="Language" value="TypeScript" />
-                  <KeyValue label="File" value="personality.ts" />
-                  <KeyValue label="Type" value="Human config" />
-                  <KeyValue label="Confidence" value="Mostly accurate" />
-                  <KeyValue label="Status" value="Still debugging" />
-                </>
-              ) : isValues ? (
-                <>
-                  <KeyValue label="Language" value="TypeScript" />
-                  <KeyValue label="File" value="values.ts" />
-                  <KeyValue label="Type" value="Opinions + trade-offs" />
-                  <KeyValue label="Mode" value="Opinionated" />
-                  <KeyValue label="Status" value="Subject to change" />
-                </>
-              ) : isEngineering ? (
-                <>
-                  <KeyValue label="Language" value="TypeScript" />
-                  <KeyValue label="File" value="engineering.ts" />
-                  <KeyValue label="Type" value="Working model" />
-                  <KeyValue label="Bias" value="Backend + Product" />
-                  <KeyValue label="Status" value="Always iterating" />
-                </>
-              ) : (
-                <>
-                  <KeyValue label="Language" value="TypeScript" />
-                  <KeyValue label="File" value="introduction.ts" />
-                  <KeyValue label="Type" value="Developer profile" />
-                  <KeyValue label="Stage" value="2026 Graduate" />
-                  <KeyValue label="Status" value="Current" />
-                  <KeyValue label="Updated" value="Aug 2026" />
-                </>
-              )}
-            </InspectorSection>
-            <InspectorSection title="GIT">
-              <KeyValue label="Current Branch" value="main" />
-              <KeyValue
-                label="Latest Change"
-                value={
-                  isEducation
-                    ? "docs: add education history"
-                    : isVision
-                      ? "docs: define direction"
-                      : isPersonality
-                        ? "docs: add actual personality"
-                        : isValues
-                          ? "refactor: remove generic values"
-                          : isEngineering
-                            ? "docs: engineering process"
-                            : "content: rewrite introduction"
-                }
-              />
-              <KeyValue
-                label="Status"
-                value={<span className="green">● Clean</span>}
-              />
-            </InspectorSection>
-            <InspectorSection title="ENGINEERING TAGS">
-              <div className="ide-tags">
-                {(isEducation
-                  ? educationTags
-                  : isVision
-                    ? visionTags
-                    : isPersonality
-                      ? personalityTags
-                      : isValues
-                        ? valuesTags
-                        : isEngineering
-                          ? engineeringTags
-                          : tags
-                ).map((tag) => (
-                  <span
-                    className={
-                      tag ===
-                        (isEducation
-                          ? "AI-Assisted"
-                          : isVision
-                            ? "Useful Software"
-                            : isPersonality
-                              ? "Self-Aware"
-                              : isValues
-                                ? "Trade-offs"
-                                : isEngineering
-                                  ? "AI-Assisted"
-                                  : "Open to Work")
-                        ? "ready"
-                        : ""
-                    }
-                    key={tag}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </InspectorSection>
-            <InspectorSection
-              title={
-                isEducation
-                  ? "LEARNING MODE"
-                  : isVision
-                    ? "CURRENT DIRECTION"
-                    : isPersonality
-                      ? "CURRENT STATE"
-                      : isValues
-                        ? "CURRENT PRIORITY"
-                        : "CURRENT FOCUS"
-              }
-            >
-              <div className="ide-focus">
-                {isEducation ? (
-                  <>
-                    <p>
-                      Formal　 <b>VIT Vellore</b>
-                    </p>
-                    <p>
-                      Primary　 <b>Self-directed</b>
-                    </p>
-                    <p>
-                      Method　 <b>Build + Research</b>
-                    </p>
-                    <p>
-                      Status　 <b>Graduated</b>
-                    </p>
-                  </>
-                ) : isVision ? (
-                  <>
-                    <p>
-                      Role　　　<b>Engineer</b>
-                    </p>
-                    <p>
-                      Environment　 <b>Startup / Product</b>
-                    </p>
-                    <p>
-                      Priority　 <b>Learning + Team</b>
-                    </p>
-                    <p>
-                      Horizon　 <b>Keep building</b>
-                    </p>
-                  </>
-                ) : isPersonality ? (
-                  <>
-                    <p>
-                      Mode　　 <b>Building</b>
-                    </p>
-                    <p>
-                      Patience　 <b>Context-dependent</b>
-                    </p>
-                    <p>
-                      Weak Spot　 <b>Stopping at "good enough"</b>
-                    </p>
-                    <p>
-                      Status　　 <span className="green">● Functional</span>
-                    </p>
-                  </>
-                ) : isValues ? (
-                  <>
-                    <p>
-                      1　 <b>Architecture</b>
-                    </p>
-                    <p>
-                      2　 <b>Shipping</b>
-                    </p>
-                    <p>
-                      3　 <b>UI / UX</b>
-                    </p>
-                    <p>
-                      4　 <b>Learning</b>
-                    </p>
-                  </>
-                ) : isEngineering ? (
-                  <>
-                    <p>
-                      Learning　 <b>System Design</b>
-                    </p>
-                    <p>
-                      Building　 <b>AgentProof</b>
-                    </p>
-                    <p>
-                      Rabbit Hole　 <b>CLI verification</b>
-                    </p>
-                    <p>
-                      Status　　<span className="green">● Active</span>
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p>
-                      Building　 <b>AgentProof</b>
-                    </p>
-                    <p>
-                      Learning　 <b>System Design</b>
-                    </p>
-                    <p>
-                      Exploring　 <b>CLI verification</b>
-                    </p>
-                    <p>
-                      Status　　<span className="green">● Active</span>
-                    </p>
-                  </>
-                )}
-              </div>
-            </InspectorSection>
-            <InspectorSection title="QUICK ACTIONS">
-              <div className="ide-actions">
-                {[
-                  ["▧", "Open Resume"],
-                  ["▱", "Open Projects"],
-                  ["⚙", "Open Skills"],
-                  ["⇩", "Download CV"],
-                  ["◉", "GitHub"],
-                ].map(([icon, label]) => (
-                  <button key={label}>
-                    <i>{icon}</i>
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </InspectorSection>
-          </aside>
+          <SemanticMap
+            activeFile={activeFile}
+            selectedNodeId={selectedSemanticNode}
+            activeLine={semanticLine}
+            collapsed={semanticMapCollapsed}
+            onSelectNode={selectSemanticNode}
+            onToggleCollapsed={() => setSemanticMapCollapsed((collapsed) => !collapsed)}
+          />
         </>
       )}
     </section>

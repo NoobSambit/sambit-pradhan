@@ -8593,7 +8593,7 @@ button {
 
 /* About: transparent VS Code inspired developer workspace. */
 .about-ide-workspace {
-  --about-inspector-width: 362px;
+  --about-inspector-width: 328px;
   position: relative;
   min-width: 0;
   min-height: calc(100svh - 45px);
@@ -8683,8 +8683,7 @@ button {
   grid-template-rows: 43px minmax(0, 1fr) 108px 112px;
   border-right: 1px solid #26323c;
 }
-.ide-explorer > header,
-.ide-inspector > header {
+.ide-explorer > header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8896,7 +8895,7 @@ button {
   position: relative;
   min-height: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 118px 85px;
+  grid-template-columns: minmax(0, 1fr) 85px;
   overflow: hidden;
 }
 .ide-code {
@@ -8946,7 +8945,7 @@ button {
 }
 .ide-coming-soon {
   position: absolute;
-  inset: 0 203px 0 0;
+  inset: 0 85px 0 0;
   z-index: 3;
   display: grid;
   place-content: center;
@@ -8974,38 +8973,6 @@ button {
   border-radius: 3px;
   color: #80c9d9;
   font-size: 10px;
-}
-.ide-blame {
-  min-height: 0;
-  overflow: hidden;
-  border-left: 1px solid #26323c;
-  padding-top: 9px;
-}
-.ide-blame h2 {
-  margin: 0;
-  padding: 0 12px 8px;
-  border-bottom: 1px solid #26323c;
-  color: #b0bcc3;
-  font-size: 10px;
-  font-weight: 500;
-}
-.ide-blame div {
-  display: flex;
-  gap: 8px;
-  margin: 58px 10px 0;
-  color: #aab4ba;
-  font-size: 10px;
-}
-.ide-blame div + div {
-  margin-top: 36px;
-}
-.ide-blame i {
-  color: #e6ae62;
-  font-style: normal;
-}
-.ide-blame b {
-  color: #82929b;
-  font-weight: 500;
 }
 .ide-minimap {
   display: flex;
@@ -9088,114 +9055,83 @@ button {
   color: #72d175;
   font-size: 14px;
 }
-.ide-inspector {
+.semantic-map {
   min-width: 0;
   min-height: 0;
-  overflow: auto;
-  padding: 0 12px 12px;
-  border-left: 1px solid #26323c;
-  background: #070c11;
-  scrollbar-width: thin;
-  scrollbar-color: #405966 transparent;
-}
-.ide-inspector > header {
-  height: 43px;
-  margin: 0 -12px 10px;
-}
-.ide-inspector > header span {
-  color: #99a9b3;
-  font-size: 12px;
-}
-.ide-inspector-section {
-  margin-bottom: 8px;
-  padding: 12px 13px;
-  border: 1px solid #2b3a43;
-  border-radius: 5px;
-  background: transparent;
-}
-.ide-inspector-section h2 {
-  margin: 0 0 11px;
-  color: #b6c2c8;
-  font-size: 11px;
-  font-weight: 600;
-}
-.ide-key-value {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 12px minmax(0, 1.25fr);
-  min-height: 24px;
-  align-items: center;
-  color: #aab6bd;
-  font-size: 11px;
-}
-.ide-key-value i {
-  color: #6f7f89;
-  text-align: center;
-  font-style: normal;
-}
-.ide-key-value b {
-  color: #d6dfe3;
-  font-weight: 500;
+  grid-template-rows: 43px minmax(0, 1fr) 50px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  border-left: 1px solid #31444e;
+  background: rgba(7, 17, 23, 0.9);
+  transition: width 180ms ease;
 }
-.ide-tags {
+.semantic-map-header {
   display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-}
-.ide-tags span {
-  padding: 5px 10px;
-  border: 1px solid #3a4e59;
-  border-radius: 4px;
-  color: #d0d9dd;
-  font-size: 11px;
-}
-.ide-tags .ready {
-  border-color: #4c7545;
-  color: #92d16e;
-}
-.ide-focus {
-  border: 1px solid #2b3b45;
-  border-radius: 4px;
-  padding: 8px 10px;
-}
-.ide-focus p {
-  margin: 7px 0;
-  color: #aeb9c0;
-  font-size: 11px;
-}
-.ide-focus b {
-  color: #d8e0e3;
-  font-weight: 500;
-}
-.ide-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-.ide-actions button {
-  display: flex;
+  min-width: 0;
   align-items: center;
-  gap: 9px;
-  min-height: 36px;
-  padding: 0 10px;
-  border: 1px solid #2b3b45;
-  border-radius: 4px;
-  background: transparent;
-  color: #cdd7db;
-  font-size: 11px;
-  text-align: left;
-  cursor: pointer;
+  gap: 8px;
+  padding: 0 11px 0 14px;
+  border-bottom: 1px solid #31444e;
+  color: #d4e0e3;
+  font-size: 10px;
 }
-.ide-actions i {
-  color: #a9bac2;
-  font-size: 16px;
-  font-style: normal;
-}
+.semantic-map-header > b { display: flex; align-items: center; gap: 6px; white-space: nowrap; font-weight: 600; }
+.semantic-map-header > b > span:first-child { color: #72d4e7; font-size: 13px; }
+.semantic-map-header > em { min-width: 0; overflow: hidden; margin-left: auto; color: #aebdc2; font-size: 9px; font-style: normal; text-overflow: ellipsis; white-space: nowrap; }
+.semantic-map-header > small { color: #77909a; font-size: 9px; white-space: nowrap; }
+.semantic-map-header button { width: 24px; height: 24px; display: grid; place-items: center; flex: 0 0 auto; border: 0; background: transparent; color: #91a5ad; cursor: pointer; font: 18px/1 "JetBrains Mono", monospace; }
+.semantic-map-header button:hover,
+.semantic-map-header button:focus-visible { background: rgba(83, 159, 179, 0.14); color: #a7e7f1; outline: 2px solid #78d5e8; outline-offset: -2px; }
+.semantic-map-body { min-height: 0; overflow: auto; padding: 17px 14px 12px; scrollbar-width: thin; scrollbar-color: #405966 transparent; }
+.semantic-map-graph { min-height: 100%; }
+.semantic-map-node-list { position: relative; display: grid; gap: 4px; padding-left: 0; }
+.semantic-map-node-list::before { position: absolute; top: 18px; bottom: 17px; left: 8px; border-left: 1px solid #425864; content: ""; }
+.semantic-map-node-wrap { position: relative; }
+.semantic-map-node { position: relative; z-index: 1; display: grid; grid-template-columns: 18px minmax(0, 1fr) 12px; width: 100%; min-height: 41px; align-items: center; padding: 5px 4px 5px 0; border: 0; background: transparent; color: #a8b8be; cursor: pointer; text-align: left; }
+.semantic-map-node > i { width: 9px; height: 9px; margin-left: 4px; border: 1px solid #6b7f88; border-radius: 50%; background: #071117; }
+.semantic-map-node > span { display: grid; min-width: 0; gap: 2px; }
+.semantic-map-node b { color: #c8d4d8; font-size: 11px; font-weight: 500; }
+.semantic-map-node small { overflow: hidden; color: #83959d; font-size: 9px; line-height: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.semantic-map-node em { color: #7fcfdf; font-size: 10px; font-style: normal; text-align: right; }
+.semantic-map-node:hover b { color: #ebf1f2; }
+.semantic-map-node:hover > i { border-color: #9bdde9; }
+.semantic-map-node:focus-visible { outline: 2px solid #78d5e8; outline-offset: 2px; }
+.semantic-map-node-wrap.is-active > .semantic-map-node > i { width: 11px; height: 11px; margin-left: 3px; border: 2px solid #7ce0ed; box-shadow: 0 0 8px rgba(97, 210, 228, 0.24); }
+.semantic-map-node-wrap.is-active > .semantic-map-node b { color: #eff6f6; font-size: 12px; font-weight: 600; }
+.semantic-map-node--purple > i { border-color: #9c76b2; }
+.semantic-map-node--orange > i { border-color: #bd8759; }
+.semantic-map-node--green > i { border-color: #78ad6d; }
+.semantic-map-properties { position: relative; display: grid; gap: 8px; margin: 2px 0 11px 18px; padding: 9px 0 5px 16px; border-left: 1px solid #4a6570; animation: semantic-map-reveal 160ms ease-out; }
+.semantic-map-property { position: relative; display: grid; grid-template-columns: minmax(66px, auto) 15px minmax(0, 1fr); align-items: start; gap: 4px; min-height: 17px; }
+.semantic-map-property::before { position: absolute; top: 8px; left: -17px; width: 16px; border-top: 1px solid #4a6570; content: ""; }
+.semantic-map-property > span { color: #91a4ac; font-size: 9px; line-height: 14px; }
+.semantic-map-property > i { color: #79c8d9; font-size: 10px; font-style: normal; line-height: 14px; }
+.semantic-map-property > div { display: grid; gap: 2px; min-width: 0; }
+.semantic-map-property b { color: #d7e1e3; font-size: 10px; font-weight: 500; line-height: 14px; overflow-wrap: anywhere; }
+.semantic-map-property--cyan b { color: #8edce9; }
+.semantic-map-property--purple b { color: #c69bdf; }
+.semantic-map-property--green b { color: #94d47e; }
+.semantic-map-property--orange b { color: #dfa566; }
+.semantic-map-empty { display: grid; place-content: center; gap: 7px; min-height: 100%; margin: 0; color: #9aabb1; font-size: 10px; text-align: center; }
+.semantic-map-empty > span { color: #72d4e7; font-size: 18px; }
+.semantic-map-empty small { color: #71848d; font-size: 9px; }
+.semantic-map-actions { display: grid; grid-template-columns: repeat(3, 1fr); align-items: center; gap: 2px; padding: 0 8px; border-top: 1px solid #31444e; }
+.semantic-map-actions a { display: grid; justify-items: center; gap: 2px; color: #b8c6ca; font-size: 9px; text-decoration: none; }
+.semantic-map-actions a:hover,
+.semantic-map-actions a:focus-visible { color: #e7f0f1; outline: 2px solid #78d5e8; outline-offset: 2px; }
+.semantic-map-actions i { font-size: 13px; font-style: normal; }
+.semantic-map-actions a:nth-child(1) i { color: #dfa35e; }
+.semantic-map-actions a:nth-child(2) i { color: #75d4e6; }
+.semantic-map-actions a:nth-child(3) i { color: #c295df; }
+.semantic-map.is-collapsed { grid-template-rows: 43px; }
+.semantic-map.is-collapsed .semantic-map-header { justify-content: center; padding: 0; }
+.semantic-map.is-collapsed .semantic-map-header > b { display: grid; place-items: center; }
+.semantic-map.is-collapsed .semantic-map-header button { position: absolute; bottom: 8px; }
+.about-ide-workspace.semantic-map-collapsed { --about-inspector-width: 42px; }
+.ide-code li.is-semantic-highlight { background: rgba(79, 171, 190, 0.12); transition: background 900ms ease; }
+@keyframes semantic-map-reveal { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: translateY(0); } }
 @media (min-width: 761px) {
-  .ide-explorer > header,
-  .ide-inspector > header {
+  .ide-explorer > header {
     font-size: 12px;
   }
   .tree-root,
@@ -9219,13 +9155,6 @@ button {
   .ide-terminal-panel > div {
     font-size: 12px;
     line-height: 17px;
-  }
-  .ide-inspector-section h2,
-  .ide-key-value,
-  .ide-tags span,
-  .ide-focus p,
-  .ide-actions button {
-    font-size: 12px;
   }
 }
 
@@ -9808,7 +9737,7 @@ button {
 }
 @media (max-width: 1100px) and (min-width: 761px) {
   .about-ide-workspace {
-    --about-inspector-width: 310px;
+    --about-inspector-width: 286px;
     grid-template-columns: 45px 205px minmax(660px, 1fr) var(
         --about-inspector-width
       );
@@ -9817,8 +9746,8 @@ button {
   .ide-editor-column {
     min-width: 660px;
   }
-  .ide-inspector {
-    min-width: 310px;
+  .semantic-map {
+    min-width: 286px;
   }
 }
 @media (max-width: 760px) {
@@ -9837,7 +9766,7 @@ button {
     display: none;
   }
   .ide-explorer,
-  .ide-inspector {
+  .semantic-map {
     display: none;
   }
   .ide-editor-column {
@@ -9854,7 +9783,6 @@ button {
     grid-template-columns: minmax(560px, 1fr);
     overflow: auto;
   }
-  .ide-blame,
   .ide-minimap {
     display: none;
   }
