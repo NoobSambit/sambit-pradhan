@@ -8808,7 +8808,8 @@ button {
   min-width: 0;
   border-bottom: 1px solid #26323c;
 }
-.ide-tabs button {
+.ide-tabs > button,
+.ide-tab-select {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -8822,21 +8823,55 @@ button {
   font-size: 11px;
   cursor: pointer;
 }
-.ide-tabs button.active {
+.ide-tabs > button.active,
+.ide-tab.active {
   border-top-color: #5fcfe7;
   color: #e2e9eb;
 }
-.ide-tabs button i,
+.ide-tab {
+  display: flex;
+  min-width: 0;
+  border-right: 1px solid #26323c;
+  border-top: 2px solid transparent;
+}
+.ide-tab-select {
+  flex: 1;
+  border: 0;
+  color: inherit;
+  font: inherit;
+}
+.ide-tab-close {
+  width: 28px;
+  border: 0;
+  background: transparent;
+  color: #849099;
+  cursor: pointer;
+  font: 16px/1 "JetBrains Mono", monospace;
+}
+.ide-tab-close:hover,
+.ide-tab-close:focus-visible {
+  background: rgba(129, 184, 200, 0.12);
+  color: #9be2ef;
+}
+.ide-tab-close:focus-visible,
+.ide-tab-select:focus-visible {
+  outline: 2px solid #78d5e8;
+  outline-offset: -2px;
+}
+.ide-tabs > button i,
+.ide-tab-select i,
 .ide-breadcrumb b {
   color: #4ba8d8;
   font-size: 9px;
   font-style: normal;
 }
-.ide-tabs button span {
+.ide-tabs > button span,
+.ide-tab-select span {
   margin-left: 12px;
   color: #849099;
 }
-.ide-tabs button.active span {
+.ide-tabs > button.active span,
+.ide-tab.active .ide-tab-select span {
   color: #64c9e6;
 }
 .ide-tabs .new-tab {

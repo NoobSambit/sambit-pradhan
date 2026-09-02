@@ -2325,6 +2325,22 @@ export function AboutIDEWorkspace() {
     setActiveFile(file);
     setOpenFiles((files) => (files.includes(file) ? files : [...files, file]));
   };
+  const closeFile = (file: string) => {
+    if (file === "introduction.ts") return;
+
+    setOpenFiles((files) => {
+      const index = files.indexOf(file);
+      const nextFiles = files.filter((openFile) => openFile !== file);
+
+      setActiveFile((currentFile) =>
+        currentFile === file
+          ? (nextFiles[Math.max(0, index - 1)] ?? "introduction.ts")
+          : currentFile,
+      );
+
+      return nextFiles;
+    });
+  };
   const isEngineering = activeFile === "engineering.ts";
   const isVision = activeFile === "vision.ts";
   const isEducation = activeFile === "education.ts";
@@ -2445,31 +2461,43 @@ export function AboutIDEWorkspace() {
 
           <main className="ide-editor-column">
             <div className="ide-tabs">
-              {openFiles.map((tab) => (
-                <button
-                  className={activeFile === tab ? "active" : ""}
-                  onClick={() => openFile(tab)}
-                  key={tab}
-                >
-                  <i>
-                    {tab.endsWith(".ts")
-                      ? "TS"
-                      : tab.endsWith(".json")
-                        ? "{}"
-                        : "•"}
-                  </i>
-                  {tab}
-                  <span>{tab === "introduction.ts" ? "●" : "×"}</span>
+              <div className={`ide-tab ide-tab--pinned ${activeView === "editor" && activeFile === "introduction.ts" ? "active" : ""}`}>
+                <button className="ide-tab-select" type="button" onClick={() => openFile("introduction.ts")}>
+                  <i>TS</i> introduction.ts <span aria-label="Pinned tab">●</span>
                 </button>
-              ))}
+              </div>
               <button
                 className="career-history-tab"
+                type="button"
                 onClick={() => setActiveView("career")}
                 title="Open Git Career History"
               >
                 <ActivityIcon name="source" />
                 <span>Git: Career History</span>
               </button>
+              {openFiles.filter((tab) => tab !== "introduction.ts").map((tab) => (
+                <div className={`ide-tab ${activeFile === tab ? "active" : ""}`} key={tab}>
+                  <button className="ide-tab-select" type="button" onClick={() => openFile(tab)}>
+                    <i>
+                      {tab.endsWith(".ts")
+                        ? "TS"
+                        : tab.endsWith(".json")
+                          ? "{}"
+                          : "•"}
+                    </i>
+                    {tab}
+                  </button>
+                  <button
+                    className="ide-tab-close"
+                    type="button"
+                    onClick={() => closeFile(tab)}
+                    aria-label={`Close ${tab}`}
+                    title={`Close ${tab}`}
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
               <button className="new-tab" aria-label="New tab">
                 ＋
               </button>
