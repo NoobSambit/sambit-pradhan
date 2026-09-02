@@ -8593,7 +8593,7 @@ button {
 
 /* About: transparent VS Code inspired developer workspace. */
 .about-ide-workspace {
-  --about-inspector-width: 328px;
+  --about-inspector-width: 390px;
   position: relative;
   min-width: 0;
   min-height: calc(100svh - 45px);
@@ -9084,26 +9084,29 @@ button {
 .semantic-map-header button:focus-visible { background: rgba(83, 159, 179, 0.14); color: #a7e7f1; outline: 2px solid #78d5e8; outline-offset: -2px; }
 .semantic-map-body { min-height: 0; overflow: auto; padding: 17px 14px 12px; scrollbar-width: thin; scrollbar-color: #405966 transparent; }
 .semantic-map-graph { min-height: 100%; }
-.semantic-map-node-list { position: relative; display: grid; gap: 4px; padding-left: 0; }
+.semantic-map-node-list { position: relative; display: grid; gap: 8px; padding-left: 0; }
 .semantic-map-node-list::before { position: absolute; top: 18px; bottom: 17px; left: 8px; border-left: 1px solid #425864; content: ""; }
 .semantic-map-node-wrap { position: relative; }
-.semantic-map-node { position: relative; z-index: 1; display: grid; grid-template-columns: 18px minmax(0, 1fr) 12px; width: 100%; min-height: 41px; align-items: center; padding: 5px 4px 5px 0; border: 0; background: transparent; color: #a8b8be; cursor: pointer; text-align: left; }
+.semantic-map-node-row { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) 28px; align-items: center; }
+.semantic-map-node { display: grid; grid-template-columns: 18px minmax(0, 1fr); width: 100%; min-height: 45px; align-items: center; padding: 5px 4px 5px 0; border: 0; background: transparent; color: #a8b8be; cursor: pointer; text-align: left; }
 .semantic-map-node > i { width: 9px; height: 9px; margin-left: 4px; border: 1px solid #6b7f88; border-radius: 50%; background: #071117; }
 .semantic-map-node > span { display: grid; min-width: 0; gap: 2px; }
 .semantic-map-node b { color: #c8d4d8; font-size: 11px; font-weight: 500; }
-.semantic-map-node small { overflow: hidden; color: #83959d; font-size: 9px; line-height: 12px; text-overflow: ellipsis; white-space: nowrap; }
-.semantic-map-node em { color: #7fcfdf; font-size: 10px; font-style: normal; text-align: right; }
+.semantic-map-node small { display: -webkit-box; overflow: hidden; color: #83959d; font-size: 9px; line-height: 12px; white-space: normal; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .semantic-map-node:hover b { color: #ebf1f2; }
 .semantic-map-node:hover > i { border-color: #9bdde9; }
 .semantic-map-node:focus-visible { outline: 2px solid #78d5e8; outline-offset: 2px; }
-.semantic-map-node-wrap.is-active > .semantic-map-node > i { width: 11px; height: 11px; margin-left: 3px; border: 2px solid #7ce0ed; box-shadow: 0 0 8px rgba(97, 210, 228, 0.24); }
-.semantic-map-node-wrap.is-active > .semantic-map-node b { color: #eff6f6; font-size: 12px; font-weight: 600; }
+.semantic-map-node-wrap.is-active > .semantic-map-node-row > .semantic-map-node > i { width: 11px; height: 11px; margin-left: 3px; border: 2px solid #7ce0ed; box-shadow: 0 0 8px rgba(97, 210, 228, 0.24); }
+.semantic-map-node-wrap.is-active > .semantic-map-node-row > .semantic-map-node b { color: #eff6f6; font-size: 12px; font-weight: 600; }
+.semantic-map-node-toggle { width: 24px; height: 24px; display: grid; place-items: center; border: 0; background: transparent; color: #7fcfdf; cursor: pointer; font: 15px/1 "JetBrains Mono", monospace; }
+.semantic-map-node-toggle:hover { background: rgba(83, 159, 179, 0.12); color: #b4edf5; }
+.semantic-map-node-toggle:focus-visible { outline: 2px solid #78d5e8; outline-offset: -2px; }
 .semantic-map-node--purple > i { border-color: #9c76b2; }
 .semantic-map-node--orange > i { border-color: #bd8759; }
 .semantic-map-node--green > i { border-color: #78ad6d; }
-.semantic-map-properties { position: relative; display: grid; gap: 8px; margin: 2px 0 11px 18px; padding: 9px 0 5px 16px; border-left: 1px solid #4a6570; animation: semantic-map-reveal 160ms ease-out; }
-.semantic-map-property { position: relative; display: grid; grid-template-columns: minmax(66px, auto) 15px minmax(0, 1fr); align-items: start; gap: 4px; min-height: 17px; }
-.semantic-map-property::before { position: absolute; top: 8px; left: -17px; width: 16px; border-top: 1px solid #4a6570; content: ""; }
+.semantic-map-properties { position: relative; display: grid; gap: 8px; margin: 0 4px 12px 18px; padding: 8px 0 5px 16px; border-left: 1px solid #58737e; animation: semantic-map-reveal 160ms ease-out; }
+.semantic-map-property { position: relative; display: grid; grid-template-columns: 90px 15px minmax(0, 1fr); align-items: start; gap: 4px; min-height: 17px; }
+.semantic-map-property::before { position: absolute; top: 8px; left: -17px; width: 16px; border-top: 1px solid #58737e; content: ""; }
 .semantic-map-property > span { color: #91a4ac; font-size: 9px; line-height: 14px; }
 .semantic-map-property > i { color: #79c8d9; font-size: 10px; font-style: normal; line-height: 14px; }
 .semantic-map-property > div { display: grid; gap: 2px; min-width: 0; }
@@ -9130,6 +9133,19 @@ button {
 .about-ide-workspace.semantic-map-collapsed { --about-inspector-width: 42px; }
 .ide-code li.is-semantic-highlight { background: rgba(79, 171, 190, 0.12); transition: background 900ms ease; }
 @keyframes semantic-map-reveal { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 1600px) and (min-width: 1321px) {
+  .about-ide-workspace:not(.career-mode) {
+    --about-inspector-width: 350px;
+  }
+}
+@media (max-width: 1320px) and (min-width: 761px) {
+  .about-ide-workspace:not(.career-mode) {
+    --about-inspector-width: 310px;
+  }
+}
+.about-ide-workspace.semantic-map-collapsed:not(.career-mode) {
+  --about-inspector-width: 42px;
+}
 @media (min-width: 761px) {
   .ide-explorer > header {
     font-size: 12px;
@@ -9737,7 +9753,7 @@ button {
 }
 @media (max-width: 1100px) and (min-width: 761px) {
   .about-ide-workspace {
-    --about-inspector-width: 286px;
+    --about-inspector-width: 310px;
     grid-template-columns: 45px 205px minmax(660px, 1fr) var(
         --about-inspector-width
       );
@@ -9747,7 +9763,10 @@ button {
     min-width: 660px;
   }
   .semantic-map {
-    min-width: 286px;
+    min-width: 310px;
+  }
+  .about-ide-workspace.semantic-map-collapsed .semantic-map {
+    min-width: 42px;
   }
 }
 @media (max-width: 760px) {
