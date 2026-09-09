@@ -6824,6 +6824,96 @@ button {
   font-size: 11px;
 }
 
+/* Repository-list decorative artwork (Sanji + kick impact + Zoro).
+   Scoped strictly to the repository landing surface. Three independent
+   transparent layers anchored to panel geometry, never to the viewport. */
+.repository-workspace {
+  --sanji-width: clamp(420px, 46%, 520px);
+  --sanji-top: -8px;
+  --sanji-right: -2px;
+  --sanji-impact-width: clamp(105px, 11%, 135px);
+  --sanji-impact-top: 24px;
+  --sanji-impact-right: -2px;
+  --zoro-width: clamp(520px, 58%, 650px);
+  --zoro-right: -4px;
+  --zoro-bottom: -50px;
+}
+
+.repository-workspace .repository-command,
+.repository-workspace .repository-terminal {
+  position: relative;
+  isolation: isolate;
+}
+
+.repository-command-art,
+.repository-terminal-art {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.repository-sanji,
+.repository-sanji-impact,
+.repository-zoro {
+  position: absolute;
+  height: auto;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.repository-sanji {
+  right: var(--sanji-right);
+  top: var(--sanji-top);
+  width: var(--sanji-width);
+  z-index: 1;
+  opacity: 0.96;
+  filter: saturate(0.96) contrast(1.02);
+}
+
+.repository-sanji-impact {
+  right: var(--sanji-impact-right);
+  top: var(--sanji-impact-top);
+  width: var(--sanji-impact-width);
+  z-index: 2;
+  opacity: 0.98;
+  filter: saturate(1.05) brightness(1.06);
+}
+
+.repository-zoro {
+  right: var(--zoro-right);
+  bottom: var(--zoro-bottom);
+  width: var(--zoro-width);
+  z-index: 1;
+  opacity: 0.94;
+  filter: saturate(0.96) contrast(1.02);
+}
+
+.repository-workspace .repository-command > p,
+.repository-workspace .repository-terminal > header,
+.repository-workspace .repository-terminal > p {
+  position: relative;
+  z-index: 3;
+}
+
+.repository-workspace .repository-command > p {
+  max-width: 46%;
+}
+
+@media (max-width: 760px) {
+  .repository-command-art,
+  .repository-terminal-art {
+    display: none;
+  }
+
+  .repository-workspace .repository-command > p {
+    max-width: none;
+  }
+}
+
 @media (max-width: 1320px) and (min-width: 761px) {
   .repository-workspace {
     grid-template-columns: 44px 218px minmax(920px, 1fr) 348px;
