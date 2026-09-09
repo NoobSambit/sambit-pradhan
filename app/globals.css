@@ -6824,21 +6824,25 @@ button {
   font-size: 11px;
 }
 
-/* Repository-list character scene (Sanji + kick impact + Zoro).
+/* Repository-list character scene (Sanji + Zoro).
    ONE shared decorative layer positioned relative to .repository-main, so the
    characters can cross internal panel boundaries. Panel surfaces paint below
    the scene; meaningful text and controls are lifted above it. */
 .repository-workspace {
   --scene-character-width: clamp(650px, 70%, 760px);
   --sanji-width: var(--scene-character-width);
-  --sanji-right: -2px;
-  --sanji-top: -18px;
-  --sanji-impact-width: clamp(150px, 16%, 190px);
-  --sanji-impact-right: -2px;
-  --sanji-impact-top: 30px;
-  --zoro-width: var(--scene-character-width);
+  /* Overshoot is intentional: the flame tip sits ~40-47px inside the image's
+     right edge, so the box must extend past it; the scene clips exactly at
+     the Inspector divider for hard physical contact. */
+  --sanji-right: -58px;
+  --sanji-top: 2px;
+  /* Seated below the table/terminal boundary: the eye clears the last
+     row's health dot into the terminal's empty right zone (scroll-proof,
+     since row dots can never leave the table). The ~14px hem loss stays
+     inside the acceptable 5-15px edge-seating allowance. */
+  --zoro-width: calc(var(--scene-character-width) * 0.95);
   --zoro-right: -2px;
-  --zoro-bottom: -2px;
+  --zoro-bottom: -26px;
 }
 
 .repository-workspace .repository-main {
@@ -6849,13 +6853,15 @@ button {
 .repository-workspace .repository-character-scene {
   position: absolute;
   inset: 0;
-  overflow: visible;
+  /* Clip exactly at the main workspace edge: internal panel crossings stay
+     fully visible, Sanji's foot is cut precisely at the Inspector divider,
+     and no artwork can paint over Inspector content. */
+  overflow: hidden;
   pointer-events: none;
   z-index: 3;
 }
 
 .repository-character-scene .repository-sanji,
-.repository-character-scene .repository-sanji-impact,
 .repository-character-scene .repository-zoro {
   position: absolute;
   height: auto;
@@ -6872,15 +6878,6 @@ button {
   z-index: 1;
   opacity: 0.96;
   filter: saturate(0.96) contrast(1.02);
-}
-
-.repository-character-scene .repository-sanji-impact {
-  right: var(--sanji-impact-right);
-  top: var(--sanji-impact-top);
-  width: var(--sanji-impact-width);
-  z-index: 2;
-  opacity: 0.98;
-  filter: saturate(1.05) brightness(1.06);
 }
 
 .repository-character-scene .repository-zoro {

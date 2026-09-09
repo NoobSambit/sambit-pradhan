@@ -491,17 +491,6 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
           <img
             alt=""
             aria-hidden="true"
-            className="repository-sanji-impact"
-            decoding="async"
-            draggable={false}
-            height={887}
-            loading="lazy"
-            src="/project_page_images/sanji_kick_effect.png"
-            width={1774}
-          />
-          <img
-            alt=""
-            aria-hidden="true"
             className="repository-zoro"
             decoding="async"
             draggable={false}
