@@ -476,32 +476,43 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
       </nav>
       <Explorer onSelect={selectProject} selected={selected} />
       <main className="repository-main">
+        <div aria-hidden="true" className="repository-character-scene">
+          <img
+            alt=""
+            aria-hidden="true"
+            className="repository-sanji"
+            decoding="async"
+            draggable={false}
+            height={724}
+            loading="lazy"
+            src="/project_page_images/sanji_kicking.png"
+            width={2172}
+          />
+          <img
+            alt=""
+            aria-hidden="true"
+            className="repository-sanji-impact"
+            decoding="async"
+            draggable={false}
+            height={887}
+            loading="lazy"
+            src="/project_page_images/sanji_kick_effect.png"
+            width={1774}
+          />
+          <img
+            alt=""
+            aria-hidden="true"
+            className="repository-zoro"
+            decoding="async"
+            draggable={false}
+            height={793}
+            loading="lazy"
+            src="/project_page_images/zoro_chilling.png"
+            width={1983}
+          />
+        </div>
         <section className="repository-command">
-          <div aria-hidden="true" className="repository-command-art">
-            <img
-              alt=""
-              aria-hidden="true"
-              className="repository-sanji"
-              decoding="async"
-              draggable={false}
-              height={724}
-              loading="lazy"
-              src="/project_page_images/sanji_kicking.png"
-              width={2172}
-            />
-            <img
-              alt=""
-              aria-hidden="true"
-              className="repository-sanji-impact"
-              decoding="async"
-              draggable={false}
-              height={887}
-              loading="lazy"
-              src="/project_page_images/sanji_kick_effect.png"
-              width={1774}
-            />
-          </div>
-          <p className="repository-command-copy">
+          <p>
             <b>developer@sambit:~/repositories</b>$ ls -la --portfolio
             <br />
             Showing portfolio repositories.
@@ -577,19 +588,6 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
           selected={selected}
         />
         <section className="repository-terminal">
-          <div aria-hidden="true" className="repository-terminal-art">
-            <img
-              alt=""
-              aria-hidden="true"
-              className="repository-zoro"
-              decoding="async"
-              draggable={false}
-              height={793}
-              loading="lazy"
-              src="/project_page_images/zoro_chilling.png"
-              width={1983}
-            />
-          </div>
           <header>
             <b>TERMINAL</b>
             <span>OUTPUT</span>

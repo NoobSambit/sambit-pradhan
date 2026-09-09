@@ -6824,39 +6824,39 @@ button {
   font-size: 11px;
 }
 
-/* Repository-list decorative artwork (Sanji + kick impact + Zoro).
-   Scoped strictly to the repository landing surface. Three independent
-   transparent layers anchored to panel geometry, never to the viewport. */
+/* Repository-list character scene (Sanji + kick impact + Zoro).
+   ONE shared decorative layer positioned relative to .repository-main, so the
+   characters can cross internal panel boundaries. Panel surfaces paint below
+   the scene; meaningful text and controls are lifted above it. */
 .repository-workspace {
-  --sanji-width: clamp(420px, 46%, 520px);
-  --sanji-top: -8px;
+  --scene-character-width: clamp(650px, 70%, 760px);
+  --sanji-width: var(--scene-character-width);
   --sanji-right: -2px;
-  --sanji-impact-width: clamp(105px, 11%, 135px);
-  --sanji-impact-top: 24px;
+  --sanji-top: -18px;
+  --sanji-impact-width: clamp(150px, 16%, 190px);
   --sanji-impact-right: -2px;
-  --zoro-width: clamp(520px, 58%, 650px);
-  --zoro-right: -4px;
-  --zoro-bottom: -50px;
+  --sanji-impact-top: 30px;
+  --zoro-width: var(--scene-character-width);
+  --zoro-right: -2px;
+  --zoro-bottom: -2px;
 }
 
-.repository-workspace .repository-command,
-.repository-workspace .repository-terminal {
+.repository-workspace .repository-main {
   position: relative;
   isolation: isolate;
 }
 
-.repository-command-art,
-.repository-terminal-art {
+.repository-workspace .repository-character-scene {
   position: absolute;
   inset: 0;
-  overflow: hidden;
+  overflow: visible;
   pointer-events: none;
-  z-index: 0;
+  z-index: 3;
 }
 
-.repository-sanji,
-.repository-sanji-impact,
-.repository-zoro {
+.repository-character-scene .repository-sanji,
+.repository-character-scene .repository-sanji-impact,
+.repository-character-scene .repository-zoro {
   position: absolute;
   height: auto;
   max-width: none;
@@ -6865,7 +6865,7 @@ button {
   -webkit-user-drag: none;
 }
 
-.repository-sanji {
+.repository-character-scene .repository-sanji {
   right: var(--sanji-right);
   top: var(--sanji-top);
   width: var(--sanji-width);
@@ -6874,7 +6874,7 @@ button {
   filter: saturate(0.96) contrast(1.02);
 }
 
-.repository-sanji-impact {
+.repository-character-scene .repository-sanji-impact {
   right: var(--sanji-impact-right);
   top: var(--sanji-impact-top);
   width: var(--sanji-impact-width);
@@ -6883,7 +6883,7 @@ button {
   filter: saturate(1.05) brightness(1.06);
 }
 
-.repository-zoro {
+.repository-character-scene .repository-zoro {
   right: var(--zoro-right);
   bottom: var(--zoro-bottom);
   width: var(--zoro-width);
@@ -6892,11 +6892,20 @@ button {
   filter: saturate(0.96) contrast(1.02);
 }
 
+/* Keep functional content above the scene without raising opaque panels. */
 .repository-workspace .repository-command > p,
-.repository-workspace .repository-terminal > header,
-.repository-workspace .repository-terminal > p {
+.repository-workspace .repository-toolbar > *,
+.repository-workspace .repository-guide > *,
+.repository-workspace .repository-table > button > *,
+.repository-workspace .repository-terminal > header > *,
+.repository-workspace .repository-terminal > p,
+.repository-workspace .repository-empty {
   position: relative;
-  z-index: 3;
+  z-index: 6;
+}
+
+.repository-workspace .repository-table > header {
+  z-index: 4;
 }
 
 .repository-workspace .repository-command > p {
@@ -6904,8 +6913,7 @@ button {
 }
 
 @media (max-width: 760px) {
-  .repository-command-art,
-  .repository-terminal-art {
+  .repository-workspace .repository-character-scene {
     display: none;
   }
 
