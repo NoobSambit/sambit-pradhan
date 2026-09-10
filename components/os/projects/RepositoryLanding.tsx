@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { projects, type Project } from "@/data/projects";
+import { ProjectUiIcon } from "@/components/os/projects/ProjectUiIcon";
 
 type RepositoryLandingProps = {
   onOpenProject: (
@@ -16,14 +17,12 @@ type RepositoryLandingProps = {
   ) => void;
 };
 
-const projectIcon: Record<Project["tone"], string> = {
-  green: "▧",
-  yellow: "◇",
-  blue: "◈",
-};
-
 function repositorySlug(project: Project) {
   return project.repository.replace("https://github.com/", "");
+}
+
+function toneDotClass(tone: Project["tone"]) {
+  return tone === "yellow" ? "amber" : tone === "blue" ? "blue" : "green";
 }
 
 function commitTone(subject: string) {
@@ -94,11 +93,27 @@ function Explorer({
   return (
     <aside className="repository-explorer">
       <header>
-        EXPLORER <span>＋　···</span>
+        EXPLORER
+        <span className="repository-explorer-actions">
+          <button aria-label="New repository action" type="button">
+            <ProjectUiIcon name="add" size="sm" />
+          </button>
+          <button aria-label="More actions" type="button">
+            <ProjectUiIcon name="ellipsis" size="sm" />
+          </button>
+        </span>
       </header>
       <div className="repository-tree">
-        <b>⌄　PORTFOLIO/</b>
-        <b>⌄　repositories/</b>
+        <b>
+          <ProjectUiIcon name="chevron-down" size="sm" />
+          <ProjectUiIcon name="folder-open" size="sm" />
+          <span>PORTFOLIO/</span>
+        </b>
+        <b>
+          <ProjectUiIcon name="chevron-down" size="sm" />
+          <ProjectUiIcon name="repository" size="sm" />
+          <span>repositories/</span>
+        </b>
         {explorerProjects.map((project) => (
           <button
             aria-current={selected.id === project.id ? "true" : undefined}
@@ -107,43 +122,61 @@ function Explorer({
             onClick={() => onSelect(project)}
             type="button"
           >
-            <i>{projectIcon[project.tone]}</i>
-            {project.id}/
-            <em className={project.tone === "yellow" ? "beta" : ""}>●</em>
+            <ProjectUiIcon name="repository" size="sm" />
+            <span>{project.id}/</span>
+            <i
+              aria-hidden="true"
+              className={`ui-status-dot repository-state-dot ${toneDotClass(project.tone)}`}
+            />
           </button>
         ))}
-        <b>›　archive/</b>
-        <b>▤　README.md</b>
+        <b>
+          <ProjectUiIcon name="chevron-right" size="sm" />
+          <ProjectUiIcon name="archive" size="sm" />
+          <span>archive/</span>
+        </b>
+        <b>
+          <ProjectUiIcon name="markdown" size="sm" />
+          <span>README.md</span>
+        </b>
       </div>
       <section>
         <h3>WORKSPACE STATS</h3>
         <p>
-          <i>◉</i>Repositories <b>{projects.length}</b>
+          <ProjectUiIcon name="repository" size="micro" />
+          Repositories <b>{projects.length}</b>
         </p>
         <p>
-          <i>◉</i>Active <b>{activeProjects}</b>
+          <ProjectUiIcon name="pulse" size="micro" />
+          Active <b>{activeProjects}</b>
         </p>
         <p>
-          <i>◇</i>Release candidates <b>{releaseCandidates}</b>
+          <ProjectUiIcon name="package" size="micro" />
+          Release candidates <b>{releaseCandidates}</b>
         </p>
         <p>
-          <i>◇</i>Tracked branches{" "}
+          <ProjectUiIcon name="branch" size="micro" />
+          Tracked branches{" "}
           <b>{new Set(projects.map((project) => project.branch)).size}</b>
         </p>
       </section>
       <section>
         <h3>REPOSITORY STATUS</h3>
         <p>
-          <i>⌘</i>Branch <b>{selected.branch}</b>
+          <ProjectUiIcon name="branch" size="micro" />
+          Branch <b>{selected.branch}</b>
         </p>
         <p>
-          <i>↻</i>Selected <b>{selected.name}</b>
+          <ProjectUiIcon name="repository" size="micro" />
+          Selected <b>{selected.name}</b>
         </p>
         <p>
-          <i>✓</i>Last update <b>{selected.latestCommit.date}</b>
+          <ProjectUiIcon name="history" size="micro" />
+          Last update <b>{selected.latestCommit.date}</b>
         </p>
         <p>
-          <i>●</i>Documentation{" "}
+          <ProjectUiIcon name="documentation" size="micro" />
+          Documentation{" "}
           <b>
             {[
               "armyverse",
@@ -197,7 +230,9 @@ function RepositoryTable({
           type="button"
         >
           <div>
-            <i>{projectIcon[project.tone]}</i>
+            <span className="repository-row-icon">
+              <ProjectUiIcon name="repository" size="sm" />
+            </span>
             <b>{project.name}</b>
             <small>{repositorySlug(project)}</small>
           </div>
@@ -217,14 +252,13 @@ function RepositoryTable({
             {project.latestCommit.date}
           </time>
           <span>{project.tag}</span>
-          <i
+          <span
+            role="img"
             aria-label={
               project.tone === "yellow" ? "Attention needed" : "Healthy"
             }
-            className={`health ${project.tone === "yellow" ? "beta" : ""}`}
-          >
-            ●
-          </i>
+            className={`ui-status-dot health ${toneDotClass(project.tone)}${project.tone === "yellow" ? " beta" : ""}`}
+          />
           <strong>{project.commitCount}</strong>
         </button>
       ))}
@@ -276,10 +310,13 @@ function Inspector({
     <aside className="repository-inspector">
       <section>
         <header>
-          REPOSITORY INSPECTOR <span>⌘</span>
+          REPOSITORY INSPECTOR
+          <ProjectUiIcon name="inspect" size="sm" />
         </header>
         <div className="repository-inspector-title">
-          <i>{projectIcon[project.tone]}</i>
+          <span className="repository-inspector-mark">
+            <ProjectUiIcon name="repository" size="md" />
+          </span>
           <h2>
             {project.name}
             <small>{project.description}</small>
@@ -328,9 +365,9 @@ function Inspector({
         <header>RECENT ACTIVITY</header>
         {project.commits.slice(0, 5).map((commit) => (
           <p key={commit.sha}>
-            <i className={commitTone(commit.subject)}>◇</i>
+            <ProjectUiIcon name="commit" size="micro" className={commitTone(commit.subject)} />
             <span>
-              <b>{commit.sha}</b>　{commit.subject}
+              <b>{commit.sha}</b> {commit.subject}
             </span>
             <time dateTime={commit.date}>{commit.date}</time>
           </p>
@@ -345,7 +382,8 @@ function Inspector({
           }
           type="button"
         >
-          ↗ Open repository
+          <ProjectUiIcon name="github" size="sm" />
+          <span>Open repository</span>
         </button>
         <button
           className="repository-action-docs"
@@ -353,7 +391,8 @@ function Inspector({
           onClick={openDocumentation}
           type="button"
         >
-          ▧ {docsAvailable ? "Open documentation" : "Documentation planned"}
+          <ProjectUiIcon name="documentation" size="sm" />
+          <span>{docsAvailable ? "Open documentation" : "Documentation planned"}</span>
         </button>
         <button
           className="repository-action-architecture"
@@ -361,7 +400,8 @@ function Inspector({
           onClick={openDocumentation}
           type="button"
         >
-          ◇ {docsAvailable ? "View architecture" : "Not available yet"}
+          <ProjectUiIcon name="architecture" size="sm" />
+          <span>{docsAvailable ? "View architecture" : "Not available yet"}</span>
         </button>
       </section>
     </aside>
@@ -430,14 +470,14 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
           className="active"
           type="button"
         >
-          ▧
+          <ProjectUiIcon name="files" size="activity" />
         </button>
         <button
           aria-label="Search repositories"
           onClick={() => document.getElementById("repository-search")?.focus()}
           type="button"
         >
-          ⌕
+          <ProjectUiIcon name="search" size="activity" />
         </button>
         <button
           aria-label="Selected project documentation"
@@ -462,7 +502,7 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
           }
           type="button"
         >
-          ◇
+          <ProjectUiIcon name="architecture" size="activity" />
         </button>
         <span />
         <a
@@ -471,7 +511,7 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
           rel="noreferrer"
           target="_blank"
         >
-          ↗
+          <ProjectUiIcon name="github" size="activity" />
         </a>
       </nav>
       <Explorer onSelect={selectProject} selected={selected} />
@@ -514,12 +554,16 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
           </p>
         </section>
         <div className="repository-toolbar">
-          <input
-            id="repository-search"
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="⌕  Search repositories..."
-            value={query}
-          />
+          <div className="repository-search-field">
+            <ProjectUiIcon name="search" size="sm" />
+            <input
+              id="repository-search"
+              aria-label="Search repositories"
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search repositories..."
+              value={query}
+            />
+          </div>
           <button
             className={scope === "all" ? "selected" : ""}
             onClick={() => setScope("all")}
@@ -549,7 +593,7 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
             className="selected"
             type="button"
           >
-            ☷
+            <ProjectUiIcon name="list" size="sm" />
           </button>
         </div>
         {showGuide && (
@@ -557,7 +601,10 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
             aria-label="Repository navigation guide"
             className="repository-guide"
           >
-            <b>↳ Explore projects</b>
+            <b>
+              <ProjectUiIcon name="info" size="sm" />
+              <span>Explore projects</span>
+            </b>
             <span>
               Repository rows are interactive. Select one to inspect its scope,
               stack, and recent engineering work.
@@ -567,7 +614,7 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
               onClick={() => setShowGuide(false)}
               type="button"
             >
-              ×
+              <ProjectUiIcon name="close" size="sm" />
             </button>
           </aside>
         )}
@@ -582,14 +629,31 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
             <span>OUTPUT</span>
             <span>PROBLEMS</span>
             <span>DEBUG CONSOLE</span>
-            <em>◉ zsh　＋　▣　⌫　⌃</em>
+            <em className="terminal-controls">
+              <span className="terminal-shell">
+                <ProjectUiIcon name="terminal" size="sm" />
+                <span>zsh</span>
+              </span>
+              <button aria-label="New terminal" type="button">
+                <ProjectUiIcon name="add" size="sm" />
+              </button>
+              <button aria-label="Split terminal" type="button">
+                <ProjectUiIcon name="split" size="sm" />
+              </button>
+              <button aria-label="Kill terminal" type="button">
+                <ProjectUiIcon name="trash" size="sm" />
+              </button>
+              <button aria-label="Collapse terminal" type="button">
+                <ProjectUiIcon name="chevron-down" size="sm" />
+              </button>
+            </em>
           </header>
           <p>
             <b>developer@sambit:~/repositories</b>$ <i>tree --depth=1</i>
             <br />
             {projects.map((project) => `├── ${project.id}`).join("\n")}
             <br />
-            <b>developer@sambit:~/repositories</b>$ <i>▌</i>
+            <b>developer@sambit:~/repositories</b>$ <i className="terminal-caret" />
           </p>
         </section>
       </main>

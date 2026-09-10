@@ -113,18 +113,12 @@ export function Header({
       </nav>
       <div className="top-tools">
         <div className="search" tabIndex={0} role="search">
-          {mode === "home" ? (
-            <>
-              <TerminalIcon name="search" />
-              <span>Search Portfolio...</span>
-              <kbd>⌘K</kbd>
-            </>
-          ) : (
-            "⌘K Search Portfolio...　⌕"
-          )}
+          <TerminalIcon name="search" />
+          <span>Search Portfolio...</span>
+          <kbd>⌘K</kbd>
         </div>
         <span>
-          {mode === "home" ? <TerminalIcon name="cpu" /> : "☁"}
+          <TerminalIcon name="cpu" />
           <small>
             CPU
             <br />
@@ -132,7 +126,7 @@ export function Header({
           </small>
         </span>
         <span>
-          {mode === "home" ? <TerminalIcon name="memory" /> : "⌁"}
+          <TerminalIcon name="memory" />
           <small>
             MEM
             <br />
@@ -140,7 +134,7 @@ export function Header({
           </small>
         </span>
         <span>
-          {mode === "home" ? <TerminalIcon name="network" /> : "⌁"}
+          <TerminalIcon name="network" />
           <small>
             NET
             <br />
@@ -148,8 +142,8 @@ export function Header({
           </small>
         </span>
         <time>
-          {mode === "home" && <TerminalIcon name="clock" />}
-          {mode === "home" ? time : `◷　${time}`}
+          <TerminalIcon name="clock" />
+          {time}
         </time>
       </div>
     </header>

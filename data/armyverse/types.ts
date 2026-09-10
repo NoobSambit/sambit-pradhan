@@ -15,5 +15,4 @@ export type ArmyverseFeature = {
 export type ProjectNavItem = {
   id: "overview" | "features" | "architecture";
   label: string;
-  icon: string;
 };

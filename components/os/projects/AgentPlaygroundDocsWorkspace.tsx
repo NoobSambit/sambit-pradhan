@@ -11,6 +11,11 @@ import {
 } from "@/components/os/projects/ArmyverseProjectViews";
 import { ProjectActionIcon } from "@/components/os/projects/ProjectActionIcon";
 import {
+  ProjectUiIcon,
+  projectFileIconName,
+  projectNavIconName,
+} from "@/components/os/projects/ProjectUiIcon";
+import {
   ProjectImageCarousel,
   type ProjectBanner,
 } from "@/components/os/projects/ProjectImageCarousel";
@@ -167,7 +172,8 @@ function AgentOverview({ onOpenFeatures }: { onOpenFeatures: () => void }) {
           <div className="overview-feature-heading">
             <h2>Feature catalogue</h2>
             <button onClick={onOpenFeatures} type="button">
-              Open full catalogue →
+              <span>Open full catalogue</span>
+              <ProjectUiIcon name="arrow-right" size="sm" />
             </button>
           </div>
           <FeatureRows
@@ -302,17 +308,17 @@ export function AgentPlaygroundDocsWorkspace({
     <section className="project-docs-workspace agent-playground-workspace">
       <nav aria-label="Workspace tools" className="project-activity">
         <button aria-label="Documentation" className="active" type="button">
-          ▧
+          <ProjectUiIcon name="files" size="activity" />
         </button>
         <button aria-label="Search documentation" type="button">
-          ⌕
+          <ProjectUiIcon name="search" size="activity" />
         </button>
         <button
           aria-label="Project architecture"
           onClick={() => setView("architecture")}
           type="button"
         >
-          ◇
+          <ProjectUiIcon name="architecture" size="activity" />
         </button>
         <span />
         <a
@@ -321,7 +327,7 @@ export function AgentPlaygroundDocsWorkspace({
           rel="noreferrer"
           target="_blank"
         >
-          ↗
+          <ProjectUiIcon name="github" size="activity" />
         </a>
       </nav>
       <aside className="project-docs-nav">
@@ -332,19 +338,24 @@ export function AgentPlaygroundDocsWorkspace({
             onClick={onBack}
             type="button"
           >
-            ← Repositories
+            <ProjectUiIcon name="arrow-left" size="micro" />
+              <span>Repositories</span>
           </button>
         </header>
         <div className="project-docs-tree">
-          <b>⌄　AGENT-PLAYGROUND /</b>
-          {agentPlaygroundNavigation.map(({ id, icon, label }) => (
+          <b className="project-tree-root">
+              <ProjectUiIcon name="chevron-down" size="sm" />
+              <ProjectUiIcon name="folder-open" size="sm" />
+              <span>AGENT-PLAYGROUND /</span>
+            </b>
+          {agentPlaygroundNavigation.map(({ id, label }) => (
             <button
               className={view === id ? "active" : ""}
               key={id}
               onClick={() => setView(id)}
               type="button"
             >
-              <i>{icon}</i>
+              <ProjectUiIcon name={projectNavIconName(id)} size="sm" />
               {label}
             </button>
           ))}
@@ -358,7 +369,7 @@ export function AgentPlaygroundDocsWorkspace({
             ["Database", "PostgreSQL"],
             ["Persistence", "Drizzle ORM"],
             ["Latest commit", "17 Jul 2026"],
-            ["Status", "● Active development"],
+            ["Status", "Active development"],
           ].map(([key, value]) => (
             <p key={key}>
               {key}
@@ -369,12 +380,16 @@ export function AgentPlaygroundDocsWorkspace({
       </aside>
       <main className="project-docs-content">
         <div className="project-tabs">
-          <span>▧　AGENT-PLAYGROUND / {selectedFile}</span>
+          <span className="project-tab-file">
+            <ProjectUiIcon name={projectFileIconName(selectedFile)} size="sm" />
+            <span>AGENT-PLAYGROUND / {selectedFile}</span>
+          </span>
           <button className="project-tabs-back" onClick={onBack} type="button">
-            ← Back to project list
+            <ProjectUiIcon name="arrow-left" size="micro" />
+            <span>Back to project list</span>
           </button>
           <button aria-label="More documentation actions" type="button">
-            ···
+            <ProjectUiIcon name="ellipsis" size="sm" />
           </button>
         </div>
         <div className="project-docs-scroll">
@@ -415,7 +430,24 @@ export function AgentPlaygroundDocsWorkspace({
             <span>OUTPUT</span>
             <span>PROBLEMS</span>
             <span>DEBUG CONSOLE</span>
-            <em>◉ zsh　＋　▣　⌫　⌃</em>
+            <em className="terminal-controls">
+              <span className="terminal-shell">
+                <ProjectUiIcon name="terminal" size="sm" />
+                <span>zsh</span>
+              </span>
+              <button aria-label="New terminal" type="button">
+                <ProjectUiIcon name="add" size="sm" />
+              </button>
+              <button aria-label="Split terminal" type="button">
+                <ProjectUiIcon name="split" size="sm" />
+              </button>
+              <button aria-label="Kill terminal" type="button">
+                <ProjectUiIcon name="trash" size="sm" />
+              </button>
+              <button aria-label="Collapse terminal" type="button">
+                <ProjectUiIcon name="chevron-down" size="sm" />
+              </button>
+            </em>
           </header>
           <p>
             <b>developer@sambit:~/Documents/AGENT-PLAYGROUND</b>${" "}
@@ -429,7 +461,7 @@ export function AgentPlaygroundDocsWorkspace({
             <br />
             Loaded repository-grounded project documentation.
             <br />
-            <b>developer@sambit:~/Documents/AGENT-PLAYGROUND</b>$ <i>▌</i>
+            <b>developer@sambit:~/Documents/AGENT-PLAYGROUND</b>$ <i className="terminal-caret" />
           </p>
         </section>
       </main>

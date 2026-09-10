@@ -12929,3 +12929,328 @@ button {
 .project-docs-shell .repository-inspector .key-value > b {
   font-weight: 700;
 }
+
+/* Premium icon system pass (Projects experience).
+   Semantic VS Code Codicons via ProjectUiIcon + CSS dots for primitive state.
+   Layout, dimensions, and character artwork are intentionally untouched. */
+.project-ui-icon {
+  flex: 0 0 auto;
+  vertical-align: -0.12em;
+  transition:
+    color 120ms ease,
+    background-color 120ms ease,
+    border-color 120ms ease;
+}
+.project-icon--micro {
+  width: 11px;
+  height: 11px;
+}
+.project-icon--sm {
+  width: 14px;
+  height: 14px;
+}
+.project-icon--md {
+  width: 17px;
+  height: 17px;
+}
+.project-icon--activity {
+  width: 18px;
+  height: 18px;
+}
+
+/* Primitive state dots (not icons): precise geometry independent of fonts. */
+.ui-status-dot {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+}
+.ui-status-dot.green {
+  background: #76d66f;
+}
+.ui-status-dot.amber {
+  background: #e6b14d;
+}
+.ui-status-dot.blue {
+  background: #66b8d8;
+}
+.ui-status-dot.purple {
+  background: #b295ff;
+}
+.repository-state-dot {
+  margin-left: auto;
+}
+
+/* Left activity rail links share the button hit target and accent. */
+.project-activity a {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 31px;
+  border-left: 2px solid transparent;
+  color: #84939b;
+}
+.project-activity a:hover {
+  color: #bfd7dc;
+}
+.project-activity button:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+/* Explorer header icon buttons. */
+.repository-explorer-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.repository-explorer-actions button {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 0;
+  background: transparent;
+  color: #9fb0b6;
+  cursor: pointer;
+}
+.repository-explorer-actions button:hover {
+  color: #d5c9ff;
+}
+
+/* Explorer tree composition (chevron + folder + label, CSS gap). */
+.project-tree-root {
+  gap: 6px;
+}
+.repository-tree button span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Repository table icon tile: restrained 24px tile, 14px glyph. */
+.repository-row-icon {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #63529a;
+  border-radius: 3px;
+  background: rgba(157, 123, 255, 0.06);
+  color: #c5b3ff;
+}
+.repository-table .health {
+  align-self: center;
+  justify-self: start;
+}
+
+/* Inspector mark: restrained tile with a single repository glyph. */
+.repository-inspector-mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #6952aa;
+  border-radius: 4px;
+  background: rgba(157, 123, 255, 0.06);
+  color: #c9b6ff;
+}
+.repository-inspector > section > header .project-ui-icon {
+  color: #8f9aa3;
+}
+
+/* Recent activity commit icons keep semantic color by commit type. */
+.repository-recent p .project-ui-icon.feature {
+  color: #79ddeb;
+}
+.repository-recent p .project-ui-icon.fix {
+  color: #f0bf63;
+}
+.repository-recent p .project-ui-icon.refactor {
+  color: #b295ff;
+}
+.repository-recent p .project-ui-icon.maintenance {
+  color: #8ed982;
+}
+
+/* Quick actions: icon + label affordance. */
+.repository-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Repository search field: icon lives inside the input wrapper. */
+.repository-search-field {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 210px;
+  height: 27px;
+  padding: 0 9px;
+  border: 1px solid #27404b;
+  border-radius: 3px;
+  background: #09131a;
+  color: #7f8f98;
+}
+.repository-toolbar .repository-search-field input {
+  flex: 1;
+  min-width: 0;
+  width: auto;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+/* Repository guide composition. */
+.repository-guide > b {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.repository-guide button {
+  display: grid;
+  place-items: center;
+}
+
+/* Terminal control cluster (decorative where non-functional). */
+.terminal-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.terminal-shell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 6px;
+}
+.terminal-controls button {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.terminal-controls button:hover {
+  border-color: #2c3f48;
+  color: #dfe7ea;
+}
+.terminal-caret {
+  display: inline-block;
+  width: 7px;
+  height: 12px;
+  background: #e6edf0;
+  vertical-align: -1px;
+}
+
+/* Documentation tree + tabs composition. */
+.project-docs-tree button .project-ui-icon {
+  width: 14px;
+  height: 14px;
+}
+.project-tab-file {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.project-back-to-list,
+.project-tabs-back,
+.overview-feature-heading button,
+.workflow-expand-action,
+.architecture-expand-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.project-ongoing-notice {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* Feature rows: one chevron affordance. */
+.project-feature-rows button .project-ui-icon {
+  color: #7fd8e8;
+}
+
+/* Workflow + execution-path connectors inherit the structural tone. */
+.workflow-step .project-ui-icon,
+.architecture-operations-panel .project-ui-icon {
+  color: #6f8b96;
+}
+
+/* Safeguard rows: icon + text. */
+.architecture-safeguards-panel span > .project-ui-icon {
+  width: 11px;
+  height: 11px;
+  margin-right: 6px;
+  color: #9cde91;
+  vertical-align: -1px;
+}
+.architecture-modules-panel span > .ui-status-dot {
+  margin-right: 5px;
+}
+
+/* Fill-based Codicons inside legacy stroke-styled icon slots. */
+.project-action-icon.project-ui-icon {
+  fill: currentColor;
+  stroke: none;
+}
+.armyverse-carousel-icon.project-ui-icon {
+  fill: currentColor;
+  stroke: none;
+}
+.architecture-module-icon.project-ui-icon {
+  fill: currentColor;
+  stroke: none;
+  color: #9db0b6;
+}
+.architecture-modules-panel article.purple .architecture-module-icon {
+  color: #c2aeff;
+}
+.architecture-modules-panel article.cyan .architecture-module-icon {
+  color: #83dced;
+}
+.architecture-modules-panel article.green .architecture-module-icon {
+  color: #9cde91;
+}
+.architecture-modules-panel article.amber .architecture-module-icon {
+  color: #f0c571;
+}
+
+/* Header telemetry + footer identity share the landing icon language. */
+.top-tools .terminal-icon {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+.top-tools .search .terminal-icon {
+  width: 12px;
+  height: 12px;
+  margin-right: 7px;
+}
+.top-tools time {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.statusbar-identity,
+.statusbar-online {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.statusbar .terminal-icon {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+}

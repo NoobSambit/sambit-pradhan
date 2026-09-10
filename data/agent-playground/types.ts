@@ -17,5 +17,4 @@ export type AgentPlaygroundView = "overview" | "features" | "architecture";
 export type AgentPlaygroundNavItem = {
   id: AgentPlaygroundView;
   label: string;
-  icon: string;
 };

@@ -11,6 +11,11 @@ import {
 } from "@/components/os/projects/ArmyverseProjectViews";
 import { ProjectActionIcon } from "@/components/os/projects/ProjectActionIcon";
 import {
+  ProjectUiIcon,
+  projectFileIconName,
+  projectNavIconName,
+} from "@/components/os/projects/ProjectUiIcon";
+import {
   ProjectImageCarousel,
   type ProjectBanner,
 } from "@/components/os/projects/ProjectImageCarousel";
@@ -130,7 +135,8 @@ function KisanSetuOverview({ onOpenFeatures }: { onOpenFeatures: () => void }) {
           <div className="overview-feature-heading">
             <h2>Feature catalogue</h2>
             <button onClick={onOpenFeatures} type="button">
-              Open full catalogue →
+              <span>Open full catalogue</span>
+              <ProjectUiIcon name="arrow-right" size="sm" />
             </button>
           </div>
           <FeatureRows
@@ -195,7 +201,8 @@ function KisanSetuInspector({
         <h2>{view === "features" ? feature.title : "KISANSETU"}</h2>
         {view === "overview" && (
           <p className="project-ongoing-notice">
-            ● ONGOING — active Day 4–6 delivery
+            <i aria-hidden="true" className="ui-status-dot amber" />
+            <span>ONGOING — active Day 4–6 delivery</span>
           </p>
         )}
         {metadata.map(([key, value]) => (
@@ -264,17 +271,17 @@ export function KisanSetuDocsWorkspace({ onBack }: { onBack: () => void }) {
     <section className="project-docs-workspace kisansetu-workspace">
       <nav aria-label="Workspace tools" className="project-activity">
         <button aria-label="Documentation" className="active" type="button">
-          ▧
+          <ProjectUiIcon name="files" size="activity" />
         </button>
         <button aria-label="Search documentation" type="button">
-          ⌕
+          <ProjectUiIcon name="search" size="activity" />
         </button>
         <button
           aria-label="Project architecture"
           onClick={() => setView("architecture")}
           type="button"
         >
-          ◇
+          <ProjectUiIcon name="architecture" size="activity" />
         </button>
         <span />
         <a
@@ -283,7 +290,7 @@ export function KisanSetuDocsWorkspace({ onBack }: { onBack: () => void }) {
           rel="noreferrer"
           target="_blank"
         >
-          ↗
+          <ProjectUiIcon name="github" size="activity" />
         </a>
       </nav>
       <aside className="project-docs-nav">
@@ -294,19 +301,24 @@ export function KisanSetuDocsWorkspace({ onBack }: { onBack: () => void }) {
             onClick={onBack}
             type="button"
           >
-            ← Repositories
+            <ProjectUiIcon name="arrow-left" size="micro" />
+              <span>Repositories</span>
           </button>
         </header>
         <div className="project-docs-tree">
-          <b>⌄　KISANSETU /</b>
-          {kisanSetuNavigation.map(({ id, icon, label }) => (
+          <b className="project-tree-root">
+              <ProjectUiIcon name="chevron-down" size="sm" />
+              <ProjectUiIcon name="folder-open" size="sm" />
+              <span>KISANSETU /</span>
+            </b>
+          {kisanSetuNavigation.map(({ id, label }) => (
             <button
               className={view === id ? "active" : ""}
               key={id}
               onClick={() => setView(id)}
               type="button"
             >
-              <i>{icon}</i>
+              <ProjectUiIcon name={projectNavIconName(id)} size="sm" />
               {label}
             </button>
           ))}
@@ -318,9 +330,9 @@ export function KisanSetuDocsWorkspace({ onBack }: { onBack: () => void }) {
             ["Branch", "main"],
             ["Runtime", "Next.js 15"],
             ["Database", "Firestore"],
-            ["State", "● Ongoing build"],
+            ["State", "Ongoing build"],
             ["Active scope", "Day 4–6"],
-            ["Status", "● PRD-tracked"],
+            ["Status", "PRD-tracked"],
           ].map(([key, value]) => (
             <p key={key}>
               {key}
@@ -331,12 +343,16 @@ export function KisanSetuDocsWorkspace({ onBack }: { onBack: () => void }) {
       </aside>
       <main className="project-docs-content">
         <div className="project-tabs">
-          <span>▧　KISANSETU / {selectedFile}</span>
+          <span className="project-tab-file">
+            <ProjectUiIcon name={projectFileIconName(selectedFile)} size="sm" />
+            <span>KISANSETU / {selectedFile}</span>
+          </span>
           <button className="project-tabs-back" onClick={onBack} type="button">
-            ← Back to project list
+            <ProjectUiIcon name="arrow-left" size="micro" />
+            <span>Back to project list</span>
           </button>
           <button aria-label="More documentation actions" type="button">
-            ···
+            <ProjectUiIcon name="ellipsis" size="sm" />
           </button>
         </div>
         <div className="project-docs-scroll">
@@ -377,7 +393,24 @@ export function KisanSetuDocsWorkspace({ onBack }: { onBack: () => void }) {
             <span>OUTPUT</span>
             <span>PROBLEMS</span>
             <span>DEBUG CONSOLE</span>
-            <em>◉ zsh　＋　▣　⌫　⌃</em>
+            <em className="terminal-controls">
+              <span className="terminal-shell">
+                <ProjectUiIcon name="terminal" size="sm" />
+                <span>zsh</span>
+              </span>
+              <button aria-label="New terminal" type="button">
+                <ProjectUiIcon name="add" size="sm" />
+              </button>
+              <button aria-label="Split terminal" type="button">
+                <ProjectUiIcon name="split" size="sm" />
+              </button>
+              <button aria-label="Kill terminal" type="button">
+                <ProjectUiIcon name="trash" size="sm" />
+              </button>
+              <button aria-label="Collapse terminal" type="button">
+                <ProjectUiIcon name="chevron-down" size="sm" />
+              </button>
+            </em>
           </header>
           <p>
             <b>developer@sambit:~/Documents/KisanSetu</b>${" "}
@@ -391,7 +424,7 @@ export function KisanSetuDocsWorkspace({ onBack }: { onBack: () => void }) {
             <br />
             Loaded repository-grounded project documentation.
             <br />
-            <b>developer@sambit:~/Documents/KisanSetu</b>$ <i>▌</i>
+            <b>developer@sambit:~/Documents/KisanSetu</b>$ <i className="terminal-caret" />
           </p>
         </section>
       </main>

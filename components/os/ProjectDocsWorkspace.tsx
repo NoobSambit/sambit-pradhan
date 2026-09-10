@@ -15,6 +15,11 @@ import {
 } from "@/data/armyverse/project";
 import type { ArmyverseFeature } from "@/data/armyverse/types";
 import { RepositoryLanding } from "@/components/os/projects/RepositoryLanding";
+import {
+  ProjectUiIcon,
+  projectFileIconName,
+  projectNavIconName,
+} from "@/components/os/projects/ProjectUiIcon";
 import { AgentPlaygroundDocsWorkspace } from "@/components/os/projects/AgentPlaygroundDocsWorkspace";
 import { DocBuilderDocsWorkspace } from "@/components/os/projects/DocBuilderDocsWorkspace";
 import { KiranaCornerDocsWorkspace } from "@/components/os/projects/KiranaCornerDocsWorkspace";
@@ -32,21 +37,6 @@ type DocumentedProject =
   | "gym-tracker";
 
 type ProjectView = (typeof armyverseNavigation)[number]["id"];
-
-function ArchitectureNavIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="project-nav-architecture-icon"
-      viewBox="0 0 24 24"
-    >
-      <rect height="5" rx="1" width="6" x="2" y="4" />
-      <rect height="5" rx="1" width="6" x="16" y="4" />
-      <rect height="5" rx="1" width="6" x="9" y="15" />
-      <path d="M5 9v3h7m7-3v3h-7m0 0v3" />
-    </svg>
-  );
-}
 
 function ProjectInspector({
   architectureId,
@@ -231,17 +221,17 @@ export function ProjectDocsWorkspace() {
     <section className="project-docs-workspace armyverse-workspace">
       <nav aria-label="Workspace tools" className="project-activity">
         <button aria-label="Documentation" className="active" type="button">
-          ▧
+          <ProjectUiIcon name="files" size="activity" />
         </button>
         <button aria-label="Search documentation" type="button">
-          ⌕
+          <ProjectUiIcon name="search" size="activity" />
         </button>
         <button
           aria-label="Project architecture"
           onClick={() => setView("architecture")}
           type="button"
         >
-          ◇
+          <ProjectUiIcon name="architecture" size="activity" />
         </button>
         <span />
         <a
@@ -250,7 +240,7 @@ export function ProjectDocsWorkspace() {
           rel="noreferrer"
           target="_blank"
         >
-          ↗
+          <ProjectUiIcon name="github" size="activity" />
         </a>
       </nav>
       <aside className="project-docs-nav">
@@ -261,19 +251,24 @@ export function ProjectDocsWorkspace() {
             onClick={openRepositories}
             type="button"
           >
-            ← Repositories
+            <ProjectUiIcon name="arrow-left" size="micro" />
+            <span>Repositories</span>
           </button>
         </header>
         <div className="project-docs-tree">
-          <b>⌄　{armyverseProject.name} /</b>
-          {armyverseNavigation.map(({ id, label, icon }) => (
+          <b className="project-tree-root">
+            <ProjectUiIcon name="chevron-down" size="sm" />
+            <ProjectUiIcon name="folder-open" size="sm" />
+            <span>{armyverseProject.name} /</span>
+          </b>
+          {armyverseNavigation.map(({ id, label }) => (
             <button
               className={view === id ? "active" : ""}
               key={id}
               onClick={() => setView(id)}
               type="button"
             >
-              <i>{id === "architecture" ? <ArchitectureNavIcon /> : icon}</i>
+              <ProjectUiIcon name={projectNavIconName(id)} size="sm" />
               {label}
             </button>
           ))}
@@ -287,7 +282,7 @@ export function ProjectDocsWorkspace() {
             ["Database", "MongoDB"],
             ["Deployment", "Vercel configured"],
             ["Latest commit", "11 Mar 2026"],
-            ["Status", "● Active development"],
+            ["Status", "Active development"],
           ].map(([key, value]) => (
             <p key={key}>
               {key}
@@ -298,23 +293,36 @@ export function ProjectDocsWorkspace() {
       </aside>
       <main className="project-docs-content">
         <div className="project-tabs">
-          <span>
-            ▧　{armyverseProject.name} /{" "}
-            {view === "features"
-              ? "FEATURES.md"
-              : view === "architecture"
-                ? "ARCHITECTURE.md"
-                : "README.md"}
+          <span className="project-tab-file">
+            <ProjectUiIcon
+              name={projectFileIconName(
+                view === "features"
+                  ? "FEATURES.md"
+                  : view === "architecture"
+                    ? "ARCHITECTURE.md"
+                    : "README.md",
+              )}
+              size="sm"
+            />
+            <span>
+              {armyverseProject.name} /{" "}
+              {view === "features"
+                ? "FEATURES.md"
+                : view === "architecture"
+                  ? "ARCHITECTURE.md"
+                  : "README.md"}
+            </span>
           </span>
           <button
             className="project-tabs-back"
             onClick={openRepositories}
             type="button"
           >
-            ← Back to project list
+            <ProjectUiIcon name="arrow-left" size="micro" />
+            <span>Back to project list</span>
           </button>
           <button aria-label="More documentation actions" type="button">
-            ···
+            <ProjectUiIcon name="ellipsis" size="sm" />
           </button>
         </div>
         <div className="project-docs-scroll">
@@ -337,7 +345,24 @@ export function ProjectDocsWorkspace() {
             <span>OUTPUT</span>
             <span>PROBLEMS</span>
             <span>DEBUG CONSOLE</span>
-            <em>◉ zsh　＋　▣　⌫　⌃</em>
+            <em className="terminal-controls">
+              <span className="terminal-shell">
+                <ProjectUiIcon name="terminal" size="sm" />
+                <span>zsh</span>
+              </span>
+              <button aria-label="New terminal" type="button">
+                <ProjectUiIcon name="add" size="sm" />
+              </button>
+              <button aria-label="Split terminal" type="button">
+                <ProjectUiIcon name="split" size="sm" />
+              </button>
+              <button aria-label="Kill terminal" type="button">
+                <ProjectUiIcon name="trash" size="sm" />
+              </button>
+              <button aria-label="Collapse terminal" type="button">
+                <ProjectUiIcon name="chevron-down" size="sm" />
+              </button>
+            </em>
           </header>
           <p>
             <b>developer@sambit:~/Documents/ARMYVERSE</b>${" "}
@@ -351,7 +376,7 @@ export function ProjectDocsWorkspace() {
             <br />
             Loaded repository-grounded project documentation.
             <br />
-            <b>developer@sambit:~/Documents/ARMYVERSE</b>$ <i>▌</i>
+            <b>developer@sambit:~/Documents/ARMYVERSE</b>$ <i className="terminal-caret" />
           </p>
         </section>
       </main>

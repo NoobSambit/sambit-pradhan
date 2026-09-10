@@ -16,7 +16,6 @@ export type DocBuilderView = "overview" | "features" | "architecture";
 export type DocBuilderNavItem = {
   id: DocBuilderView;
   label: string;
-  icon: string;
 };
 
 export type DocBuilderArchitectureTone = "purple" | "cyan" | "green" | "amber";

@@ -4,11 +4,12 @@ import { LiveFooterCommit } from "@/components/os/LivePortfolioData";
 import { TerminalIcon } from "@/components/os/TerminalIcon";
 
 export function Footer({ landing = false }: { landing?: boolean }) {
+  void landing;
   return (
     <footer className="statusbar" data-motion-section="footer">
-      <span>
-        {landing && <TerminalIcon name="terminal" />}
-        {landing ? "Sambit OS v2.0" : "⊠ Sambit OS v2.0"}
+      <span className="statusbar-identity">
+        <TerminalIcon name="terminal" />
+        Sambit OS v2.0
       </span>
       <span>2026 CSE Graduate</span>
       <span>Branch main</span>
@@ -17,13 +18,8 @@ export function Footer({ landing = false }: { landing?: boolean }) {
       <span>Resume.pdf</span>
       <span>Kolkata, India</span>
       <span>IST UTC+5:30</span>
-      <strong>
-        {landing ? (
-          <TerminalIcon name="check-circle" />
-        ) : (
-          <i className="status-dot">●</i>
-        )}{" "}
-        Portfolio Online
+      <strong className="statusbar-online">
+        <TerminalIcon name="check-circle" /> Portfolio Online
       </strong>
     </footer>
   );

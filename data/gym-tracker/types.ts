@@ -15,5 +15,4 @@ export type GymTrackerView = "overview" | "features" | "architecture";
 export type GymTrackerNavigationItem = {
   id: GymTrackerView;
   label: string;
-  icon: string;
 };

@@ -69,7 +69,7 @@ export const armyverseProject = {
 } as const;
 
 export const armyverseNavigation: ProjectNavItem[] = [
-  { id: "overview", label: "Overview", icon: "▣" },
-  { id: "features", label: "Feature catalogue", icon: "✦" },
-  { id: "architecture", label: "Architecture & workflows", icon: "◇" },
+  { id: "overview", label: "Overview" },
+  { id: "features", label: "Feature catalogue" },
+  { id: "architecture", label: "Architecture & workflows" },
 ];

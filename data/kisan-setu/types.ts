@@ -21,5 +21,4 @@ export type KisanSetuView = "overview" | "features" | "architecture";
 export type KisanSetuNavigationItem = {
   id: KisanSetuView;
   label: string;
-  icon: string;
 };

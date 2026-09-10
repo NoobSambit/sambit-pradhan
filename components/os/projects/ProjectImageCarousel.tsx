@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { ProjectUiIcon } from "@/components/os/projects/ProjectUiIcon";
 
 export type ProjectBanner = {
   alt: string;
@@ -15,22 +16,17 @@ function CarouselIcon({
 }: {
   type: "close" | "expand" | "next" | "pause" | "play" | "previous";
 }) {
-  return (
-    <svg
-      aria-hidden="true"
-      className="armyverse-carousel-icon"
-      viewBox="0 0 24 24"
-    >
-      {type === "previous" && <path d="m14.5 5-7 7 7 7M19 5l-7 7 7 7" />}
-      {type === "next" && <path d="m9.5 5 7 7-7 7" />}
-      {type === "pause" && <path d="M8 6v12M16 6v12" />}
-      {type === "play" && <path d="m9 6 9 6-9 6Z" />}
-      {type === "expand" && (
-        <path d="M8 4H4v4m0-4 6 6m10-6h-4m4 0-6 6M4 16v4h4m-4 0 6-6m10 6h-4m4 0-6-6" />
-      )}
-      {type === "close" && <path d="m6 6 12 12M18 6 6 18" />}
-    </svg>
-  );
+  if (type === "previous")
+    return <ProjectUiIcon name="chevron-left" size="sm" className="armyverse-carousel-icon" />;
+  if (type === "next")
+    return <ProjectUiIcon name="chevron-right" size="sm" className="armyverse-carousel-icon" />;
+  if (type === "pause")
+    return <ProjectUiIcon name="pause" size="sm" className="armyverse-carousel-icon" />;
+  if (type === "play")
+    return <ProjectUiIcon name="play" size="sm" className="armyverse-carousel-icon" />;
+  if (type === "expand")
+    return <ProjectUiIcon name="expand" size="sm" className="armyverse-carousel-icon" />;
+  return <ProjectUiIcon name="close" size="sm" className="armyverse-carousel-icon" />;
 }
 
 export function ProjectImageCarousel({

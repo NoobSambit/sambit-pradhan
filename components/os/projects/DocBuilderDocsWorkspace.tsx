@@ -11,6 +11,11 @@ import {
 } from "@/components/os/projects/ArmyverseProjectViews";
 import { ProjectActionIcon } from "@/components/os/projects/ProjectActionIcon";
 import {
+  ProjectUiIcon,
+  projectFileIconName,
+  projectNavIconName,
+} from "@/components/os/projects/ProjectUiIcon";
+import {
   ProjectImageCarousel,
   type ProjectBanner,
 } from "@/components/os/projects/ProjectImageCarousel";
@@ -128,7 +133,8 @@ function DocBuilderOverview({
           <div className="overview-feature-heading">
             <h2>Feature catalogue</h2>
             <button onClick={onOpenFeatures} type="button">
-              Open full catalogue →
+              <span>Open full catalogue</span>
+              <ProjectUiIcon name="arrow-right" size="sm" />
             </button>
           </div>
           <FeatureRows
@@ -256,17 +262,17 @@ export function DocBuilderDocsWorkspace({ onBack }: { onBack: () => void }) {
     <section className="project-docs-workspace docbuilder-workspace">
       <nav aria-label="Workspace tools" className="project-activity">
         <button aria-label="Documentation" className="active" type="button">
-          ▧
+          <ProjectUiIcon name="files" size="activity" />
         </button>
         <button aria-label="Search documentation" type="button">
-          ⌕
+          <ProjectUiIcon name="search" size="activity" />
         </button>
         <button
           aria-label="Project architecture"
           onClick={() => setView("architecture")}
           type="button"
         >
-          ◇
+          <ProjectUiIcon name="architecture" size="activity" />
         </button>
         <span />
         <a
@@ -275,7 +281,7 @@ export function DocBuilderDocsWorkspace({ onBack }: { onBack: () => void }) {
           rel="noreferrer"
           target="_blank"
         >
-          ↗
+          <ProjectUiIcon name="github" size="activity" />
         </a>
       </nav>
       <aside className="project-docs-nav">
@@ -286,19 +292,24 @@ export function DocBuilderDocsWorkspace({ onBack }: { onBack: () => void }) {
             onClick={onBack}
             type="button"
           >
-            ← Repositories
+            <ProjectUiIcon name="arrow-left" size="micro" />
+              <span>Repositories</span>
           </button>
         </header>
         <div className="project-docs-tree">
-          <b>⌄　DOCBUILDER /</b>
-          {docBuilderNavigation.map(({ id, icon, label }) => (
+          <b className="project-tree-root">
+              <ProjectUiIcon name="chevron-down" size="sm" />
+              <ProjectUiIcon name="folder-open" size="sm" />
+              <span>DOCBUILDER /</span>
+            </b>
+          {docBuilderNavigation.map(({ id, label }) => (
             <button
               className={view === id ? "active" : ""}
               key={id}
               onClick={() => setView(id)}
               type="button"
             >
-              <i>{icon}</i>
+              <ProjectUiIcon name={projectNavIconName(id)} size="sm" />
               {label}
             </button>
           ))}
@@ -312,7 +323,7 @@ export function DocBuilderDocsWorkspace({ onBack }: { onBack: () => void }) {
             ["Database", "Firestore"],
             ["AI layer", "LangChain + Groq"],
             ["Latest activity", "Apr 2026"],
-            ["Status", "● Production ready"],
+            ["Status", "Production ready"],
           ].map(([key, value]) => (
             <p key={key}>
               {key}
@@ -323,12 +334,16 @@ export function DocBuilderDocsWorkspace({ onBack }: { onBack: () => void }) {
       </aside>
       <main className="project-docs-content">
         <div className="project-tabs">
-          <span>▧　DOCBUILDER / {selectedFile}</span>
+          <span className="project-tab-file">
+            <ProjectUiIcon name={projectFileIconName(selectedFile)} size="sm" />
+            <span>DOCBUILDER / {selectedFile}</span>
+          </span>
           <button className="project-tabs-back" onClick={onBack} type="button">
-            ← Back to project list
+            <ProjectUiIcon name="arrow-left" size="micro" />
+            <span>Back to project list</span>
           </button>
           <button aria-label="More documentation actions" type="button">
-            ···
+            <ProjectUiIcon name="ellipsis" size="sm" />
           </button>
         </div>
         <div className="project-docs-scroll">
@@ -369,7 +384,24 @@ export function DocBuilderDocsWorkspace({ onBack }: { onBack: () => void }) {
             <span>OUTPUT</span>
             <span>PROBLEMS</span>
             <span>DEBUG CONSOLE</span>
-            <em>◉ zsh　＋　▣　⌫　⌃</em>
+            <em className="terminal-controls">
+              <span className="terminal-shell">
+                <ProjectUiIcon name="terminal" size="sm" />
+                <span>zsh</span>
+              </span>
+              <button aria-label="New terminal" type="button">
+                <ProjectUiIcon name="add" size="sm" />
+              </button>
+              <button aria-label="Split terminal" type="button">
+                <ProjectUiIcon name="split" size="sm" />
+              </button>
+              <button aria-label="Kill terminal" type="button">
+                <ProjectUiIcon name="trash" size="sm" />
+              </button>
+              <button aria-label="Collapse terminal" type="button">
+                <ProjectUiIcon name="chevron-down" size="sm" />
+              </button>
+            </em>
           </header>
           <p>
             <b>developer@sambit:~/Documents/docbuilder</b>${" "}
@@ -383,7 +415,7 @@ export function DocBuilderDocsWorkspace({ onBack }: { onBack: () => void }) {
             <br />
             Loaded repository-grounded project documentation.
             <br />
-            <b>developer@sambit:~/Documents/docbuilder</b>$ <i>▌</i>
+            <b>developer@sambit:~/Documents/docbuilder</b>$ <i className="terminal-caret" />
           </p>
         </section>
       </main>

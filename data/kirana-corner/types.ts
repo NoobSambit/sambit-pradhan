@@ -13,7 +13,7 @@ export type KiranaFeature = {
 };
 
 export type KiranaView = "overview" | "features" | "architecture";
-export type KiranaNavItem = { id: KiranaView; label: string; icon: string };
+export type KiranaNavItem = { id: KiranaView; label: string };
 export type KiranaTone = "purple" | "cyan" | "green" | "amber";
 export type KiranaArchitectureMap = {
   id: string;

@@ -11,6 +11,11 @@ import {
 } from "@/components/os/projects/ArmyverseProjectViews";
 import { ProjectActionIcon } from "@/components/os/projects/ProjectActionIcon";
 import {
+  ProjectUiIcon,
+  projectFileIconName,
+  projectNavIconName,
+} from "@/components/os/projects/ProjectUiIcon";
+import {
   ProjectImageCarousel,
   type ProjectBanner,
 } from "@/components/os/projects/ProjectImageCarousel";
@@ -136,7 +141,8 @@ function GymTrackerOverview({
           <div className="overview-feature-heading">
             <h2>Feature catalogue</h2>
             <button onClick={onOpenFeatures} type="button">
-              Open full catalogue →
+              <span>Open full catalogue</span>
+              <ProjectUiIcon name="arrow-right" size="sm" />
             </button>
           </div>
           <FeatureRows
@@ -203,7 +209,8 @@ function GymTrackerInspector({
         <h2>{view === "features" ? feature.title : "GYM TRACKER"}</h2>
         {view === "overview" && (
           <p className="project-ongoing-notice">
-            ● RELEASE CANDIDATE — manual stabilization
+            <i aria-hidden="true" className="ui-status-dot amber" />
+            <span>RELEASE CANDIDATE — manual stabilization</span>
           </p>
         )}
         {metadata.map(([key, value]) => (
@@ -273,17 +280,17 @@ export function GymTrackerDocsWorkspace({ onBack }: { onBack: () => void }) {
     <section className="project-docs-workspace">
       <nav aria-label="Workspace tools" className="project-activity">
         <button aria-label="Documentation" className="active" type="button">
-          ▧
+          <ProjectUiIcon name="files" size="activity" />
         </button>
         <button aria-label="Search documentation" type="button">
-          ⌕
+          <ProjectUiIcon name="search" size="activity" />
         </button>
         <button
           aria-label="Project architecture"
           onClick={() => setView("architecture")}
           type="button"
         >
-          ◇
+          <ProjectUiIcon name="architecture" size="activity" />
         </button>
         <span />
         <a
@@ -292,7 +299,7 @@ export function GymTrackerDocsWorkspace({ onBack }: { onBack: () => void }) {
           rel="noreferrer"
           target="_blank"
         >
-          ↗
+          <ProjectUiIcon name="github" size="activity" />
         </a>
       </nav>
       <aside className="project-docs-nav">
@@ -303,19 +310,24 @@ export function GymTrackerDocsWorkspace({ onBack }: { onBack: () => void }) {
             onClick={onBack}
             type="button"
           >
-            ← Repositories
+            <ProjectUiIcon name="arrow-left" size="micro" />
+              <span>Repositories</span>
           </button>
         </header>
         <div className="project-docs-tree">
-          <b>⌄　GYM-TRACKER /</b>
-          {gymTrackerNavigation.map(({ id, icon, label }) => (
+          <b className="project-tree-root">
+              <ProjectUiIcon name="chevron-down" size="sm" />
+              <ProjectUiIcon name="folder-open" size="sm" />
+              <span>GYM-TRACKER /</span>
+            </b>
+          {gymTrackerNavigation.map(({ id, label }) => (
             <button
               className={view === id ? "active" : ""}
               key={id}
               onClick={() => setView(id)}
               type="button"
             >
-              <i>{icon}</i>
+              <ProjectUiIcon name={projectNavIconName(id)} size="sm" />
               {label}
             </button>
           ))}
@@ -329,7 +341,7 @@ export function GymTrackerDocsWorkspace({ onBack }: { onBack: () => void }) {
             ["Local data", "Drift / SQLite"],
             ["Remote data", "PostgreSQL"],
             ["Release phase", "PRD 09"],
-            ["Status", "● Manual stabilization"],
+            ["Status", "Manual stabilization"],
           ].map(([key, value]) => (
             <p key={key}>
               {key}
@@ -340,12 +352,16 @@ export function GymTrackerDocsWorkspace({ onBack }: { onBack: () => void }) {
       </aside>
       <main className="project-docs-content">
         <div className="project-tabs">
-          <span>▧　GYM-TRACKER / {selectedFile}</span>
+          <span className="project-tab-file">
+            <ProjectUiIcon name={projectFileIconName(selectedFile)} size="sm" />
+            <span>GYM-TRACKER / {selectedFile}</span>
+          </span>
           <button className="project-tabs-back" onClick={onBack} type="button">
-            ← Back to project list
+            <ProjectUiIcon name="arrow-left" size="micro" />
+            <span>Back to project list</span>
           </button>
           <button aria-label="More documentation actions" type="button">
-            ···
+            <ProjectUiIcon name="ellipsis" size="sm" />
           </button>
         </div>
         <div className="project-docs-scroll">
@@ -386,7 +402,24 @@ export function GymTrackerDocsWorkspace({ onBack }: { onBack: () => void }) {
             <span>OUTPUT</span>
             <span>PROBLEMS</span>
             <span>DEBUG CONSOLE</span>
-            <em>◉ zsh　＋　▣　⌫　⌃</em>
+            <em className="terminal-controls">
+              <span className="terminal-shell">
+                <ProjectUiIcon name="terminal" size="sm" />
+                <span>zsh</span>
+              </span>
+              <button aria-label="New terminal" type="button">
+                <ProjectUiIcon name="add" size="sm" />
+              </button>
+              <button aria-label="Split terminal" type="button">
+                <ProjectUiIcon name="split" size="sm" />
+              </button>
+              <button aria-label="Kill terminal" type="button">
+                <ProjectUiIcon name="trash" size="sm" />
+              </button>
+              <button aria-label="Collapse terminal" type="button">
+                <ProjectUiIcon name="chevron-down" size="sm" />
+              </button>
+            </em>
           </header>
           <p>
             <b>developer@sambit:~/Documents/gym-tracker</b>${" "}
@@ -400,7 +433,7 @@ export function GymTrackerDocsWorkspace({ onBack }: { onBack: () => void }) {
             <br />
             Loaded repository-grounded project documentation.
             <br />
-            <b>developer@sambit:~/Documents/gym-tracker</b>$ <i>▌</i>
+            <b>developer@sambit:~/Documents/gym-tracker</b>$ <i className="terminal-caret" />
           </p>
         </section>
       </main>

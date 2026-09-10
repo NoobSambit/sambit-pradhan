@@ -16,6 +16,7 @@ import {
 import { armyverseProject } from "@/data/armyverse/project";
 import type { ArmyverseFeature } from "@/data/armyverse/types";
 import { ProjectActionIcon } from "@/components/os/projects/ProjectActionIcon";
+import { ProjectUiIcon } from "@/components/os/projects/ProjectUiIcon";
 
 export type InspectableFeature = Omit<ArmyverseFeature, "category"> & {
   category: string;
@@ -106,22 +107,17 @@ function CarouselControlIcon({
 }: {
   type: "previous" | "next" | "pause" | "play" | "expand" | "close";
 }) {
-  return (
-    <svg
-      aria-hidden="true"
-      className="armyverse-carousel-icon"
-      viewBox="0 0 24 24"
-    >
-      {type === "previous" && <path d="m14.5 5-7 7 7 7M19 5l-7 7 7 7" />}
-      {type === "next" && <path d="m9.5 5 7 7-7 7" />}
-      {type === "pause" && <path d="M8 6v12M16 6v12" />}
-      {type === "play" && <path d="m9 6 9 6-9 6Z" />}
-      {type === "expand" && (
-        <path d="M8 4H4v4m0-4 6 6m10-6h-4m4 0-6 6M4 16v4h4m-4 0 6-6m10 6h-4m4 0-6-6" />
-      )}
-      {type === "close" && <path d="m6 6 12 12M18 6 6 18" />}
-    </svg>
-  );
+  if (type === "previous")
+    return <ProjectUiIcon name="chevron-left" size="sm" className="armyverse-carousel-icon" />;
+  if (type === "next")
+    return <ProjectUiIcon name="chevron-right" size="sm" className="armyverse-carousel-icon" />;
+  if (type === "pause")
+    return <ProjectUiIcon name="pause" size="sm" className="armyverse-carousel-icon" />;
+  if (type === "play")
+    return <ProjectUiIcon name="play" size="sm" className="armyverse-carousel-icon" />;
+  if (type === "expand")
+    return <ProjectUiIcon name="expand" size="sm" className="armyverse-carousel-icon" />;
+  return <ProjectUiIcon name="close" size="sm" className="armyverse-carousel-icon" />;
 }
 
 function ProductHeroPreview() {
@@ -391,12 +387,14 @@ export function FeatureRows({
               onClick={() => onSelect(feature.id)}
               type="button"
             >
-              <i>{expanded ? "⌃" : "⌄"}</i>
+              <ProjectUiIcon
+                name={expanded ? "chevron-down" : "chevron-right"}
+                size="sm"
+              />
               <b>{feature.title}</b>
               <span>{feature.summary}</span>
               <em>{feature.category.toUpperCase()}</em>
               <small>INSPECT</small>
-              <u>{expanded ? "−" : "+"}</u>
             </button>
             {expanded && expandedContent?.(feature)}
           </Fragment>
@@ -424,7 +422,7 @@ function WorkflowGraph({
           <span>{String(index + 1).padStart(2, "0")}</span>
           <b>{node}</b>
           {index < feature.workflow.nodes.length - 1 && (
-            <i aria-hidden="true">→</i>
+            <ProjectUiIcon name="arrow-right" size="micro" />
           )}
         </div>
       ))}
@@ -471,7 +469,8 @@ export function FeatureInspection({
               onClick={() => setModalOpen(true)}
               type="button"
             >
-              ⛶ Expand
+              <ProjectUiIcon name="expand" size="sm" />
+              <span>Expand</span>
             </button>
           </header>
           <WorkflowGraph feature={feature} />
@@ -508,7 +507,7 @@ export function FeatureInspection({
                 onClick={() => setModalOpen(false)}
                 type="button"
               >
-                ×
+                <ProjectUiIcon name="close" size="sm" />
               </button>
             </header>
             <WorkflowGraph feature={feature} modal />
@@ -541,7 +540,8 @@ export function OverviewView({
           <div className="overview-feature-heading">
             <h2>Feature catalogue</h2>
             <button onClick={onOpenFeatures} type="button">
-              Open full catalogue →
+              <span>Open full catalogue</span>
+              <ProjectUiIcon name="arrow-right" size="sm" />
             </button>
           </div>
           <FeatureRows
@@ -617,7 +617,7 @@ export function FeaturesView({
             <input
               aria-label="Search Armyverse features"
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="⌕ Search features..."
+              placeholder="Search features..."
               value={query}
             />
             <div>
@@ -704,7 +704,7 @@ export function GenericFeaturesView({
           <input
             aria-label="Search project features"
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="⌕ Search features..."
+            placeholder="Search features..."
             value={query}
           />
           <div>
@@ -823,58 +823,25 @@ function ArchitectureGraph({
 
 function ArchitectureModuleIcon({ title }: { title: string }) {
   const normalized = title.toLowerCase();
-  const icon =
+  const iconName: "overview" | "source-control" | "graph" | "database" | "link" =
     normalized.includes("playlist") || normalized.includes("experience")
-      ? "experience"
+      ? "overview"
       : normalized.includes("route") || normalized.includes("scheduler")
-        ? "routes"
+        ? "source-control"
         : normalized.includes("analytics") || normalized.includes("collector")
-          ? "analytics"
+          ? "graph"
           : normalized.includes("quest") ||
               normalized.includes("reward") ||
               normalized.includes("domain")
-            ? "state"
-            : "integration";
+            ? "database"
+            : "link";
 
   return (
-    <svg
-      aria-hidden="true"
+    <ProjectUiIcon
+      name={iconName}
+      size="sm"
       className="architecture-module-icon"
-      viewBox="0 0 24 24"
-    >
-      {icon === "experience" && (
-        <>
-          <rect height="13" rx="2" width="18" x="3" y="4" />
-          <path d="M8 21h8M12 17v4" />
-        </>
-      )}
-      {icon === "routes" && (
-        <>
-          <circle cx="6" cy="6" r="2" />
-          <circle cx="18" cy="6" r="2" />
-          <circle cx="12" cy="18" r="2" />
-          <path d="M8 7.5 10.5 16M16 7.5 13.5 16" />
-        </>
-      )}
-      {icon === "analytics" && (
-        <>
-          <path d="M4 19V5M4 19h16" />
-          <path d="m7 15 4-4 3 2 5-6" />
-        </>
-      )}
-      {icon === "state" && (
-        <>
-          <ellipse cx="12" cy="6" rx="7" ry="3" />
-          <path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" />
-        </>
-      )}
-      {icon === "integration" && (
-        <>
-          <path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1" />
-          <path d="M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1" />
-        </>
-      )}
-    </svg>
+    />
   );
 }
 
@@ -968,7 +935,8 @@ export function ArchitectureView({
                 onClick={() => setModalOpen(true)}
                 type="button"
               >
-                ⛶ Expand map
+                <ProjectUiIcon name="expand" size="sm" />
+                <span>Expand map</span>
               </button>
             </header>
             <ArchitectureGraph map={selected} />
@@ -1003,7 +971,10 @@ export function ArchitectureView({
                     <b>{title}</b>
                   </header>
                   <p>{detail}</p>
-                  <span>● Active module</span>
+                  <span>
+                    <i aria-hidden="true" className="ui-status-dot green" />
+                    Active module
+                  </span>
                 </article>
               ))}
             </div>
@@ -1023,7 +994,10 @@ export function ArchitectureView({
             <h2>Resilience & safeguards</h2>
             <div>
               {selected.support.safeguards.map((item) => (
-                <span key={item}>◈ {item}</span>
+                <span key={item}>
+                  <ProjectUiIcon name="safeguard" size="micro" />
+                  <span>{item}</span>
+                </span>
               ))}
             </div>
           </section>
@@ -1034,7 +1008,7 @@ export function ArchitectureView({
                 <Fragment key={item}>
                   <span>{item}</span>
                   {index < selected.support.operationalPath.length - 1 && (
-                    <i>→</i>
+                    <ProjectUiIcon name="arrow-right" size="micro" />
                   )}
                 </Fragment>
               ))}
@@ -1065,7 +1039,7 @@ export function ArchitectureView({
                 onClick={() => setModalOpen(false)}
                 type="button"
               >
-                ×
+                <ProjectUiIcon name="close" size="sm" />
               </button>
             </header>
             <ArchitectureGraph expanded map={selected} />

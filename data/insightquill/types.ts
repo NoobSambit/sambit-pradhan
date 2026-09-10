@@ -23,5 +23,4 @@ export type InsightQuillView = "overview" | "features" | "architecture";
 export type InsightQuillNavigationItem = {
   id: InsightQuillView;
   label: string;
-  icon: string;
 };
