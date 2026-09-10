@@ -41,6 +41,7 @@ export function ActiveProject() {
             src="/heisenberg_ascii_pfp.png"
             width="1688"
             height="2394"
+            decoding="async"
             alt="Heisenberg ASCII artwork"
           />
         </div>

@@ -246,7 +246,7 @@ function DocBuilderInspector({
   );
 }
 
-export function DocBuilderDocsWorkspace({ onBack }: { onBack: () => void }) {
+export function DocBuilderDocsWorkspace() {
   const [view, setView] = useState<DocBuilderView>("overview");
   const [selectedFeature, setSelectedFeature] = useState(docBuilderFeatures[0]);
   const [selectedArchitectureId, setSelectedArchitectureId] = useState(
@@ -287,14 +287,10 @@ export function DocBuilderDocsWorkspace({ onBack }: { onBack: () => void }) {
       <aside className="project-docs-nav">
         <header>
           <span>DOCUMENTATION</span>
-          <button
-            className="project-back-to-list"
-            onClick={onBack}
-            type="button"
-          >
+          <a className="project-back-to-list" href="/projects">
             <ProjectUiIcon name="arrow-left" size="micro" />
-              <span>Repositories</span>
-          </button>
+            <span>Repositories</span>
+          </a>
         </header>
         <div className="project-docs-tree">
           <b className="project-tree-root">
@@ -338,10 +334,10 @@ export function DocBuilderDocsWorkspace({ onBack }: { onBack: () => void }) {
             <ProjectUiIcon name={projectFileIconName(selectedFile)} size="sm" />
             <span>DOCBUILDER / {selectedFile}</span>
           </span>
-          <button className="project-tabs-back" onClick={onBack} type="button">
+          <a className="project-tabs-back" href="/projects">
             <ProjectUiIcon name="arrow-left" size="micro" />
             <span>Back to project list</span>
-          </button>
+          </a>
           <button aria-label="More documentation actions" type="button">
             <ProjectUiIcon name="ellipsis" size="sm" />
           </button>

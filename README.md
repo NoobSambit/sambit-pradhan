@@ -1,12 +1,14 @@
-# Sambit OS Portfolio
+# Sambit OS — Sambit Pradhan's Developer Portfolio
 
-An evolving developer portfolio built as a dense, terminal-inspired operating system interface. It presents engineering work, skills, activity streaks, profile context, and project case-study placeholders in one scalable Next.js application.
+Live at [https://sambitpradhan.in](https://sambitpradhan.in).
+
+A dense, terminal-inspired operating system interface presenting Sambit Pradhan's engineering work: backend-heavy products, AI-enabled systems, skills, activity streaks, profile context, and repository-grounded project documentation in one Next.js application.
 
 ## Highlights
 
 - Desktop-first developer workspace UI with a persistent system sidebar and navigation.
 - Overview, About, and Projects workspaces built from reusable OS components.
-- Interactive project selector that updates the project brief and inspector panel with placeholder data.
+- Repository explorer with per-project documentation routes (`/projects/<slug>`).
 - LeetCode and GitHub activity-streak visualizations, engineering metrics, logs, and technical stack panels.
 - Responsive fallback for smaller screens while preserving the desktop composition.
 
@@ -42,9 +44,10 @@ npm run start     # Run the production server
 ```text
 app/              Next.js routes, layout, and global styling
 components/os/    Reusable terminal-OS interface modules
-data/             Portfolio and placeholder project data
+data/             Portfolio and project documentation data
+lib/              SEO config and documented-project registry
 ```
 
 ## Status
 
-The visual system and core workspaces are in active development. Project-specific metrics, external activity integrations, case studies, and final copy are intentionally represented by placeholders until their data sources are connected.
+The visual system and core workspaces are live at [https://sambitpradhan.in](https://sambitpradhan.in). Project metrics, activity integrations, and documentation stay repository-grounded: figures shown in the UI come from the data sources wired in `data/` and the portfolio API.

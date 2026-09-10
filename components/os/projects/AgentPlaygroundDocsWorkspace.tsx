@@ -285,11 +285,7 @@ function AgentInspector({
   );
 }
 
-export function AgentPlaygroundDocsWorkspace({
-  onBack,
-}: {
-  onBack: () => void;
-}) {
+export function AgentPlaygroundDocsWorkspace() {
   const [view, setView] = useState<AgentPlaygroundView>("overview");
   const [selectedFeature, setSelectedFeature] = useState(
     agentPlaygroundFeatures[0],
@@ -333,14 +329,10 @@ export function AgentPlaygroundDocsWorkspace({
       <aside className="project-docs-nav">
         <header>
           <span>DOCUMENTATION</span>
-          <button
-            className="project-back-to-list"
-            onClick={onBack}
-            type="button"
-          >
+          <a className="project-back-to-list" href="/projects">
             <ProjectUiIcon name="arrow-left" size="micro" />
-              <span>Repositories</span>
-          </button>
+            <span>Repositories</span>
+          </a>
         </header>
         <div className="project-docs-tree">
           <b className="project-tree-root">
@@ -384,10 +376,10 @@ export function AgentPlaygroundDocsWorkspace({
             <ProjectUiIcon name={projectFileIconName(selectedFile)} size="sm" />
             <span>AGENT-PLAYGROUND / {selectedFile}</span>
           </span>
-          <button className="project-tabs-back" onClick={onBack} type="button">
+          <a className="project-tabs-back" href="/projects">
             <ProjectUiIcon name="arrow-left" size="micro" />
             <span>Back to project list</span>
-          </button>
+          </a>
           <button aria-label="More documentation actions" type="button">
             <ProjectUiIcon name="ellipsis" size="sm" />
           </button>

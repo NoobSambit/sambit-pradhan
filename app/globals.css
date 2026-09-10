@@ -2314,7 +2314,7 @@ button {
   padding: 11px 0;
   border-right: 1px solid #23333d;
 }
-.project-activity button {
+.project-activity :is(button, a) {
   width: 43px;
   height: 31px;
   border: 0;
@@ -2324,11 +2324,11 @@ button {
   font-size: 17px;
   cursor: pointer;
 }
-.project-activity button.active {
+.project-activity :is(button, a).active {
   border-left-color: #55d1e4;
   color: #71dceb;
 }
-.project-activity button:hover {
+.project-activity :is(button, a):hover {
   color: #bfd7dc;
 }
 .project-activity span {
@@ -3497,8 +3497,8 @@ button {
   font-size: 16px;
   text-decoration: none;
 }
-.agent-playground-workspace .project-activity button.active,
-.agent-playground-workspace .project-activity button:hover,
+.agent-playground-workspace .project-activity :is(button, a).active,
+.agent-playground-workspace .project-activity :is(button, a):hover,
 .agent-playground-workspace .project-activity a:hover {
   border-left-color: #7bc8f5;
   color: #a9ddfa;
@@ -3514,8 +3514,8 @@ button {
   font-size: 16px;
   text-decoration: none;
 }
-.docbuilder-workspace .project-activity button.active,
-.docbuilder-workspace .project-activity button:hover,
+.docbuilder-workspace .project-activity :is(button, a).active,
+.docbuilder-workspace .project-activity :is(button, a):hover,
 .docbuilder-workspace .project-activity a:hover {
   border-left-color: #e1a85b;
   color: #f5c97a;
@@ -3531,8 +3531,8 @@ button {
   font-size: 16px;
   text-decoration: none;
 }
-.kirana-workspace .project-activity button.active,
-.kirana-workspace .project-activity button:hover,
+.kirana-workspace .project-activity :is(button, a).active,
+.kirana-workspace .project-activity :is(button, a):hover,
 .kirana-workspace .project-activity a:hover {
   border-left-color: #83d178;
   color: #a8e39d;
@@ -3548,8 +3548,8 @@ button {
   font-size: 16px;
   text-decoration: none;
 }
-.insightquill-workspace .project-activity button.active,
-.insightquill-workspace .project-activity button:hover,
+.insightquill-workspace .project-activity :is(button, a).active,
+.insightquill-workspace .project-activity :is(button, a):hover,
 .insightquill-workspace .project-activity a:hover {
   border-left-color: #bd86ef;
   color: #e1c5fc;
@@ -3565,8 +3565,8 @@ button {
   font-size: 16px;
   text-decoration: none;
 }
-.kisansetu-workspace .project-activity button.active,
-.kisansetu-workspace .project-activity button:hover,
+.kisansetu-workspace .project-activity :is(button, a).active,
+.kisansetu-workspace .project-activity :is(button, a):hover,
 .kisansetu-workspace .project-activity a:hover {
   border-left-color: #d6a849;
   color: #f1d180;
@@ -6083,12 +6083,12 @@ button {
   --repository-border: #27313a;
 }
 
-.repository-workspace .project-activity button.active {
+.repository-workspace .project-activity :is(button, a).active {
   border-left-color: var(--repository-accent);
   color: #c6b4ff;
 }
 
-.repository-workspace .project-activity button:hover {
+.repository-workspace .project-activity :is(button, a):hover {
   color: #d5c9ff;
 }
 
@@ -6138,7 +6138,7 @@ button {
 }
 
 .repository-tree > b,
-.repository-tree > button {
+.repository-tree > :is(button, a) {
   display: flex;
   align-items: center;
   gap: 7px;
@@ -6159,13 +6159,13 @@ button {
   font-weight: 600;
 }
 
-.repository-tree > button {
+.repository-tree > :is(button, a) {
   padding-left: 31px;
   cursor: pointer;
 }
 
-.repository-tree > button:hover,
-.repository-tree > button.active {
+.repository-tree > :is(button, a):hover,
+.repository-tree > :is(button, a).active {
   border-left-color: var(--repository-accent);
   background: var(--repository-accent-soft);
   color: #d3c6ff;
@@ -6360,7 +6360,7 @@ button {
 }
 
 .repository-table > header,
-.repository-table > button {
+.repository-table > :is(button, a) {
   display: grid;
   grid-template-columns: 1.3fr 1.08fr 1.35fr 0.62fr 0.54fr 0.76fr 0.38fr 0.46fr;
   column-gap: 9px;
@@ -6380,7 +6380,7 @@ button {
   font-size: 10px;
 }
 
-.repository-table > button {
+.repository-table > :is(button, a) {
   width: 100%;
   height: 78px;
   min-height: 78px;
@@ -6394,29 +6394,29 @@ button {
   cursor: pointer;
 }
 
-.repository-table > button > * {
+.repository-table > :is(button, a) > * {
   min-width: 0;
   min-height: 0;
 }
 
-.repository-table > button:hover,
-.repository-table > button.selected {
+.repository-table > :is(button, a):hover,
+.repository-table > :is(button, a).selected {
   background: #141425;
   box-shadow: inset 2px 0 var(--repository-accent);
 }
 
-.repository-table > button > div:first-child,
-.repository-table > button > div:nth-child(4) {
+.repository-table > :is(button, a) > div:first-child,
+.repository-table > :is(button, a) > div:nth-child(4) {
   display: grid;
   grid-template-columns: 24px minmax(0, 1fr);
   gap: 2px 5px;
 }
 
-.repository-table > button > div:nth-child(4) {
+.repository-table > :is(button, a) > div:nth-child(4) {
   grid-template-columns: 1fr;
 }
 
-.repository-table > button > div:first-child i {
+.repository-table > :is(button, a) > div:first-child i {
   grid-row: span 2;
   display: grid;
   place-items: center;
@@ -6428,7 +6428,7 @@ button {
   font-style: normal;
 }
 
-.repository-table > button b {
+.repository-table > :is(button, a) b {
   overflow: hidden;
   color: #edf3f4;
   font-size: 12px;
@@ -6437,14 +6437,14 @@ button {
   white-space: nowrap;
 }
 
-.repository-table > button small {
+.repository-table > :is(button, a) small {
   display: block;
   color: #9badb4;
   font-size: 9px;
   line-height: 13px;
 }
 
-.repository-table > button p {
+.repository-table > :is(button, a) p {
   margin: 0;
   color: #bdc9cd;
   font-size: 10px;
@@ -6490,7 +6490,7 @@ button {
 }
 
 .repository-table time,
-.repository-table > button > span {
+.repository-table > :is(button, a) > span {
   color: #bfcdd1;
   font-size: 10px;
 }
@@ -6504,7 +6504,7 @@ button {
   color: #efbc4e;
 }
 
-.repository-table > button > strong {
+.repository-table > :is(button, a) > strong {
   color: #d0dde0;
   font-size: 10px;
   font-weight: 500;
@@ -6761,7 +6761,7 @@ button {
   grid-column: 1 / -1;
 }
 
-.repository-actions button {
+.repository-actions :is(button, a) {
   min-height: 34px;
   padding: 5px;
   border: 1px solid #28424d;
@@ -6772,7 +6772,7 @@ button {
   cursor: pointer;
 }
 
-.repository-actions button:hover {
+.repository-actions :is(button, a):hover {
   border-color: #7963c8;
   color: #cfbfff;
 }
@@ -6805,7 +6805,7 @@ button {
   color: #f7d783;
 }
 
-.repository-actions button:disabled {
+.repository-actions :is(button, a):disabled {
   border-color: #26343b;
   color: #718087;
   cursor: not-allowed;
@@ -6893,7 +6893,7 @@ button {
 .repository-workspace .repository-command > p,
 .repository-workspace .repository-toolbar > *,
 .repository-workspace .repository-guide > *,
-.repository-workspace .repository-table > button > *,
+.repository-workspace .repository-table > :is(button, a) > *,
 .repository-workspace .repository-terminal > header > *,
 .repository-workspace .repository-terminal > p,
 .repository-workspace .repository-empty {
@@ -12901,17 +12901,17 @@ button {
   color: #8db3ff;
 }
 
-.project-docs-shell .repository-table > button > div:first-child > b {
+.project-docs-shell .repository-table > :is(button, a) > div:first-child > b {
   color: #7ce3eb;
   font-weight: 700;
 }
 
-.project-docs-shell .repository-table > button > div:nth-child(4) > em,
-.project-docs-shell .repository-table > button > strong {
+.project-docs-shell .repository-table > :is(button, a) > div:nth-child(4) > em,
+.project-docs-shell .repository-table > :is(button, a) > strong {
   font-weight: 700;
 }
 
-.project-docs-shell .repository-table > button > span {
+.project-docs-shell .repository-table > :is(button, a) > span {
   color: #d5a0ff;
   font-weight: 600;
 }
@@ -12994,7 +12994,7 @@ button {
 .project-activity a:hover {
   color: #bfd7dc;
 }
-.project-activity button:disabled {
+.project-activity :is(button, a):disabled {
   opacity: 0.38;
   cursor: not-allowed;
 }
@@ -13076,7 +13076,7 @@ button {
 }
 
 /* Quick actions: icon + label affordance. */
-.repository-actions button {
+.repository-actions :is(button, a) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -13253,4 +13253,19 @@ button {
   width: 13px;
   height: 13px;
   flex: 0 0 auto;
+}
+
+/* Crawlable project navigation uses anchors styled exactly like the
+   buttons they replace. No visual change: anchors only reset the
+   underline browsers add by default. */
+.repository-table > a,
+.repository-tree > a,
+.repository-actions a,
+a.project-back-to-list,
+a.project-tabs-back {
+  text-decoration: none;
+  cursor: pointer;
+}
+.repository-actions a[aria-disabled="true"] {
+  cursor: default;
 }

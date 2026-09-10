@@ -255,7 +255,7 @@ function InsightQuillInspector({
   );
 }
 
-export function InsightQuillDocsWorkspace({ onBack }: { onBack: () => void }) {
+export function InsightQuillDocsWorkspace() {
   const [view, setView] = useState<InsightQuillView>("overview");
   const [selectedFeature, setSelectedFeature] = useState(
     insightQuillFeatures[0],
@@ -299,14 +299,10 @@ export function InsightQuillDocsWorkspace({ onBack }: { onBack: () => void }) {
       <aside className="project-docs-nav">
         <header>
           <span>DOCUMENTATION</span>
-          <button
-            className="project-back-to-list"
-            onClick={onBack}
-            type="button"
-          >
+          <a className="project-back-to-list" href="/projects">
             <ProjectUiIcon name="arrow-left" size="micro" />
-              <span>Repositories</span>
-          </button>
+            <span>Repositories</span>
+          </a>
         </header>
         <div className="project-docs-tree">
           <b className="project-tree-root">
@@ -350,10 +346,10 @@ export function InsightQuillDocsWorkspace({ onBack }: { onBack: () => void }) {
             <ProjectUiIcon name={projectFileIconName(selectedFile)} size="sm" />
             <span>INSIGHTQUILL / {selectedFile}</span>
           </span>
-          <button className="project-tabs-back" onClick={onBack} type="button">
+          <a className="project-tabs-back" href="/projects">
             <ProjectUiIcon name="arrow-left" size="micro" />
             <span>Back to project list</span>
-          </button>
+          </a>
           <button aria-label="More documentation actions" type="button">
             <ProjectUiIcon name="ellipsis" size="sm" />
           </button>

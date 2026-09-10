@@ -1,21 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { projects, type Project } from "@/data/projects";
 import { ProjectUiIcon } from "@/components/os/projects/ProjectUiIcon";
-
-type RepositoryLandingProps = {
-  onOpenProject: (
-    project:
-      | "armyverse"
-      | "agent-playground"
-      | "docbuilder"
-      | "kirana-corner"
-      | "insightquill"
-      | "kisan-setu"
-      | "gym-tracker",
-  ) => void;
-};
+import {
+  getProjectCanonicalPath,
+  isDocumentedProjectSlug,
+} from "@/lib/projects";
 
 function repositorySlug(project: Project) {
   return project.repository.replace("https://github.com/", "");
@@ -77,10 +69,10 @@ const explorerProjects = [...projects].sort(
 );
 
 function Explorer({
-  onSelect,
+  onPreview,
   selected,
 }: {
-  onSelect: (project: Project) => void;
+  onPreview: (project: Project) => void;
   selected: Project;
 }) {
   const activeProjects = projects.filter(
@@ -115,12 +107,13 @@ function Explorer({
           <span>repositories/</span>
         </b>
         {explorerProjects.map((project) => (
-          <button
+          <Link
             aria-current={selected.id === project.id ? "true" : undefined}
             className={selected.id === project.id ? "active" : ""}
+            href={getProjectCanonicalPath(project.id)}
             key={project.id}
-            onClick={() => onSelect(project)}
-            type="button"
+            onMouseEnter={() => onPreview(project)}
+            onFocus={() => onPreview(project)}
           >
             <ProjectUiIcon name="repository" size="sm" />
             <span>{project.id}/</span>
@@ -128,7 +121,7 @@ function Explorer({
               aria-hidden="true"
               className={`ui-status-dot repository-state-dot ${toneDotClass(project.tone)}`}
             />
-          </button>
+          </Link>
         ))}
         <b>
           <ProjectUiIcon name="chevron-right" size="sm" />
@@ -178,17 +171,7 @@ function Explorer({
           <ProjectUiIcon name="documentation" size="micro" />
           Documentation{" "}
           <b>
-            {[
-              "armyverse",
-              "agent-playground",
-              "docbuilder",
-              "kirana-corner",
-              "insightquill",
-              "kisan-setu",
-              "gym-tracker",
-            ].includes(selected.id)
-              ? "Available"
-              : "Planned"}
+            {isDocumentedProjectSlug(selected.id) ? "Available" : "Planned"}
           </b>
         </p>
       </section>
@@ -197,11 +180,11 @@ function Explorer({
 }
 
 function RepositoryTable({
-  onSelect,
+  onPreview,
   projectsToShow,
   selected,
 }: {
-  onSelect: (project: Project) => void;
+  onPreview: (project: Project) => void;
   projectsToShow: Project[];
   selected: Project;
 }) {
@@ -222,12 +205,13 @@ function RepositoryTable({
         <span>COMMITS</span>
       </header>
       {projectsToShow.map((project) => (
-        <button
-          aria-pressed={selected.id === project.id}
+        <Link
+          aria-current={selected.id === project.id ? "true" : undefined}
           className={selected.id === project.id ? "selected" : ""}
+          href={getProjectCanonicalPath(project.id)}
           key={project.id}
-          onClick={() => onSelect(project)}
-          type="button"
+          onMouseEnter={() => onPreview(project)}
+          onFocus={() => onPreview(project)}
         >
           <div>
             <span className="repository-row-icon">
@@ -260,7 +244,7 @@ function RepositoryTable({
             className={`ui-status-dot health ${toneDotClass(project.tone)}${project.tone === "yellow" ? " beta" : ""}`}
           />
           <strong>{project.commitCount}</strong>
-        </button>
+        </Link>
       ))}
       {!projectsToShow.length && (
         <p className="repository-empty">No repositories match that search.</p>
@@ -269,42 +253,11 @@ function RepositoryTable({
   );
 }
 
-function Inspector({
-  onOpenProject,
-  project,
-}: {
-  onOpenProject: (
-    project:
-      | "armyverse"
-      | "agent-playground"
-      | "docbuilder"
-      | "kirana-corner"
-      | "insightquill"
-      | "kisan-setu"
-      | "gym-tracker",
-  ) => void;
-  project: Project;
-}) {
-  const docsAvailable =
-    project.id === "armyverse" ||
-    project.id === "agent-playground" ||
-    project.id === "docbuilder" ||
-    project.id === "kirana-corner" ||
-    project.id === "insightquill" ||
-    project.id === "kisan-setu" ||
-    project.id === "gym-tracker";
-  const openDocumentation = () => {
-    if (
-      project.id === "armyverse" ||
-      project.id === "agent-playground" ||
-      project.id === "docbuilder" ||
-      project.id === "kirana-corner" ||
-      project.id === "insightquill" ||
-      project.id === "kisan-setu" ||
-      project.id === "gym-tracker"
-    )
-      onOpenProject(project.id);
-  };
+function Inspector({ project }: { project: Project }) {
+  const docsAvailable = isDocumentedProjectSlug(project.id);
+  const docsHref = docsAvailable
+    ? getProjectCanonicalPath(project.id)
+    : "/projects";
 
   return (
     <aside className="repository-inspector">
@@ -375,40 +328,37 @@ function Inspector({
       </section>
       <section className="repository-actions">
         <header>QUICK ACTIONS</header>
-        <button
+        <a
           className="repository-action-source"
-          onClick={() =>
-            window.open(project.repository, "_blank", "noopener,noreferrer")
-          }
-          type="button"
+          href={project.repository}
+          rel="noreferrer"
+          target="_blank"
         >
           <ProjectUiIcon name="github" size="sm" />
           <span>Open repository</span>
-        </button>
-        <button
+        </a>
+        <Link
+          aria-disabled={!docsAvailable}
           className="repository-action-docs"
-          disabled={!docsAvailable}
-          onClick={openDocumentation}
-          type="button"
+          href={docsHref}
         >
           <ProjectUiIcon name="documentation" size="sm" />
           <span>{docsAvailable ? "Open documentation" : "Documentation planned"}</span>
-        </button>
-        <button
+        </Link>
+        <Link
+          aria-disabled={!docsAvailable}
           className="repository-action-architecture"
-          disabled={!docsAvailable}
-          onClick={openDocumentation}
-          type="button"
+          href={docsHref}
         >
           <ProjectUiIcon name="architecture" size="sm" />
           <span>{docsAvailable ? "View architecture" : "Not available yet"}</span>
-        </button>
+        </Link>
       </section>
     </aside>
   );
 }
 
-export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
+export function RepositoryLanding() {
   const [selected, setSelected] = useState(
     () => projects.find((project) => project.id === "armyverse") ?? projects[0],
   );
@@ -448,20 +398,6 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
       });
   }, [query, scope, sort]);
 
-  const selectProject = (project: Project) => {
-    setSelected(project);
-    if (
-      project.id === "armyverse" ||
-      project.id === "agent-playground" ||
-      project.id === "docbuilder" ||
-      project.id === "kirana-corner" ||
-      project.id === "insightquill" ||
-      project.id === "kisan-setu" ||
-      project.id === "gym-tracker"
-    )
-      onOpenProject(project.id);
-  };
-
   return (
     <section className="project-docs-workspace repository-workspace">
       <nav aria-label="Workspace tools" className="project-activity">
@@ -479,31 +415,13 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
         >
           <ProjectUiIcon name="search" size="activity" />
         </button>
-        <button
+        <Link
           aria-label="Selected project documentation"
-          disabled={
-            selected.id !== "armyverse" &&
-            selected.id !== "agent-playground" &&
-            selected.id !== "docbuilder" &&
-            selected.id !== "kirana-corner" &&
-            selected.id !== "insightquill" &&
-            selected.id !== "kisan-setu" &&
-            selected.id !== "gym-tracker"
-          }
-          onClick={() =>
-            (selected.id === "armyverse" ||
-              selected.id === "agent-playground" ||
-              selected.id === "docbuilder" ||
-              selected.id === "kirana-corner" ||
-              selected.id === "insightquill" ||
-              selected.id === "kisan-setu" ||
-              selected.id === "gym-tracker") &&
-            onOpenProject(selected.id)
-          }
-          type="button"
+          aria-disabled={!isDocumentedProjectSlug(selected.id)}
+          href={getProjectCanonicalPath(selected.id)}
         >
           <ProjectUiIcon name="architecture" size="activity" />
-        </button>
+        </Link>
         <span />
         <a
           aria-label="Open selected repository"
@@ -514,7 +432,7 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
           <ProjectUiIcon name="github" size="activity" />
         </a>
       </nav>
-      <Explorer onSelect={selectProject} selected={selected} />
+      <Explorer onPreview={setSelected} selected={selected} />
       <main className="repository-main">
         <div aria-hidden="true" className="repository-character-scene">
           <img
@@ -619,7 +537,7 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
           </aside>
         )}
         <RepositoryTable
-          onSelect={selectProject}
+          onPreview={setSelected}
           projectsToShow={visibleProjects}
           selected={selected}
         />
@@ -657,7 +575,7 @@ export function RepositoryLanding({ onOpenProject }: RepositoryLandingProps) {
           </p>
         </section>
       </main>
-      <Inspector onOpenProject={onOpenProject} project={selected} />
+      <Inspector project={selected} />
     </section>
   );
 }

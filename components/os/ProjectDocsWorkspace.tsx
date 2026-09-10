@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   ArchitectureInspectorPanels,
   ArchitectureView,
@@ -26,15 +26,7 @@ import { KiranaCornerDocsWorkspace } from "@/components/os/projects/KiranaCorner
 import { InsightQuillDocsWorkspace } from "@/components/os/projects/InsightQuillDocsWorkspace";
 import { KisanSetuDocsWorkspace } from "@/components/os/projects/KisanSetuDocsWorkspace";
 import { GymTrackerDocsWorkspace } from "@/components/os/projects/GymTrackerDocsWorkspace";
-
-type DocumentedProject =
-  | "armyverse"
-  | "agent-playground"
-  | "docbuilder"
-  | "kirana-corner"
-  | "insightquill"
-  | "kisan-setu"
-  | "gym-tracker";
+import type { DocumentedProjectSlug } from "@/lib/projects";
 
 type ProjectView = (typeof armyverseNavigation)[number]["id"];
 
@@ -135,86 +127,53 @@ function ProjectInspector({
   );
 }
 
-export function ProjectDocsWorkspace() {
+export function ProjectDocsWorkspace({
+  initialProject,
+}: {
+  /**
+   * Route-owned project identity. The URL decides WHICH project is open;
+   * client state only decides which tab/view is visible inside it.
+   * Omitted on /projects, where the repository list is shown instead.
+   */
+  initialProject?: DocumentedProjectSlug;
+}) {
   const [surface, setSurface] = useState<"repositories" | "documentation">(
-    "repositories",
+    initialProject ? "documentation" : "repositories",
   );
   const [activeProject, setActiveProject] =
-    useState<DocumentedProject>("armyverse");
+    useState<DocumentedProjectSlug>(initialProject ?? "armyverse");
   const [view, setView] = useState<ProjectView>("overview");
   const [selectedFeature, setSelectedFeature] = useState(armyverseFeatures[0]);
   const [selectedArchitectureId, setSelectedArchitectureId] = useState(
     armyverseArchitectureMaps[0].id,
   );
 
-  useEffect(() => {
-    const syncSurfaceFromLocation = () => {
-      const project = new URLSearchParams(window.location.search).get(
-        "project",
-      );
-      if (
-        project === "armyverse" ||
-        project === "agent-playground" ||
-        project === "docbuilder" ||
-        project === "kirana-corner" ||
-        project === "insightquill" ||
-        project === "kisan-setu" ||
-        project === "gym-tracker"
-      ) {
-        setActiveProject(project);
-        setSurface("documentation");
-        return;
-      }
-      setSurface("repositories");
-    };
-
-    syncSurfaceFromLocation();
-    window.addEventListener("popstate", syncSurfaceFromLocation);
-    return () =>
-      window.removeEventListener("popstate", syncSurfaceFromLocation);
-  }, []);
-
-  const openProject = (project: DocumentedProject) => {
-    setActiveProject(project);
-    setSurface("documentation");
-    window.history.pushState({ project }, "", `/projects?project=${project}`);
-  };
-
-  const openRepositories = () => {
-    setSurface("repositories");
-    window.history.pushState(
-      { view: "repositories" },
-      "",
-      "/projects?view=repositories",
-    );
-  };
-
   if (surface === "repositories") {
-    return <RepositoryLanding onOpenProject={openProject} />;
+    return <RepositoryLanding />;
   }
 
   if (activeProject === "agent-playground") {
-    return <AgentPlaygroundDocsWorkspace onBack={openRepositories} />;
+    return <AgentPlaygroundDocsWorkspace />;
   }
 
   if (activeProject === "docbuilder") {
-    return <DocBuilderDocsWorkspace onBack={openRepositories} />;
+    return <DocBuilderDocsWorkspace />;
   }
 
   if (activeProject === "kirana-corner") {
-    return <KiranaCornerDocsWorkspace onBack={openRepositories} />;
+    return <KiranaCornerDocsWorkspace />;
   }
 
   if (activeProject === "insightquill") {
-    return <InsightQuillDocsWorkspace onBack={openRepositories} />;
+    return <InsightQuillDocsWorkspace />;
   }
 
   if (activeProject === "kisan-setu") {
-    return <KisanSetuDocsWorkspace onBack={openRepositories} />;
+    return <KisanSetuDocsWorkspace />;
   }
 
   if (activeProject === "gym-tracker") {
-    return <GymTrackerDocsWorkspace onBack={openRepositories} />;
+    return <GymTrackerDocsWorkspace />;
   }
 
   return (
@@ -246,14 +205,10 @@ export function ProjectDocsWorkspace() {
       <aside className="project-docs-nav">
         <header>
           <span>DOCUMENTATION</span>
-          <button
-            className="project-back-to-list"
-            onClick={openRepositories}
-            type="button"
-          >
+          <a className="project-back-to-list" href="/projects">
             <ProjectUiIcon name="arrow-left" size="micro" />
             <span>Repositories</span>
-          </button>
+          </a>
         </header>
         <div className="project-docs-tree">
           <b className="project-tree-root">
@@ -313,14 +268,10 @@ export function ProjectDocsWorkspace() {
                   : "README.md"}
             </span>
           </span>
-          <button
-            className="project-tabs-back"
-            onClick={openRepositories}
-            type="button"
-          >
+          <a className="project-tabs-back" href="/projects">
             <ProjectUiIcon name="arrow-left" size="micro" />
             <span>Back to project list</span>
-          </button>
+          </a>
           <button aria-label="More documentation actions" type="button">
             <ProjectUiIcon name="ellipsis" size="sm" />
           </button>

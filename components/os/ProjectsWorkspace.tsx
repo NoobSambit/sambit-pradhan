@@ -104,6 +104,7 @@ function ProjectPreview({
             <i><TerminalIcon name="git-branch" /> {project.branch}</i>
             <i>{project.commitCount} commits</i>
             <i>{project.latestCommit.sha}</i>
+            <a href={`/projects/${project.id}`}><TerminalIcon name="file-text" /> Case study</a>
             <RepositoryLink project={project}><TerminalIcon name="external-link" /> Repository</RepositoryLink>
           </div>
         </article>

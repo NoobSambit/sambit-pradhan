@@ -45,13 +45,6 @@ export function Header({
     };
   }, []);
 
-  const returnToProjectsRoot = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    if (window.location.pathname !== "/projects") return;
-
-    event.preventDefault();
-    window.location.assign("/projects?view=repositories");
-  };
-
   useEffect(() => {
     const refreshSystem = () => {
       setSystem({
@@ -97,7 +90,6 @@ export function Header({
         <a
           className={mode === "projects" ? "active" : ""}
           href="/projects"
-          onClick={returnToProjectsRoot}
         >
           Projects
         </a>
