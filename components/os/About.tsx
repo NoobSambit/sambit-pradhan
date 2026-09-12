@@ -1,6 +1,9 @@
 import {
+  aboutInfoRows,
   career,
+  diagnosticsRows,
   engineeringConfig,
+  identityRows,
   profileDetails,
   stackGroups,
 } from "@/data/about";
@@ -53,17 +56,7 @@ export function ProfileCard() {
         <div className="terminal-prompt">
           <span>developer@sambit:~/profile</span>$ id
         </div>
-        {[
-          ["uid", "1001"],
-          ["username", "developer"],
-          ["workspace", "~/portfolio"],
-          ["shell", "/bin/zsh"],
-          ["editor", "nvim"],
-          ["os", "Arch Linux x86_64"],
-          ["git_user", "sambit-pradhan"],
-          ["theme", "ayu-dark"],
-          ["terminal_font", "JetBrains Mono"],
-        ].map(([key, value], index) => (
+        {identityRows.map(([key, value], index) => (
           <div key={key} style={motionStyle(index)}>
             <span>{key}</span>
             <b>:　{value}</b>
@@ -157,14 +150,7 @@ export function TechnologyStack() {
 }
 
 export function LearningAndDiagnostics() {
-  const habits = [
-    ["project_horizon", "months > weekends"],
-    ["iteration_mode", "ship → test → revisit"],
-    ["default_focus", "product logic"],
-    ["backend_bias", "strong"],
-    ["current_rabbit_hole", "CLI verification"],
-    ["stop_condition", 'not "works on my machine"'],
-  ] as const;
+  const habits = diagnosticsRows;
   return (
     <>
       <section className="learning panel" data-motion-section="about-learning">
@@ -200,23 +186,7 @@ export function LearningAndDiagnostics() {
 }
 
 export function AboutInfo() {
-  const info = [
-    ["Building Since", "2023"],
-    ["Projects Built", "18+"],
-    ["Repositories", "42"],
-    ["Contributions", "512+"],
-    ["GitHub Streak", "23 days"],
-    ["Deployments", "60+"],
-    ["Production Systems", "12"],
-    ["APIs Built", "37"],
-    ["Database Models", "24"],
-    ["AI Applications", "6"],
-    ["Last Release", "v2.1.0"],
-    ["Current Build", "AgentProof"],
-    ["Focus", "Backend · Product Systems"],
-    ["Backend Runtime", "Node.js 20"],
-    ["Interests", "System Design · CLI Tooling"],
-  ];
+  const info = aboutInfoRows;
   return (
     <section className="about-info panel" data-motion-section="about-info">
       <div className="panel-title">$ info</div>

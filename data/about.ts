@@ -108,3 +108,42 @@ export const engineeringConfig = [
   ["learn_by_building", "true"],
   ["prototype_is_the_start", "true"],
 ] as const;
+
+export const identityRows = [
+  ["uid", "1001"],
+  ["username", "developer"],
+  ["workspace", "~/portfolio"],
+  ["shell", "/bin/zsh"],
+  ["editor", "nvim"],
+  ["os", "Arch Linux x86_64"],
+  ["git_user", "sambit-pradhan"],
+  ["theme", "ayu-dark"],
+  ["terminal_font", "JetBrains Mono"],
+] as const;
+
+export const diagnosticsRows = [
+  ["project_horizon", "months > weekends"],
+  ["iteration_mode", "ship → test → revisit"],
+  ["default_focus", "product logic"],
+  ["backend_bias", "strong"],
+  ["current_rabbit_hole", "CLI verification"],
+  ["stop_condition", 'not "works on my machine"'],
+] as const;
+
+export const aboutInfoRows = [
+  ["Building Since", "2023"],
+  ["Projects Built", "18+"],
+  ["Repositories", "42"],
+  ["Contributions", "512+"],
+  ["GitHub Streak", "23 days"],
+  ["Deployments", "60+"],
+  ["Production Systems", "12"],
+  ["APIs Built", "37"],
+  ["Database Models", "24"],
+  ["AI Applications", "6"],
+  ["Last Release", "v2.1.0"],
+  ["Current Build", "AgentProof"],
+  ["Focus", "Backend · Product Systems"],
+  ["Backend Runtime", "Node.js 20"],
+  ["Interests", "System Design · CLI Tooling"],
+] as const;
