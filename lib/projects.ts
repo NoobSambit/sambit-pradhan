@@ -20,7 +20,9 @@ export const documentedProjectSlugs = [
 
 export type DocumentedProjectSlug = (typeof documentedProjectSlugs)[number];
 
-export function isDocumentedProjectSlug(value: string): value is DocumentedProjectSlug {
+export function isDocumentedProjectSlug(
+  value: string,
+): value is DocumentedProjectSlug {
   return (documentedProjectSlugs as readonly string[]).includes(value);
 }
 
@@ -41,7 +43,9 @@ export function getProjectCanonicalPath(slug: string): string {
  * project's own latest-commit record. Returns undefined when the
  * stored date is missing or unparsable — never a fabricated date.
  */
-export function getProjectLastModified(slug: DocumentedProjectSlug): Date | undefined {
+export function getProjectLastModified(
+  slug: DocumentedProjectSlug,
+): Date | undefined {
   const project = getProjectBySlug(slug);
   const raw = project.latestCommit?.date;
   if (!raw) return undefined;
@@ -49,27 +53,6 @@ export function getProjectLastModified(slug: DocumentedProjectSlug): Date | unde
   if (Number.isNaN(parsed.getTime())) return undefined;
   return parsed;
 }
-
-type ProjectSchemaKind = {
-  /** Schema.org software type that matches how the project actually ships. */
-  type: "WebApplication" | "MobileApplication" | "SoftwareApplication";
-  operatingSystem?: string;
-};
-
-/**
- * Conservative per-project schema kinds. Mobile is only claimed for the
- * Android-first Flutter build; everything browser-delivered is a
- * WebApplication, everything else stays a plain SoftwareApplication.
- */
-const projectSchemaKinds: Record<DocumentedProjectSlug, ProjectSchemaKind> = {
-  armyverse: { type: "WebApplication" },
-  "agent-playground": { type: "WebApplication" },
-  docbuilder: { type: "WebApplication" },
-  "kirana-corner": { type: "WebApplication" },
-  insightquill: { type: "SoftwareApplication" },
-  "kisan-setu": { type: "WebApplication" },
-  "gym-tracker": { type: "MobileApplication", operatingSystem: "Android" },
-};
 
 /** Languages actually visible in each project's documented stack. */
 const projectLanguages: Record<DocumentedProjectSlug, string[]> = {
@@ -81,10 +64,6 @@ const projectLanguages: Record<DocumentedProjectSlug, string[]> = {
   "kisan-setu": ["TypeScript"],
   "gym-tracker": ["Dart", "TypeScript"],
 };
-
-export function getProjectSchemaKind(slug: DocumentedProjectSlug): ProjectSchemaKind {
-  return projectSchemaKinds[slug];
-}
 
 export function getProjectLanguages(slug: DocumentedProjectSlug): string[] {
   return projectLanguages[slug];

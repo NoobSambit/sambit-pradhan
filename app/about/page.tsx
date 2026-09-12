@@ -3,7 +3,13 @@ import { AboutIDEWorkspace } from "@/components/os/AboutIDEWorkspace";
 import { Footer } from "@/components/os/Footer";
 import { Header } from "@/components/os/Header";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { PERSON_ID, WEBSITE_ID, absoluteUrl, buildPageMetadata } from "@/lib/seo";
+import {
+  PERSON_ID,
+  WEBSITE_ID,
+  absoluteUrl,
+  breadcrumbEntity,
+  buildPageMetadata,
+} from "@/lib/seo";
 
 const ABOUT_TITLE = "About Sambit Pradhan — Backend Engineer";
 const ABOUT_DESCRIPTION =
@@ -21,14 +27,22 @@ export default function AboutPage() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "ProfilePage",
-          "@id": `${absoluteUrl("/about")}#profile`,
-          url: absoluteUrl("/about"),
-          name: ABOUT_TITLE,
-          description: ABOUT_DESCRIPTION,
-          isPartOf: { "@id": WEBSITE_ID },
-          about: { "@id": PERSON_ID },
-          mainEntity: { "@id": PERSON_ID },
+          "@graph": [
+            {
+              "@type": "ProfilePage",
+              "@id": `${absoluteUrl("/about")}#profile`,
+              url: absoluteUrl("/about"),
+              name: ABOUT_TITLE,
+              description: ABOUT_DESCRIPTION,
+              isPartOf: { "@id": WEBSITE_ID },
+              about: { "@id": PERSON_ID },
+              mainEntity: { "@id": PERSON_ID },
+            },
+            breadcrumbEntity([
+              { name: "Home", path: "/" },
+              { name: "About", path: "/about" },
+            ]),
+          ],
         }}
       />
       <Header mode="about" />

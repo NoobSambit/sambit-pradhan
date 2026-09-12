@@ -8,6 +8,7 @@ import {
   PERSON_ID,
   WEBSITE_ID,
   absoluteUrl,
+  breadcrumbEntity,
   buildPageMetadata,
 } from "@/lib/seo";
 import {
@@ -88,6 +89,10 @@ export default async function ProjectsPage({
                 }),
               },
             },
+            breadcrumbEntity([
+              { name: "Home", path: "/" },
+              { name: "Projects", path: "/projects" },
+            ]),
           ],
         }}
       />

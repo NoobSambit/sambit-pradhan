@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600;700&display=swap");
-
 :root {
   --bg: #080d12;
   --panel: #0d141b;
@@ -26,7 +24,10 @@ body {
   margin: 0;
   background: radial-gradient(ellipse at 65% 0%, #121a22 0%, #080d12 57%);
   color: var(--text);
-  font-family: "JetBrains Mono", "Roboto Mono", monospace;
+  font-family:
+    var(--font-jetbrains-mono),
+    var(--font-roboto-mono),
+    monospace;
   font-size: 10px;
   letter-spacing: -0.025em;
 }
@@ -1093,13 +1094,15 @@ button {
   color: #78cbe2;
   font-size: 8px;
 }
-.quick-links > div:not(.panel-title) {
+.quick-links > :is(div, a):not(.panel-title) {
   display: grid;
   grid-template-columns: 19px 46px 1fr 10px;
   align-items: center;
   height: 27px;
   padding: 0 10px;
+  color: inherit;
   font-size: 8px;
+  text-decoration: none;
 }
 .quick-links i {
   font-style: normal;
@@ -2266,7 +2269,7 @@ button {
   .releases a {
     font-size: 10px;
   }
-  .quick-links > div:not(.panel-title) {
+  .quick-links > :is(div, a):not(.panel-title) {
     font-size: 10px;
   }
   .quick-links i {
@@ -5921,7 +5924,7 @@ button {
 .workspace .system-info > div:not(.panel-title),
 .workspace .environment > div:not(.panel-title),
 .workspace .releases > div,
-.workspace .quick-links > div:not(.panel-title) {
+.workspace .quick-links > :is(div, a):not(.panel-title) {
   color: #c0cdd1;
 }
 
@@ -5968,7 +5971,7 @@ button {
 .workspace .system-info > div:not(.panel-title),
 .workspace .environment > div:not(.panel-title),
 .workspace .releases > div,
-.workspace .quick-links > div:not(.panel-title) {
+.workspace .quick-links > :is(div, a):not(.panel-title) {
   font-size: 11px;
 }
 
@@ -5985,7 +5988,7 @@ button {
 .workspace .system-info > div:not(.panel-title),
 .workspace .environment > div:not(.panel-title),
 .workspace .releases > div,
-.workspace .quick-links > div:not(.panel-title) {
+.workspace .quick-links > :is(div, a):not(.panel-title) {
   font-size: 11px;
 }
 
@@ -7463,24 +7466,24 @@ button {
   color: #d8e7e8;
 }
 
-.portfolio-shell .quick-links > div:not(.panel-title) {
+.portfolio-shell .quick-links > :is(div, a):not(.panel-title) {
   transition: background-color var(--motion-fast) var(--ease-system);
 }
 
-.portfolio-shell .quick-links > div:not(.panel-title) em {
+.portfolio-shell .quick-links > :is(div, a):not(.panel-title) em {
   transition: color var(--motion-fast) var(--ease-system), transform var(--motion-fast) var(--ease-system);
 }
 
-.portfolio-shell .quick-links > div:not(.panel-title):hover {
+.portfolio-shell .quick-links > :is(div, a):not(.panel-title):hover {
   background-color: rgba(36, 68, 76, 0.18);
 }
 
-.portfolio-shell .quick-links > div:not(.panel-title):hover b,
-.portfolio-shell .quick-links > div:not(.panel-title):hover em {
+.portfolio-shell .quick-links > :is(div, a):not(.panel-title):hover b,
+.portfolio-shell .quick-links > :is(div, a):not(.panel-title):hover em {
   color: #d8ebec;
 }
 
-.portfolio-shell .quick-links > div:not(.panel-title):hover em {
+.portfolio-shell .quick-links > :is(div, a):not(.panel-title):hover em {
   transform: translate(2px, -1px);
 }
 
@@ -7538,7 +7541,7 @@ button {
 .overview-workspace [data-motion-section][data-motion-visible="true"] .project-dossier-guarantees > div:not(.project-dossier-section-title),
 .overview-workspace [data-motion-section][data-motion-visible="true"] .system-info > div:not(.panel-title),
 .overview-workspace [data-motion-section][data-motion-visible="true"] .environment > div:not(.panel-title),
-.overview-workspace [data-motion-section][data-motion-visible="true"] .quick-links > div:not(.panel-title) {
+.overview-workspace [data-motion-section][data-motion-visible="true"] .quick-links > :is(div, a):not(.panel-title) {
   opacity: 0;
   animation: os-resolve 190ms var(--ease-terminal) both;
   animation-delay: calc(var(--motion-index, 0) * 32ms);
@@ -8593,7 +8596,10 @@ button {
 .ascii-avatar pre {
   margin: 0;
   color: #83ddec;
-  font-family: var(--mono, "JetBrains Mono", monospace);
+  font-family:
+    var(--mono, var(--font-jetbrains-mono)),
+    var(--font-roboto-mono),
+    monospace;
   font-size: clamp(11px, 1.45vw, 17px);
   font-weight: 700;
   line-height: 1.05;
@@ -8940,7 +8946,7 @@ button {
   background: transparent;
   color: #849099;
   cursor: pointer;
-  font: 16px/1 "JetBrains Mono", monospace;
+  font: 16px/1 var(--font-jetbrains-mono), var(--font-roboto-mono), monospace;
 }
 .ide-tab-close:hover,
 .ide-tab-close:focus-visible {
@@ -9174,7 +9180,7 @@ button {
 .semantic-map-header > b > span:first-child { color: #72d4e7; font-size: 13px; }
 .semantic-map-header > em { min-width: 0; overflow: hidden; margin-left: auto; color: #aebdc2; font-size: 9px; font-style: normal; text-overflow: ellipsis; white-space: nowrap; }
 .semantic-map-header > small { color: #77909a; font-size: 9px; white-space: nowrap; }
-.semantic-map-header button { width: 24px; height: 24px; display: grid; place-items: center; flex: 0 0 auto; border: 0; background: transparent; color: #91a5ad; cursor: pointer; font: 18px/1 "JetBrains Mono", monospace; }
+.semantic-map-header button { width: 24px; height: 24px; display: grid; place-items: center; flex: 0 0 auto; border: 0; background: transparent; color: #91a5ad; cursor: pointer; font: 18px/1 var(--font-jetbrains-mono), var(--font-roboto-mono), monospace; }
 .semantic-map-header button:hover,
 .semantic-map-header button:focus-visible { background: rgba(83, 159, 179, 0.14); color: #a7e7f1; outline: 2px solid #78d5e8; outline-offset: -2px; }
 .semantic-map-body { min-height: 0; overflow: auto; padding: 17px 14px 12px; scrollbar-width: thin; scrollbar-color: #405966 transparent; }
@@ -9193,7 +9199,7 @@ button {
 .semantic-map-node:focus-visible { outline: 2px solid #78d5e8; outline-offset: 2px; }
 .semantic-map-node-wrap.is-active > .semantic-map-node-row > .semantic-map-node > i { width: 11px; height: 11px; margin-left: 3px; border: 2px solid #7ce0ed; box-shadow: 0 0 8px rgba(97, 210, 228, 0.24); }
 .semantic-map-node-wrap.is-active > .semantic-map-node-row > .semantic-map-node b { color: #eff6f6; font-size: 12px; font-weight: 600; }
-.semantic-map-node-toggle { width: 24px; height: 24px; display: grid; place-items: center; border: 0; background: transparent; color: #7fcfdf; cursor: pointer; font: 15px/1 "JetBrains Mono", monospace; }
+.semantic-map-node-toggle { width: 24px; height: 24px; display: grid; place-items: center; border: 0; background: transparent; color: #7fcfdf; cursor: pointer; font: 15px/1 var(--font-jetbrains-mono), var(--font-roboto-mono), monospace; }
 .semantic-map-node-toggle:hover { background: rgba(83, 159, 179, 0.12); color: #b4edf5; }
 .semantic-map-node-toggle:focus-visible { outline: 2px solid #78d5e8; outline-offset: -2px; }
 .semantic-map-node--purple > i { border-color: #9c76b2; }
@@ -9770,7 +9776,8 @@ button {
   padding: 9px 11px;
   color: #bbc8cd;
   font:
-    10px/16px "JetBrains Mono",
+    10px/16px var(--font-jetbrains-mono),
+    var(--font-roboto-mono),
     monospace;
   white-space: pre-wrap;
 }
@@ -10484,7 +10491,8 @@ button {
   background: #0b1015;
   color: #ffd0c5;
   font:
-    10px "JetBrains Mono",
+    10px var(--font-jetbrains-mono),
+    var(--font-roboto-mono),
     monospace;
   opacity: 0;
   pointer-events: none;
@@ -10676,7 +10684,7 @@ button {
 .career-v2-commit { margin-top: 13px; padding-top: 11px; border-top: 1px solid #2a3a42; }
 .career-v2-commit h2 { color: #bdcbd0; }
 .career-v2-commit strong { color: #82d875; font-weight: 500; }
-.career-v2-open-story { display: block; margin: 13px 0 0 auto; padding: 9px 14px; border: 1px solid #438da2; border-radius: 3px; background: rgba(36, 113, 135, 0.13); color: #77d7e9; cursor: pointer; font: 600 10px "JetBrains Mono", monospace; letter-spacing: 0.04em; }
+.career-v2-open-story { display: block; margin: 13px 0 0 auto; padding: 9px 14px; border: 1px solid #438da2; border-radius: 3px; background: rgba(36, 113, 135, 0.13); color: #77d7e9; cursor: pointer; font: 600 10px var(--font-jetbrains-mono), var(--font-roboto-mono), monospace; letter-spacing: 0.04em; }
 .career-v2-open-story:hover { background: rgba(57, 139, 163, 0.25); }
 .career-v2-evolution,
 .career-v2-current { overflow: hidden; padding: 11px 16px; border-bottom: 1px solid #26323c; }
@@ -10696,10 +10704,10 @@ button {
 .career-v2-context header { display: flex; justify-content: space-between; align-items: center; height: 30px; padding: 0 10px; border-bottom: 1px solid #283a43; color: #c2d0d4; font-size: 9px; }
 .career-v2-context header::first-letter { color: #82d572; }
 .career-v2-context header b { padding: 2px 4px; border: 1px solid #3d515b; border-radius: 2px; color: #9baab0; font-size: 8px; font-weight: 500; }
-.career-v2-context pre { margin: 0; padding: 9px 10px; color: #c1cdd0; font: 9px/14px "JetBrains Mono", monospace; white-space: pre-wrap; }
+.career-v2-context pre { margin: 0; padding: 9px 10px; color: #c1cdd0; font: 9px/14px var(--font-jetbrains-mono), var(--font-roboto-mono), monospace; white-space: pre-wrap; }
 .career-v2-context pre span { color: #75d1e4; }
 .career-v2-stories > div { padding: 5px 7px; }
-.career-v2-stories button { display: grid; grid-template-columns: 12px minmax(0, 1fr) 12px; width: 100%; padding: 5px 2px; border: 0; background: transparent; color: #c9d4d7; cursor: pointer; font: 9px "JetBrains Mono", monospace; text-align: left; }
+.career-v2-stories button { display: grid; grid-template-columns: 12px minmax(0, 1fr) 12px; width: 100%; padding: 5px 2px; border: 0; background: transparent; color: #c9d4d7; cursor: pointer; font: 9px var(--font-jetbrains-mono), var(--font-roboto-mono), monospace; text-align: left; }
 .career-v2-stories button:hover { background: rgba(70, 132, 150, 0.12); }
 .career-v2-stories button i { color: #86d675; font-style: normal; }
 .career-v2-stories button span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -10711,7 +10719,7 @@ button {
 .career-story-toolbar .career-v2-prompt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .career-story-toolbar .career-v2-prompt span { color: #d8e1e3; }
 .career-story-toolbar > div { display: flex; gap: 7px; }
-.career-story-toolbar button { min-height: 28px; padding: 4px 10px; border: 1px solid #334b56; border-radius: 3px; background: rgba(16, 44, 53, 0.35); color: #78d6e8; cursor: pointer; font: 9px "JetBrains Mono", monospace; white-space: nowrap; }
+.career-story-toolbar button { min-height: 28px; padding: 4px 10px; border: 1px solid #334b56; border-radius: 3px; background: rgba(16, 44, 53, 0.35); color: #78d6e8; cursor: pointer; font: 9px var(--font-jetbrains-mono), var(--font-roboto-mono), monospace; white-space: nowrap; }
 .career-story-toolbar button:first-child { color: #e0b35c; }
 .career-story-toolbar button:last-child { color: #d2dee1; }
 .career-story-toolbar button:disabled { cursor: default; opacity: 0.38; }
@@ -10864,7 +10872,7 @@ button {
 .career-v2-context header { border-color: #344852; color: #d0dde0; font-size: 10px; }
 .career-v2-context header b { border-color: #4b636d; color: #aebfc4; font-size: 9px; }
 .career-v2-toml,
-.career-v2-now { padding: 10px; font: 10px/16px "JetBrains Mono", monospace; }
+.career-v2-now { padding: 10px; font: 10px/16px var(--font-jetbrains-mono), var(--font-roboto-mono), monospace; }
 .career-v2-toml p { margin: 0 0 3px; color: #80d8e8; }
 .career-v2-toml p + div { margin-top: 0; }
 .career-v2-toml div { display: grid; grid-template-columns: 72px 12px minmax(0, 1fr); }
@@ -10877,7 +10885,7 @@ button {
 .career-v2-toml b[data-value="primary"],
 .career-v2-toml b[data-value="focus"] { color: #89ddec; }
 .career-v2-toml b[data-value="status"] { color: #90dd7b; }
-.career-v2-now h3 { margin: 0 0 4px; color: #84d8e8; font: 600 10px/16px "JetBrains Mono", monospace; }
+.career-v2-now h3 { margin: 0 0 4px; color: #84d8e8; font: 600 10px/16px var(--font-jetbrains-mono), var(--font-roboto-mono), monospace; }
 .career-v2-now h3 + p { margin-top: 0; }
 .career-v2-now p { margin: 2px 0; color: #aab9be; }
 .career-v2-now p::before { color: #71848c; content: "- "; }
@@ -11763,7 +11771,7 @@ button {
 .os-shell .system-info > div:not(.panel-title),
 .os-shell .environment > div:not(.panel-title),
 .os-shell .releases > div,
-.os-shell .quick-links > div:not(.panel-title),
+.os-shell .quick-links > :is(div, a):not(.panel-title),
 .os-shell .profile-details div,
 .os-shell .identity > div:not(.terminal-prompt),
 .os-shell .career-row,
@@ -12223,7 +12231,7 @@ button {
 .landing-shell .system-info > div:not(.panel-title),
 .landing-shell .environment > div:not(.panel-title),
 .landing-shell .releases > div,
-.landing-shell .quick-links > div:not(.panel-title) {
+.landing-shell .quick-links > :is(div, a):not(.panel-title) {
   color: var(--text-secondary);
   text-shadow: none;
 }
@@ -12505,7 +12513,7 @@ button {
 .landing-shell .side-label em,
 .landing-shell .profile-overview-details > div > i,
 .landing-shell .profile-details > div > i,
-.landing-shell .quick-links > div > i,
+.landing-shell .quick-links > :is(div, a) > i,
 .landing-shell .stack-grid article h2,
 .landing-shell .stack-grid article div > i,
 .landing-shell .project-card > i,
@@ -12834,7 +12842,7 @@ button {
   font-weight: 700;
 }
 
-.landing-shell .quick-links > div:not(.panel-title) > b {
+.landing-shell .quick-links > :is(div, a):not(.panel-title) > b {
   color: var(--semantic-blue);
   font-weight: 700;
 }

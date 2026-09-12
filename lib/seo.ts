@@ -19,6 +19,14 @@ export const DEFAULT_TITLE = "Sambit Pradhan — Backend Engineer";
 export const DEFAULT_DESCRIPTION =
   "Sambit Pradhan is a backend-focused software engineer and 2026 VIT Vellore CSE graduate building backend-heavy, full-stack, and AI-enabled products.";
 
+export const OG_IMAGE_PATH = "/og-image-1200x630.png";
+export const DEFAULT_OG_IMAGE = {
+  url: absoluteUrl(OG_IMAGE_PATH),
+  width: 1200,
+  height: 630,
+  alt: "Sambit Pradhan — Backend Engineer · Full-Stack Engineer · Sambit OS",
+};
+
 /** Stable machine-readable identity anchors. */
 export const PERSON_ID = `${SITE_URL}/#person`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
@@ -41,7 +49,11 @@ function previewNoindex(): boolean {
 
 export function siteRobots(): Metadata["robots"] {
   if (previewNoindex()) {
-    return { index: false, follow: false, googleBot: { index: false, follow: false } };
+    return {
+      index: false,
+      follow: false,
+      googleBot: { index: false, follow: false },
+    };
   }
   return { index: true, follow: true };
 }
@@ -55,9 +67,13 @@ type PageMetadataInput = {
 
 /**
  * Consistent per-route metadata: canonical URL, Open Graph, and a
- * summary Twitter card (no social image or handle is invented here).
+ * branded Open Graph image and large Twitter card.
  */
-export function buildPageMetadata({ title, description, path }: PageMetadataInput): Metadata {
+export function buildPageMetadata({
+  title,
+  description,
+  path,
+}: PageMetadataInput): Metadata {
   const url = absoluteUrl(path);
   return {
     // Absolute: titles are already fully formed ("X — Sambit Pradhan"),
@@ -72,11 +88,13 @@ export function buildPageMetadata({ title, description, path }: PageMetadataInpu
       url,
       siteName: SITE_NAME,
       type: "website",
+      images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title,
       description,
+      images: [DEFAULT_OG_IMAGE.url],
     },
   };
 }
@@ -87,6 +105,9 @@ export function personEntity() {
     "@type": "Person",
     "@id": PERSON_ID,
     name: PERSON_NAME,
+    alternateName: "NoobSambit",
+    description:
+      "Backend-focused software engineer and 2026 VIT Vellore CSE graduate.",
     url: `${SITE_URL}/`,
     jobTitle: PRIMARY_ROLE,
     homeLocation: {
@@ -116,7 +137,7 @@ export function websiteEntity() {
     "@id": WEBSITE_ID,
     url: `${SITE_URL}/`,
     name: SITE_NAME,
-    alternateName: SITE_ALTERNATE_NAME,
+    alternateName: [SITE_ALTERNATE_NAME, "sambitpradhan.in"],
     publisher: { "@id": PERSON_ID },
   };
 }

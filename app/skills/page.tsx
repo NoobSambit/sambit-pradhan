@@ -3,7 +3,13 @@ import { Footer } from "@/components/os/Footer";
 import { Header } from "@/components/os/Header";
 import { SkillsIDEWorkspace } from "@/components/os/SkillsIDEWorkspace";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { PERSON_ID, WEBSITE_ID, absoluteUrl, buildPageMetadata } from "@/lib/seo";
+import {
+  PERSON_ID,
+  WEBSITE_ID,
+  absoluteUrl,
+  breadcrumbEntity,
+  buildPageMetadata,
+} from "@/lib/seo";
 
 const SKILLS_TITLE = "Skills — Sambit Pradhan";
 const SKILLS_DESCRIPTION =
@@ -21,14 +27,22 @@ export default function SkillsPage() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "WebPage",
-          "@id": `${absoluteUrl("/skills")}#webpage`,
-          url: absoluteUrl("/skills"),
-          name: SKILLS_TITLE,
-          description: SKILLS_DESCRIPTION,
-          isPartOf: { "@id": WEBSITE_ID },
-          about: { "@id": PERSON_ID },
-          mainEntity: { "@id": PERSON_ID },
+          "@graph": [
+            {
+              "@type": "WebPage",
+              "@id": `${absoluteUrl("/skills")}#webpage`,
+              url: absoluteUrl("/skills"),
+              name: SKILLS_TITLE,
+              description: SKILLS_DESCRIPTION,
+              isPartOf: { "@id": WEBSITE_ID },
+              about: { "@id": PERSON_ID },
+              mainEntity: { "@id": PERSON_ID },
+            },
+            breadcrumbEntity([
+              { name: "Home", path: "/" },
+              { name: "Skills", path: "/skills" },
+            ]),
+          ],
         }}
       />
       <Header mode="skills" />

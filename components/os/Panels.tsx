@@ -33,7 +33,10 @@ export function ActiveProject() {
       data-motion-section="overview-profile"
     >
       <PanelTitle>
-        whoami --profile <span className="live"><i className="status-dot">●</i> ONLINE</span>
+        whoami --profile{" "}
+        <span className="live">
+          <i className="status-dot">●</i> ONLINE
+        </span>
       </PanelTitle>
       <div className="profile-overview-body profile-with-image">
         <div className="mini-avatar heisenberg-avatar">
@@ -49,7 +52,9 @@ export function ActiveProject() {
           <h2>Sambit Pradhan</h2>
           {details.map(([icon, label, value], index) => (
             <div key={label} style={motionStyle(index)}>
-              <i><TerminalIcon name={icon as TerminalIconName} /></i>
+              <i>
+                <TerminalIcon name={icon as TerminalIconName} />
+              </i>
               <span>{label}</span>
               <b className={label === "Status" ? "green" : ""}>{value}</b>
             </div>
@@ -71,7 +76,10 @@ export function Architecture() {
       data-motion-section="overview-graphs"
     >
       <PanelTitle>
-        coding_activity --streaks <span><TerminalIcon name="external-link" /></span>
+        coding_activity --streaks{" "}
+        <span>
+          <TerminalIcon name="external-link" />
+        </span>
       </PanelTitle>
       <LiveActivityStreaks />
     </section>
@@ -82,7 +90,10 @@ export function GitLog() {
   return (
     <section className="git-log panel" data-motion-section="overview-git">
       <PanelTitle>
-        git log --graph <span className="blue"><TerminalIcon name="git-branch" /> main</span>
+        git log --graph{" "}
+        <span className="blue">
+          <TerminalIcon name="git-branch" /> main
+        </span>
       </PanelTitle>
       <div className="git-rows">
         <LiveGitLog />
@@ -145,21 +156,36 @@ export function ProjectDossier() {
   ] as const;
 
   return (
-    <section className="project-dossier panel" data-motion-section="overview-active-project">
+    <section
+      className="project-dossier panel"
+      data-motion-section="overview-active-project"
+    >
       <PanelTitle>
-        active project <span className="project-dossier-status"><i className="status-dot">●</i> AgentProof · BUILDING</span>
+        active project{" "}
+        <span className="project-dossier-status">
+          <i className="status-dot">●</i> AgentProof · BUILDING
+        </span>
       </PanelTitle>
       <div className="project-dossier-body">
         <div className="project-dossier-intro">
-          <div className="project-dossier-label"><TerminalIcon name="terminal" /> LOCAL-FIRST / AI-DRIVEN</div>
+          <div className="project-dossier-label">
+            <TerminalIcon name="terminal" /> LOCAL-FIRST / AI-DRIVEN
+          </div>
           <h2>AgentProof</h2>
           <p>
-            I’m building the verification layer for agent-written software: a CLI that turns
-            an agent’s work into a result you can inspect, challenge, and replay.
+            I’m building the verification layer for agent-written software: a
+            CLI that turns an agent’s work into a result you can inspect,
+            challenge, and replay.
           </p>
           <div className="project-dossier-io">
-            <div><b>INPUT</b><span>repo · task · audit depth</span></div>
-            <div><b>OUTPUT</b><span>report card · replayable evidence</span></div>
+            <div>
+              <b>INPUT</b>
+              <span>repo · task · audit depth</span>
+            </div>
+            <div>
+              <b>OUTPUT</b>
+              <span>report card · replayable evidence</span>
+            </div>
           </div>
         </div>
         <div className="project-dossier-pipeline">
@@ -173,7 +199,9 @@ export function ProjectDossier() {
           ))}
         </div>
         <div className="project-dossier-guarantees">
-          <div className="project-dossier-section-title">engineering surface</div>
+          <div className="project-dossier-section-title">
+            engineering surface
+          </div>
           {guarantees.map(([label, detail], index) => (
             <div key={label} style={motionStyle(index)}>
               <b>{label}</b>
@@ -183,7 +211,8 @@ export function ProjectDossier() {
         </div>
       </div>
       <footer>
-        active project loaded　<span className="green">✓</span>　verification layer for agent-written software
+        active project loaded　<span className="green">✓</span>　verification
+        layer for agent-written software
       </footer>
     </section>
   );
@@ -194,18 +223,45 @@ export function QuickLinks() {
     <section className="quick-links panel" data-motion-section="overview-links">
       <PanelTitle>quick --links</PanelTitle>
       {[
-        ["github", "GitHub", "github.com/sambit-pradhan"],
+        [
+          "github",
+          "GitHub",
+          "github.com/NoobSambit",
+          "https://github.com/NoobSambit",
+        ],
         ["file-text", "Resume", "sambit.dev/resume.pdf"],
         ["linkedin", "LinkedIn", "linkedin.com/in/sambit-pradhan"],
         ["mail", "Email", "sambit.pradhan.dev@gmail.com"],
-      ].map(([i, l, v], index) => (
-        <div key={l} style={motionStyle(index)}>
-          <i><TerminalIcon name={i as TerminalIconName} /></i>
-          <b>{l}</b>
-          <span>{v}</span>
-          <em><TerminalIcon name="external-link" /></em>
-        </div>
-      ))}
+      ].map(([i, l, v, href], index) => {
+        const content = (
+          <>
+            <i>
+              <TerminalIcon name={i as TerminalIconName} />
+            </i>
+            <b>{l}</b>
+            <span>{v}</span>
+            <em>
+              <TerminalIcon name="external-link" />
+            </em>
+          </>
+        );
+
+        return href ? (
+          <a
+            key={l}
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            style={motionStyle(index)}
+          >
+            {content}
+          </a>
+        ) : (
+          <div key={l} style={motionStyle(index)}>
+            {content}
+          </div>
+        );
+      })}
     </section>
   );
 }

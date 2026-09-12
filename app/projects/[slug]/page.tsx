@@ -16,7 +16,6 @@ import {
   getProjectBySlug,
   getProjectCanonicalPath,
   getProjectLanguages,
-  getProjectSchemaKind,
   isDocumentedProjectSlug,
   type DocumentedProjectSlug,
 } from "@/lib/projects";
@@ -64,7 +63,6 @@ export default async function ProjectDetailPage({
   const project = getProjectBySlug(typedSlug);
   const path = getProjectCanonicalPath(typedSlug);
   const url = absoluteUrl(path);
-  const kind = getProjectSchemaKind(typedSlug);
 
   return (
     <main className="os-shell project-docs-shell">
@@ -83,7 +81,7 @@ export default async function ProjectDetailPage({
               mainEntity: { "@id": `${url}#project` },
             },
             {
-              "@type": kind.type,
+              "@type": "SoftwareSourceCode",
               "@id": `${url}#project`,
               name: project.name,
               description: project.description,
@@ -92,9 +90,7 @@ export default async function ProjectDetailPage({
               author: { "@id": PERSON_ID },
               creator: { "@id": PERSON_ID },
               programmingLanguage: getProjectLanguages(typedSlug),
-              ...(kind.operatingSystem
-                ? { operatingSystem: kind.operatingSystem }
-                : {}),
+              runtimePlatform: project.runtime,
               isPartOf: { "@id": WEBSITE_ID },
             },
             breadcrumbEntity([
