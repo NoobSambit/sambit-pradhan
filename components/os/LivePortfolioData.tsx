@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 type Day = { date: string; count: number };
 type Commit = { sha: string; message: string; date: string };
-type PortfolioData = {
+export type PortfolioData = {
   generatedAt: string;
   github: {
     contributionDays: Day[];
@@ -21,25 +21,86 @@ type PortfolioData = {
   leetCode: { days: Day[]; streak: number; totalActiveDays: number } | null;
 };
 
+export type PortfolioDataState = {
+  data: PortfolioData | null;
+  status: "loading" | "success" | "stale" | "error";
+};
+
 let dataPromise: Promise<PortfolioData> | null = null;
 const overviewCommitLimit = 7;
+const portfolioCacheKey = "sambit-os-portfolio-data";
+const requestTimeout = 8000;
 
 function loadPortfolioData() {
-  dataPromise ??= fetch("/api/portfolio-data").then(async (response) => {
-    if (!response.ok) throw new Error("Live portfolio data is unavailable.");
-    return response.json() as Promise<PortfolioData>;
-  });
+  dataPromise ??= (() => {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), requestTimeout);
+
+    return fetch("/api/portfolio-data", { signal: controller.signal })
+      .then(async (response) => {
+        if (!response.ok)
+          throw new Error("Live portfolio data is unavailable.");
+        return response.json() as Promise<PortfolioData>;
+      })
+      .catch((error) => {
+        dataPromise = null;
+        throw error;
+      })
+      .finally(() => window.clearTimeout(timeout));
+  })();
   return dataPromise;
 }
 
-export function usePortfolioData() {
-  const [data, setData] = useState<PortfolioData | null>(null);
+function readCachedPortfolioData() {
+  try {
+    const cached = window.localStorage.getItem(portfolioCacheKey);
+    if (!cached) return null;
+    const parsed = JSON.parse(cached) as PortfolioData;
+    return parsed?.github?.commits && parsed.generatedAt ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+export function usePortfolioDataState(): PortfolioDataState {
+  const [state, setState] = useState<PortfolioDataState>({
+    data: null,
+    status: "loading",
+  });
+
   useEffect(() => {
+    let active = true;
+    const cached = readCachedPortfolioData();
+    if (cached) setState({ data: cached, status: "stale" });
+
     loadPortfolioData()
-      .then(setData)
-      .catch(() => undefined);
+      .then((data) => {
+        if (!active) return;
+        setState({ data, status: "success" });
+        try {
+          window.localStorage.setItem(portfolioCacheKey, JSON.stringify(data));
+        } catch {
+          // Live data remains usable when storage is unavailable.
+        }
+      })
+      .catch(() => {
+        if (!active) return;
+        setState((current) => ({
+          data: current.data,
+          status: current.data ? "stale" : "error",
+        }));
+      });
+
+    return () => {
+      active = false;
+    };
   }, []);
-  return data;
+
+  return state;
+}
+
+export function usePortfolioData() {
+  return usePortfolioDataState().data;
 }
 
 function relativeTime(value: string) {
@@ -93,7 +154,9 @@ function ActivityGraph({
               <i
                 className={activityClass(day.count)}
                 data-motion-index={Math.floor(index / 7)}
-                data-current-week={index >= days.length - 7 ? "true" : undefined}
+                data-current-week={
+                  index >= days.length - 7 ? "true" : undefined
+                }
                 style={
                   {
                     "--motion-index": Math.floor(index / 7),
@@ -175,7 +238,10 @@ export function LiveGitLog() {
 export function LiveQuickStats() {
   const data = usePortfolioData();
   return (
-    <div className="quick-stats" data-live-state={data ? "received" : "waiting"}>
+    <div
+      className="quick-stats"
+      data-live-state={data ? "received" : "waiting"}
+    >
       <span>
         ⌘
         <b>
@@ -191,7 +257,9 @@ export function LiveQuickStats() {
         <b>
           Followers
           <br />
-          <strong data-motion="live-value">{data?.github.followers ?? "—"}</strong>
+          <strong data-motion="live-value">
+            {data?.github.followers ?? "—"}
+          </strong>
         </b>
       </span>
       <span>

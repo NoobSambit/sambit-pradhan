@@ -21,6 +21,7 @@ import {
 import { Sidebar } from "@/components/os/Sidebar";
 import { Terminal } from "@/components/os/Terminal";
 import { LandingMotionController } from "@/components/os/motion/LandingMotionController";
+import { MobileHome } from "@/components/os/mobile/MobileHome";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
   DEFAULT_DESCRIPTION,
@@ -54,6 +55,7 @@ export default function Home() {
         }}
       />
       <LandingMotionController />
+      <MobileHome />
       <Header mode="home" />
       <div className="os-main portfolio-main">
         <Sidebar />

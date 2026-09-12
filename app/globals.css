@@ -12882,6 +12882,25 @@ button {
   font-weight: 600;
 }
 
+/* Home-only mobile composition. Desktop keeps the approved workstation tree. */
+@media (max-width: 760px) {
+  .landing-shell {
+    display: block;
+    min-width: 0;
+    margin: 0;
+    overflow: clip;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .landing-shell > .topbar,
+  .landing-shell > .portfolio-main,
+  .landing-shell > .statusbar {
+    display: none;
+  }
+}
+
 /* The repository view is also part of the portfolio’s public landing flow. */
 .project-docs-shell .repository-explorer > header,
 .project-docs-shell .repository-table > header,
