@@ -245,7 +245,7 @@
 
 .storyToolbar {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+  grid-template-columns: auto minmax(0, 1fr) auto auto auto auto;
   align-items: stretch;
   min-height: 40px;
 }
@@ -1257,50 +1257,50 @@
   font-style: normal;
 }
 
-[data-tone="story"] {
+.storySection[data-tone="story"] {
   border-left-color: var(--m-purple);
 }
-[data-tone="story"] h3,
-[data-tone="story"] .marker {
+.storySection[data-tone="story"] h3,
+.storySection[data-tone="story"] .marker {
   color: var(--m-purple);
 }
-[data-tone="technical"] {
+.storySection[data-tone="technical"] {
   border-left-color: var(--m-cyan);
 }
-[data-tone="technical"] h3,
-[data-tone="technical"] .marker {
+.storySection[data-tone="technical"] h3,
+.storySection[data-tone="technical"] .marker {
   color: var(--m-cyan);
 }
-[data-tone="positive"] {
+.storySection[data-tone="positive"] {
   border-left-color: var(--m-green);
 }
-[data-tone="positive"] h3,
-[data-tone="positive"] .marker {
+.storySection[data-tone="positive"] h3,
+.storySection[data-tone="positive"] .marker {
   color: var(--m-green);
 }
-[data-tone="timeline"] {
+.storySection[data-tone="timeline"] {
   border-left-color: var(--m-amber);
 }
-[data-tone="timeline"] h3,
-[data-tone="timeline"] .marker {
+.storySection[data-tone="timeline"] h3,
+.storySection[data-tone="timeline"] .marker {
   color: var(--m-amber);
 }
-[data-tone="warning"] {
+.storySection[data-tone="warning"] {
   border-left-color: var(--m-amber);
 }
-[data-tone="warning"] h3,
-[data-tone="warning"] .marker {
+.storySection[data-tone="warning"] h3,
+.storySection[data-tone="warning"] .marker {
   color: var(--m-amber);
 }
-[data-tone="danger"] {
+.storySection[data-tone="danger"] {
   border-left-color: var(--m-red);
 }
-[data-tone="danger"] h3,
-[data-tone="danger"] .marker {
+.storySection[data-tone="danger"] h3,
+.storySection[data-tone="danger"] .marker {
   color: var(--m-red);
 }
-[data-tone="neutral"] h3,
-[data-tone="neutral"] .marker {
+.storySection[data-tone="neutral"] h3,
+.storySection[data-tone="neutral"] .marker {
   color: #dbe3e5;
 }
 
@@ -1333,6 +1333,12 @@
 }
 
 @media (max-width: 380px) {
+  .storyToolbar > span,
+  .storyToolbar > button {
+    padding: 0 5px;
+    font-size: 8px;
+  }
+
   .content {
     padding-right: 7px;
     padding-left: 7px;
