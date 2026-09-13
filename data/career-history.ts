@@ -196,3 +196,61 @@ export const careerBranches = [
 export const learningTimeline = [
   ["2023", "MERN Foundations", "completed"], ["2024", "Full-stack through rebuilding", "completed"], ["2025", "Original product planning", "evolving"], ["2025", "Real-user iteration", "learned by shipping"], ["2026", "System Design", "active"], ["2026", "CLI / Verification", "active"],
 ] as const;
+
+export type EngineeringEvolutionStep = {
+  from: string;
+  to: string;
+  note: string;
+};
+
+export const engineeringEvolution: readonly EngineeringEvolutionStep[] = [
+  { from: "Tutorials", to: "Original Products", note: "learning phase → 2025" },
+  { from: "Code First", to: "Research / PRD First", note: "earlier → now" },
+  { from: "Small Builds", to: "Long-Horizon Products", note: "2025 → now" },
+  { from: "General Full Stack", to: "Backend Bias", note: "2025 → now" },
+  { from: "AI for Help", to: "AI in the Workflow", note: "earlier → now" },
+] as const;
+
+export type CurrentCareerLearningItem = {
+  name: string;
+  state: "active" | "exploring";
+};
+
+export const currentCareerLearning: readonly CurrentCareerLearningItem[] = [
+  { name: "System Design", state: "active" },
+  { name: "CLI Architecture", state: "active" },
+  { name: "Code Verification", state: "active" },
+  { name: "Security Review", state: "exploring" },
+] as const;
+
+export const careerToml = {
+  career: {
+    stage: "2026 Graduate",
+    primary: "Backend",
+    secondary: "Full Stack",
+    status: "Open to Work",
+  },
+  direction: {
+    focus: "Backend-heavy Product Engineering",
+    environment: "Startup / Product Team",
+    priority: "Strong Team + Learning",
+  },
+} as const;
+
+export type CareerNowItem = {
+  name: string;
+  note?: string;
+};
+
+export const careerNow = {
+  building: [
+    { name: "AgentProof", note: "primary" },
+    { name: "Agent Playground" },
+    { name: "Sambit OS" },
+  ],
+  learning: [
+    { name: "System Design" },
+    { name: "CLI / Code Verification" },
+    { name: "Security review concepts" },
+  ],
+} as const satisfies { building: readonly CareerNowItem[]; learning: readonly CareerNowItem[] };

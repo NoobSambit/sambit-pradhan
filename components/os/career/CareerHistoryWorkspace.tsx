@@ -5,6 +5,8 @@ import {
   careerBranches,
   careerMilestones,
   careerStories,
+  currentCareerLearning,
+  engineeringEvolution,
   learningTimeline,
   type BuildStory,
   type BuildStorySection,
@@ -178,8 +180,8 @@ export function CareerHistoryWorkspace({ onOpenIntroduction }: CareerHistoryWork
               {selected.storyId && <button type="button" className="career-v2-open-story" onClick={() => openStory(selected.storyId!)}>OPEN BUILD STORY ↗</button>}
             </article>
           </section>
-          <section className="career-v2-evolution"><h2>ENGINEERING EVOLUTION</h2><div>{[["Tutorials", "Original Products", "learning phase → 2025"], ["Code First", "Research / PRD First", "earlier → now"], ["Small Builds", "Long-Horizon Products", "2025 → now"], ["General Full Stack", "Backend Bias", "2025 → now"], ["AI for Help", "AI in the Workflow", "earlier → now"]].map(([from, to, note]) => <article key={to}><span>{from}</span><b>↓</b><strong>{to}</strong><small>{note}</small></article>)}</div></section>
-          <section className="career-v2-current"><h2>CURRENT LEARNING</h2><div>{[["System Design", "active"], ["CLI Architecture", "active"], ["Code Verification", "active"], ["Security Review", "exploring"]].map(([name, state]) => <span key={name} data-state={state}>{name}<b>{state}</b></span>)}</div></section>
+          <section className="career-v2-evolution"><h2>ENGINEERING EVOLUTION</h2><div>{engineeringEvolution.map(({ from, to, note }) => <article key={to}><span>{from}</span><b>↓</b><strong>{to}</strong><small>{note}</small></article>)}</div></section>
+          <section className="career-v2-current"><h2>CURRENT LEARNING</h2><div>{currentCareerLearning.map(({ name, state }) => <span key={name} data-state={state}>{name}<b>{state}</b></span>)}</div></section>
         </main>
         <aside className="career-v2-context" aria-label="Career context">
           <section><header>$ cat career.toml <b>TOML</b></header><div className="career-v2-toml"><p>[career]</p><div><span>stage</span><i>=</i><b data-value="stage">"2026 Graduate"</b></div><div><span>primary</span><i>=</i><b data-value="primary">"Backend"</b></div><div><span>secondary</span><i>=</i><b>"Full Stack"</b></div><div><span>status</span><i>=</i><b data-value="status">"Open to Work"</b></div><p>[direction]</p><div><span>focus</span><i>=</i><b data-value="focus">"Backend-heavy Product Engineering"</b></div><div><span>environment</span><i>=</i><b>"Startup / Product Team"</b></div><div><span>priority</span><i>=</i><b data-value="priority">"Strong Team + Learning"</b></div></div></section>
