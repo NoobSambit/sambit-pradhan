@@ -539,7 +539,7 @@ export function MobileCareerHistoryWorkspace({
                 <p>{selected.whyItMattered}</p>
               </section>
 
-              <div style={{ display: "grid", gap: 6 }}>
+              <div className={styles.splitGrid}>
                 <section
                   className={`${styles.sectionBox} ${styles.toneTechnical}`}
                   aria-label="What changed"

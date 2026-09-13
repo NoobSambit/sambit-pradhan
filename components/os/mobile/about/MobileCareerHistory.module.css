@@ -727,6 +727,12 @@
   color: #dbe3e5;
 }
 
+.splitGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 6px;
+}
+
 .commitMsg {
   margin-top: 6px;
   border: 1px solid var(--m-line-soft);
@@ -1333,6 +1339,10 @@
 }
 
 @media (max-width: 380px) {
+  .splitGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .storyToolbar > span,
   .storyToolbar > button {
     padding: 0 5px;
