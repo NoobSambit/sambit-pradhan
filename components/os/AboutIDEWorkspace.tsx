@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import { CareerHistoryWorkspace as CareerHistoryWorkspaceV2 } from "@/components/os/career/CareerHistoryWorkspace";
+import { MobileCareerHistoryWorkspace } from "@/components/os/mobile/about/MobileCareerHistoryWorkspace";
 
 const explorerFiles = [
   "introduction.ts",
@@ -3742,9 +3743,14 @@ export function AboutIDEWorkspace() {
       </nav>
 
       {activeView === "career" ? (
-        <CareerHistoryWorkspaceV2
-          onOpenIntroduction={() => setActiveView("editor")}
-        />
+        <>
+          <div className="careerDesktopSlot">
+            <CareerHistoryWorkspaceV2
+              onOpenIntroduction={() => setActiveView("editor")}
+            />
+          </div>
+          <MobileCareerHistoryWorkspace onOpenEngineer={() => setActiveView("editor")} />
+        </>
       ) : (
         <>
           <aside className="ide-explorer">

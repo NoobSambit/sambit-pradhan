@@ -10565,6 +10565,15 @@ button {
   --about-inspector-width: 0px;
   grid-template-columns: 52px 330px minmax(0, 1fr) 320px;
 }
+/* Mobile Build History isolation: desktop career grid stays intact. */
+.careerDesktopSlot {
+  display: contents;
+}
+@media (max-width: 760px) {
+  .careerDesktopSlot {
+    display: none;
+  }
+}
 .career-v2-sidebar,
 .career-v2-main,
 .career-v2-context,
