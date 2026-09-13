@@ -242,7 +242,10 @@ export type CareerNowItem = {
   note?: string;
 };
 
-export const careerNow = {
+export const careerNow: {
+  readonly building: readonly CareerNowItem[];
+  readonly learning: readonly CareerNowItem[];
+} = {
   building: [
     { name: "AgentProof", note: "primary" },
     { name: "Agent Playground" },
@@ -253,4 +256,4 @@ export const careerNow = {
     { name: "CLI / Code Verification" },
     { name: "Security review concepts" },
   ],
-} as const satisfies { building: readonly CareerNowItem[]; learning: readonly CareerNowItem[] };
+};
