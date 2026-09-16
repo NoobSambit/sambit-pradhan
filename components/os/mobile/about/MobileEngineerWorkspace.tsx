@@ -106,6 +106,7 @@ export function MobileEngineerWorkspace({
   const terminalSession = getAboutTerminalSession(activeFile);
   const fileLanguage = getFileLanguage(activeFile);
   const fileBadge = getFileBadge(activeFile);
+  const isPending = !semanticDefinition;
 
   const getMobileAnchor = useCallback((nodeId: string) => {
     return editorRef.current?.querySelector<HTMLElement>(
@@ -417,7 +418,7 @@ export function MobileEngineerWorkspace({
         >
           <div className={styles.editorWrap}>
             <section
-              className={styles.editorPanel}
+              className={`${styles.editorPanel} ${isPending ? styles.editorPending : ""}`}
               aria-label={`${activeFile} source editor`}
             >
               <div
