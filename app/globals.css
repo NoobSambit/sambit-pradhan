@@ -10575,6 +10575,15 @@ button {
     display: none;
   }
 }
+/* Mobile Engineer isolation: desktop Engineer grid stays intact. */
+.desktopEngineerSlot {
+  display: contents;
+}
+@media (max-width: 760px) {
+  .desktopEngineerSlot {
+    display: none;
+  }
+}
 .career-v2-sidebar,
 .career-v2-main,
 .career-v2-context,

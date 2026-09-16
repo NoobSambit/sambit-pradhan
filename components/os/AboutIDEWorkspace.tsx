@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { CareerHistoryWorkspace as CareerHistoryWorkspaceV2 } from "@/components/os/career/CareerHistoryWorkspace";
 import { MobileCareerHistoryWorkspace } from "@/components/os/mobile/about/MobileCareerHistoryWorkspace";
+import { MobileEngineerWorkspace } from "@/components/os/mobile/about/MobileEngineerWorkspace";
 import { getAboutTerminalSession } from "@/components/os/about/terminalSessions";
 
 const explorerFiles = [
@@ -3591,308 +3592,8 @@ function EducationSource() {
   );
 }
 
-export function AboutIDEWorkspace() {
-  const [activeFile, setActiveFile] = useState("introduction.ts");
-  const [openFiles, setOpenFiles] = useState([
-    "introduction.ts",
-    "engineering.ts",
-    "vision.ts",
-  ]);
-  const [activeView, setActiveView] = useState<"editor" | "career">("editor");
-  const [semanticSelections, setSemanticSelections] = useState<
-    Record<string, string>
-  >(() =>
-    Object.fromEntries(
-      Object.entries(semanticMaps).map(([file, map]) => [
-        file,
-        map?.defaultNode ?? "",
-      ]),
-    ),
-  );
-  const [semanticMapCollapsed, setSemanticMapCollapsed] = useState(false);
-  const [collapsedSemanticNodes, setCollapsedSemanticNodes] = useState<
-    Record<string, string[]>
-  >({});
-  const [semanticLine, setSemanticLine] = useState<number>();
-  const openFile = (file: string) => {
-    setActiveFile(file);
-    setOpenFiles((files) => (files.includes(file) ? files : [...files, file]));
-  };
-  const closeFile = (file: string) => {
-    if (file === "introduction.ts") return;
-
-    setOpenFiles((files) => {
-      const index = files.indexOf(file);
-      const nextFiles = files.filter((openFile) => openFile !== file);
-
-      setActiveFile((currentFile) =>
-        currentFile === file
-          ? (nextFiles[Math.max(0, index - 1)] ?? "introduction.ts")
-          : currentFile,
-      );
-
-      return nextFiles;
-    });
-  };
-  const isEngineering = activeFile === "engineering.ts";
-  const isVision = activeFile === "vision.ts";
-  const isEducation = activeFile === "education.ts";
-  const isValues = activeFile === "values.ts";
-  const isPersonality = activeFile === "personality.ts";
-  const isLongSource =
-    isEngineering || isVision || isEducation || isValues || isPersonality;
-  const isImplemented = implementedFiles.some((file) => file === activeFile);
-  const currentSemanticMap = semanticMaps[activeFile];
-  const selectedSemanticNode = currentSemanticMap
-    ? (semanticSelections[activeFile] ?? currentSemanticMap.defaultNode)
-    : undefined;
-  const collapsedNodeIds = collapsedSemanticNodes[activeFile] ?? [];
-  const terminalSession = getAboutTerminalSession(activeFile);
-
-  const getSemanticAnchor = (nodeId: string) =>
-    document.querySelector<HTMLElement>(
-      `.ide-editor [data-semantic-node="${nodeId}"]`,
-    );
-  const updateSemanticLine = (nodeId: string | undefined) => {
-    if (!nodeId) return setSemanticLine(undefined);
-    const anchor = getSemanticAnchor(nodeId);
-    const line = anchor?.closest("li");
-    const source = line?.parentElement;
-    if (!line || !source) return setSemanticLine(undefined);
-    setSemanticLine(Array.from(source.children).indexOf(line) + 1);
-  };
-
-  useEffect(() => {
-    updateSemanticLine(selectedSemanticNode);
-  }, [activeFile, selectedSemanticNode]);
-
-  useEffect(() => {
-    const query = window.matchMedia("(max-width: 980px)");
-    const updateCollapsedState = () => setSemanticMapCollapsed(query.matches);
-    updateCollapsedState();
-    query.addEventListener("change", updateCollapsedState);
-    return () => query.removeEventListener("change", updateCollapsedState);
-  }, []);
-
-  const selectSemanticNode = (nodeId: string) => {
-    setSemanticSelections((selections) => ({
-      ...selections,
-      [activeFile]: nodeId,
-    }));
-    const anchor = getSemanticAnchor(nodeId);
-    const line = anchor?.closest("li");
-    updateSemanticLine(nodeId);
-    if (!line) return;
-    line.scrollIntoView({ behavior: "smooth", block: "center" });
-    line.classList.remove("is-semantic-highlight");
-    window.requestAnimationFrame(() =>
-      line.classList.add("is-semantic-highlight"),
-    );
-    window.setTimeout(
-      () => line.classList.remove("is-semantic-highlight"),
-      900,
-    );
-  };
-
-  const toggleSemanticNode = (nodeId: string) => {
-    setCollapsedSemanticNodes((collapsedNodes) => {
-      const currentNodes = collapsedNodes[activeFile] ?? [];
-      const nextNodes = currentNodes.includes(nodeId)
-        ? currentNodes.filter((id) => id !== nodeId)
-        : [...currentNodes, nodeId];
-
-      return { ...collapsedNodes, [activeFile]: nextNodes };
-    });
-  };
-
+function IntroductionSource({ activeFile }: { activeFile: string }) {
   return (
-    <section
-      className={`about-ide-workspace ${activeView === "career" ? "career-mode" : ""} ${semanticMapCollapsed ? "semantic-map-collapsed" : ""}`}
-      aria-label="About developer workspace"
-    >
-      <nav className="ide-activity-bar" aria-label="Workspace tools">
-        <button
-          className={activeView === "editor" ? "active" : ""}
-          onClick={() => setActiveView("editor")}
-          aria-label="Explorer"
-        >
-          <ActivityIcon name="explorer" />
-        </button>
-        <button aria-label="Search">
-          <ActivityIcon name="search" />
-        </button>
-        <button
-          className={`git-history-trigger ${activeView === "career" ? "active" : ""}`}
-          onClick={() => setActiveView("career")}
-          aria-label="Git: Build History"
-          title="Open Git: Build History"
-        >
-          <ActivityIcon name="source" />
-        </button>
-        <button aria-label="Run and debug">
-          <ActivityIcon name="run" />
-        </button>
-        <button aria-label="Extensions">
-          <ActivityIcon name="extensions" />
-        </button>
-        <span />
-        <button aria-label="Profile">
-          <ActivityIcon name="account" />
-        </button>
-        <button aria-label="Settings">
-          <ActivityIcon name="settings" />
-        </button>
-      </nav>
-
-      {activeView === "career" ? (
-        <>
-          <div className="careerDesktopSlot">
-            <CareerHistoryWorkspaceV2
-              onOpenIntroduction={() => setActiveView("editor")}
-            />
-          </div>
-          <MobileCareerHistoryWorkspace onOpenEngineer={() => setActiveView("editor")} />
-        </>
-      ) : (
-        <>
-          <aside className="ide-explorer">
-            <header>
-              <b>EXPLORER</b>
-              <button aria-label="New file">＋</button>
-            </header>
-            <div className="ide-tree-scroll">
-              <b className="tree-root">⌄　PORTFOLIO/</b>
-              <b className="tree-folder">⌄　about</b>
-              {explorerFiles.map((file) => (
-                <button
-                  className={`tree-file ${activeFile === file ? "active" : ""}`}
-                  onClick={() => openFile(file)}
-                  key={file}
-                >
-                  <i>
-                    {file.endsWith(".ts")
-                      ? "TS"
-                      : file.endsWith(".json")
-                        ? "{}"
-                        : file.endsWith(".toml")
-                          ? "⚙"
-                          : "!"}
-                  </i>
-                  {file}
-                  <em>
-                    {file === "introduction.ts" || file === "workstation.toml"
-                      ? "M"
-                      : file === "values.ts"
-                        ? "●"
-                        : ""}
-                  </em>
-                </button>
-              ))}
-              {["projects", "experience", "skills", "assets", "docs"].map(
-                (folder) => (
-                  <b className="tree-folder closed" key={folder}>
-                    ▸　{folder}
-                  </b>
-                ),
-              )}
-            </div>
-            <section className="ide-source-control">
-              <h2>SOURCE CONTROL</h2>
-              <p>
-                <i>◉</i> 4 files modified
-              </p>
-              <p>
-                <i>◉</i> Conflicts resolved
-              </p>
-              <small>
-                Last commit <b>2 hours ago</b>
-              </small>
-            </section>
-            <section className="ide-open-editors">
-              <h2>OPEN EDITORS</h2>
-              <p>
-                <i>TS</i> introduction.ts <em>M</em>
-              </p>
-              <p>
-                <i>TS</i> values.ts <em className="green">●</em>
-              </p>
-            </section>
-          </aside>
-
-          <main className="ide-editor-column">
-            <div className="ide-tabs">
-              <div
-                className={`ide-tab ide-tab--pinned ${activeView === "editor" && activeFile === "introduction.ts" ? "active" : ""}`}
-              >
-                <button
-                  className="ide-tab-select"
-                  type="button"
-                  onClick={() => openFile("introduction.ts")}
-                >
-                  <i>TS</i> introduction.ts{" "}
-                  <span aria-label="Pinned tab">●</span>
-                </button>
-              </div>
-              <button
-                className="career-history-tab"
-                type="button"
-                onClick={() => setActiveView("career")}
-                title="Open Git: Build History"
-              >
-                <ActivityIcon name="source" />
-                <span>Git: Build History</span>
-              </button>
-              {openFiles
-                .filter((tab) => tab !== "introduction.ts")
-                .map((tab) => (
-                  <div
-                    className={`ide-tab ${activeFile === tab ? "active" : ""}`}
-                    key={tab}
-                  >
-                    <button
-                      className="ide-tab-select"
-                      type="button"
-                      onClick={() => openFile(tab)}
-                    >
-                      <i>
-                        {tab.endsWith(".ts")
-                          ? "TS"
-                          : tab.endsWith(".json")
-                            ? "{}"
-                            : "•"}
-                      </i>
-                      {tab}
-                    </button>
-                    <button
-                      className="ide-tab-close"
-                      type="button"
-                      onClick={() => closeFile(tab)}
-                      aria-label={`Close ${tab}`}
-                      title={`Close ${tab}`}
-                    >
-                      ×
-                    </button>
-                  </div>
-                ))}
-              <button className="new-tab" aria-label="New tab">
-                ＋
-              </button>
-            </div>
-            <div className="ide-breadcrumb">
-              portfolio <span>›</span> about <span>›</span> <b>TS</b>{" "}
-              {activeFile}
-            </div>
-            <section className={`ide-editor ${isImplemented ? "" : "pending"}`}>
-              {isEngineering && <EngineeringSource />}
-              {isVision && <VisionSource />}
-              {isEducation && <EducationSource />}
-              {isValues && <ValuesSource />}
-              {isPersonality && <PersonalitySource />}
-              {!isEngineering &&
-                !isVision &&
-                !isEducation &&
-                !isValues &&
-                !isPersonality && (
                   <ol
                     className="ide-code"
                     aria-label={
@@ -4107,15 +3808,325 @@ export function AboutIDEWorkspace() {
                     </li>
                     <li>];</li>
                   </ol>
-                )}
-              {!isImplemented && (
-                <div className="ide-coming-soon">
-                  <i>◫</i>
-                  <b>{activeFile}</b>
-                  <span>This workspace file is queued for implementation.</span>
-                  <small>Coming soon</small>
-                </div>
+  );
+}
+
+export function AboutIDEWorkspace() {
+  const [activeFile, setActiveFile] = useState("introduction.ts");
+  const [openFiles, setOpenFiles] = useState([
+    "introduction.ts",
+    "engineering.ts",
+    "vision.ts",
+  ]);
+  const [activeView, setActiveView] = useState<"editor" | "career">("editor");
+  const [semanticSelections, setSemanticSelections] = useState<
+    Record<string, string>
+  >(() =>
+    Object.fromEntries(
+      Object.entries(semanticMaps).map(([file, map]) => [
+        file,
+        map?.defaultNode ?? "",
+      ]),
+    ),
+  );
+  const [semanticMapCollapsed, setSemanticMapCollapsed] = useState(false);
+  const [collapsedSemanticNodes, setCollapsedSemanticNodes] = useState<
+    Record<string, string[]>
+  >({});
+  const [semanticLine, setSemanticLine] = useState<number>();
+  const openFile = (file: string) => {
+    setActiveFile(file);
+    setOpenFiles((files) => (files.includes(file) ? files : [...files, file]));
+  };
+  const closeFile = (file: string) => {
+    if (file === "introduction.ts") return;
+
+    setOpenFiles((files) => {
+      const index = files.indexOf(file);
+      const nextFiles = files.filter((openFile) => openFile !== file);
+
+      setActiveFile((currentFile) =>
+        currentFile === file
+          ? (nextFiles[Math.max(0, index - 1)] ?? "introduction.ts")
+          : currentFile,
+      );
+
+      return nextFiles;
+    });
+  };
+  const isEngineering = activeFile === "engineering.ts";
+  const isVision = activeFile === "vision.ts";
+  const isEducation = activeFile === "education.ts";
+  const isValues = activeFile === "values.ts";
+  const isPersonality = activeFile === "personality.ts";
+  const isLongSource =
+    isEngineering || isVision || isEducation || isValues || isPersonality;
+  const isImplemented = implementedFiles.some((file) => file === activeFile);
+  const currentSemanticMap = semanticMaps[activeFile];
+  const selectedSemanticNode = currentSemanticMap
+    ? (semanticSelections[activeFile] ?? currentSemanticMap.defaultNode)
+    : undefined;
+  const collapsedNodeIds = collapsedSemanticNodes[activeFile] ?? [];
+  const terminalSession = getAboutTerminalSession(activeFile);
+  const sourceContent = (
+    <>
+      {isEngineering && <EngineeringSource />}
+      {isVision && <VisionSource />}
+      {isEducation && <EducationSource />}
+      {isValues && <ValuesSource />}
+      {isPersonality && <PersonalitySource />}
+      {!isEngineering &&
+        !isVision &&
+        !isEducation &&
+        !isValues &&
+        !isPersonality && <IntroductionSource activeFile={activeFile} />}
+      {!isImplemented && (
+        <div className="ide-coming-soon">
+          <i>◫</i>
+          <b>{activeFile}</b>
+          <span>This workspace file is queued for implementation.</span>
+          <small>Coming soon</small>
+        </div>
+      )}
+    </>
+  );
+
+  const getSemanticAnchor = (nodeId: string) =>
+    document.querySelector<HTMLElement>(
+      `.ide-editor [data-semantic-node="${nodeId}"]`,
+    );
+  const updateSemanticLine = (nodeId: string | undefined) => {
+    if (!nodeId) return setSemanticLine(undefined);
+    const anchor = getSemanticAnchor(nodeId);
+    const line = anchor?.closest("li");
+    const source = line?.parentElement;
+    if (!line || !source) return setSemanticLine(undefined);
+    setSemanticLine(Array.from(source.children).indexOf(line) + 1);
+  };
+
+  useEffect(() => {
+    updateSemanticLine(selectedSemanticNode);
+  }, [activeFile, selectedSemanticNode]);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 980px)");
+    const updateCollapsedState = () => setSemanticMapCollapsed(query.matches);
+    updateCollapsedState();
+    query.addEventListener("change", updateCollapsedState);
+    return () => query.removeEventListener("change", updateCollapsedState);
+  }, []);
+
+  const selectSemanticNode = (nodeId: string) => {
+    setSemanticSelections((selections) => ({
+      ...selections,
+      [activeFile]: nodeId,
+    }));
+    const anchor = getSemanticAnchor(nodeId);
+    const line = anchor?.closest("li");
+    updateSemanticLine(nodeId);
+    if (!line) return;
+    line.scrollIntoView({ behavior: "smooth", block: "center" });
+    line.classList.remove("is-semantic-highlight");
+    window.requestAnimationFrame(() =>
+      line.classList.add("is-semantic-highlight"),
+    );
+    window.setTimeout(
+      () => line.classList.remove("is-semantic-highlight"),
+      900,
+    );
+  };
+
+  const toggleSemanticNode = (nodeId: string) => {
+    setCollapsedSemanticNodes((collapsedNodes) => {
+      const currentNodes = collapsedNodes[activeFile] ?? [];
+      const nextNodes = currentNodes.includes(nodeId)
+        ? currentNodes.filter((id) => id !== nodeId)
+        : [...currentNodes, nodeId];
+
+      return { ...collapsedNodes, [activeFile]: nextNodes };
+    });
+  };
+
+  return (
+    <section
+      className={`about-ide-workspace ${activeView === "career" ? "career-mode" : ""} ${semanticMapCollapsed ? "semantic-map-collapsed" : ""}`}
+      aria-label="About developer workspace"
+    >
+      <nav className="ide-activity-bar" aria-label="Workspace tools">
+        <button
+          className={activeView === "editor" ? "active" : ""}
+          onClick={() => setActiveView("editor")}
+          aria-label="Explorer"
+        >
+          <ActivityIcon name="explorer" />
+        </button>
+        <button aria-label="Search">
+          <ActivityIcon name="search" />
+        </button>
+        <button
+          className={`git-history-trigger ${activeView === "career" ? "active" : ""}`}
+          onClick={() => setActiveView("career")}
+          aria-label="Git: Build History"
+          title="Open Git: Build History"
+        >
+          <ActivityIcon name="source" />
+        </button>
+        <button aria-label="Run and debug">
+          <ActivityIcon name="run" />
+        </button>
+        <button aria-label="Extensions">
+          <ActivityIcon name="extensions" />
+        </button>
+        <span />
+        <button aria-label="Profile">
+          <ActivityIcon name="account" />
+        </button>
+        <button aria-label="Settings">
+          <ActivityIcon name="settings" />
+        </button>
+      </nav>
+
+      {activeView === "career" ? (
+        <>
+          <div className="careerDesktopSlot">
+            <CareerHistoryWorkspaceV2
+              onOpenIntroduction={() => setActiveView("editor")}
+            />
+          </div>
+          <MobileCareerHistoryWorkspace onOpenEngineer={() => setActiveView("editor")} />
+        </>
+      ) : (
+        <>
+          <div className="desktopEngineerSlot">
+            <aside className="ide-explorer">
+            <header>
+              <b>EXPLORER</b>
+              <button aria-label="New file">＋</button>
+            </header>
+            <div className="ide-tree-scroll">
+              <b className="tree-root">⌄　PORTFOLIO/</b>
+              <b className="tree-folder">⌄　about</b>
+              {explorerFiles.map((file) => (
+                <button
+                  className={`tree-file ${activeFile === file ? "active" : ""}`}
+                  onClick={() => openFile(file)}
+                  key={file}
+                >
+                  <i>
+                    {file.endsWith(".ts")
+                      ? "TS"
+                      : file.endsWith(".json")
+                        ? "{}"
+                        : file.endsWith(".toml")
+                          ? "⚙"
+                          : "!"}
+                  </i>
+                  {file}
+                  <em>
+                    {file === "introduction.ts" || file === "workstation.toml"
+                      ? "M"
+                      : file === "values.ts"
+                        ? "●"
+                        : ""}
+                  </em>
+                </button>
+              ))}
+              {["projects", "experience", "skills", "assets", "docs"].map(
+                (folder) => (
+                  <b className="tree-folder closed" key={folder}>
+                    ▸　{folder}
+                  </b>
+                ),
               )}
+            </div>
+            <section className="ide-source-control">
+              <h2>SOURCE CONTROL</h2>
+              <p>
+                <i>◉</i> 4 files modified
+              </p>
+              <p>
+                <i>◉</i> Conflicts resolved
+              </p>
+              <small>
+                Last commit <b>2 hours ago</b>
+              </small>
+            </section>
+            <section className="ide-open-editors">
+              <h2>OPEN EDITORS</h2>
+              <p>
+                <i>TS</i> introduction.ts <em>M</em>
+              </p>
+              <p>
+                <i>TS</i> values.ts <em className="green">●</em>
+              </p>
+            </section>
+          </aside>
+
+          <main className="ide-editor-column">
+            <div className="ide-tabs">
+              <div
+                className={`ide-tab ide-tab--pinned ${activeView === "editor" && activeFile === "introduction.ts" ? "active" : ""}`}
+              >
+                <button
+                  className="ide-tab-select"
+                  type="button"
+                  onClick={() => openFile("introduction.ts")}
+                >
+                  <i>TS</i> introduction.ts{" "}
+                  <span aria-label="Pinned tab">●</span>
+                </button>
+              </div>
+              <button
+                className="career-history-tab"
+                type="button"
+                onClick={() => setActiveView("career")}
+                title="Open Git: Build History"
+              >
+                <ActivityIcon name="source" />
+                <span>Git: Build History</span>
+              </button>
+              {openFiles
+                .filter((tab) => tab !== "introduction.ts")
+                .map((tab) => (
+                  <div
+                    className={`ide-tab ${activeFile === tab ? "active" : ""}`}
+                    key={tab}
+                  >
+                    <button
+                      className="ide-tab-select"
+                      type="button"
+                      onClick={() => openFile(tab)}
+                    >
+                      <i>
+                        {tab.endsWith(".ts")
+                          ? "TS"
+                          : tab.endsWith(".json")
+                            ? "{}"
+                            : "•"}
+                      </i>
+                      {tab}
+                    </button>
+                    <button
+                      className="ide-tab-close"
+                      type="button"
+                      onClick={() => closeFile(tab)}
+                      aria-label={`Close ${tab}`}
+                      title={`Close ${tab}`}
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              <button className="new-tab" aria-label="New tab">
+                ＋
+              </button>
+            </div>
+            <div className="ide-breadcrumb">
+              portfolio <span>›</span> about <span>›</span> <b>TS</b>{" "}
+              {activeFile}
+            </div>
+            <section className={`ide-editor ${isImplemented ? "" : "pending"}`}>
+              {sourceContent}
               <div className="ide-minimap" aria-hidden="true">
                 {Array.from(
                   {
@@ -4155,17 +4166,28 @@ export function AboutIDEWorkspace() {
             </section>
           </main>
 
-          <SemanticMap
+            <SemanticMap
+              activeFile={activeFile}
+              selectedNodeId={selectedSemanticNode}
+              activeLine={semanticLine}
+              collapsed={semanticMapCollapsed}
+              collapsedNodeIds={collapsedNodeIds}
+              onSelectNode={selectSemanticNode}
+              onToggleNode={toggleSemanticNode}
+              onToggleCollapsed={() =>
+                setSemanticMapCollapsed((collapsed) => !collapsed)
+              }
+            />
+          </div>
+          <MobileEngineerWorkspace
             activeFile={activeFile}
-            selectedNodeId={selectedSemanticNode}
-            activeLine={semanticLine}
-            collapsed={semanticMapCollapsed}
-            collapsedNodeIds={collapsedNodeIds}
-            onSelectNode={selectSemanticNode}
-            onToggleNode={toggleSemanticNode}
-            onToggleCollapsed={() =>
-              setSemanticMapCollapsed((collapsed) => !collapsed)
-            }
+            openFiles={openFiles}
+            explorerFiles={explorerFiles}
+            onOpenFile={openFile}
+            onCloseFile={closeFile}
+            onOpenBuildHistory={() => setActiveView("career")}
+            semanticDefinition={currentSemanticMap}
+            sourceContent={sourceContent}
           />
         </>
       )}
