@@ -8715,7 +8715,8 @@ button {
   pointer-events: none;
   background: url("/luffy ascii_bg2.png") right center / cover no-repeat;
 }
-.about-ide-workspace > * {
+.about-ide-workspace > *,
+.about-ide-workspace > .careerDesktopSlot > * {
   position: relative;
   z-index: 1;
 }
