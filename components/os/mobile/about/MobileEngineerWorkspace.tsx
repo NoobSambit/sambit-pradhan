@@ -108,6 +108,8 @@ export function MobileEngineerWorkspace({
   const fileBadge = getFileBadge(activeFile);
   const isPending = !semanticDefinition;
 
+  // Mobile semantic navigation must use editorRef, never document.querySelector:
+  // the hidden desktop editor stays mounted (display:none) at <=760px.
   const getMobileAnchor = useCallback((nodeId: string) => {
     return editorRef.current?.querySelector<HTMLElement>(
       `[data-semantic-node="${nodeId}"]`,

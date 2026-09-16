@@ -3997,6 +3997,7 @@ export function AboutIDEWorkspace() {
         </>
       ) : (
         <>
+          {/* Desktop Engineer stays pixel-equivalent; hidden at <=760px via .desktopEngineerSlot. */}
           <div className="desktopEngineerSlot">
             <aside className="ide-explorer">
             <header>
