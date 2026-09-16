@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { CareerHistoryWorkspace as CareerHistoryWorkspaceV2 } from "@/components/os/career/CareerHistoryWorkspace";
 import { MobileCareerHistoryWorkspace } from "@/components/os/mobile/about/MobileCareerHistoryWorkspace";
+import { getAboutTerminalSession } from "@/components/os/about/terminalSessions";
 
 const explorerFiles = [
   "introduction.ts",
@@ -3646,6 +3647,7 @@ export function AboutIDEWorkspace() {
     ? (semanticSelections[activeFile] ?? currentSemanticMap.defaultNode)
     : undefined;
   const collapsedNodeIds = collapsedSemanticNodes[activeFile] ?? [];
+  const terminalSession = getAboutTerminalSession(activeFile);
 
   const getSemanticAnchor = (nodeId: string) =>
     document.querySelector<HTMLElement>(
@@ -4138,128 +4140,13 @@ export function AboutIDEWorkspace() {
               <div>
                 <p>
                   <strong>developer@sambit:~/about</strong>
-                  {isEducation
-                    ? "$ npm run about -- education"
-                    : isVision
-                      ? "$ npm run about -- vision"
-                      : isPersonality
-                        ? "$ npm run about -- personality"
-                        : isValues
-                          ? "$ npm run about -- values"
-                          : isEngineering
-                            ? "$ npm run about -- engineering"
-                            : "$ npm run about"}
+                  {terminalSession.command}
                 </p>
-                {isEducation ? (
-                  <>
-                    <p>
-                      [time]　<span>✓</span> Academic history loaded
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Degree status: graduated
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Self-learning path indexed
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Syllabus ceiling removed
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> education.ts ready
-                    </p>
-                  </>
-                ) : isVision ? (
-                  <>
-                    <p>
-                      [time]　<span>✓</span> Product filter loaded
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Market assumptions checked
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Founder certainty not found
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Career direction loaded
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> vision.ts ready
-                    </p>
-                  </>
-                ) : isPersonality ? (
-                  <>
-                    <p>
-                      [time]　<span>✓</span> Traits loaded
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Contradictions preserved
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Team experience not fabricated
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Perfectionism renamed to actual
-                      behavior
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> personality.ts ready
-                    </p>
-                  </>
-                ) : isValues ? (
-                  <>
-                    <p>
-                      [time]　<span>✓</span> Trade-offs loaded
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Engineering rules loaded
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Opinions loaded
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Generic virtues removed
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> values.ts ready
-                    </p>
-                  </>
-                ) : isEngineering ? (
-                  <>
-                    <p>
-                      [time]　<span>✓</span> Process loaded
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Case study loaded
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Trade-offs loaded
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> AI stance loaded
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> engineering.ts ready
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p>
-                      [time]　<span>✓</span> Profile loaded
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Education loaded
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Build preferences loaded
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Opportunity status loaded
-                    </p>
-                    <p>
-                      [time]　<span>✓</span> Workspace ready
-                    </p>
-                  </>
-                )}
+                {terminalSession.lines.map((line) => (
+                  <p key={line}>
+                    [time]　<span>✓</span> {line}
+                  </p>
+                ))}
                 <p>
                   <strong>developer@sambit:~/about</strong>${" "}
                   <b className="cursor">▌</b>
