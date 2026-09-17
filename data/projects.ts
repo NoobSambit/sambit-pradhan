@@ -23,6 +23,34 @@ export type Project = {
   engineeringNotes: ProjectFact[];
 };
 
+/** The compact repository copy is shared by desktop and mobile records. */
+export const projectListDescriptions: Record<string, string> = {
+  armyverse:
+    "BTS platform for playlists, community, and Boraverse progression.",
+  "agent-playground":
+    "Persistent multi-agent workspace for identity, memory, and collaboration.",
+  "gym-tracker":
+    "Offline-first strength training with recoverable workouts, optional sync, and private challenges.",
+  "kirana-corner":
+    "Hyperlocal marketplace connecting neighborhood stores and buyers.",
+  insightquill:
+    "Education operations for assessments, workflows, and reporting.",
+  docbuilder: "AI document and presentation builder with RAG-assisted outputs.",
+  "kisan-setu":
+    "Active farm-intelligence build for advisory, schemes, satellite health, weather, and markets.",
+};
+
+/** Explicit portfolio order used by the repository browser and Explorer. */
+export const projectPriority = [
+  "armyverse",
+  "agent-playground",
+  "gym-tracker",
+  "docbuilder",
+  "kirana-corner",
+  "insightquill",
+  "kisan-setu",
+] as const;
+
 export const projects: Project[] = [
   {
     id: "armyverse",

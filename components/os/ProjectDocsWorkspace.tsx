@@ -26,6 +26,7 @@ import { KiranaCornerDocsWorkspace } from "@/components/os/projects/KiranaCorner
 import { InsightQuillDocsWorkspace } from "@/components/os/projects/InsightQuillDocsWorkspace";
 import { KisanSetuDocsWorkspace } from "@/components/os/projects/KisanSetuDocsWorkspace";
 import { GymTrackerDocsWorkspace } from "@/components/os/projects/GymTrackerDocsWorkspace";
+import { MobileProjectsWorkspace } from "@/components/os/mobile/projects/MobileProjectsWorkspace";
 import type { DocumentedProjectSlug } from "@/lib/projects";
 
 type ProjectView = (typeof armyverseNavigation)[number]["id"];
@@ -128,6 +129,23 @@ function ProjectInspector({
 }
 
 export function ProjectDocsWorkspace({
+  initialProject,
+}: {
+  initialProject?: DocumentedProjectSlug;
+}) {
+  return (
+    <>
+      <div className="project-docs-mobile-view">
+        <MobileProjectsWorkspace initialProject={initialProject} />
+      </div>
+      <div className="project-docs-desktop-view">
+        <DesktopProjectDocsWorkspace initialProject={initialProject} />
+      </div>
+    </>
+  );
+}
+
+function DesktopProjectDocsWorkspace({
   initialProject,
 }: {
   /**

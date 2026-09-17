@@ -5894,6 +5894,42 @@ button {
   }
 }
 
+/* Projects gets a dedicated phone-sized IDE while the existing workstation
+   remains the only rendered layout at tablet and desktop widths. */
+.project-docs-mobile-view {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .project-docs-shell {
+    display: block;
+    min-height: 100svh;
+    height: auto;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+    background: #041017;
+  }
+
+  .project-docs-shell > .topbar,
+  .project-docs-shell > .statusbar,
+  .project-docs-desktop-view {
+    display: none;
+  }
+
+  .project-docs-shell > .project-docs-main {
+    display: block;
+    min-height: 100svh;
+    margin: 0;
+    overflow: visible;
+  }
+
+  .project-docs-mobile-view {
+    display: block;
+  }
+}
+
 /* Final reading pass: preserve the established grids while keeping text legible
    over the prepared artwork on the portfolio surfaces. */
 .os-shell:not(.project-docs-shell) .panel-title,

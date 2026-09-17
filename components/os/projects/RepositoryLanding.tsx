@@ -2,7 +2,12 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { projects, type Project } from "@/data/projects";
+import {
+  projectListDescriptions,
+  projectPriority,
+  projects,
+  type Project,
+} from "@/data/projects";
 import { ProjectUiIcon } from "@/components/os/projects/ProjectUiIcon";
 import {
   getProjectCanonicalPath,
@@ -24,35 +29,11 @@ function commitTone(subject: string) {
   return "maintenance";
 }
 
-const listDescriptions: Record<string, string> = {
-  armyverse:
-    "BTS platform for playlists, community, and Boraverse progression.",
-  "agent-playground":
-    "Persistent multi-agent workspace for identity, memory, and collaboration.",
-  "gym-tracker":
-    "Offline-first strength training with recoverable workouts, optional sync, and private challenges.",
-  "kirana-corner":
-    "Hyperlocal marketplace connecting neighborhood stores and buyers.",
-  insightquill:
-    "Education operations for assessments, workflows, and reporting.",
-  docbuilder: "AI document and presentation builder with RAG-assisted outputs.",
-  "kisan-setu":
-    "Active farm-intelligence build for advisory, schemes, satellite health, weather, and markets.",
-};
-
-const projectPriority = [
-  "armyverse",
-  "agent-playground",
-  "gym-tracker",
-  "docbuilder",
-  "kirana-corner",
-  "insightquill",
-  "kisan-setu",
-];
-
 function comparePinnedProjects(left: Project, right: Project) {
-  const leftPriority = projectPriority.indexOf(left.id);
-  const rightPriority = projectPriority.indexOf(right.id);
+  const leftPriority = (projectPriority as readonly string[]).indexOf(left.id);
+  const rightPriority = (projectPriority as readonly string[]).indexOf(
+    right.id,
+  );
   if (leftPriority !== -1 || rightPriority !== -1) {
     return (
       (leftPriority === -1 ? Number.MAX_SAFE_INTEGER : leftPriority) -
@@ -220,7 +201,7 @@ function RepositoryTable({
             <b>{project.name}</b>
             <small>{repositorySlug(project)}</small>
           </div>
-          <p>{listDescriptions[project.id] ?? project.description}</p>
+          <p>{projectListDescriptions[project.id] ?? project.description}</p>
           <div className="repository-stack">
             {project.stack.slice(0, 4).map((item) => (
               <span key={item}>{item}</span>
@@ -318,7 +299,11 @@ function Inspector({ project }: { project: Project }) {
         <header>RECENT ACTIVITY</header>
         {project.commits.slice(0, 5).map((commit) => (
           <p key={commit.sha}>
-            <ProjectUiIcon name="commit" size="micro" className={commitTone(commit.subject)} />
+            <ProjectUiIcon
+              name="commit"
+              size="micro"
+              className={commitTone(commit.subject)}
+            />
             <span>
               <b>{commit.sha}</b> {commit.subject}
             </span>
@@ -343,7 +328,9 @@ function Inspector({ project }: { project: Project }) {
           href={docsHref}
         >
           <ProjectUiIcon name="documentation" size="sm" />
-          <span>{docsAvailable ? "Open documentation" : "Documentation planned"}</span>
+          <span>
+            {docsAvailable ? "Open documentation" : "Documentation planned"}
+          </span>
         </Link>
         <Link
           aria-disabled={!docsAvailable}
@@ -351,7 +338,9 @@ function Inspector({ project }: { project: Project }) {
           href={docsHref}
         >
           <ProjectUiIcon name="architecture" size="sm" />
-          <span>{docsAvailable ? "View architecture" : "Not available yet"}</span>
+          <span>
+            {docsAvailable ? "View architecture" : "Not available yet"}
+          </span>
         </Link>
       </section>
     </aside>
@@ -571,7 +560,8 @@ export function RepositoryLanding() {
             <br />
             {projects.map((project) => `├── ${project.id}`).join("\n")}
             <br />
-            <b>developer@sambit:~/repositories</b>$ <i className="terminal-caret" />
+            <b>developer@sambit:~/repositories</b>${" "}
+            <i className="terminal-caret" />
           </p>
         </section>
       </main>

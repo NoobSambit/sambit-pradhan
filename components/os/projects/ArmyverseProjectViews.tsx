@@ -67,7 +67,7 @@ export function ProjectHero() {
   );
 }
 
-const armyverseScreens = [
+export const armyverseProductScreens = [
   {
     src: "/project_banners/armyverse/ai-playlist.png",
     label: "Every mood deserves its perfect BTS mix",
@@ -108,16 +108,48 @@ function CarouselControlIcon({
   type: "previous" | "next" | "pause" | "play" | "expand" | "close";
 }) {
   if (type === "previous")
-    return <ProjectUiIcon name="chevron-left" size="sm" className="armyverse-carousel-icon" />;
+    return (
+      <ProjectUiIcon
+        name="chevron-left"
+        size="sm"
+        className="armyverse-carousel-icon"
+      />
+    );
   if (type === "next")
-    return <ProjectUiIcon name="chevron-right" size="sm" className="armyverse-carousel-icon" />;
+    return (
+      <ProjectUiIcon
+        name="chevron-right"
+        size="sm"
+        className="armyverse-carousel-icon"
+      />
+    );
   if (type === "pause")
-    return <ProjectUiIcon name="pause" size="sm" className="armyverse-carousel-icon" />;
+    return (
+      <ProjectUiIcon
+        name="pause"
+        size="sm"
+        className="armyverse-carousel-icon"
+      />
+    );
   if (type === "play")
-    return <ProjectUiIcon name="play" size="sm" className="armyverse-carousel-icon" />;
+    return (
+      <ProjectUiIcon
+        name="play"
+        size="sm"
+        className="armyverse-carousel-icon"
+      />
+    );
   if (type === "expand")
-    return <ProjectUiIcon name="expand" size="sm" className="armyverse-carousel-icon" />;
-  return <ProjectUiIcon name="close" size="sm" className="armyverse-carousel-icon" />;
+    return (
+      <ProjectUiIcon
+        name="expand"
+        size="sm"
+        className="armyverse-carousel-icon"
+      />
+    );
+  return (
+    <ProjectUiIcon name="close" size="sm" className="armyverse-carousel-icon" />
+  );
 }
 
 function ProductHeroPreview() {
@@ -128,7 +160,7 @@ function ProductHeroPreview() {
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const viewerDialogRef = useRef<HTMLDialogElement>(null);
   const expandButtonRef = useRef<HTMLButtonElement>(null);
-  const activeScreen = armyverseScreens[activeIndex];
+  const activeScreen = armyverseProductScreens[activeIndex];
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -139,16 +171,18 @@ function ProductHeroPreview() {
   }, []);
 
   useEffect(() => {
-    const nextIndex = (activeIndex + 1) % armyverseScreens.length;
+    const nextIndex = (activeIndex + 1) % armyverseProductScreens.length;
     const preload = new window.Image();
-    preload.src = armyverseScreens[nextIndex].src;
+    preload.src = armyverseProductScreens[nextIndex].src;
   }, [activeIndex]);
 
   useEffect(() => {
     if (isPaused || isPointerOver || isViewerOpen || reducedMotion) return;
 
     const interval = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % armyverseScreens.length);
+      setActiveIndex(
+        (current) => (current + 1) % armyverseProductScreens.length,
+      );
     }, ARMYVERSE_SCREEN_INTERVAL_MS);
 
     return () => window.clearInterval(interval);
@@ -168,12 +202,13 @@ function ProductHeroPreview() {
   const showPrevious = () => {
     setActiveIndex(
       (current) =>
-        (current - 1 + armyverseScreens.length) % armyverseScreens.length,
+        (current - 1 + armyverseProductScreens.length) %
+        armyverseProductScreens.length,
     );
   };
 
   const showNext = () => {
-    setActiveIndex((current) => (current + 1) % armyverseScreens.length);
+    setActiveIndex((current) => (current + 1) % armyverseProductScreens.length);
   };
 
   const closeViewer = () => {
@@ -218,7 +253,7 @@ function ProductHeroPreview() {
           <span className="armyverse-carousel-label">
             <small>
               {String(activeIndex + 1).padStart(2, "0")} /{" "}
-              {String(armyverseScreens.length).padStart(2, "0")}
+              {String(armyverseProductScreens.length).padStart(2, "0")}
             </small>
             <b>{activeScreen.label}</b>
           </span>
@@ -252,10 +287,10 @@ function ProductHeroPreview() {
             <CarouselControlIcon type={isPaused ? "play" : "pause"} />
           </button>
           <span
-            aria-label={`${activeIndex + 1} of ${armyverseScreens.length} screenshots`}
+            aria-label={`${activeIndex + 1} of ${armyverseProductScreens.length} screenshots`}
             className="armyverse-carousel-dots"
           >
-            {armyverseScreens.map((screen, index) => (
+            {armyverseProductScreens.map((screen, index) => (
               <button
                 aria-label={`Show ${screen.label}`}
                 aria-pressed={index === activeIndex}
@@ -285,7 +320,7 @@ function ProductHeroPreview() {
           <header>
             <span>
               {String(activeIndex + 1).padStart(2, "0")} /{" "}
-              {String(armyverseScreens.length).padStart(2, "0")}
+              {String(armyverseProductScreens.length).padStart(2, "0")}
             </span>
             <b>{activeScreen.label}</b>
             <button
@@ -315,7 +350,7 @@ function ProductHeroPreview() {
               <CarouselControlIcon type="previous" />
             </button>
             <span className="armyverse-carousel-dots">
-              {armyverseScreens.map((screen, index) => (
+              {armyverseProductScreens.map((screen, index) => (
                 <button
                   aria-label={`Show ${screen.label}`}
                   aria-pressed={index === activeIndex}
@@ -823,7 +858,8 @@ function ArchitectureGraph({
 
 function ArchitectureModuleIcon({ title }: { title: string }) {
   const normalized = title.toLowerCase();
-  const iconName: "overview" | "source-control" | "graph" | "database" | "link" =
+  const iconName:
+    "overview" | "source-control" | "graph" | "database" | "link" =
     normalized.includes("playlist") || normalized.includes("experience")
       ? "overview"
       : normalized.includes("route") || normalized.includes("scheduler")
