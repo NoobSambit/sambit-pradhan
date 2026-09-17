@@ -226,6 +226,7 @@
 }
 
 .railButton {
+  position: relative;
   display: grid;
   flex: 0 0 auto;
   width: 42px;
@@ -237,6 +238,33 @@
   color: var(--m-muted);
   cursor: pointer;
   font-size: 14px;
+}
+
+.railButton:first-child:not(.railActive) {
+  overflow: hidden;
+}
+
+.railButton:first-child:not(.railActive)::after {
+  position: absolute;
+  width: 14px;
+  height: 1px;
+  border-radius: 0;
+  background: #7ce3eb;
+  content: "";
+  pointer-events: none;
+  offset-path: inset(3px round 3px);
+  offset-distance: 0%;
+  offset-rotate: auto;
+  animation: m-explorer-rail-trace 6.4s steps(20, end) infinite;
+}
+
+@keyframes m-explorer-rail-trace {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
 }
 
 .railButton:last-child {
