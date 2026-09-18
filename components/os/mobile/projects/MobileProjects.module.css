@@ -1391,13 +1391,24 @@
 
 .carouselDots {
   display: flex;
+  align-items: center;
   flex: 0 0 auto;
-  gap: 4px;
+  width: max-content;
+  min-width: max-content;
+  gap: 5px;
 }
 
 .carouselDots button {
+  box-sizing: border-box;
+  flex: 0 0 10px;
   width: 10px;
+  min-width: 10px;
+  max-width: 10px;
   height: 10px;
+  min-height: 10px;
+  max-height: 10px;
+  aspect-ratio: 1;
+  padding: 0;
   border: 1px solid #b8d3e1;
   border-radius: 50%;
 }
