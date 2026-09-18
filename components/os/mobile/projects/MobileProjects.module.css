@@ -605,7 +605,7 @@
   box-shadow: inset 5px 0 var(--purple);
 }
 
-.repositoryCardSelect {
+.repositoryCardLink {
   display: block;
   width: 100%;
   min-width: 0;
@@ -616,6 +616,7 @@
   font: inherit;
   text-align: left;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .repositoryCardHeader {
@@ -697,7 +698,7 @@
   font-size: 9px;
 }
 
-.repositoryCardSelect .stackTags,
+.repositoryCardLink .stackTags,
 .repositoryFocus,
 .repositoryMeta {
   margin-left: 37px;

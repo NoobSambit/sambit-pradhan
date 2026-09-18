@@ -142,7 +142,9 @@ export function MobileDrawer({
       />
       <aside
         aria-label={label}
+        aria-modal="true"
         className={`${styles.drawer} ${side === "right" ? styles.rightDrawer : styles.leftDrawer}`}
+        role="dialog"
       >
         <header className={styles.drawerHeader}>
           <span>{label}</span>
@@ -215,7 +217,8 @@ export function MobileTerminalDock({
         </>
       ) : (
         <button
-          aria-expanded={false}
+          aria-expanded={expanded}
+          aria-label="Expand terminal"
           className={styles.terminalCollapsed}
           onClick={onToggle}
           type="button"

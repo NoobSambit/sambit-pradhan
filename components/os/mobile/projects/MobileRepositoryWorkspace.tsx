@@ -49,21 +49,18 @@ function sortProjects(items: Project[], sort: "recent" | "name") {
 function MobileRepositoryCard({
   project,
   selected,
-  onSelect,
 }: {
   project: Project;
   selected: boolean;
-  onSelect: (project: Project) => void;
 }) {
   return (
     <article
       className={`${styles.repositoryCard} ${selected ? styles.selectedCard : ""}`}
     >
-      <button
-        aria-pressed={selected}
-        className={styles.repositoryCardSelect}
-        onClick={() => onSelect(project)}
-        type="button"
+      <Link
+        aria-label={`Open ${project.name} documentation`}
+        className={styles.repositoryCardLink}
+        href={getProjectCanonicalPath(project.id)}
       >
         <header className={styles.repositoryCardHeader}>
           <span className={styles.repositoryMark}>
@@ -100,13 +97,9 @@ function MobileRepositoryCard({
             <ProjectUiIcon name="commit" size="micro" /> {project.commitCount}
           </span>
         </footer>
-      </button>
-      <Link
-        aria-label={`Open ${project.name} documentation`}
-        className={styles.cardOpen}
-        href={getProjectCanonicalPath(project.id)}
-      >
-        OPEN <ProjectUiIcon name="arrow-right" size="micro" />
+        <span className={styles.cardOpen}>
+          OPEN <ProjectUiIcon name="arrow-right" size="micro" />
+        </span>
       </Link>
     </article>
   );
@@ -440,8 +433,8 @@ export function MobileRepositoryWorkspace() {
       {showGuide && (
         <aside className={styles.guide}>
           <ProjectUiIcon name="info" size="sm" />
-          <b>Explore projects</b>
-          <span>Tap a repository to inspect or open it.</span>
+          <b>Open projects</b>
+          <span>Tap anywhere on a repository to open it.</span>
           <button
             aria-label="Dismiss guide"
             onClick={() => setShowGuide(false)}
@@ -458,7 +451,6 @@ export function MobileRepositoryWorkspace() {
         {visibleProjects.map((project) => (
           <MobileRepositoryCard
             key={project.id}
-            onSelect={setSelected}
             project={project}
             selected={selected.id === project.id}
           />

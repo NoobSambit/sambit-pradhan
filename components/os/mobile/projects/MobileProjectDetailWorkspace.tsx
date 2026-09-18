@@ -21,7 +21,6 @@ import {
 } from "./mobileProjectData";
 import { ProjectUiIcon } from "@/components/os/projects/ProjectUiIcon";
 import { armyverseProductScreens } from "@/components/os/projects/ArmyverseProjectViews";
-import { projects } from "@/data/projects";
 import { getProjectBySlug, type DocumentedProjectSlug } from "@/lib/projects";
 
 type MobileFile = "README.md" | "FEATURES.md" | "ARCHITECTURE.md";
@@ -37,6 +36,10 @@ function toneClass(tone: string) {
 
 function docRuntime(doc: MobileProjectDocument, fallback: string) {
   return doc.stack.find((item) => item.startsWith("Next.js")) ?? fallback;
+}
+
+function docApplication(doc: MobileProjectDocument) {
+  return doc.stack[0] ?? "Documented application";
 }
 
 function docDatabase(doc: MobileProjectDocument) {
@@ -1102,7 +1105,7 @@ function ProjectStatusInspector({
           </div>
           <div>
             <dt>Application</dt>
-            <dd>{docRuntime(doc, project.runtime)} App Router</dd>
+            <dd>{docApplication(doc)}</dd>
           </div>
           <div>
             <dt>Persistence</dt>
