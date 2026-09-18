@@ -749,16 +749,20 @@
   background: #53d4f0;
 }
 
-.cardOpen {
+.cardInspect {
   position: absolute;
   right: 8px;
   bottom: 8px;
   display: inline-flex;
   align-items: center;
   gap: 3px;
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: var(--cyan);
+  font: inherit;
   font-size: 8px;
-  text-decoration: none;
+  cursor: pointer;
 }
 
 .empty {

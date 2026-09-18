@@ -49,9 +49,11 @@ function sortProjects(items: Project[], sort: "recent" | "name") {
 function MobileRepositoryCard({
   project,
   selected,
+  onSelect,
 }: {
   project: Project;
   selected: boolean;
+  onSelect: (project: Project) => void;
 }) {
   return (
     <article
@@ -97,10 +99,16 @@ function MobileRepositoryCard({
             <ProjectUiIcon name="commit" size="micro" /> {project.commitCount}
           </span>
         </footer>
-        <span className={styles.cardOpen}>
-          OPEN <ProjectUiIcon name="arrow-right" size="micro" />
-        </span>
       </Link>
+      <button
+        aria-label={`Inspect ${project.name}`}
+        aria-pressed={selected}
+        className={styles.cardInspect}
+        onClick={() => onSelect(project)}
+        type="button"
+      >
+        INSPECT <ProjectUiIcon name="arrow-right" size="micro" />
+      </button>
     </article>
   );
 }
@@ -451,6 +459,10 @@ export function MobileRepositoryWorkspace() {
         {visibleProjects.map((project) => (
           <MobileRepositoryCard
             key={project.id}
+            onSelect={(project) => {
+              setSelected(project);
+              setPanel("right");
+            }}
             project={project}
             selected={selected.id === project.id}
           />
