@@ -845,7 +845,7 @@ function ArchitectureDocument({
       : doc.overview.slice(0, 2);
   if (!selected) return null;
   return (
-    <>
+    <div className={styles.architectureDocument}>
       <MobileProjectHero doc={doc} onDocumentation={onDocumentation} />
       <section className={styles.contentPanel}>
         <h2>Architecture overview</h2>
@@ -920,11 +920,20 @@ function ArchitectureDocument({
                       (fromPosition.y + toPosition.y) / 2,
                     );
                     return (
-                      <path
-                        d={`M ${fromPosition.x} ${fromPosition.y} C ${fromPosition.x} ${midY}, ${toPosition.x} ${midY}, ${toPosition.x} ${toPosition.y}`}
-                        key={`${edge.from}-${edge.to}`}
-                        markerEnd="url(#mobile-architecture-modal-arrow)"
-                      />
+                      <g key={`${edge.from}-${edge.to}`}>
+                        <path
+                          d={`M ${fromPosition.x} ${fromPosition.y} C ${fromPosition.x} ${midY}, ${toPosition.x} ${midY}, ${toPosition.x} ${toPosition.y}`}
+                          markerEnd="url(#mobile-architecture-modal-arrow)"
+                        />
+                        {edge.label && (
+                          <text
+                            x={(fromPosition.x + toPosition.x) / 2}
+                            y={midY - 5}
+                          >
+                            {edge.label}
+                          </text>
+                        )}
+                      </g>
                     );
                   })}
                 </svg>
@@ -953,7 +962,7 @@ function ArchitectureDocument({
           </section>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
