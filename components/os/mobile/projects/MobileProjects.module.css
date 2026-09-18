@@ -242,7 +242,7 @@
 
 .rightDrawer {
   right: 9px;
-  width: clamp(205px, 44vw, 390px);
+  width: clamp(250px, 62vw, 390px);
   border-color: var(--purple);
 }
 
@@ -1010,14 +1010,14 @@
 
 .commitList li {
   display: grid;
-  grid-template-columns: 14px minmax(0, 1fr) auto;
-  gap: 5px;
+  grid-template-columns: 14px minmax(0, 1fr) 68px;
+  gap: 7px;
   align-items: start;
-  padding: 6px 0;
+  padding: 8px 0;
   border-bottom: 1px solid rgba(63, 126, 141, 0.35);
   color: #c4d2db;
-  font-size: 8px;
-  line-height: 1.4;
+  font-size: 9px;
+  line-height: 1.45;
 }
 
 .commitList li:last-child {
@@ -1026,6 +1026,7 @@
 
 .commitList b {
   color: var(--cyan);
+  font-size: 9px;
 }
 
 .commitList time {
