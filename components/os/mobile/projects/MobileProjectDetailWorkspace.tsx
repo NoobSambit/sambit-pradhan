@@ -1249,7 +1249,9 @@ function ArchitectureInspector({
               onClick={() => onSelect(map.id)}
               type="button"
             >
-              <span>{map.group.toUpperCase()}</span>
+              <span data-group={map.group.toLowerCase()}>
+                {map.group.toUpperCase()}
+              </span>
               <b>{map.title}</b>
               <small>{map.source}</small>
               <ProjectUiIcon name="chevron-right" size="sm" />
@@ -1321,7 +1323,7 @@ export function MobileProjectDetailWorkspace({
         leftOpen={panel === "left"}
         onLeft={() => openPanel("left")}
         onRight={() => openPanel("right")}
-        rightLabel="INSPECT"
+        rightLabel={file === "ARCHITECTURE.md" ? "MAPS" : "INSPECT"}
         rightOpen={panel === "right"}
       />
       <MobileDocumentTabs active={file} onSelect={selectFile} />
@@ -1367,7 +1369,11 @@ export function MobileProjectDetailWorkspace({
       )}
       {panel === "right" && (
         <MobileDrawer
-          label="PROJECT INSPECTOR"
+          label={
+            file === "ARCHITECTURE.md"
+              ? "ARCHITECTURE & WORKFLOWS"
+              : "PROJECT INSPECTOR"
+          }
           onClose={() => setPanel(null)}
           side="right"
         >
@@ -1380,7 +1386,10 @@ export function MobileProjectDetailWorkspace({
           {file === "ARCHITECTURE.md" && (
             <ArchitectureInspector
               maps={maps}
-              onSelect={setSelectedMapId}
+              onSelect={(id) => {
+                setSelectedMapId(id);
+                setPanel(null);
+              }}
               selectedId={selectedMapId}
             />
           )}
