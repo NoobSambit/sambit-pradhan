@@ -134,6 +134,7 @@
 }
 
 .workspaceBarButton {
+  position: relative;
   display: flex;
   flex: 0 0 43px;
   align-items: center;
@@ -143,6 +144,45 @@
   background: transparent;
   color: #f0f3f3;
   cursor: pointer;
+}
+
+.folderButton {
+  overflow: hidden;
+  color: #ff1744;
+}
+
+.folderButton::after {
+  position: absolute;
+  width: 15px;
+  height: 1px;
+  border-radius: 2px;
+  background: #ff1744;
+  box-shadow: 0 0 7px rgba(255, 23, 68, 0.9);
+  content: "";
+  pointer-events: none;
+  offset-path: inset(3px round 3px);
+  offset-distance: 0%;
+  offset-rotate: auto;
+  animation: mobile-folder-rail-trace 6.4s steps(20, end) infinite;
+}
+
+.folderButton[aria-expanded="true"]::after {
+  display: none;
+}
+
+.folderButton:hover,
+.folderButton[aria-expanded="true"] {
+  color: #ff1744;
+  background: rgba(255, 23, 68, 0.1);
+}
+
+@keyframes mobile-folder-rail-trace {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
 }
 
 .workspaceFile {
@@ -228,7 +268,7 @@
   top: 52px;
   bottom: calc(58px + env(safe-area-inset-bottom) + 50px);
   display: grid;
-  width: clamp(210px, 52vw, 440px);
+  width: clamp(240px, 58vw, 440px);
   min-width: 0;
   grid-template-rows: 42px minmax(0, 1fr);
   border: 1px solid var(--cyan);
@@ -250,10 +290,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 12px;
+  padding: 0 14px;
   border-bottom: 1px solid var(--line-soft);
   color: #eef4f5;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .rightDrawer .drawerHeader {
@@ -274,7 +314,7 @@
 .drawerScroll {
   min-height: 0;
   overflow: auto;
-  padding: 10px;
+  padding: 12px;
   scrollbar-color: #2e6370 transparent;
   scrollbar-width: thin;
 }
@@ -775,6 +815,7 @@
 
 .treeRoot,
 .treeList button,
+.treeList a,
 .fileTreeRow {
   display: flex;
   min-width: 0;
@@ -809,24 +850,33 @@
 }
 
 .treeList button,
+.treeList a,
 .fileTreeRow {
   width: 100%;
   color: #d7e0e6;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.treeList button {
+.treeList button,
+.treeList a {
   padding-left: 8px;
 }
 
 .treeList button:hover,
+.treeList a:hover,
 .treeList button.treeSelected,
+.treeList a.treeSelected,
 .fileTreeRow:hover {
   background: rgba(64, 28, 116, 0.62);
   color: var(--purple);
 }
 
 .treeList button > span {
+  flex: 1;
+}
+
+.treeList a > span {
   flex: 1;
 }
 
@@ -845,35 +895,40 @@
 
 .drawerSection {
   display: grid;
-  gap: 5px;
-  padding: 0 8px;
+  gap: 8px;
+  padding: 0 10px;
 }
 
 .drawerSection h2,
 .drawerSectionPanel h2 {
-  margin: 0 0 7px;
+  margin: 0 0 8px;
   color: var(--amber);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.02em;
 }
 
 .drawerSection p {
   display: grid;
-  grid-template-columns: 18px minmax(0, 1fr) auto;
-  gap: 4px;
+  grid-template-columns: 18px minmax(0, 1fr) minmax(0, auto);
+  gap: 7px;
   align-items: center;
   margin: 0;
   color: #d7e0e3;
-  font-size: 10px;
+  font-size: 11px;
+  line-height: 1.35;
 }
 
 .drawerSection p b {
-  max-width: 55%;
+  min-width: 0;
+  max-width: 100%;
   color: #f2f4f4;
   font-weight: 500;
   overflow-wrap: anywhere;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-align: right;
+  white-space: nowrap;
 }
 
 .inspectorIntro,
@@ -1074,7 +1129,7 @@
   border: 1px solid #36798a;
   border-radius: 3px;
   color: var(--cyan);
-  font-size: 9px;
+  font-size: 10px;
   text-decoration: none;
 }
 
@@ -1093,8 +1148,9 @@
   background: transparent;
   color: #e3ebed;
   font: inherit;
-  font-size: 10px;
+  font-size: 11px;
   text-align: left;
+  white-space: nowrap;
 }
 
 .docTree button {
@@ -1115,6 +1171,7 @@
 .fileTreeRow {
   min-height: 36px;
   color: #abc2df;
+  font-size: 11px;
 }
 
 .evolutionList article {

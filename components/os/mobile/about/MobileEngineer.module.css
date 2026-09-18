@@ -11,7 +11,7 @@
   --m-purple: #d5a0ff;
   --m-amber: #f2bd64;
   --m-blue: #9ebdff;
-  --m-red: #f08a7d;
+  --m-red: #ff1744;
   --m-header-h: 52px;
   position: fixed;
   inset: 0;
@@ -249,7 +249,8 @@
   width: 14px;
   height: 1px;
   border-radius: 0;
-  background: #7ce3eb;
+  background: var(--m-red);
+  box-shadow: 0 0 7px rgba(255, 23, 68, 0.9);
   content: "";
   pointer-events: none;
   offset-path: inset(3px round 3px);
@@ -280,6 +281,17 @@
 .railButton:hover {
   color: var(--m-cyan);
   background: rgba(124, 227, 235, 0.07);
+}
+
+.railButton:first-child {
+  color: var(--m-red);
+}
+
+.railButton:first-child:hover,
+.railButton:first-child.railActive {
+  color: var(--m-red) !important;
+  background: rgba(255, 23, 68, 0.1);
+  box-shadow: inset 0 -2px 0 var(--m-red);
 }
 
 .railActive {

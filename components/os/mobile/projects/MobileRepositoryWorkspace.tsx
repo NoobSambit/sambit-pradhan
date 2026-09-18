@@ -114,10 +114,8 @@ function MobileRepositoryCard({
 }
 
 function RepositoryExplorer({
-  onSelect,
   selected,
 }: {
-  onSelect: (project: Project) => void;
   selected: Project;
 }) {
   const active = projects.filter(
@@ -142,20 +140,19 @@ function RepositoryExplorer({
       </div>
       <div className={styles.treeList}>
         {sortProjects(projects, "recent").map((project) => (
-          <button
+          <Link
             aria-current={selected.id === project.id ? "true" : undefined}
             className={
               selected.id === project.id ? styles.treeSelected : undefined
             }
+            href={getProjectCanonicalPath(project.id)}
             key={project.id}
-            onClick={() => onSelect(project)}
-            type="button"
           >
             <ProjectUiIcon name="chevron-right" size="sm" />
             <ProjectUiIcon name="folder" size="sm" />
             <span>{project.id}/</span>
             <i data-tone={toneLabel(project.tone)} />
-          </button>
+          </Link>
         ))}
       </div>
       <div className={styles.treeRoot}>
@@ -477,7 +474,7 @@ export function MobileRepositoryWorkspace() {
           onClose={() => setPanel(null)}
           side="left"
         >
-          <RepositoryExplorer onSelect={setSelected} selected={selected} />
+          <RepositoryExplorer selected={selected} />
         </MobileDrawer>
       )}
       {panel === "right" && (

@@ -65,7 +65,7 @@ export function MobileWorkspaceBar({
       <button
         aria-expanded={leftOpen}
         aria-label={`Open ${leftLabel}`}
-        className={styles.workspaceBarButton}
+        className={`${styles.workspaceBarButton} ${styles.folderButton}`}
         onClick={onLeft}
         type="button"
       >
