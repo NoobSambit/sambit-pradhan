@@ -378,17 +378,28 @@ function Workflow({
   feature: MobileFeature;
   modal?: boolean;
 }) {
+  const viewportRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (modal) viewportRef.current?.scrollTo({ left: 0, top: 0 });
+  }, [feature.id, modal]);
+
   return (
     <div
+      ref={viewportRef}
       className={`${styles.workflowViewport} ${modal ? styles.workflowModalViewport : ""}`}
     >
       <div className={styles.workflowGrid}>
         {feature.workflow.nodes.map((node, index) => (
-          <div className={styles.workflowStep} key={node}>
-            <span>{String(index + 1).padStart(2, "0")}</span>
-            <b>{node}</b>
+          <div className={styles.workflowItem} key={node}>
+            <div className={styles.workflowStep}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <b>{node}</b>
+            </div>
             {index < feature.workflow.nodes.length - 1 && (
-              <ProjectUiIcon name="arrow-right" size="micro" />
+              <span aria-hidden="true" className={styles.workflowConnector}>
+                <ProjectUiIcon name="arrow-right" size="sm" />
+              </span>
             )}
           </div>
         ))}

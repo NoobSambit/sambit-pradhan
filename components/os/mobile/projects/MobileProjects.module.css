@@ -1442,6 +1442,13 @@
   background: #04131b;
 }
 
+.workflowModal section {
+  width: min(100%, 720px);
+  height: auto;
+  min-height: 0;
+  max-height: calc(100svh - 92px);
+}
+
 .mediaModal header,
 .workflowModal header,
 .architectureModal header,
@@ -1454,6 +1461,35 @@
   gap: 8px;
   padding: 0 10px;
   border-bottom: 1px solid var(--line-soft);
+}
+
+.workflowModal header {
+  min-height: 78px;
+  align-items: flex-start;
+  padding: 12px 13px;
+}
+
+.workflowModal header > div {
+  min-width: 0;
+  flex: 1;
+}
+
+.workflowModal header small {
+  color: var(--cyan);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+}
+
+.workflowModal header h2 {
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+.workflowModal header p {
+  margin: 5px 0 0;
+  color: #c6d7e0;
+  font-size: 10px;
+  line-height: 1.4;
 }
 
 .mediaModal header b,
@@ -1475,6 +1511,17 @@
   margin-left: auto;
 }
 
+.workflowModal header button {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  border: 1px solid var(--cyan);
+  background: transparent;
+  color: var(--cyan);
+}
+
 .mediaModal img {
   display: block;
   width: 100%;
@@ -1493,6 +1540,20 @@
   font-size: 8px;
 }
 
+.workflowModal footer {
+  min-height: 0;
+  align-items: flex-start;
+  padding: 12px 13px;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.workflowModal footer > span {
+  min-width: 0;
+  flex: 1;
+  overflow: visible;
+}
+
 .mediaModal footer > span {
   display: flex;
   gap: 4px;
@@ -1506,6 +1567,24 @@
   border: 1px solid var(--cyan);
   color: var(--cyan);
   font-size: 9px;
+}
+
+.workflowModal footer button {
+  min-height: 34px;
+  padding: 0 9px;
+  font-size: 10px;
+}
+
+.workflowModalViewport {
+  min-width: 0;
+  min-height: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-padding-inline: 16px;
+}
+
+.workflowModalViewport .workflowGrid {
+  padding: 12px 16px 14px;
 }
 
 .contentPanel,
@@ -1764,24 +1843,30 @@
 }
 
 .workflowGrid {
-  display: grid;
-  min-width: 600px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 6px;
-  padding: 2px;
+  display: flex;
+  min-width: max-content;
+  align-items: center;
+  padding: 5px 8px 9px;
+}
+
+.workflowItem {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
 }
 
 .workflowStep {
   position: relative;
   display: grid;
-  min-height: 58px;
-  place-items: center;
-  gap: 3px;
-  padding: 6px 22px;
+  flex: 0 0 176px;
+  min-height: 76px;
+  align-items: center;
+  padding: 18px 14px 12px;
   border: 1px solid #1d8399;
   border-radius: 3px;
   color: #d6e3ea;
-  text-align: center;
+  text-align: left;
 }
 
 .workflowStep > span {
@@ -1800,13 +1885,16 @@
 }
 
 .workflowStep b {
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 500;
+  line-height: 1.35;
 }
 
-.workflowStep > svg {
-  position: absolute;
-  right: -18px;
+.workflowConnector {
+  display: grid;
+  flex: 0 0 22px;
+  width: 22px;
+  place-items: center;
   color: var(--cyan);
 }
 
